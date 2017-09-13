@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // SetUp RootController
+        chooseRootVC()
+        
         return true
     }
 
@@ -49,7 +51,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+}
 
-
+// MARK: - 启动页
+extension AppDelegate {
+    fileprivate func chooseRootVC() {
+        // 显示启动页3秒
+        Thread.sleep(forTimeInterval: 3.0)
+        
+        let userHasOnboarded = UserDefaults.standard.bool(forKey: kUserHasOnboard)
+        
+        if userHasOnboarded {
+            setupNormalRootViewController()
+        } else {
+            self.window?.rootViewController = showGuideVC()
+        }
+        
+        self.window?.makeKeyAndVisible()
+    }
+    
+    fileprivate func showGuideVC() -> GuideController {
+        let pics = [Icon.guideOne, Icon.guideTwo, Icon.guideThree]
+        let guideController = GuideController(pics: pics)
+        guideController.comfirmButton.addTarget(self, action: #selector(self.setupNormalRootViewController), for: .touchUpInside)
+        UserDefaults.standard.set(true, forKey: kUserHasOnboard)
+        UserDefaults.standard.synchronize()
+        
+        return guideController
+    }
+    
+    @objc fileprivate func setupNormalRootViewController() {
+        let rootVC = RootController()
+        self.window?.rootViewController = rootVC
+    }
 }
 

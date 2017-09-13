@@ -70,6 +70,14 @@
 		C1250A0A1F6920C8006ED55E /* LoginAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A091F6920C8006ED55E /* LoginAPIManager.swift */; };
 		C1250A0C1F692111006ED55E /* APIResultCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A0B1F692111006ED55E /* APIResultCheck.swift */; };
 		C1250A0E1F692171006ED55E /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A0D1F692171006ED55E /* NotificationConst.swift */; };
+		C1F17BB01F692766001153BA /* GuideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BAF1F692766001153BA /* GuideController.swift */; };
+		C1F17BB21F692E13001153BA /* SizeConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BB11F692E13001153BA /* SizeConst.swift */; };
+		C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BB31F692E38001153BA /* ColorConst.swift */; };
+		C1F17BB61F693452001153BA /* IconConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BB51F693452001153BA /* IconConst.swift */; };
+		C1F17BB81F6934D0001153BA /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BB71F6934D0001153BA /* RootController.swift */; };
+		C1F17BBF1F6937F3001153BA /* ArticleHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BBE1F6937F3001153BA /* ArticleHomeController.swift */; };
+		C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC01F693825001153BA /* GoodsHomeController.swift */; };
+		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -140,6 +148,14 @@
 		C1250A091F6920C8006ED55E /* LoginAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAPIManager.swift; sourceTree = "<group>"; };
 		C1250A0B1F692111006ED55E /* APIResultCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResultCheck.swift; sourceTree = "<group>"; };
 		C1250A0D1F692171006ED55E /* NotificationConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
+		C1F17BAF1F692766001153BA /* GuideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideController.swift; sourceTree = "<group>"; };
+		C1F17BB11F692E13001153BA /* SizeConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeConst.swift; sourceTree = "<group>"; };
+		C1F17BB31F692E38001153BA /* ColorConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConst.swift; sourceTree = "<group>"; };
+		C1F17BB51F693452001153BA /* IconConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconConst.swift; sourceTree = "<group>"; };
+		C1F17BB71F6934D0001153BA /* RootController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		C1F17BBE1F6937F3001153BA /* ArticleHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeController.swift; sourceTree = "<group>"; };
+		C1F17BC01F693825001153BA /* GoodsHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsHomeController.swift; sourceTree = "<group>"; };
+		C1F17BC21F69382E001153BA /* MineHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineHomeController.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
 		FD5BBEA01F68D1A3002D8146 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +199,9 @@
 		C12509641F690637006ED55E /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				C1F17BBD1F6937A1001153BA /* Mine */,
+				C1F17BBC1F693796001153BA /* Goods */,
+				C1F17BBB1F69378B001153BA /* Article */,
 				C125096C1F690735006ED55E /* Base */,
 				C125096B1F690720006ED55E /* APIManager */,
 				C125096A1F690708006ED55E /* Login&Register */,
@@ -226,6 +245,9 @@
 			children = (
 				C12509B71F690A7D006ED55E /* APIConst.swift */,
 				C1250A0D1F692171006ED55E /* NotificationConst.swift */,
+				C1F17BB11F692E13001153BA /* SizeConst.swift */,
+				C1F17BB31F692E38001153BA /* ColorConst.swift */,
+				C1F17BB51F693452001153BA /* IconConst.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -233,6 +255,7 @@
 		C12509691F6906F8006ED55E /* Guide */ = {
 			isa = PBXGroup;
 			children = (
+				C1F17BAF1F692766001153BA /* GuideController.swift */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -408,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				C12509B21F69097C006ED55E /* BaseController.swift */,
+				C1F17BB71F6934D0001153BA /* RootController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -529,6 +553,30 @@
 				C1250A091F6920C8006ED55E /* LoginAPIManager.swift */,
 			);
 			path = "Login&Register";
+			sourceTree = "<group>";
+		};
+		C1F17BBB1F69378B001153BA /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				C1F17BBE1F6937F3001153BA /* ArticleHomeController.swift */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
+		C1F17BBC1F693796001153BA /* Goods */ = {
+			isa = PBXGroup;
+			children = (
+				C1F17BC01F693825001153BA /* GoodsHomeController.swift */,
+			);
+			path = Goods;
+			sourceTree = "<group>";
+		};
+		C1F17BBD1F6937A1001153BA /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				C1F17BC21F69382E001153BA /* MineHomeController.swift */,
+			);
+			path = Mine;
 			sourceTree = "<group>";
 		};
 		F248C38494BE65111336842F /* Pods */ = {
@@ -705,8 +753,10 @@
 				C125099B1F69079E006ED55E /* ONAppConfiguration.swift in Sources */,
 				C12509FD1F691F78006ED55E /* NSDate+Cache.swift in Sources */,
 				C12509931F69079E006ED55E /* ONApiProxy.swift in Sources */,
+				C1F17BB61F693452001153BA /* IconConst.swift in Sources */,
 				C12509D31F6912A8006ED55E /* Time+Extension.swift in Sources */,
 				C12509F51F691F78006ED55E /* BasicHybridCache.swift in Sources */,
+				C1F17BBF1F6937F3001153BA /* ArticleHomeController.swift in Sources */,
 				C12509B81F690A7D006ED55E /* APIConst.swift in Sources */,
 				C1250A011F691F78006ED55E /* SyncCache.swift in Sources */,
 				C12509921F69079E006ED55E /* URLRequest+ONNetworkingMethods.swift in Sources */,
@@ -716,9 +766,11 @@
 				C12509CF1F6912A8006ED55E /* NetwokConst.swift in Sources */,
 				C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */,
 				C1250A021F691F78006ED55E /* SyncHybridCache.swift in Sources */,
+				C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */,
 				C12509CD1F6912A8006ED55E /* ONDigest.swift in Sources */,
 				C12509FB1F691F78006ED55E /* StorageKind.swift in Sources */,
 				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
+				C1F17BB01F692766001153BA /* GuideController.swift in Sources */,
 				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
@@ -736,6 +788,7 @@
 				C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */,
 				C12509CB1F6912A8006ED55E /* Array+Extension.swift in Sources */,
 				C12509D71F6912A8006ED55E /* Utilities.swift in Sources */,
+				C1F17BB21F692E13001153BA /* SizeConst.swift in Sources */,
 				C12509971F69079E006ED55E /* ONCacheObject.swift in Sources */,
 				FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */,
 				C12509FF1F691F78006ED55E /* HybridCache.swift in Sources */,
@@ -748,6 +801,9 @@
 				C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */,
 				C1250A0A1F6920C8006ED55E /* LoginAPIManager.swift in Sources */,
 				C1250A0E1F692171006ED55E /* NotificationConst.swift in Sources */,
+				C1F17BB81F6934D0001153BA /* RootController.swift in Sources */,
+				C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */,
+				C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */,
 				C12509F81F691F78006ED55E /* Cachable.swift in Sources */,
 				C12509FC1F691F78006ED55E /* NSData+Cache.swift in Sources */,
 				C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */,
@@ -879,6 +935,7 @@
 			baseConfigurationReference = E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 东 潘 (9PX858K9RP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 东 潘 (9PX858K9RP)";
 				DEVELOPMENT_TEAM = MUGPCKW3CX;
@@ -899,6 +956,7 @@
 			baseConfigurationReference = AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 东 潘 (9PX858K9RP)";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
