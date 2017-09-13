@@ -32,6 +32,21 @@
 		C12509B11F69092C006ED55E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C12509AE1F69092C006ED55E /* Main.storyboard */; };
 		C12509B31F69097C006ED55E /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509B21F69097C006ED55E /* BaseController.swift */; };
 		C12509B81F690A7D006ED55E /* APIConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509B71F690A7D006ED55E /* APIConst.swift */; };
+		C12509BC1F6912A0006ED55E /* ONTipCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509BB1F6912A0006ED55E /* ONTipCenter.swift */; };
+		C12509CB1F6912A8006ED55E /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509BD1F6912A8006ED55E /* Array+Extension.swift */; };
+		C12509CC1F6912A8006ED55E /* Data+ONCrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509BF1F6912A8006ED55E /* Data+ONCrypt.swift */; };
+		C12509CD1F6912A8006ED55E /* ONDigest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C01F6912A8006ED55E /* ONDigest.swift */; };
+		C12509CE1F6912A8006ED55E /* String+ONCrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C11F6912A8006ED55E /* String+ONCrypt.swift */; };
+		C12509CF1F6912A8006ED55E /* NetwokConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C21F6912A8006ED55E /* NetwokConst.swift */; };
+		C12509D01F6912A8006ED55E /* NetWorkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C31F6912A8006ED55E /* NetWorkHelper.swift */; };
+		C12509D11F6912A8006ED55E /* ONCheckTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C41F6912A8006ED55E /* ONCheckTool.swift */; };
+		C12509D21F6912A8006ED55E /* RegexHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C51F6912A8006ED55E /* RegexHelper.swift */; };
+		C12509D31F6912A8006ED55E /* Time+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C61F6912A8006ED55E /* Time+Extension.swift */; };
+		C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C71F6912A8006ED55E /* UIButton+Extension.swift */; };
+		C12509D51F6912A8006ED55E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C81F6912A8006ED55E /* UIDevice+Extension.swift */; };
+		C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C91F6912A8006ED55E /* UIImage+Extension.swift */; };
+		C12509D71F6912A8006ED55E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509CA1F6912A8006ED55E /* Utilities.swift */; };
+		C12509DA1F69169C006ED55E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509D91F69169C006ED55E /* UserManager.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -63,6 +78,22 @@
 		C12509AF1F69092C006ED55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C12509B21F69097C006ED55E /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		C12509B71F690A7D006ED55E /* APIConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConst.swift; sourceTree = "<group>"; };
+		C12509BB1F6912A0006ED55E /* ONTipCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONTipCenter.swift; sourceTree = "<group>"; };
+		C12509BD1F6912A8006ED55E /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		C12509BF1F6912A8006ED55E /* Data+ONCrypt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+ONCrypt.swift"; sourceTree = "<group>"; };
+		C12509C01F6912A8006ED55E /* ONDigest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONDigest.swift; sourceTree = "<group>"; };
+		C12509C11F6912A8006ED55E /* String+ONCrypt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ONCrypt.swift"; sourceTree = "<group>"; };
+		C12509C21F6912A8006ED55E /* NetwokConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetwokConst.swift; sourceTree = "<group>"; };
+		C12509C31F6912A8006ED55E /* NetWorkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkHelper.swift; sourceTree = "<group>"; };
+		C12509C41F6912A8006ED55E /* ONCheckTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONCheckTool.swift; sourceTree = "<group>"; };
+		C12509C51F6912A8006ED55E /* RegexHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexHelper.swift; sourceTree = "<group>"; };
+		C12509C61F6912A8006ED55E /* Time+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Time+Extension.swift"; sourceTree = "<group>"; };
+		C12509C71F6912A8006ED55E /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		C12509C81F6912A8006ED55E /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		C12509C91F6912A8006ED55E /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		C12509CA1F6912A8006ED55E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		C12509D81F691399006ED55E /* Arita-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Arita-Bridging-Header.h"; sourceTree = "<group>"; };
+		C12509D91F69169C006ED55E /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
 		FD5BBEA01F68D1A3002D8146 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,7 +148,10 @@
 		C12509651F69064A006ED55E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C12509BA1F691282006ED55E /* Utils */,
+				C12509B91F691272006ED55E /* Tip */,
 				FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */,
+				C12509D81F691399006ED55E /* Arita-Bridging-Header.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -332,6 +366,7 @@
 		C12509B51F6909EF006ED55E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C12509D91F69169C006ED55E /* UserManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,6 +376,42 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C12509B91F691272006ED55E /* Tip */ = {
+			isa = PBXGroup;
+			children = (
+				C12509BB1F6912A0006ED55E /* ONTipCenter.swift */,
+			);
+			path = Tip;
+			sourceTree = "<group>";
+		};
+		C12509BA1F691282006ED55E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C12509BD1F6912A8006ED55E /* Array+Extension.swift */,
+				C12509BE1F6912A8006ED55E /* Crypt */,
+				C12509C21F6912A8006ED55E /* NetwokConst.swift */,
+				C12509C31F6912A8006ED55E /* NetWorkHelper.swift */,
+				C12509C41F6912A8006ED55E /* ONCheckTool.swift */,
+				C12509C51F6912A8006ED55E /* RegexHelper.swift */,
+				C12509C61F6912A8006ED55E /* Time+Extension.swift */,
+				C12509C71F6912A8006ED55E /* UIButton+Extension.swift */,
+				C12509C81F6912A8006ED55E /* UIDevice+Extension.swift */,
+				C12509C91F6912A8006ED55E /* UIImage+Extension.swift */,
+				C12509CA1F6912A8006ED55E /* Utilities.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C12509BE1F6912A8006ED55E /* Crypt */ = {
+			isa = PBXGroup;
+			children = (
+				C12509BF1F6912A8006ED55E /* Data+ONCrypt.swift */,
+				C12509C01F6912A8006ED55E /* ONDigest.swift */,
+				C12509C11F6912A8006ED55E /* String+ONCrypt.swift */,
+			);
+			path = Crypt;
 			sourceTree = "<group>";
 		};
 		F248C38494BE65111336842F /* Pods */ = {
@@ -418,6 +489,7 @@
 				TargetAttributes = {
 					FD5BBE9F1F68D1A3002D8146 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = MUGPCKW3CX;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -508,23 +580,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C12509CE1F6912A8006ED55E /* String+ONCrypt.swift in Sources */,
 				C12509901F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift in Sources */,
+				C12509CC1F6912A8006ED55E /* Data+ONCrypt.swift in Sources */,
 				C125099B1F69079E006ED55E /* ONAppConfiguration.swift in Sources */,
 				C12509931F69079E006ED55E /* ONApiProxy.swift in Sources */,
+				C12509D31F6912A8006ED55E /* Time+Extension.swift in Sources */,
 				C12509B81F690A7D006ED55E /* APIConst.swift in Sources */,
 				C12509921F69079E006ED55E /* URLRequest+ONNetworkingMethods.swift in Sources */,
+				C12509BC1F6912A0006ED55E /* ONTipCenter.swift in Sources */,
+				C12509D01F6912A8006ED55E /* NetWorkHelper.swift in Sources */,
+				C12509CF1F6912A8006ED55E /* NetwokConst.swift in Sources */,
 				C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */,
+				C12509CD1F6912A8006ED55E /* ONDigest.swift in Sources */,
 				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
 				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
 				C12509941F69079E006ED55E /* ONAPIBaseManager.swift in Sources */,
 				C125099E1F69079E006ED55E /* ONNetworkingConfigurationManager.swift in Sources */,
+				C12509DA1F69169C006ED55E /* UserManager.swift in Sources */,
+				C12509D21F6912A8006ED55E /* RegexHelper.swift in Sources */,
 				C12509B31F69097C006ED55E /* BaseController.swift in Sources */,
+				C12509D11F6912A8006ED55E /* ONCheckTool.swift in Sources */,
+				C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */,
+				C12509CB1F6912A8006ED55E /* Array+Extension.swift in Sources */,
+				C12509D71F6912A8006ED55E /* Utilities.swift in Sources */,
 				C12509971F69079E006ED55E /* ONCacheObject.swift in Sources */,
 				FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */,
+				C12509D51F6912A8006ED55E /* UIDevice+Extension.swift in Sources */,
 				C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */,
 				C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */,
 				C12509A01F69079E006ED55E /* ONService.swift in Sources */,
+				C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */,
 				C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */,
 				C12509991F69079E006ED55E /* ONLogger.swift in Sources */,
 				C12509961F69079E006ED55E /* ONCache.swift in Sources */,
@@ -652,15 +739,17 @@
 			baseConfigurationReference = E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Arita/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 东 潘 (9PX858K9RP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 东 潘 (9PX858K9RP)";
+				DEVELOPMENT_TEAM = MUGPCKW3CX;
+				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8f1ba491-9e57-4fdb-bcef-193ff9667f65";
+				PROVISIONING_PROFILE_SPECIFIER = ds_arita_dev;
+				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -670,15 +759,16 @@
 			baseConfigurationReference = AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 东 潘 (9PX858K9RP)";
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Arita/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

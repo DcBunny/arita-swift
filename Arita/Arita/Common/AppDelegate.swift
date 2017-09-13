@@ -7,6 +7,15 @@
 //
 
 import UIKit
+import XCGLogger
+import Bugly
+import IQKeyboardManagerSwift
+
+// 全局的日志变量
+let log = XCGLogger.default
+let kArita = "kArita"
+let kBuglyAppId = "900037900"
+let kUserHasOnboard = "kUserHasOnboard"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

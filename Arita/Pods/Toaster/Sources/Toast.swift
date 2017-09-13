@@ -35,7 +35,8 @@ open class Toast: Operation {
 
   public var delay: TimeInterval
   public var duration: TimeInterval
-
+  public var completion: (() -> (Void))?
+    
   private var _executing = false
   override open var isExecuting: Bool {
     get {
@@ -151,6 +152,9 @@ open class Toast: Operation {
                   self.view.alpha = 0
                 },
                 completion: { completed in
+                  if self.completion != nil {
+                    self.completion!()
+                  }
                   self.view.removeFromSuperview()
                 }
               )

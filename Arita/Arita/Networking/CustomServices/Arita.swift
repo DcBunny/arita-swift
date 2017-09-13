@@ -47,8 +47,9 @@ class Arita: ONService, ONServiceProtocol {
             iotextString = String(data: iotextData, encoding: String.Encoding.utf8)
         } catch { }
         
-        let token = UserManager.sharedInstance.currentUser?.authInfo?.token
-        return ["iotext": iotextString ?? "",
-                "token": token ?? ""]
+//        let token = UserManager.sharedInstance.currentUser?.authInfo?.token
+//        return ["iotext": iotextString ?? "",
+//                "token": token ?? ""]
+        return ["iotext": iotextString ?? ""]
     }
 }
