@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+/**
+ *
+ *  用于放置通知相关的常量
+ *
+ */
+struct NotificationConst {
+    static let loginSuccess = "loginSuccess"
+    static let logoutSuccess = "logoutSuccess"
+}

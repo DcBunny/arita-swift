@@ -7,3 +7,18 @@
 //
 
 import Foundation
+import SwiftyJSON
+
+/**
+ **返回内容检查
+ */
+struct APIResultCheck {
+    public static func checkResult(_ manager: ONAPIBaseManager, isCorrectWithCallBackData  data: Data) -> Bool {
+        let json = JSON(data: data)
+        if json["code"].intValue != 0 {
+            manager.errorMessage = json["msg"].stringValue
+            return false
+        }
+        return true
+    }
+}

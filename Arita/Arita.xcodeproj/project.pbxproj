@@ -47,6 +47,29 @@
 		C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509C91F6912A8006ED55E /* UIImage+Extension.swift */; };
 		C12509D71F6912A8006ED55E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509CA1F6912A8006ED55E /* Utilities.swift */; };
 		C12509DA1F69169C006ED55E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509D91F69169C006ED55E /* UserManager.swift */; };
+		C12509DC1F691F23006ED55E /* UserCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509DB1F691F23006ED55E /* UserCacheManager.swift */; };
+		C12509F51F691F78006ED55E /* BasicHybridCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509DE1F691F78006ED55E /* BasicHybridCache.swift */; };
+		C12509F61F691F78006ED55E /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509DF1F691F78006ED55E /* Cache.swift */; };
+		C12509F71F691F78006ED55E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509E01F691F78006ED55E /* Config.swift */; };
+		C12509F81F691F78006ED55E /* Cachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509E21F691F78006ED55E /* Cachable.swift */; };
+		C12509F91F691F78006ED55E /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509E31F691F78006ED55E /* Capsule.swift */; };
+		C12509FA1F691F78006ED55E /* Expiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509E41F691F78006ED55E /* Expiry.swift */; };
+		C12509FB1F691F78006ED55E /* StorageKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509E51F691F78006ED55E /* StorageKind.swift */; };
+		C12509FC1F691F78006ED55E /* NSData+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509E71F691F78006ED55E /* NSData+Cache.swift */; };
+		C12509FD1F691F78006ED55E /* NSDate+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509E81F691F78006ED55E /* NSDate+Cache.swift */; };
+		C12509FE1F691F78006ED55E /* String+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509E91F691F78006ED55E /* String+Cache.swift */; };
+		C12509FF1F691F78006ED55E /* HybridCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509EA1F691F78006ED55E /* HybridCache.swift */; };
+		C1250A001F691F78006ED55E /* DefaultCacheConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509EC1F691F78006ED55E /* DefaultCacheConverter.swift */; };
+		C1250A011F691F78006ED55E /* SyncCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509ED1F691F78006ED55E /* SyncCache.swift */; };
+		C1250A021F691F78006ED55E /* SyncHybridCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509EE1F691F78006ED55E /* SyncHybridCache.swift */; };
+		C1250A031F691F78006ED55E /* CacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509F01F691F78006ED55E /* CacheEntry.swift */; };
+		C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509F11F691F78006ED55E /* DiskStorage.swift */; };
+		C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509F21F691F78006ED55E /* MemoryStorage.swift */; };
+		C1250A061F691F78006ED55E /* StorageAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509F31F691F78006ED55E /* StorageAware.swift */; };
+		C1250A071F691F78006ED55E /* StorageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509F41F691F78006ED55E /* StorageFactory.swift */; };
+		C1250A0A1F6920C8006ED55E /* LoginAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A091F6920C8006ED55E /* LoginAPIManager.swift */; };
+		C1250A0C1F692111006ED55E /* APIResultCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A0B1F692111006ED55E /* APIResultCheck.swift */; };
+		C1250A0E1F692171006ED55E /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A0D1F692171006ED55E /* NotificationConst.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -94,6 +117,29 @@
 		C12509CA1F6912A8006ED55E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C12509D81F691399006ED55E /* Arita-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Arita-Bridging-Header.h"; sourceTree = "<group>"; };
 		C12509D91F69169C006ED55E /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		C12509DB1F691F23006ED55E /* UserCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCacheManager.swift; sourceTree = "<group>"; };
+		C12509DE1F691F78006ED55E /* BasicHybridCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHybridCache.swift; sourceTree = "<group>"; };
+		C12509DF1F691F78006ED55E /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		C12509E01F691F78006ED55E /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		C12509E21F691F78006ED55E /* Cachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cachable.swift; sourceTree = "<group>"; };
+		C12509E31F691F78006ED55E /* Capsule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capsule.swift; sourceTree = "<group>"; };
+		C12509E41F691F78006ED55E /* Expiry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expiry.swift; sourceTree = "<group>"; };
+		C12509E51F691F78006ED55E /* StorageKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageKind.swift; sourceTree = "<group>"; };
+		C12509E71F691F78006ED55E /* NSData+Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Cache.swift"; sourceTree = "<group>"; };
+		C12509E81F691F78006ED55E /* NSDate+Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Cache.swift"; sourceTree = "<group>"; };
+		C12509E91F691F78006ED55E /* String+Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Cache.swift"; sourceTree = "<group>"; };
+		C12509EA1F691F78006ED55E /* HybridCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybridCache.swift; sourceTree = "<group>"; };
+		C12509EC1F691F78006ED55E /* DefaultCacheConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCacheConverter.swift; sourceTree = "<group>"; };
+		C12509ED1F691F78006ED55E /* SyncCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncCache.swift; sourceTree = "<group>"; };
+		C12509EE1F691F78006ED55E /* SyncHybridCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncHybridCache.swift; sourceTree = "<group>"; };
+		C12509F01F691F78006ED55E /* CacheEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheEntry.swift; sourceTree = "<group>"; };
+		C12509F11F691F78006ED55E /* DiskStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskStorage.swift; sourceTree = "<group>"; };
+		C12509F21F691F78006ED55E /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
+		C12509F31F691F78006ED55E /* StorageAware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageAware.swift; sourceTree = "<group>"; };
+		C12509F41F691F78006ED55E /* StorageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageFactory.swift; sourceTree = "<group>"; };
+		C1250A091F6920C8006ED55E /* LoginAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAPIManager.swift; sourceTree = "<group>"; };
+		C1250A0B1F692111006ED55E /* APIResultCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResultCheck.swift; sourceTree = "<group>"; };
+		C1250A0D1F692171006ED55E /* NotificationConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
 		FD5BBEA01F68D1A3002D8146 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +216,7 @@
 		C12509671F69066F006ED55E /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				C12509DD1F691F49006ED55E /* Cache */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -178,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				C12509B71F690A7D006ED55E /* APIConst.swift */,
+				C1250A0D1F692171006ED55E /* NotificationConst.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -199,6 +247,7 @@
 		C125096B1F690720006ED55E /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				C1250A081F69209D006ED55E /* Login&Register */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -367,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				C12509D91F69169C006ED55E /* UserManager.swift */,
+				C12509DB1F691F23006ED55E /* UserCacheManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -400,6 +450,7 @@
 				C12509C81F6912A8006ED55E /* UIDevice+Extension.swift */,
 				C12509C91F6912A8006ED55E /* UIImage+Extension.swift */,
 				C12509CA1F6912A8006ED55E /* Utilities.swift */,
+				C1250A0B1F692111006ED55E /* APIResultCheck.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -412,6 +463,72 @@
 				C12509C11F6912A8006ED55E /* String+ONCrypt.swift */,
 			);
 			path = Crypt;
+			sourceTree = "<group>";
+		};
+		C12509DD1F691F49006ED55E /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				C12509DE1F691F78006ED55E /* BasicHybridCache.swift */,
+				C12509DF1F691F78006ED55E /* Cache.swift */,
+				C12509E01F691F78006ED55E /* Config.swift */,
+				C12509E11F691F78006ED55E /* DataStructures */,
+				C12509E61F691F78006ED55E /* Extensions */,
+				C12509EA1F691F78006ED55E /* HybridCache.swift */,
+				C12509EB1F691F78006ED55E /* Library */,
+				C12509EF1F691F78006ED55E /* Storage */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		C12509E11F691F78006ED55E /* DataStructures */ = {
+			isa = PBXGroup;
+			children = (
+				C12509E21F691F78006ED55E /* Cachable.swift */,
+				C12509E31F691F78006ED55E /* Capsule.swift */,
+				C12509E41F691F78006ED55E /* Expiry.swift */,
+				C12509E51F691F78006ED55E /* StorageKind.swift */,
+			);
+			path = DataStructures;
+			sourceTree = "<group>";
+		};
+		C12509E61F691F78006ED55E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C12509E71F691F78006ED55E /* NSData+Cache.swift */,
+				C12509E81F691F78006ED55E /* NSDate+Cache.swift */,
+				C12509E91F691F78006ED55E /* String+Cache.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C12509EB1F691F78006ED55E /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				C12509EC1F691F78006ED55E /* DefaultCacheConverter.swift */,
+				C12509ED1F691F78006ED55E /* SyncCache.swift */,
+				C12509EE1F691F78006ED55E /* SyncHybridCache.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		C12509EF1F691F78006ED55E /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				C12509F01F691F78006ED55E /* CacheEntry.swift */,
+				C12509F11F691F78006ED55E /* DiskStorage.swift */,
+				C12509F21F691F78006ED55E /* MemoryStorage.swift */,
+				C12509F31F691F78006ED55E /* StorageAware.swift */,
+				C12509F41F691F78006ED55E /* StorageFactory.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		C1250A081F69209D006ED55E /* Login&Register */ = {
+			isa = PBXGroup;
+			children = (
+				C1250A091F6920C8006ED55E /* LoginAPIManager.swift */,
+			);
+			path = "Login&Register";
 			sourceTree = "<group>";
 		};
 		F248C38494BE65111336842F /* Pods */ = {
@@ -581,39 +698,62 @@
 			buildActionMask = 2147483647;
 			files = (
 				C12509CE1F6912A8006ED55E /* String+ONCrypt.swift in Sources */,
+				C1250A001F691F78006ED55E /* DefaultCacheConverter.swift in Sources */,
+				C12509DC1F691F23006ED55E /* UserCacheManager.swift in Sources */,
 				C12509901F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift in Sources */,
 				C12509CC1F6912A8006ED55E /* Data+ONCrypt.swift in Sources */,
 				C125099B1F69079E006ED55E /* ONAppConfiguration.swift in Sources */,
+				C12509FD1F691F78006ED55E /* NSDate+Cache.swift in Sources */,
 				C12509931F69079E006ED55E /* ONApiProxy.swift in Sources */,
 				C12509D31F6912A8006ED55E /* Time+Extension.swift in Sources */,
+				C12509F51F691F78006ED55E /* BasicHybridCache.swift in Sources */,
 				C12509B81F690A7D006ED55E /* APIConst.swift in Sources */,
+				C1250A011F691F78006ED55E /* SyncCache.swift in Sources */,
 				C12509921F69079E006ED55E /* URLRequest+ONNetworkingMethods.swift in Sources */,
+				C12509FE1F691F78006ED55E /* String+Cache.swift in Sources */,
 				C12509BC1F6912A0006ED55E /* ONTipCenter.swift in Sources */,
 				C12509D01F6912A8006ED55E /* NetWorkHelper.swift in Sources */,
 				C12509CF1F6912A8006ED55E /* NetwokConst.swift in Sources */,
 				C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */,
+				C1250A021F691F78006ED55E /* SyncHybridCache.swift in Sources */,
 				C12509CD1F6912A8006ED55E /* ONDigest.swift in Sources */,
+				C12509FB1F691F78006ED55E /* StorageKind.swift in Sources */,
 				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
+				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
+				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
+				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
 				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
 				C12509941F69079E006ED55E /* ONAPIBaseManager.swift in Sources */,
+				C12509F61F691F78006ED55E /* Cache.swift in Sources */,
 				C125099E1F69079E006ED55E /* ONNetworkingConfigurationManager.swift in Sources */,
 				C12509DA1F69169C006ED55E /* UserManager.swift in Sources */,
+				C1250A031F691F78006ED55E /* CacheEntry.swift in Sources */,
 				C12509D21F6912A8006ED55E /* RegexHelper.swift in Sources */,
 				C12509B31F69097C006ED55E /* BaseController.swift in Sources */,
+				C1250A0C1F692111006ED55E /* APIResultCheck.swift in Sources */,
 				C12509D11F6912A8006ED55E /* ONCheckTool.swift in Sources */,
 				C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */,
 				C12509CB1F6912A8006ED55E /* Array+Extension.swift in Sources */,
 				C12509D71F6912A8006ED55E /* Utilities.swift in Sources */,
 				C12509971F69079E006ED55E /* ONCacheObject.swift in Sources */,
 				FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */,
+				C12509FF1F691F78006ED55E /* HybridCache.swift in Sources */,
+				C1250A061F691F78006ED55E /* StorageAware.swift in Sources */,
 				C12509D51F6912A8006ED55E /* UIDevice+Extension.swift in Sources */,
 				C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */,
+				C1250A071F691F78006ED55E /* StorageFactory.swift in Sources */,
 				C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */,
 				C12509A01F69079E006ED55E /* ONService.swift in Sources */,
 				C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */,
+				C1250A0A1F6920C8006ED55E /* LoginAPIManager.swift in Sources */,
+				C1250A0E1F692171006ED55E /* NotificationConst.swift in Sources */,
+				C12509F81F691F78006ED55E /* Cachable.swift in Sources */,
+				C12509FC1F691F78006ED55E /* NSData+Cache.swift in Sources */,
 				C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */,
+				C12509F91F691F78006ED55E /* Capsule.swift in Sources */,
 				C12509991F69079E006ED55E /* ONLogger.swift in Sources */,
+				C12509F71F691F78006ED55E /* Config.swift in Sources */,
 				C12509961F69079E006ED55E /* ONCache.swift in Sources */,
 				C125099F1F69079E006ED55E /* ONRequestGenerator.swift in Sources */,
 			);
