@@ -10,6 +10,9 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - ONCountDownButton (0.2.0)
+  - ONFoundation (0.2.1)
+  - ONPlaceholder (0.9.5)
   - SnapKit (3.2.0)
   - SwiftyJSON (3.1.4)
   - Toaster (2.0.3)
@@ -28,6 +31,9 @@ DEPENDENCIES:
   - Kingfisher (= 3.7.2)
   - MBProgressHUD (= 1.0.0)
   - MJRefresh (= 3.1.12)
+  - ONCountDownButton (= 0.2.0)
+  - ONFoundation (= 0.2.1)
+  - ONPlaceholder (= 0.9.5)
   - SnapKit (= 3.2.0)
   - SwiftyJSON (= 3.1.4)
   - Toaster (= 2.0.3)
@@ -44,12 +50,15 @@ SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  ONCountDownButton: f21e0502407afb5c04f857e5a9b9e660f4df433f
+  ONFoundation: e61b30c43e66f8081c5c9c9ca18b17606208ff29
+  ONPlaceholder: 1e4475b6cdb8548db55f33e8ab3a164dbeb9288f
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Toaster: 77c0b03d78e680bbbab0071c9c7ee392b0034010
   WebViewJavascriptBridge: 791ee0e26d1bf15efe5fb7fb9666a71a19b89d77
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: ee25d3861a591fc944bf5d7fabf4ec46bc04f45f
+PODFILE CHECKSUM: 3b0cd32d679f34fba9eab03920958f64e1021ec2
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

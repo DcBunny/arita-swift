@@ -8,23 +8,65 @@
 
 /* Begin PBXBuildFile section */
 		2ECEC0453384269A4EF5D7FC /* Pods_Arita.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E6A58748EE8EBB287358C /* Pods_Arita.framework */; };
+		C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125096E1F69079E006ED55E /* Array+ONNetworkingMethods.swift */; };
+		C12509901F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125096F1F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift */; };
+		C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509701F69079E006ED55E /* String+ONNetworkingMethods.swift */; };
+		C12509921F69079E006ED55E /* URLRequest+ONNetworkingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509711F69079E006ED55E /* URLRequest+ONNetworkingMethods.swift */; };
+		C12509931F69079E006ED55E /* ONApiProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509741F69079E006ED55E /* ONApiProxy.swift */; };
+		C12509941F69079E006ED55E /* ONAPIBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509761F69079E006ED55E /* ONAPIBaseManager.swift */; };
+		C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509771F69079E006ED55E /* ONManagerProtocol.swift */; };
+		C12509961F69079E006ED55E /* ONCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509791F69079E006ED55E /* ONCache.swift */; };
+		C12509971F69079E006ED55E /* ONCacheObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125097A1F69079E006ED55E /* ONCacheObject.swift */; };
+		C12509981F69079E006ED55E /* iPhoneTypeDefine.plist in Resources */ = {isa = PBXBuildFile; fileRef = C125097C1F69079E006ED55E /* iPhoneTypeDefine.plist */; };
+		C12509991F69079E006ED55E /* ONLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125097F1F69079E006ED55E /* ONLogger.swift */; };
+		C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509811F69079E006ED55E /* ONURLResponse.swift */; };
+		C125099B1F69079E006ED55E /* ONAppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509831F69079E006ED55E /* ONAppConfiguration.swift */; };
+		C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509841F69079E006ED55E /* ONLogConfiguration.swift */; };
+		C125099D1F69079E006ED55E /* ONNetworkingConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = C12509851F69079E006ED55E /* ONNetworkingConfiguration.plist */; };
+		C125099E1F69079E006ED55E /* ONNetworkingConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509861F69079E006ED55E /* ONNetworkingConfigurationManager.swift */; };
+		C125099F1F69079E006ED55E /* ONRequestGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125098A1F69079E006ED55E /* ONRequestGenerator.swift */; };
+		C12509A01F69079E006ED55E /* ONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125098D1F69079E006ED55E /* ONService.swift */; };
+		C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125098E1F69079E006ED55E /* ONServiceFactory.swift */; };
+		C12509A41F6907B9006ED55E /* Arita.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509A31F6907B9006ED55E /* Arita.swift */; };
+		C12509B01F69092C006ED55E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C12509AC1F69092C006ED55E /* LaunchScreen.storyboard */; };
+		C12509B11F69092C006ED55E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C12509AE1F69092C006ED55E /* Main.storyboard */; };
+		C12509B31F69097C006ED55E /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509B21F69097C006ED55E /* BaseController.swift */; };
+		C12509B81F690A7D006ED55E /* APIConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509B71F690A7D006ED55E /* APIConst.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
-		FD5BBEA61F68D1A3002D8146 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA51F68D1A3002D8146 /* ViewController.swift */; };
-		FD5BBEA91F68D1A3002D8146 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEA71F68D1A3002D8146 /* Main.storyboard */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
-		FD5BBEAE1F68D1A3002D8146 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAC1F68D1A3002D8146 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		495E6A58748EE8EBB287358C /* Pods_Arita.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arita.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.release.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.release.xcconfig"; sourceTree = "<group>"; };
+		C125096E1F69079E006ED55E /* Array+ONNetworkingMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+ONNetworkingMethods.swift"; sourceTree = "<group>"; };
+		C125096F1F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ONParamData+ONNetworkingMethods.swift"; sourceTree = "<group>"; };
+		C12509701F69079E006ED55E /* String+ONNetworkingMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ONNetworkingMethods.swift"; sourceTree = "<group>"; };
+		C12509711F69079E006ED55E /* URLRequest+ONNetworkingMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+ONNetworkingMethods.swift"; sourceTree = "<group>"; };
+		C12509741F69079E006ED55E /* ONApiProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONApiProxy.swift; sourceTree = "<group>"; };
+		C12509761F69079E006ED55E /* ONAPIBaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONAPIBaseManager.swift; sourceTree = "<group>"; };
+		C12509771F69079E006ED55E /* ONManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONManagerProtocol.swift; sourceTree = "<group>"; };
+		C12509791F69079E006ED55E /* ONCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONCache.swift; sourceTree = "<group>"; };
+		C125097A1F69079E006ED55E /* ONCacheObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONCacheObject.swift; sourceTree = "<group>"; };
+		C125097C1F69079E006ED55E /* iPhoneTypeDefine.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = iPhoneTypeDefine.plist; sourceTree = "<group>"; };
+		C125097F1F69079E006ED55E /* ONLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONLogger.swift; sourceTree = "<group>"; };
+		C12509811F69079E006ED55E /* ONURLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONURLResponse.swift; sourceTree = "<group>"; };
+		C12509831F69079E006ED55E /* ONAppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONAppConfiguration.swift; sourceTree = "<group>"; };
+		C12509841F69079E006ED55E /* ONLogConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONLogConfiguration.swift; sourceTree = "<group>"; };
+		C12509851F69079E006ED55E /* ONNetworkingConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ONNetworkingConfiguration.plist; sourceTree = "<group>"; };
+		C12509861F69079E006ED55E /* ONNetworkingConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONNetworkingConfigurationManager.swift; sourceTree = "<group>"; };
+		C125098A1F69079E006ED55E /* ONRequestGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONRequestGenerator.swift; sourceTree = "<group>"; };
+		C125098D1F69079E006ED55E /* ONService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONService.swift; sourceTree = "<group>"; };
+		C125098E1F69079E006ED55E /* ONServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ONServiceFactory.swift; sourceTree = "<group>"; };
+		C12509A31F6907B9006ED55E /* Arita.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arita.swift; sourceTree = "<group>"; };
+		C12509AD1F69092C006ED55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C12509AF1F69092C006ED55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C12509B21F69097C006ED55E /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		C12509B71F690A7D006ED55E /* APIConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConst.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
 		FD5BBEA01F68D1A3002D8146 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FD5BBEA51F68D1A3002D8146 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FD5BBEA81F68D1A3002D8146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FD5BBEAD1F68D1A3002D8146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD5BBEAF1F68D1A3002D8146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,6 +88,259 @@
 				495E6A58748EE8EBB287358C /* Pods_Arita.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C12509631F6905F9006ED55E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C12509A21F6907B9006ED55E /* CustomServices */,
+				C125096D1F69079E006ED55E /* Categories */,
+				C12509721F69079E006ED55E /* Components */,
+				C12509821F69079E006ED55E /* Configurations */,
+				C12509871F69079E006ED55E /* Generators */,
+				C125098C1F69079E006ED55E /* Services */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C12509641F690637006ED55E /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				C125096C1F690735006ED55E /* Base */,
+				C125096B1F690720006ED55E /* APIManager */,
+				C125096A1F690708006ED55E /* Login&Register */,
+				C12509691F6906F8006ED55E /* Guide */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		C12509651F69064A006ED55E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C12509661F69065D006ED55E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C12509AC1F69092C006ED55E /* LaunchScreen.storyboard */,
+				C12509AE1F69092C006ED55E /* Main.storyboard */,
+				FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */,
+				FD5BBEAF1F68D1A3002D8146 /* Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		C12509671F69066F006ED55E /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		C12509681F6906A5006ED55E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C12509B71F690A7D006ED55E /* APIConst.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		C12509691F6906F8006ED55E /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
+		C125096A1F690708006ED55E /* Login&Register */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Login&Register";
+			sourceTree = "<group>";
+		};
+		C125096B1F690720006ED55E /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIManager;
+			sourceTree = "<group>";
+		};
+		C125096C1F690735006ED55E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C12509B61F6909FE006ED55E /* View */,
+				C12509B51F6909EF006ED55E /* Model */,
+				C12509B41F6909BC006ED55E /* Controller */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C125096D1F69079E006ED55E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C125096E1F69079E006ED55E /* Array+ONNetworkingMethods.swift */,
+				C125096F1F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift */,
+				C12509701F69079E006ED55E /* String+ONNetworkingMethods.swift */,
+				C12509711F69079E006ED55E /* URLRequest+ONNetworkingMethods.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		C12509721F69079E006ED55E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C12509731F69079E006ED55E /* APIProxy */,
+				C12509751F69079E006ED55E /* BaseAPIManager */,
+				C12509781F69079E006ED55E /* CacheComponents */,
+				C125097B1F69079E006ED55E /* Command */,
+				C125097C1F69079E006ED55E /* iPhoneTypeDefine.plist */,
+				C125097D1F69079E006ED55E /* LocationManager */,
+				C125097E1F69079E006ED55E /* LogComponents */,
+				C12509801F69079E006ED55E /* URLResponse */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C12509731F69079E006ED55E /* APIProxy */ = {
+			isa = PBXGroup;
+			children = (
+				C12509741F69079E006ED55E /* ONApiProxy.swift */,
+			);
+			path = APIProxy;
+			sourceTree = "<group>";
+		};
+		C12509751F69079E006ED55E /* BaseAPIManager */ = {
+			isa = PBXGroup;
+			children = (
+				C12509761F69079E006ED55E /* ONAPIBaseManager.swift */,
+				C12509771F69079E006ED55E /* ONManagerProtocol.swift */,
+			);
+			path = BaseAPIManager;
+			sourceTree = "<group>";
+		};
+		C12509781F69079E006ED55E /* CacheComponents */ = {
+			isa = PBXGroup;
+			children = (
+				C12509791F69079E006ED55E /* ONCache.swift */,
+				C125097A1F69079E006ED55E /* ONCacheObject.swift */,
+			);
+			path = CacheComponents;
+			sourceTree = "<group>";
+		};
+		C125097B1F69079E006ED55E /* Command */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Command;
+			sourceTree = "<group>";
+		};
+		C125097D1F69079E006ED55E /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		C125097E1F69079E006ED55E /* LogComponents */ = {
+			isa = PBXGroup;
+			children = (
+				C125097F1F69079E006ED55E /* ONLogger.swift */,
+			);
+			path = LogComponents;
+			sourceTree = "<group>";
+		};
+		C12509801F69079E006ED55E /* URLResponse */ = {
+			isa = PBXGroup;
+			children = (
+				C12509811F69079E006ED55E /* ONURLResponse.swift */,
+			);
+			path = URLResponse;
+			sourceTree = "<group>";
+		};
+		C12509821F69079E006ED55E /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				C12509831F69079E006ED55E /* ONAppConfiguration.swift */,
+				C12509841F69079E006ED55E /* ONLogConfiguration.swift */,
+				C12509851F69079E006ED55E /* ONNetworkingConfiguration.plist */,
+				C12509861F69079E006ED55E /* ONNetworkingConfigurationManager.swift */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		C12509871F69079E006ED55E /* Generators */ = {
+			isa = PBXGroup;
+			children = (
+				C12509881F69079E006ED55E /* CommonParamsGenerator */,
+				C12509891F69079E006ED55E /* RequestGenerator */,
+				C125098B1F69079E006ED55E /* SignatureGenerator */,
+			);
+			path = Generators;
+			sourceTree = "<group>";
+		};
+		C12509881F69079E006ED55E /* CommonParamsGenerator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CommonParamsGenerator;
+			sourceTree = "<group>";
+		};
+		C12509891F69079E006ED55E /* RequestGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				C125098A1F69079E006ED55E /* ONRequestGenerator.swift */,
+			);
+			path = RequestGenerator;
+			sourceTree = "<group>";
+		};
+		C125098B1F69079E006ED55E /* SignatureGenerator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SignatureGenerator;
+			sourceTree = "<group>";
+		};
+		C125098C1F69079E006ED55E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C125098D1F69079E006ED55E /* ONService.swift */,
+				C125098E1F69079E006ED55E /* ONServiceFactory.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C12509A21F6907B9006ED55E /* CustomServices */ = {
+			isa = PBXGroup;
+			children = (
+				C12509A31F6907B9006ED55E /* Arita.swift */,
+			);
+			path = CustomServices;
+			sourceTree = "<group>";
+		};
+		C12509B41F6909BC006ED55E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C12509B21F69097C006ED55E /* BaseController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C12509B51F6909EF006ED55E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C12509B61F6909FE006ED55E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		F248C38494BE65111336842F /* Pods */ = {
@@ -78,12 +373,12 @@
 		FD5BBEA21F68D1A3002D8146 /* Arita */ = {
 			isa = PBXGroup;
 			children = (
-				FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */,
-				FD5BBEA51F68D1A3002D8146 /* ViewController.swift */,
-				FD5BBEA71F68D1A3002D8146 /* Main.storyboard */,
-				FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */,
-				FD5BBEAC1F68D1A3002D8146 /* LaunchScreen.storyboard */,
-				FD5BBEAF1F68D1A3002D8146 /* Info.plist */,
+				C12509681F6906A5006ED55E /* Config */,
+				C12509671F69066F006ED55E /* Vendor */,
+				C12509661F69065D006ED55E /* Resource */,
+				C12509651F69064A006ED55E /* Common */,
+				C12509641F690637006ED55E /* Module */,
+				C12509631F6905F9006ED55E /* Networking */,
 			);
 			path = Arita;
 			sourceTree = "<group>";
@@ -150,9 +445,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD5BBEAE1F68D1A3002D8146 /* LaunchScreen.storyboard in Resources */,
+				C12509981F69079E006ED55E /* iPhoneTypeDefine.plist in Resources */,
+				C12509B11F69092C006ED55E /* Main.storyboard in Resources */,
+				C12509B01F69092C006ED55E /* LaunchScreen.storyboard in Resources */,
 				FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */,
-				FD5BBEA91F68D1A3002D8146 /* Main.storyboard in Resources */,
+				C125099D1F69079E006ED55E /* ONNetworkingConfiguration.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +468,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C8D04B2A9E4B3A7B903F2182 /* [CP] Embed Pods Frameworks */ = {
@@ -211,28 +508,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD5BBEA61F68D1A3002D8146 /* ViewController.swift in Sources */,
+				C12509901F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift in Sources */,
+				C125099B1F69079E006ED55E /* ONAppConfiguration.swift in Sources */,
+				C12509931F69079E006ED55E /* ONApiProxy.swift in Sources */,
+				C12509B81F690A7D006ED55E /* APIConst.swift in Sources */,
+				C12509921F69079E006ED55E /* URLRequest+ONNetworkingMethods.swift in Sources */,
+				C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */,
+				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
+				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
+				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
+				C12509941F69079E006ED55E /* ONAPIBaseManager.swift in Sources */,
+				C125099E1F69079E006ED55E /* ONNetworkingConfigurationManager.swift in Sources */,
+				C12509B31F69097C006ED55E /* BaseController.swift in Sources */,
+				C12509971F69079E006ED55E /* ONCacheObject.swift in Sources */,
 				FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */,
+				C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */,
+				C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */,
+				C12509A01F69079E006ED55E /* ONService.swift in Sources */,
+				C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */,
+				C12509991F69079E006ED55E /* ONLogger.swift in Sources */,
+				C12509961F69079E006ED55E /* ONCache.swift in Sources */,
+				C125099F1F69079E006ED55E /* ONRequestGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FD5BBEA71F68D1A3002D8146 /* Main.storyboard */ = {
+		C12509AC1F69092C006ED55E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				FD5BBEA81F68D1A3002D8146 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		FD5BBEAC1F68D1A3002D8146 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FD5BBEAD1F68D1A3002D8146 /* Base */,
+				C12509AD1F69092C006ED55E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C12509AE1F69092C006ED55E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C12509AF1F69092C006ED55E /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -336,12 +652,14 @@
 			baseConfigurationReference = E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Arita/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -352,12 +670,14 @@
 			baseConfigurationReference = AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Arita/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -382,6 +702,7 @@
 				FD5BBEB41F68D1A3002D8146 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

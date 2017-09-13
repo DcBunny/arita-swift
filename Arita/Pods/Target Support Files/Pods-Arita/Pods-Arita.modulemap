@@ -1,0 +1,6 @@
+framework module Pods_Arita {
+  umbrella header "Pods-Arita-umbrella.h"
+
+  export *
+  module * { export * }
+}

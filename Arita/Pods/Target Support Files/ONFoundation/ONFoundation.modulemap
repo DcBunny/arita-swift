@@ -1,0 +1,6 @@
+framework module ONFoundation {
+  umbrella header "ONFoundation-umbrella.h"
+
+  export *
+  module * { export * }
+}
