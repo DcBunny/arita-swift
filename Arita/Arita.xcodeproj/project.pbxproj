@@ -70,6 +70,12 @@
 		C1250A0A1F6920C8006ED55E /* LoginAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A091F6920C8006ED55E /* LoginAPIManager.swift */; };
 		C1250A0C1F692111006ED55E /* APIResultCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A0B1F692111006ED55E /* APIResultCheck.swift */; };
 		C1250A0E1F692171006ED55E /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A0D1F692171006ED55E /* NotificationConst.swift */; };
+		C18B4F281F6A1D6E001E2E56 /* FontConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F271F6A1D6E001E2E56 /* FontConst.swift */; };
+		C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F2C1F6A314B001E2E56 /* ArticleTitleView.swift */; };
+		C18B4F311F6A6F5B001E2E56 /* ArticleHomeTataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */; };
+		C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */; };
+		C18B4F351F6A6FAF001E2E56 /* ArticleHomePicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */; };
+		C18B4F391F6A957A001E2E56 /* CornerShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F381F6A957A001E2E56 /* CornerShadowView.swift */; };
 		C1F17BB01F692766001153BA /* GuideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BAF1F692766001153BA /* GuideController.swift */; };
 		C1F17BB21F692E13001153BA /* SizeConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BB11F692E13001153BA /* SizeConst.swift */; };
 		C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BB31F692E38001153BA /* ColorConst.swift */; };
@@ -148,6 +154,12 @@
 		C1250A091F6920C8006ED55E /* LoginAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAPIManager.swift; sourceTree = "<group>"; };
 		C1250A0B1F692111006ED55E /* APIResultCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResultCheck.swift; sourceTree = "<group>"; };
 		C1250A0D1F692171006ED55E /* NotificationConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
+		C18B4F271F6A1D6E001E2E56 /* FontConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontConst.swift; sourceTree = "<group>"; };
+		C18B4F2C1F6A314B001E2E56 /* ArticleTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTitleView.swift; sourceTree = "<group>"; };
+		C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeTataCell.swift; sourceTree = "<group>"; };
+		C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeTextCell.swift; sourceTree = "<group>"; };
+		C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomePicCell.swift; sourceTree = "<group>"; };
+		C18B4F381F6A957A001E2E56 /* CornerShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerShadowView.swift; sourceTree = "<group>"; };
 		C1F17BAF1F692766001153BA /* GuideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideController.swift; sourceTree = "<group>"; };
 		C1F17BB11F692E13001153BA /* SizeConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeConst.swift; sourceTree = "<group>"; };
 		C1F17BB31F692E38001153BA /* ColorConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConst.swift; sourceTree = "<group>"; };
@@ -248,6 +260,7 @@
 				C1F17BB11F692E13001153BA /* SizeConst.swift */,
 				C1F17BB31F692E38001153BA /* ColorConst.swift */,
 				C1F17BB51F693452001153BA /* IconConst.swift */,
+				C18B4F271F6A1D6E001E2E56 /* FontConst.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -555,10 +568,39 @@
 			path = "Login&Register";
 			sourceTree = "<group>";
 		};
-		C1F17BBB1F69378B001153BA /* Article */ = {
+		C18B4F291F6A30E7001E2E56 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				C1F17BBE1F6937F3001153BA /* ArticleHomeController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C18B4F2A1F6A3118001E2E56 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C18B4F2C1F6A314B001E2E56 /* ArticleTitleView.swift */,
+				C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */,
+				C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */,
+				C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */,
+				C18B4F381F6A957A001E2E56 /* CornerShadowView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C18B4F2B1F6A312A001E2E56 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C1F17BBB1F69378B001153BA /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				C18B4F2B1F6A312A001E2E56 /* Model */,
+				C18B4F2A1F6A3118001E2E56 /* View */,
+				C18B4F291F6A30E7001E2E56 /* Controller */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -752,6 +794,7 @@
 				C12509CC1F6912A8006ED55E /* Data+ONCrypt.swift in Sources */,
 				C125099B1F69079E006ED55E /* ONAppConfiguration.swift in Sources */,
 				C12509FD1F691F78006ED55E /* NSDate+Cache.swift in Sources */,
+				C18B4F391F6A957A001E2E56 /* CornerShadowView.swift in Sources */,
 				C12509931F69079E006ED55E /* ONApiProxy.swift in Sources */,
 				C1F17BB61F693452001153BA /* IconConst.swift in Sources */,
 				C12509D31F6912A8006ED55E /* Time+Extension.swift in Sources */,
@@ -773,9 +816,11 @@
 				C1F17BB01F692766001153BA /* GuideController.swift in Sources */,
 				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
+				C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */,
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
 				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
+				C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */,
 				C12509941F69079E006ED55E /* ONAPIBaseManager.swift in Sources */,
 				C12509F61F691F78006ED55E /* Cache.swift in Sources */,
 				C125099E1F69079E006ED55E /* ONNetworkingConfigurationManager.swift in Sources */,
@@ -789,6 +834,7 @@
 				C12509CB1F6912A8006ED55E /* Array+Extension.swift in Sources */,
 				C12509D71F6912A8006ED55E /* Utilities.swift in Sources */,
 				C1F17BB21F692E13001153BA /* SizeConst.swift in Sources */,
+				C18B4F281F6A1D6E001E2E56 /* FontConst.swift in Sources */,
 				C12509971F69079E006ED55E /* ONCacheObject.swift in Sources */,
 				FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */,
 				C12509FF1F691F78006ED55E /* HybridCache.swift in Sources */,
@@ -799,6 +845,7 @@
 				C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */,
 				C12509A01F69079E006ED55E /* ONService.swift in Sources */,
 				C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */,
+				C18B4F311F6A6F5B001E2E56 /* ArticleHomeTataCell.swift in Sources */,
 				C1250A0A1F6920C8006ED55E /* LoginAPIManager.swift in Sources */,
 				C1250A0E1F692171006ED55E /* NotificationConst.swift in Sources */,
 				C1F17BB81F6934D0001153BA /* RootController.swift in Sources */,
@@ -809,6 +856,7 @@
 				C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */,
 				C12509F91F691F78006ED55E /* Capsule.swift in Sources */,
 				C12509991F69079E006ED55E /* ONLogger.swift in Sources */,
+				C18B4F351F6A6FAF001E2E56 /* ArticleHomePicCell.swift in Sources */,
 				C12509F71F691F78006ED55E /* Config.swift in Sources */,
 				C12509961F69079E006ED55E /* ONCache.swift in Sources */,
 				C125099F1F69079E006ED55E /* ONRequestGenerator.swift in Sources */,

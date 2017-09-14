@@ -30,32 +30,30 @@ class RootController: UITabBarController {
     private func setSubController() {
         let articleNav = UINavigationController(rootViewController: ArticleHomeController())
         let goodsNav = UINavigationController(rootViewController: GoodsHomeController())
-        let mineNav = UINavigationController(rootViewController: MineHomeController())
-        viewControllers = [articleNav, goodsNav, mineNav]
+        viewControllers = [articleNav, goodsNav]
     }
     
     private func setTabBarItem() {
-        tabBar.barTintColor = Color.hexffffff
+        tabBar.barTintColor = Color.hexefefef
         tabBar.isTranslucent = false
+        tabBar.backgroundColor = Color.hexefefef
         
         let articleItem = tabBar.items![0]
         let goodsItem = tabBar.items![1]
-        let mineItem = tabBar.items![2]
         
+        articleItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         articleItem.image = UIImage(named: Icon.articleOff)?.withRenderingMode(.alwaysOriginal)
         articleItem.selectedImage = UIImage(named: Icon.articleOn)?.withRenderingMode(.alwaysOriginal)
         
+        goodsItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         goodsItem.image = UIImage(named: Icon.goodsOff)?.withRenderingMode(.alwaysOriginal)
         goodsItem.selectedImage = UIImage(named: Icon.goodsOn)?.withRenderingMode(.alwaysOriginal)
-        
-        mineItem.image = UIImage(named: Icon.mineOff)?.withRenderingMode(.alwaysOriginal)
-        mineItem.selectedImage = UIImage(named: Icon.mineOn)?.withRenderingMode(.alwaysOriginal)
     }
     
     // MARK: - Priate Methods
     private func setBorderColor() {
-        tabBar.backgroundImage = Color.hexffffff!.imageWithColorAndSize(CGSize(width: 1 / UIScreen.main.scale, height: 1 / UIScreen.main.scale))
-        tabBar.shadowImage = Color.hexe4e4e4!.imageWithColorAndSize(CGSize(width: 1 / UIScreen.main.scale, height: 1 / UIScreen.main.scale))
+        tabBar.backgroundImage = Color.hexefefef!.imageWithColorAndSize(CGSize(width: 1 / UIScreen.main.scale, height: 1 / UIScreen.main.scale), isCircle: false)
+        tabBar.shadowImage = Color.hexe4e4e4!.imageWithColorAndSize(CGSize(width: 1 / UIScreen.main.scale, height: 1 / UIScreen.main.scale), isCircle: false)
     }
 }
 

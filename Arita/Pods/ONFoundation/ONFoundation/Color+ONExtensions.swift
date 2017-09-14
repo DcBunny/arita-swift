@@ -15,7 +15,7 @@ extension UIColor {
     ///
     /// - Parameter size: 图片大小
     /// - Returns: 图片
-    public func imageWithColorAndSize(_ size: CGSize) -> UIImage {
+    public func imageWithColorAndSize(_ size: CGSize, isCircle: Bool) -> UIImage {
         var rect: CGRect!
         
         if (size.width == 0 || size.height == 0) {
@@ -23,15 +23,24 @@ extension UIColor {
         } else {
             rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         }
-        
-        UIGraphicsBeginImageContext(rect.size)
+
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
         let context = UIGraphicsGetCurrentContext()
         context!.setFillColor(self.cgColor)
-        context!.fill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image!
+        if isCircle {
+            context!.addArc(center: CGPoint(x: size.width / 2, y: size.width / 2), radius: size.width / 2, startAngle: 0, endAngle: CGFloat(Double.pi) * 2, clockwise: false)
+            context?.fillPath()
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            return image!
+        } else {
+            context!.fill(rect)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            return image!
+        }
     }
 }
 

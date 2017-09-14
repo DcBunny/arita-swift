@@ -26,4 +26,9 @@ struct Icon {
     static let goodsOff = "nav_item"
     static let mineOn = "nav_me_active"
     static let mineOff = "nav_me"
+    
+    // Nav
+    static let back = "back"
+    static let calendar = "calendar"
+    static let dayCheck = "daycheck"
 }
