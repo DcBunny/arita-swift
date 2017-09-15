@@ -23,7 +23,8 @@ target 'Arita' do
     pod 'HandyJSON', '1.6.1'
     pod 'Bugly', '2.4.8'
     pod 'IQKeyboardManagerSwift', '4.0.10'
-
+    pod 'GDPerformanceView-Swift', '1.2.0'
+    
     pod 'ONPlaceholder', '0.9.5'
     pod 'ONCountDownButton', '0.2.0'
     pod 'ONFoundation', '0.2.1'

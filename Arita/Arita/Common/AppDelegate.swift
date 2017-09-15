@@ -10,6 +10,7 @@ import UIKit
 import XCGLogger
 import Bugly
 import IQKeyboardManagerSwift
+import GDPerformanceView_Swift
 
 // 全局的日志变量
 let log = XCGLogger.default
@@ -26,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // SetUp RootController
         chooseRootVC()
+        beginMonitorPerformance()
         
         return true
     }
@@ -86,3 +88,8 @@ extension AppDelegate {
     }
 }
 
+extension AppDelegate {
+    fileprivate func beginMonitorPerformance() {
+        GDPerformanceMonitor.sharedInstance.startMonitoring()
+    }
+}

@@ -31,4 +31,7 @@ struct Icon {
     static let back = "back"
     static let calendar = "calendar"
     static let dayCheck = "daycheck"
+    
+    // Article
+    static let comment = "comment_16"
 }

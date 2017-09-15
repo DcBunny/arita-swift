@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 /**
- ArticleHomeNormalCell **文章**页塔塔报cell试图
+ ArticleHomeTataCell **文章**页塔塔报和一般样式cell试图
  */
 class ArticleHomeTataCell: UITableViewCell {
 
@@ -58,7 +58,7 @@ class ArticleHomeTataCell: UITableViewCell {
         
         picView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.right.top.equalTo(bodyView)
-            ConstraintMaker.height.equalTo(picView.snp.width)
+            ConstraintMaker.height.equalTo(titleLabel.snp.width)
             ConstraintMaker.bottom.equalTo(contentLabel.snp.top).offset(-16)
         }
         
@@ -75,29 +75,10 @@ class ArticleHomeTataCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    // MARK: - Private Methods
-    private func generateAttributeText(by text: String) -> NSAttributedString {
-        let attach = NSTextAttachment()
-        attach.image = Color.hexe57e33?.imageWithColorAndSize(CGSize(width: 8, height: 8), isCircle: true)
-        attach.bounds = CGRect(x: 0, y: 0, width: 8, height: 8)
-        let circleAttribute = NSAttributedString(attachment: attach)
-        
-        let attachClear = NSTextAttachment()
-        attachClear.image = UIColor.clear.imageWithColorAndSize(CGSize(width: 8, height: 8), isCircle: false)
-        attachClear.bounds = CGRect(x: 0, y: 0, width: 8, height: 8)
-        let clearAttribute = NSAttributedString(attachment: attachClear)
-        
-        let attributes = NSMutableAttributedString(string: text)
-        attributes.insert(circleAttribute, at: 0)
-        attributes.insert(clearAttribute, at: 1)
-        return attributes
-    }
-    
-    
     // MARK: - Public Attributes
     public var titleText = "" {
         didSet {
-            titleLabel.attributedText = generateAttributeText(by: titleText)
+            titleLabel.attributedText = titleText.withColorCircle(color: Color.hexe57e33!)
         }
     }
     
@@ -113,10 +94,16 @@ class ArticleHomeTataCell: UITableViewCell {
         }
     }
     
+    public var color = Color.hexe57e33! {
+        didSet {
+            titleLabel.attributedText = titleText.withColorCircle(color: color)
+        }
+    }
+    
     // MARK: - Controller Attributes
     fileprivate var _titleLabel: UILabel?
-    fileprivate var _bodyView: UIView?
     fileprivate var _shadowView: UIView?
+    fileprivate var _bodyView: UIView?
     fileprivate var _picView: UIImageView?
     fileprivate var _contentLabel: UILabel?
 }

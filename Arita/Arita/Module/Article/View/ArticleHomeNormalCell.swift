@@ -1,17 +1,17 @@
 //
-//  ArticleHomePicCell.swift
+//  ArticleHomeNormalCell.swift
 //  Arita
 //
-//  Created by 潘东 on 2017/9/14.
+//  Created by 潘东 on 2017/9/15.
 //  Copyright © 2017年 arita. All rights reserved.
 //
 
 import UIKit
 
 /**
- ArticleHomePicCell **文章**页九宫格cell试图
+ ArticleHomeNormalCell **文章**页一般样式cell试图
  */
-class ArticleHomePicCell: UITableViewCell {
+class ArticleHomeNormalCell: UITableViewCell {
 
     // MARK: - Init Methods
     override init(style: UITableViewCellStyle, reuseIdentifier: String!)
@@ -32,13 +32,13 @@ class ArticleHomePicCell: UITableViewCell {
         addSubview(titleLabel)
         addSubview(shadowView)
         shadowView.addSubview(bodyView)
-        bodyView.addSubview(picCollectionView)
+        bodyView.addSubview(picView)
         bodyView.addSubview(contentLabel)
     }
     
     private func layoutCellViews() {
         titleLabel.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(self).offset(20)
+            ConstraintMaker.top.equalTo(self)
             ConstraintMaker.left.equalTo(self).offset(6)
             ConstraintMaker.right.equalTo(self).offset(-6)
             ConstraintMaker.height.equalTo(44)
@@ -55,16 +55,16 @@ class ArticleHomePicCell: UITableViewCell {
             ConstraintMaker.edges.equalTo(shadowView)
         }
         
-        picCollectionView.snp.makeConstraints { (ConstraintMaker) in
+        picView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.right.top.equalTo(bodyView)
-            ConstraintMaker.height.equalTo(titleLabel.snp.width)
+            ConstraintMaker.height.equalTo(titleLabel.snp.width).multipliedBy(2.0/3)
             ConstraintMaker.bottom.equalTo(contentLabel.snp.top).offset(-16)
         }
         
         contentLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(bodyView).offset(16)
             ConstraintMaker.right.equalTo(bodyView).offset(-16)
-            ConstraintMaker.top.equalTo(picCollectionView.snp.bottom).offset(16)
+            ConstraintMaker.top.equalTo(picView.snp.bottom).offset(16)
             ConstraintMaker.bottom.equalTo(bodyView).offset(-48)
         }
     }
@@ -73,17 +73,17 @@ class ArticleHomePicCell: UITableViewCell {
         backgroundColor = Color.hexf5f5f5
         selectionStyle = .none
     }
-
+    
     // MARK: - Public Attributes
     public var titleText = "" {
         didSet {
-            titleLabel.attributedText = titleText.withColorCircle(color: Color.hexe57e33!)
+            titleLabel.attributedText = titleText.withColorCircle(color: Color.hex55bde2!)
         }
     }
     
-    public var picArr = [String]() {
+    public var picUrl = "" {
         didSet {
-            
+            picView.kf.setImage(with: URL(string: picUrl))
         }
     }
     
@@ -93,22 +93,22 @@ class ArticleHomePicCell: UITableViewCell {
         }
     }
     
-    public var color = Color.hexe57e33! {
+    public var color = Color.hex55bde2! {
         didSet {
             titleLabel.attributedText = titleText.withColorCircle(color: color)
         }
     }
-
+    
     // MARK: - Controller Attributes
     fileprivate var _titleLabel: UILabel?
-    fileprivate var _shadowView: UIView?
     fileprivate var _bodyView: UIView?
-    fileprivate var _picCollectionView: UICollectionView?
+    fileprivate var _shadowView: UIView?
+    fileprivate var _picView: UIImageView?
     fileprivate var _contentLabel: UILabel?
 }
 
 // MARK: - Getters and Setters
-extension ArticleHomePicCell {
+extension ArticleHomeNormalCell {
     fileprivate var titleLabel: UILabel {
         if _titleLabel == nil {
             _titleLabel = UILabel()
@@ -149,14 +149,15 @@ extension ArticleHomePicCell {
         return _bodyView!
     }
     
-    fileprivate var picCollectionView: UICollectionView {
-        if _picCollectionView == nil {
-            _picCollectionView = UICollectionView()
+    fileprivate var picView: UIImageView {
+        if _picView == nil {
+            _picView = UIImageView()
+            _picView?.contentMode = .scaleToFill
             
-            return _picCollectionView!
+            return _picView!
         }
         
-        return _picCollectionView!
+        return _picView!
     }
     
     fileprivate var contentLabel: UILabel {
