@@ -24,14 +24,13 @@ struct Icon {
     static let articleOff = "nav_home"
     static let goodsOn = "nav_item_active"
     static let goodsOff = "nav_item"
-    static let mineOn = "nav_me_active"
-    static let mineOff = "nav_me"
     
     // Nav
     static let back = "back"
-    static let calendar = "calendar"
-    static let dayCheck = "daycheck"
+    static let topCalendar = "top_calendar"
+    static let topMine = "top_me"
     
     // Article
     static let comment = "comment_16"
+    static let userIcon = "icon_portrait"
 }

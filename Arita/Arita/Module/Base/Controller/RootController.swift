@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- RootController 为OneApp的根类，将OneApp分为**首页**，**良品**和**我的**三部分
+ RootController 为OneApp的根类，将OneApp分为**首页**，**良品**两部分
  */
 class RootController: UITabBarController {
     

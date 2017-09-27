@@ -45,7 +45,7 @@ class GuideController: BaseController {
     
     // MARK: - Controller Settings
     private func setNavigationBar() {
-//        setNaviBar(type: .none)
+        setNaviBar(type: .none)
     }
     
     private func addPageViews() {

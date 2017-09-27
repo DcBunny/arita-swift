@@ -36,7 +36,7 @@ protocol ONServiceProtocol: class {
 }
 
 extension ONServiceProtocol {
-    final func isOnline() -> Bool {
+    func isOnline() -> Bool {
         return ONNetworkingConfigurationManager.sharedInstance.serviceIsOnline
     }
     

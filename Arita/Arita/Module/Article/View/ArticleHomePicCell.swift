@@ -32,7 +32,7 @@ class ArticleHomePicCell: UITableViewCell {
         addSubview(titleLabel)
         addSubview(shadowView)
         shadowView.addSubview(bodyView)
-        bodyView.addSubview(picCollectionView)
+        bodyView.addSubview(picGridView)
         bodyView.addSubview(contentLabel)
     }
     
@@ -55,7 +55,7 @@ class ArticleHomePicCell: UITableViewCell {
             ConstraintMaker.edges.equalTo(shadowView)
         }
         
-        picCollectionView.snp.makeConstraints { (ConstraintMaker) in
+        picGridView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.right.top.equalTo(bodyView)
             ConstraintMaker.height.equalTo(titleLabel.snp.width)
             ConstraintMaker.bottom.equalTo(contentLabel.snp.top).offset(-16)
@@ -64,7 +64,7 @@ class ArticleHomePicCell: UITableViewCell {
         contentLabel.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.equalTo(bodyView).offset(16)
             ConstraintMaker.right.equalTo(bodyView).offset(-16)
-            ConstraintMaker.top.equalTo(picCollectionView.snp.bottom).offset(16)
+            ConstraintMaker.top.equalTo(picGridView.snp.bottom).offset(16)
             ConstraintMaker.bottom.equalTo(bodyView).offset(-48)
         }
     }
@@ -72,18 +72,21 @@ class ArticleHomePicCell: UITableViewCell {
     private func setCellViews() {
         backgroundColor = Color.hexf5f5f5
         selectionStyle = .none
+        
+        picGridView.delegate = self
+        picGridView.dataSource = self
     }
 
     // MARK: - Public Attributes
     public var titleText = "" {
         didSet {
-            titleLabel.attributedText = titleText.withColorCircle(color: Color.hexe57e33!)
+            titleLabel.attributedText = titleText.withColorCircle(color: Color.hexea9120!)
         }
     }
     
     public var picArr = [String]() {
         didSet {
-            
+            picGridView.creatJGGView()
         }
     }
     
@@ -103,9 +106,36 @@ class ArticleHomePicCell: UITableViewCell {
     fileprivate var _titleLabel: UILabel?
     fileprivate var _shadowView: UIView?
     fileprivate var _bodyView: UIView?
-    fileprivate var _picCollectionView: UICollectionView?
+    fileprivate var _picGridView: JGGGridView?
     fileprivate var _contentLabel: UILabel?
 }
+
+// MARK: - JGGGridViewDataSource
+extension ArticleHomePicCell: JGGGridViewDataSource {
+    func numberOfItems(in gridView: JGGGridView) -> Int {
+        return picArr.count
+    }
+    
+    func gridView(_ gridView: JGGGridView, imageForItemAt index: Int) -> UIImageView {
+        return picArr[index].convertToImage()
+    }
+    
+    func gapBetweenItems(in gridView: JGGGridView) -> CGFloat {
+        return CGFloat(1)
+    }
+    
+    func sizeOfItems(in gridView: JGGGridView) -> CGSize {
+        return CGSize(width: (UIScreen.main.bounds.size.width - 22) / 3, height: (UIScreen.main.bounds.size.width - 22) / 3)
+    }
+}
+
+// MARK: - JGGGridViewDelegate
+extension ArticleHomePicCell: JGGGridViewDelegate {
+    func gridView(_ gridView: JGGGridView, didSelectRowIndex index: Int) {
+        //None
+    }
+}
+
 
 // MARK: - Getters and Setters
 extension ArticleHomePicCell {
@@ -149,14 +179,14 @@ extension ArticleHomePicCell {
         return _bodyView!
     }
     
-    fileprivate var picCollectionView: UICollectionView {
-        if _picCollectionView == nil {
-            _picCollectionView = UICollectionView()
+    fileprivate var picGridView: JGGGridView {
+        if _picGridView == nil {
+            _picGridView = JGGGridView()
             
-            return _picCollectionView!
+            return _picGridView!
         }
         
-        return _picCollectionView!
+        return _picGridView!
     }
     
     fileprivate var contentLabel: UILabel {

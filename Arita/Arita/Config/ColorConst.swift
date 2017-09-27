@@ -16,6 +16,7 @@ import ONFoundation
  */
 struct Color {
     static let hexffffff = UIColor(hex: 0xffffff)
+    static let hexffffffAlpha0 = UIColor(hex: 0xffffff, alpha: 0)
     static let hexe4e4e4 = UIColor(hex: 0xe4e4e4)
     static let hexefefef = UIColor(hex: 0xefefef)
     static let hexf5f5f5 = UIColor(hex: 0xf5f5f5)
@@ -28,4 +29,5 @@ struct Color {
     static let hex919191 = UIColor(hex: 0x919191)
     static let hex2a2a2a = UIColor(hex: 0x2a2a2a)
     static let hex40bf2c = UIColor(hex: 0x40bf2c)
+    static let hexececec = UIColor(hex: 0xececec)
 }

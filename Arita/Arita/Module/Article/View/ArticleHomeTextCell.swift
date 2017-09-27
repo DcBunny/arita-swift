@@ -217,7 +217,7 @@ extension ArticleHomeTextCell {
     fileprivate var userIcon: UIImageView {
         if _userIcon == nil {
             _userIcon = UIImageView()
-            _userIcon?.image = UIImage(named: Icon.comment)
+            _userIcon?.image = UIImage(named: Icon.userIcon)
             
             return _userIcon!
         }
