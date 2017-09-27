@@ -39,17 +39,17 @@ class ArticleHomeTataCell: UITableViewCell {
     
     private func layoutCellViews() {
         titleLabel.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(self).offset(20)
+            ConstraintMaker.top.equalTo(self).offset(15)
             ConstraintMaker.left.equalTo(self).offset(6)
             ConstraintMaker.right.equalTo(self).offset(-6)
             ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.bottom.equalTo(bodyView.snp.top)
+            ConstraintMaker.bottom.equalTo(shadowView.snp.top)
         }
         
         shadowView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.right.equalTo(titleLabel)
             ConstraintMaker.top.equalTo(titleLabel.snp.bottom)
-            ConstraintMaker.bottom.equalTo(self).offset(-16)
+            ConstraintMaker.bottom.equalTo(self)
         }
         
         bodyView.snp.makeConstraints { (ConstraintMaker) in
@@ -59,26 +59,26 @@ class ArticleHomeTataCell: UITableViewCell {
         picView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.right.top.equalTo(bodyView)
             ConstraintMaker.height.equalTo(titleLabel.snp.width)
-            ConstraintMaker.bottom.equalTo(contentLabel.snp.top).offset(-16)
+            ConstraintMaker.bottom.equalTo(contentLabel.snp.top).offset(-15)
         }
         
         contentLabel.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(bodyView).offset(16)
-            ConstraintMaker.right.equalTo(bodyView).offset(-16)
-            ConstraintMaker.top.equalTo(picView.snp.bottom).offset(16)
-            ConstraintMaker.bottom.equalTo(bodyView).offset(-48)
+            ConstraintMaker.left.equalTo(bodyView).offset(15)
+            ConstraintMaker.right.equalTo(bodyView).offset(-15)
+            ConstraintMaker.top.equalTo(picView.snp.bottom).offset(15)
+            ConstraintMaker.bottom.equalTo(bodyView).offset(-35)
         }
     }
     
     private func setCellViews() {
-        backgroundColor = Color.hexf5f5f5
+        backgroundColor = UIColor.clear
         selectionStyle = .none
     }
     
     // MARK: - Public Attributes
     public var titleText = "" {
         didSet {
-            titleLabel.attributedText = titleText.withColorCircle(color: Color.hexe57e33!)
+            titleLabel.attributedText = titleText.withColorCircle(color: Color.hexea9120!)
         }
     }
     
@@ -94,7 +94,7 @@ class ArticleHomeTataCell: UITableViewCell {
         }
     }
     
-    public var color = Color.hexe57e33! {
+    public var color = Color.hexea9120! {
         didSet {
             titleLabel.attributedText = titleText.withColorCircle(color: color)
         }
@@ -113,9 +113,9 @@ extension ArticleHomeTataCell {
     fileprivate var titleLabel: UILabel {
         if _titleLabel == nil {
             _titleLabel = UILabel()
-            _titleLabel?.textColor = Color.hexe57e33
+            _titleLabel?.textColor = Color.hexea9120!
             _titleLabel?.textAlignment = .left
-            _titleLabel?.font = Font.size14
+            _titleLabel?.font = Font.size13
             
             return _titleLabel!
         }
@@ -127,9 +127,9 @@ extension ArticleHomeTataCell {
         if _shadowView == nil {
             _shadowView = UIView()
             _shadowView?.layer.shadowOffset = CGSize(width: 0, height: 2)
-            _shadowView?.layer.shadowRadius = CGFloat(4)
+            _shadowView?.layer.shadowRadius = CGFloat(2)
             _shadowView?.layer.masksToBounds = false
-            _shadowView?.layer.shadowOpacity = 0.5
+            _shadowView?.layer.shadowColor = Color.hexe4e4e4!.cgColor
             
             return _shadowView!
         }
@@ -164,10 +164,11 @@ extension ArticleHomeTataCell {
     fileprivate var contentLabel: UILabel {
         if _contentLabel == nil {
             _contentLabel = UILabel()
-            _contentLabel?.textColor = Color.hex2f2f2f
+            _contentLabel?.textColor = Color.hex2a2a2a!
             _contentLabel?.textAlignment = .left
-            _contentLabel?.font = Font.size18
-            _contentLabel?.numberOfLines = 0
+            _contentLabel?.font = Font.size16
+            _contentLabel?.numberOfLines = 2
+            _contentLabel?.lineBreakMode = .byTruncatingTail
             
             return _contentLabel!
         }

@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // SetUp RootController
         chooseRootVC()
         beginMonitorPerformance()
+        adaptationIOS11()
         
         return true
     }
@@ -61,6 +62,9 @@ extension AppDelegate {
         // 显示启动页3秒
         Thread.sleep(forTimeInterval: 3.0)
         
+        // 隐藏状态栏
+        UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.none)
+        
         let userHasOnboarded = UserDefaults.standard.bool(forKey: kUserHasOnboard)
         
         if userHasOnboarded {
@@ -88,8 +92,21 @@ extension AppDelegate {
     }
 }
 
+// MARK: - 显示FPS
 extension AppDelegate {
     fileprivate func beginMonitorPerformance() {
         GDPerformanceMonitor.sharedInstance.startMonitoring()
+    }
+}
+
+// MARK: - 适配 iOS11
+extension AppDelegate {
+    fileprivate func adaptationIOS11() {
+        if #available(iOS 11.0, *) {
+            UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+            UITableView.appearance().estimatedRowHeight = 0
+            UITableView.appearance().estimatedSectionFooterHeight = 0
+            UITableView.appearance().estimatedSectionHeaderHeight = 0
+        }
     }
 }

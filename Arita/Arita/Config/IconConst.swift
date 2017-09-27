@@ -33,4 +33,5 @@ struct Icon {
     // Article
     static let comment = "comment_16"
     static let userIcon = "icon_portrait"
+    static let categoryIcon = "button_classify"
 }

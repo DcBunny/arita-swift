@@ -211,7 +211,36 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
             
         }
         
-        navigationItem.leftBarButtonItem = barBtnItem
+        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -10
+        navigationItem.leftBarButtonItems = [barBtnItem, negativeSpacer]
+    }
+    
+    /**
+     设置当前 Navigation 左侧图片按钮
+     
+     - parameter icon: 按钮图标
+     - parameter action: 点击事件
+     */
+    public func setNaviLeftIconBtn(_ icon: UIImage, action: Selector) {
+        let barBtnItem = UIBarButtonItem(image: icon.withRenderingMode(.alwaysOriginal),
+                                         style: .plain, target: self, action: action)
+        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -10
+        navigationItem.leftBarButtonItems = [barBtnItem, negativeSpacer]
+    }
+    
+    /**
+     设置当前 Navigation 左侧文字按钮
+     
+     - parameter text: 按钮标题
+     - parameter action: 点击事件
+     */
+    public func setNaviLeftTextBtn(_ text: String, action: Selector) {
+        let barBtnItem = UIBarButtonItem(title: text, style: .plain, target: self, action: action)
+        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -10
+        navigationItem.leftBarButtonItems = [barBtnItem, negativeSpacer]
     }
     
     /**
@@ -224,7 +253,9 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
         
         let barBtnItem = UIBarButtonItem(image: icon.withRenderingMode(.alwaysOriginal),
                                          style: .plain, target: self, action: action)
-        navigationItem.rightBarButtonItem = barBtnItem
+        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -10
+        navigationItem.rightBarButtonItems = [barBtnItem, negativeSpacer]
     }
     
     /**
@@ -235,7 +266,10 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
      */
     public func setNaviRightTextBtn(_ text: String, action: Selector) {
         let barBtnItem = UIBarButtonItem(title: text, style: .plain, target: self, action: action)
-        navigationItem.rightBarButtonItem = barBtnItem
+        barBtnItem.isEnabled = false
+        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -10
+        navigationItem.rightBarButtonItems = [barBtnItem, negativeSpacer]
     }
     
     // MARK: - ============== For Custom And Blank ==============
@@ -260,24 +294,17 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
     public func setNaviItem(_ leftItem: String?, leftAction: Selector, rightItem: String?, rightAction: Selector) {
         if leftItem != nil {
             if let image = UIImage(named: leftItem!) {
-                let leftBarBtnItem = UIBarButtonItem(image: image.withRenderingMode(.alwaysOriginal),
-                                                     style: .plain, target: self, action: leftAction)
-                navigationItem.rightBarButtonItem = leftBarBtnItem
+                setNaviLeftIconBtn(image, action: leftAction)
             } else {
-                let leftBarBtnItem = UIBarButtonItem(title: leftItem, style: .plain, target: self, action: leftAction)
-                navigationItem.leftBarButtonItem = leftBarBtnItem
+                setNaviLeftTextBtn(leftItem!, action: leftAction)
             }
         }
         
         if rightItem != nil {
             if let image = UIImage(named: rightItem!) {
-                let rightBarBtnItem = UIBarButtonItem(image: image.withRenderingMode(.alwaysOriginal),
-                                                      style: .plain, target: self, action: rightAction)
-                navigationItem.rightBarButtonItem = rightBarBtnItem
+                setNaviRightIconBtn(image, action: rightAction)
             } else {
-                let rightBarBtnItem = UIBarButtonItem(title: rightItem, style: .plain, target: self, action: rightAction)
-                rightBarBtnItem.isEnabled = false
-                navigationItem.rightBarButtonItem = rightBarBtnItem
+                setNaviRightTextBtn(rightItem!, action: rightAction)
             }
         }
     }
@@ -292,13 +319,8 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
      - parameter rightAction: 右侧文字点击事件
      */
     public func setNavi(leftText: String, leftAction: Selector, rightText: String, rightAction: Selector) {
-        
-        let leftBarBtnItem = UIBarButtonItem(title: leftText, style: .plain, target: self, action: leftAction)
-        navigationItem.leftBarButtonItem = leftBarBtnItem
-        
-        let rightBarBtnItem = UIBarButtonItem(title: rightText, style: .plain, target: self, action: rightAction)
-        rightBarBtnItem.isEnabled = false
-        navigationItem.rightBarButtonItem = rightBarBtnItem
+        setNaviLeftTextBtn(leftText, action: leftAction)
+        setNaviRightTextBtn(rightText, action: rightAction)
     }
     
     /**
@@ -311,13 +333,8 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
      - parameter rightAction: 右侧图标点击事件
      */
     public func setNavi(leftText: String, leftAction: Selector, rightIcon: UIImage, rightAction: Selector) {
-        
-        let leftBarBtnItem = UIBarButtonItem(title: leftText, style: .plain, target: self, action: leftAction)
-        navigationItem.leftBarButtonItem = leftBarBtnItem
-        
-        let rightBarBtnItem = UIBarButtonItem(image: rightIcon.withRenderingMode(.alwaysOriginal),
-                                              style: .plain, target: self, action: rightAction)
-        navigationItem.rightBarButtonItem = rightBarBtnItem
+        setNaviLeftTextBtn(leftText, action: leftAction)
+        setNaviRightIconBtn(rightIcon, action: rightAction)
     }
     
     /**
@@ -330,14 +347,8 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
      - parameter rightAction: 右侧图标点击事件
      */
     public func setNavi(leftIcon: UIImage, leftAction: Selector, rightIcon: UIImage, rightAction: Selector) {
-        
-        let leftBarBtnItem = UIBarButtonItem(image: leftIcon.withRenderingMode(.alwaysOriginal),
-                                             style: .plain, target: self, action: leftAction)
-        navigationItem.leftBarButtonItem = leftBarBtnItem
-        
-        let rightBarBtnItem = UIBarButtonItem(image: rightIcon.withRenderingMode(.alwaysOriginal),
-                                              style: .plain, target: self, action: rightAction)
-        navigationItem.rightBarButtonItem = rightBarBtnItem
+        setNaviLeftIconBtn(leftIcon, action: leftAction)
+        setNaviRightIconBtn(rightIcon, action: rightAction)
     }
     
     /**
@@ -350,14 +361,8 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
      - parameter rightAction: 右侧文字点击事件
      */
     public func setNavi(leftIcon: UIImage, leftAction: Selector, rightText: String, rightAction: Selector) {
-        
-        let leftBarBtnItem = UIBarButtonItem(image: leftIcon.withRenderingMode(.alwaysOriginal),
-                                             style: .plain, target: self, action: leftAction)
-        navigationItem.rightBarButtonItem = leftBarBtnItem
-        
-        let rightBarBtnItem = UIBarButtonItem(title: rightText, style: .plain, target: self, action: rightAction)
-        rightBarBtnItem.isEnabled = false
-        navigationItem.rightBarButtonItem = rightBarBtnItem
+        setNaviLeftIconBtn(leftIcon, action: leftAction)
+        setNaviRightTextBtn(rightText, action: rightAction)
     }
     
     @objc func viewDismiss() {

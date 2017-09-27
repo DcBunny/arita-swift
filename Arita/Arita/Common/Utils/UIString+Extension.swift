@@ -12,6 +12,7 @@ import UIKit
  **String的扩展
  */
 extension String {
+    /// 画颜色圆圈
     public func withColorCircle(color: UIColor) -> NSAttributedString {
         let attach = NSTextAttachment()
         attach.image = color.imageWithColorAndSize(CGSize(width: 8, height: 8), isCircle: true)
@@ -29,6 +30,7 @@ extension String {
         return attributes
     }
     
+    /// 首页跟帖用户评论样式
     public func convertCommentString() -> NSAttributedString? {
         let stringArr = self.characters.split(separator: "+", maxSplits: 1).map(String.init)
         var author = ""
@@ -49,6 +51,25 @@ extension String {
         let mutableAttStr = NSMutableAttributedString(attributedString: authorAttribute)
         mutableAttStr.insert(commentAttribute, at: author.characters.count)
         return mutableAttStr
+    }
+    
+    /// 首页日期样式
+    public func convertDateString() -> NSAttributedString? {
+        let attributeString = NSAttributedString(string: self, attributes: [NSFontAttributeName: Font.size26D!,
+                                                                            NSForegroundColorAttributeName: Color.hexea9120!,
+                                                                            NSKernAttributeName: CGFloat(4.1),
+                                                                            NSBaselineOffsetAttributeName: CGFloat(-2)])
+        return attributeString
+    }
+    
+    /// 首页主用户评论样式
+    public func convertUserCommentString() -> NSAttributedString? {
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineSpacing = 7
+        let attributeString = NSAttributedString(string: self, attributes: [NSFontAttributeName: Font.size15!,
+                                                                            NSForegroundColorAttributeName: Color.hex2a2a2a!,
+                                                                            NSParagraphStyleAttributeName: paraStyle])
+        return attributeString
     }
 }
 

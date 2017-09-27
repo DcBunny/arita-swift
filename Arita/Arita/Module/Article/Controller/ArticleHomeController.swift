@@ -38,11 +38,17 @@ class ArticleHomeController: BaseController {
     
     private func addPageViews() {
         view.addSubview(tableView)
+        view.addSubview(categoryButton)
     }
     
     private func layoutPageViews() {
-        tableView.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.edges.equalTo(view)
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        
+        categoryButton.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize(width: 44, height: 44))
+            make.right.bottom.equalTo(view).offset(-15)
         }
     }
     
@@ -60,33 +66,40 @@ class ArticleHomeController: BaseController {
     
     }
     
+    @objc fileprivate func gotoCategory() {
+        
+    }
+    
     // MARK: - Controller Attributes
     fileprivate var _tableView: UITableView?
+    fileprivate var _categoryButton: UIButton?
 }
 
 
 // MARK: - TableView Data Source
 extension ArticleHomeController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 6
+            return 5
         } else {
             return 1
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.001
+        if section == 0 {
+            return 0.001
+        } else {
+            return 66
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 8
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = Color.hexececec!
-        return view
+        return 0.001
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -108,8 +121,6 @@ extension ArticleHomeController: UITableViewDataSource {
                 cell.titleText = "乐活 | 12:32"
                 cell.username = "蒙蒙西"
                 cell.usercomment = "最近买了一部新手机，就把旧手机扔在一边，没管他。这货每天自己定时开机关机，还准时闹铃，用着仅存的一格电努力辛勤的工作着，突然觉得好感动，觉得自己真残忍。"
-                cell.commentOne = "一直在减肥：+在广东有时会吃福建人"
-                cell.commentTwo = "英俊潇洒：+在福建吧，一边要担心被台风吃，一边还要担心被广东人吃"
                 return cell
             } else if indexPath.row == 3 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ArticleHomePicCell.self), for: indexPath) as! ArticleHomePicCell
@@ -125,9 +136,6 @@ extension ArticleHomeController: UITableViewDataSource {
                                 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506320474&di=a1cafd3fa6d5aa8fb83c3d392791355d&imgtype=jpg&er=1&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3Df4f4e8e0eafe9925df0161135cc134aa%2Fbd315c6034a85edf436c0e0643540923dd547537.jpg",
                                 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506320487&di=92d1af363fb6f93d1a81803dd5013731&imgtype=jpg&er=1&src=http%3A%2F%2Fdimg09.c-ctrip.com%2Fimages%2F10020800000031w4xB7E9_R_1024_10000_Q90.jpg"]
                 return cell
-            } else if indexPath.row == 5 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ArticleHomeBlankCell.self), for: indexPath) as! ArticleHomeBlankCell
-                return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ArticleHomeNormalCell.self), for: indexPath) as! ArticleHomeNormalCell
                 cell.titleText = "视界 | 08:10"
@@ -141,6 +149,16 @@ extension ArticleHomeController: UITableViewDataSource {
             cell.picUrl = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505393598169&di=5b7bc88e0dc4e74721e868bd0fd8b03b&imgtype=0&src=http%3A%2F%2Fimg.weixinyidu.com%2F150921%2Ff9718e53.jpg"
             cell.contentText = "英国有一个最佳设计效率奖，今年颁给了一款“胶水”"
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section != 0 {
+            let headerView = ArticleSectionHeaderView(reuseIdentifier: String(describing: ArticleSectionHeaderView.self))
+            headerView.date = "TUSEDAY, MAR.19"
+            return headerView
+        } else {
+            return nil
         }
     }
 }
@@ -161,7 +179,7 @@ extension ArticleHomeController {
             _tableView?.register(ArticleHomeNormalCell.self, forCellReuseIdentifier: String(describing: ArticleHomeNormalCell.self))
             _tableView?.register(ArticleHomeTextCell.self, forCellReuseIdentifier: String(describing: ArticleHomeTextCell.self))
             _tableView?.register(ArticleHomePicCell.self, forCellReuseIdentifier: String(describing: ArticleHomePicCell.self))
-            _tableView?.register(ArticleHomeBlankCell.self, forCellReuseIdentifier: String(describing: ArticleHomeBlankCell.self))
+            _tableView?.register(ArticleSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: String(describing: ArticleSectionHeaderView.self))
             _tableView?.estimatedRowHeight = Size.screenWidth + 156
             _tableView?.rowHeight = UITableViewAutomaticDimension
             _tableView?.separatorStyle = .none
@@ -172,5 +190,18 @@ extension ArticleHomeController {
         }
         
         return _tableView!
+    }
+    
+    fileprivate var categoryButton: UIButton {
+        if _categoryButton == nil {
+            _categoryButton = UIButton()
+            _categoryButton?.setImage(UIImage(named: Icon.categoryIcon), for: .normal)
+            _categoryButton?.setImage(UIImage(named: Icon.categoryIcon), for: .highlighted)
+            _categoryButton?.addTarget(self, action: #selector(gotoCategory), for: .touchUpInside)
+            
+            return _categoryButton!
+        }
+        
+        return _categoryButton!
     }
 }

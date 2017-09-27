@@ -78,7 +78,7 @@
 		C18B4F311F6A6F5B001E2E56 /* ArticleHomeTataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */; };
 		C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */; };
 		C18B4F351F6A6FAF001E2E56 /* ArticleHomePicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */; };
-		C1D843A51F6FA0D00057FCE0 /* ArticleHomeBlankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D843A41F6FA0D00057FCE0 /* ArticleHomeBlankCell.swift */; };
+		C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8DB701F7B9F980016A0A2 /* ArticleSectionHeaderView.swift */; };
 		C1F17BB01F692766001153BA /* GuideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BAF1F692766001153BA /* GuideController.swift */; };
 		C1F17BB21F692E13001153BA /* SizeConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BB11F692E13001153BA /* SizeConst.swift */; };
 		C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BB31F692E38001153BA /* ColorConst.swift */; };
@@ -165,7 +165,7 @@
 		C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeTataCell.swift; sourceTree = "<group>"; };
 		C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeTextCell.swift; sourceTree = "<group>"; };
 		C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomePicCell.swift; sourceTree = "<group>"; };
-		C1D843A41F6FA0D00057FCE0 /* ArticleHomeBlankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeBlankCell.swift; sourceTree = "<group>"; };
+		C1C8DB701F7B9F980016A0A2 /* ArticleSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSectionHeaderView.swift; sourceTree = "<group>"; };
 		C1F17BAF1F692766001153BA /* GuideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideController.swift; sourceTree = "<group>"; };
 		C1F17BB11F692E13001153BA /* SizeConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeConst.swift; sourceTree = "<group>"; };
 		C1F17BB31F692E38001153BA /* ColorConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConst.swift; sourceTree = "<group>"; };
@@ -591,8 +591,8 @@
 				C14A61AB1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift */,
 				C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */,
 				C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */,
-				C1D843A41F6FA0D00057FCE0 /* ArticleHomeBlankCell.swift */,
 				C14A61AD1F6BB4EF005A1E65 /* JGGGridView.swift */,
+				C1C8DB701F7B9F980016A0A2 /* ArticleSectionHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -805,7 +805,6 @@
 				C125099B1F69079E006ED55E /* ONAppConfiguration.swift in Sources */,
 				C12509FD1F691F78006ED55E /* NSDate+Cache.swift in Sources */,
 				C12509931F69079E006ED55E /* ONApiProxy.swift in Sources */,
-				C1D843A51F6FA0D00057FCE0 /* ArticleHomeBlankCell.swift in Sources */,
 				C1F17BB61F693452001153BA /* IconConst.swift in Sources */,
 				C12509D31F6912A8006ED55E /* Time+Extension.swift in Sources */,
 				C12509F51F691F78006ED55E /* BasicHybridCache.swift in Sources */,
@@ -826,6 +825,7 @@
 				C1F17BB01F692766001153BA /* GuideController.swift in Sources */,
 				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
+				C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */,
 				C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */,
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
@@ -949,6 +949,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -997,6 +998,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -38,17 +38,17 @@ class ArticleHomePicCell: UITableViewCell {
     
     private func layoutCellViews() {
         titleLabel.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalTo(self).offset(20)
+            ConstraintMaker.top.equalTo(self).offset(15)
             ConstraintMaker.left.equalTo(self).offset(6)
             ConstraintMaker.right.equalTo(self).offset(-6)
             ConstraintMaker.height.equalTo(44)
-            ConstraintMaker.bottom.equalTo(bodyView.snp.top)
+            ConstraintMaker.bottom.equalTo(shadowView.snp.top)
         }
         
         shadowView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.right.equalTo(titleLabel)
             ConstraintMaker.top.equalTo(titleLabel.snp.bottom)
-            ConstraintMaker.bottom.equalTo(self).offset(-16)
+            ConstraintMaker.bottom.equalTo(self)
         }
         
         bodyView.snp.makeConstraints { (ConstraintMaker) in
@@ -58,19 +58,19 @@ class ArticleHomePicCell: UITableViewCell {
         picGridView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.left.right.top.equalTo(bodyView)
             ConstraintMaker.height.equalTo(titleLabel.snp.width)
-            ConstraintMaker.bottom.equalTo(contentLabel.snp.top).offset(-16)
+            ConstraintMaker.bottom.equalTo(contentLabel.snp.top).offset(-15)
         }
         
         contentLabel.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(bodyView).offset(16)
-            ConstraintMaker.right.equalTo(bodyView).offset(-16)
-            ConstraintMaker.top.equalTo(picGridView.snp.bottom).offset(16)
-            ConstraintMaker.bottom.equalTo(bodyView).offset(-48)
+            ConstraintMaker.left.equalTo(bodyView).offset(15)
+            ConstraintMaker.right.equalTo(bodyView).offset(-15)
+            ConstraintMaker.top.equalTo(picGridView.snp.bottom).offset(15)
+            ConstraintMaker.bottom.equalTo(bodyView).offset(-35)
         }
     }
     
     private func setCellViews() {
-        backgroundColor = Color.hexf5f5f5
+        backgroundColor = UIColor.clear
         selectionStyle = .none
         
         picGridView.delegate = self
@@ -125,7 +125,7 @@ extension ArticleHomePicCell: JGGGridViewDataSource {
     }
     
     func sizeOfItems(in gridView: JGGGridView) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.size.width - 22) / 3, height: (UIScreen.main.bounds.size.width - 22) / 3)
+        return CGSize(width: (UIScreen.main.bounds.size.width - 14) / 3, height: (UIScreen.main.bounds.size.width - 14) / 3)
     }
 }
 
@@ -156,9 +156,9 @@ extension ArticleHomePicCell {
         if _shadowView == nil {
             _shadowView = UIView()
             _shadowView?.layer.shadowOffset = CGSize(width: 0, height: 2)
-            _shadowView?.layer.shadowRadius = CGFloat(4)
+            _shadowView?.layer.shadowRadius = CGFloat(2)
             _shadowView?.layer.masksToBounds = false
-            _shadowView?.layer.shadowOpacity = 0.5
+            _shadowView?.layer.shadowColor = Color.hexe4e4e4!.cgColor
             
             return _shadowView!
         }
@@ -192,10 +192,11 @@ extension ArticleHomePicCell {
     fileprivate var contentLabel: UILabel {
         if _contentLabel == nil {
             _contentLabel = UILabel()
-            _contentLabel?.textColor = Color.hex2f2f2f
+            _contentLabel?.textColor = Color.hex2a2a2a!
             _contentLabel?.textAlignment = .left
-            _contentLabel?.font = Font.size18
-            _contentLabel?.numberOfLines = 0
+            _contentLabel?.font = Font.size16
+            _contentLabel?.numberOfLines = 2
+            _contentLabel?.lineBreakMode = .byTruncatingTail
             
             return _contentLabel!
         }

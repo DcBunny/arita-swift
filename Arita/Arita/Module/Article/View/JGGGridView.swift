@@ -159,6 +159,7 @@ class JGGGridView: UIView {
                 subView.gestureRecognizers?.removeAll()
             }
         }
+        
         for index in 0..<dataSource!.numberOfItems(in: self) {
             let imageView = dataSource!.gridView(self, imageForItemAt: index)
             imageView.isUserInteractionEnabled = true
