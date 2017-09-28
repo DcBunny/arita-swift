@@ -8,12 +8,26 @@ PODS:
   - Kingfisher (3.7.2)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.12)
+  - MOBFoundation (3.0.4)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - ONCountDownButton (0.2.0)
   - ONFoundation (0.2.1)
   - ONPlaceholder (0.9.5)
+  - ShareSDK3 (4.0.2):
+    - MOBFoundation
+    - ShareSDK3/ShareSDK (= 4.0.2)
+  - ShareSDK3/ShareSDK (4.0.2):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/Copy (4.0.2):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/QQ (4.0.2):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (4.0.2):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/WeChat (4.0.2):
+    - MOBFoundation
   - SnapKit (3.2.0)
   - SwiftyJSON (3.1.4)
   - Toaster (2.0.3)
@@ -33,9 +47,15 @@ DEPENDENCIES:
   - Kingfisher (= 3.7.2)
   - MBProgressHUD (= 1.0.0)
   - MJRefresh (= 3.1.12)
+  - MOBFoundation
   - ONCountDownButton (= 0.2.0)
   - ONFoundation (= 0.2.1)
   - ONPlaceholder (= 0.9.5)
+  - ShareSDK3
+  - ShareSDK3/ShareSDKPlatforms/Copy
+  - ShareSDK3/ShareSDKPlatforms/QQ
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo
+  - ShareSDK3/ShareSDKPlatforms/WeChat
   - SnapKit (= 3.2.0)
   - SwiftyJSON (= 3.1.4)
   - Toaster (= 2.0.3)
@@ -52,16 +72,18 @@ SPEC CHECKSUMS:
   Kingfisher: 5ddc4ac715615cc200de9fdc54ab1511061ea650
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MOBFoundation: ee0d83f92fe394f7f2b145a407441d08ca1c831c
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   ONCountDownButton: f21e0502407afb5c04f857e5a9b9e660f4df433f
   ONFoundation: e61b30c43e66f8081c5c9c9ca18b17606208ff29
   ONPlaceholder: 1e4475b6cdb8548db55f33e8ab3a164dbeb9288f
+  ShareSDK3: a01a35da3cd8f4d10d7f4394c7c42f8113392182
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Toaster: 77c0b03d78e680bbbab0071c9c7ee392b0034010
   WebViewJavascriptBridge: 791ee0e26d1bf15efe5fb7fb9666a71a19b89d77
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: 8c0db945060ff71196c34185d9fa2bd334ba6bac
+PODFILE CHECKSUM: 3b55775d94382c2f2d242be959537a28d1076655
 
 COCOAPODS: 1.2.1

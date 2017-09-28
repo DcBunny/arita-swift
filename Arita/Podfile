@@ -25,6 +25,15 @@ target 'Arita' do
     pod 'IQKeyboardManagerSwift', '4.0.10'
     pod 'GDPerformanceView-Swift', '1.2.0'
     
+    # ShareSDK
+    pod 'ShareSDK3'
+    pod 'MOBFoundation'
+    pod 'ShareSDK3/ShareSDKPlatforms/QQ'
+    pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
+    pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+    pod 'ShareSDK3/ShareSDKPlatforms/Copy'
+    
+    # 私有库
     pod 'ONPlaceholder', '0.9.5'
     pod 'ONCountDownButton', '0.2.0'
     pod 'ONFoundation', '0.2.1'
