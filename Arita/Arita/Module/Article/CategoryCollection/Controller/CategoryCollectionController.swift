@@ -60,6 +60,7 @@ class CategoryCollectionController: BaseController {
     fileprivate var _categoryCollectionView: UICollectionView?
 }
 
+//TODO: 需要后期删除
 private let categoryModel = CategoryModel.demoModel()
 // MARK: - UICollecitonView Data Source
 extension CategoryCollectionController: UICollectionViewDataSource {

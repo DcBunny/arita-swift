@@ -15,6 +15,8 @@ class ShareController: BaseController {
         super.viewDidLoad()
         
         setNavigationBar()
+        findSharePlatform()
+        caculateHeight()
         addPageViews()
         layoutPageViews()
         setPageViews()
@@ -22,7 +24,6 @@ class ShareController: BaseController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Init Methods
@@ -33,67 +34,182 @@ class ShareController: BaseController {
     }
     
     private func addPageViews() {
-        view.addSubview(shareView)
+        view.addSubview(titleLabel)
+        view.addSubview(shareCollectionView)
+        view.addSubview(closeButton)
     }
     
     private func layoutPageViews() {
-        shareView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view)
+        titleLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(view).offset(topHeight)
+            make.left.right.equalTo(view)
+            make.bottom.equalTo(shareCollectionView.snp.top).offset(-55)
+        }
+        
+        shareCollectionView.snp.makeConstraints { (make) in
+            make.top.equalTo(titleLabel.snp.bottom).offset(55)
+            make.left.equalTo(view).offset(30)
+            make.right.equalTo(view).offset(-30)
+            make.bottom.equalTo(closeButton.snp.top).offset(-50)
+        }
+        
+        closeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(shareCollectionView.snp.bottom).offset(50)
+            make.centerX.equalTo(shareCollectionView)
+            make.size.equalTo(CGSize(width: 24, height: 24))
+            make.bottom.equalTo(view).offset(-bottomHeight)
         }
     }
     
     private func setPageViews() {
-        view.backgroundColor = UIColor.clear
-        
-        shareView.wxFreindsButton.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
-        shareView.wxMomentsButton.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
-        shareView.qqFriendsButton.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
-        shareView.qqZoneButton.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
-        shareView.weiBoButton.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
-        shareView.copyLinkButton.addTarget(self, action: #selector(share(sender:)), for: .touchUpInside)
-        shareView.closeButton.addTarget(self, action: #selector(viewDismiss), for: .touchUpInside)
+        view.backgroundColor = Color.hex000000Alpha50
+        shareCollectionView.delegate = self
+        shareCollectionView.dataSource = self
+        ShareTool.sharedInstance.delegate = self
     }
     
     // MARK: - Event Responses
-    @objc private func share(sender: UIButton) {
-        let shareParames = NSMutableDictionary()
-        shareParames.ssdkSetupShareParams(byText: "分享内容",
-                                          images : UIImage(named: "shareImg.png"),
-                                          url : NSURL(string:"http://mob.com") as URL!,
-                                          title : "分享标题",
-                                          type : SSDKContentType.image)
-        
-        //2.进行分享
-        ShareSDK.share(SSDKPlatformType.typeSinaWeibo, parameters: shareParames) { (state : SSDKResponseState, nil, entity : SSDKContentEntity?, error :Error?) in
-            
-            switch state{
-                
-            case SSDKResponseState.success: print("分享成功")
-            case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
-            case SSDKResponseState.cancel:  print("操作取消")
-                
-            default:
-                break
-            }
-            
+    
+    // MARK: - Private Methods
+    private func findSharePlatform() {
+        shareModel.append(ShareModel.shareLink())
+
+        if !QQApiInterface.isQQInstalled() {
+            shareModel.insert(ShareModel.shareQzone(), at: 0)
+            shareModel.insert(ShareModel.shareQQ(), at: 0)
+        }
+
+        if !WeiboSDK.isWeiboAppInstalled() {
+            shareModel.insert(ShareModel.shareWeibo(), at: 0)
+        }
+
+        if !WXApi.isWXAppInstalled() {
+            shareModel.insert(ShareModel.shareWechatMoments(), at: 0)
+            shareModel.insert(ShareModel.shareWechatFriends(), at: 0)
         }
     }
     
-    // MARK: - Private Methods
+    private func caculateHeight() {
+        size1 = "微信好友".sizeForFont(Font.size15!, size: CGSize(width: self.view.bounds.size.width, height: CGFloat(MAXFLOAT)), lineBreakMode: NSLineBreakMode.byTruncatingTail)
+        size2 = "分享你的视野".sizeForFont(Font.size22!, size: CGSize(width: self.view.bounds.size.width, height: CGFloat(MAXFLOAT)), lineBreakMode: NSLineBreakMode.byTruncatingTail)
+        if shareModel.count > 3 {
+            topHeight = Size.screenHeight / 2 - 145 - size1.height - size2.height
+            bottomHeight = Size.screenHeight / 2 - 179 - size1.height
+        } else {
+            topHeight = Size.screenHeight / 2 - 92.5 - size1.height / 2 - size2.height
+            bottomHeight = Size.screenHeight / 2 - 149 - size1.height / 2
+        }
+    }
     
     // MARK: - Controller Attributes
-    fileprivate var _shareView: ShareView?
+    fileprivate var _titleLabel: UILabel?
+    fileprivate var _shareCollectionView: UICollectionView?
+    fileprivate var _closeButton: UIButton?
+    
+    private var size1 = CGSize.zero
+    private var size2 = CGSize.zero
+    private var topHeight = CGFloat(Size.screenHeight / 2 - 197)
+    private var bottomHeight = CGFloat(Size.screenHeight / 2 - 200)
+    
+    fileprivate var shareModel: [ShareModel] = []
+}
+
+//TODO: 后期删除
+private let shareDemo = ShareModel.demoModel()
+
+// MARK: - UICollecitonView Data Source
+extension ShareController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return shareModel.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ShareCollectionCell.self), for: indexPath) as! ShareCollectionCell
+        cell.shareModel = shareModel[indexPath.row]
+        return cell
+    }
+}
+
+extension ShareController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: ((Size.screenWidth - 60) / 3), height: 96)
+    }
+}
+
+// MARK: - UICollecitonView Delegate
+extension ShareController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ShareCollectionCell.self), for: indexPath) as! ShareCollectionCell
+        guard let shareType = cell.shareType else { return }
+        ShareTool.sharedInstance.shareWith(content: nil, to: shareType)
+    }
+}
+
+// MARK: - Share Delegate
+extension ShareController: ShareDelegate {
+    func didSucessed(shareTo platform: ShareType) {
+        
+    }
+    
+    func didFailed(shareTo platform: ShareType, with error: Error?) {
+        
+    }
+    
+    func didCanceled(shareTo platform: ShareType) {
+        
+    }
 }
 
 // MARK: - Getters and Setters
 extension ShareController {
-    fileprivate var shareView: ShareView {
-        if _shareView == nil {
-            _shareView = ShareView()
+    fileprivate var titleLabel: UILabel {
+        if _titleLabel == nil {
+            _titleLabel = UILabel()
+            _titleLabel?.textAlignment = .center
+            _titleLabel?.font = Font.size22
+            _titleLabel?.textColor = Color.hexffffff
+            _titleLabel?.text = "分享你的视野"
             
-            return _shareView!
+            return _titleLabel!
         }
         
-        return _shareView!
+        return _titleLabel!
+    }
+    
+    var shareCollectionView: UICollectionView {
+        if _shareCollectionView == nil {
+            let flowLayout = UICollectionViewFlowLayout()
+            flowLayout.scrollDirection = .vertical
+            flowLayout.minimumLineSpacing = 30
+            flowLayout.minimumInteritemSpacing = 0
+            flowLayout.itemSize = CGSize(width: ((Size.screenWidth - 60) / 3), height: 96)
+            _shareCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+            _shareCollectionView?.register(ShareCollectionCell.self, forCellWithReuseIdentifier: String(describing: ShareCollectionCell.self))
+            _shareCollectionView?.showsVerticalScrollIndicator = false
+            _shareCollectionView?.translatesAutoresizingMaskIntoConstraints = false
+            _shareCollectionView?.isScrollEnabled = false
+            _shareCollectionView?.backgroundColor = UIColor.clear
+            
+            return _shareCollectionView!
+        }
+        
+        return _shareCollectionView!
+    }
+    
+    var closeButton: UIButton {
+        if _closeButton == nil {
+            _closeButton = UIButton()
+            _closeButton?.setImage(UIImage(named: Icon.shareClose), for: .normal)
+            _closeButton?.setImage(UIImage(named: Icon.shareClose), for: .highlighted)
+            _closeButton?.addTarget(self, action: #selector(viewDismiss), for: .touchUpInside)
+            
+            return _closeButton!
+        }
+        
+        return _closeButton!
     }
 }

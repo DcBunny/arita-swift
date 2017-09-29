@@ -32,7 +32,7 @@ struct CategoryModel {
                 CategoryModel(categoryIcon: Icon.class15, categoryName: "小宠当家", updateTime: "昨天更新"),
                 CategoryModel(categoryIcon: Icon.class16, categoryName: "生活圆桌", updateTime: "昨天更新"),
                 CategoryModel(categoryIcon: Icon.class17, categoryName: "热炒冷知识", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class18, categoryName: "吃很重要", updateTime: "昨天更新"),
+                CategoryModel(categoryIcon: Icon.class18, categoryName: "吃很重要", updateTime: "昨天更新")
         ]
     }
     

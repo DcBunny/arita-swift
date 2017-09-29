@@ -33,4 +33,30 @@ public extension UIImage {
         }
         return codeImage
     }
+    
+    public func scaledToMaxSize(size: CGSize) -> UIImage {
+        let width = size.width
+        let height = size.height
+        
+        let oldWidth = self.size.width
+        let oldHeight = self.size.height
+        
+        let scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight
+        
+        if scaleFactor > 1.0 {
+            return self
+        }
+        
+        let newWidth = oldWidth * scaleFactor
+        let newHeight = oldHeight * scaleFactor
+        
+        let newSize = CGSize(width: newWidth, height: newHeight)
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
 }

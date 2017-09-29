@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		2ECEC0453384269A4EF5D7FC /* Pods_Arita.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E6A58748EE8EBB287358C /* Pods_Arita.framework */; };
 		C11B6EC31F7CE3C500EAAEB0 /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B6EC21F7CE3C500EAAEB0 /* ShareController.swift */; };
-		C11B6EC51F7CE3EA00EAAEB0 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B6EC41F7CE3EA00EAAEB0 /* ShareView.swift */; };
 		C11B6EC71F7CEFDE00EAAEB0 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B6EC61F7CEFDE00EAAEB0 /* ShareButton.swift */; };
+		C11B6EC91F7D1C5E00EAAEB0 /* ShareCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B6EC81F7D1C5E00EAAEB0 /* ShareCollectionCell.swift */; };
+		C11B6ECC1F7D1DDA00EAAEB0 /* ShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B6ECB1F7D1DDA00EAAEB0 /* ShareModel.swift */; };
+		C11E20B81F7E21DB001F7234 /* ShareTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E20B71F7E21DB001F7234 /* ShareTool.swift */; };
 		C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125096E1F69079E006ED55E /* Array+ONNetworkingMethods.swift */; };
 		C12509901F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125096F1F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift */; };
 		C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12509701F69079E006ED55E /* String+ONNetworkingMethods.swift */; };
@@ -107,8 +109,10 @@
 		495E6A58748EE8EBB287358C /* Pods_Arita.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arita.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.release.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.release.xcconfig"; sourceTree = "<group>"; };
 		C11B6EC21F7CE3C500EAAEB0 /* ShareController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
-		C11B6EC41F7CE3EA00EAAEB0 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		C11B6EC61F7CEFDE00EAAEB0 /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
+		C11B6EC81F7D1C5E00EAAEB0 /* ShareCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCollectionCell.swift; sourceTree = "<group>"; };
+		C11B6ECB1F7D1DDA00EAAEB0 /* ShareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareModel.swift; sourceTree = "<group>"; };
+		C11E20B71F7E21DB001F7234 /* ShareTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTool.swift; sourceTree = "<group>"; };
 		C125096E1F69079E006ED55E /* Array+ONNetworkingMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+ONNetworkingMethods.swift"; sourceTree = "<group>"; };
 		C125096F1F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ONParamData+ONNetworkingMethods.swift"; sourceTree = "<group>"; };
 		C12509701F69079E006ED55E /* String+ONNetworkingMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+ONNetworkingMethods.swift"; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 		C11B6EBF1F7CDB2500EAAEB0 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				C11B6ECA1F7D1DCD00EAAEB0 /* Model */,
 				C11B6EC11F7CDB3200EAAEB0 /* View */,
 				C11B6EC01F7CDB2C00EAAEB0 /* Controller */,
 			);
@@ -257,10 +262,18 @@
 		C11B6EC11F7CDB3200EAAEB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C11B6EC41F7CE3EA00EAAEB0 /* ShareView.swift */,
 				C11B6EC61F7CEFDE00EAAEB0 /* ShareButton.swift */,
+				C11B6EC81F7D1C5E00EAAEB0 /* ShareCollectionCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C11B6ECA1F7D1DCD00EAAEB0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C11B6ECB1F7D1DDA00EAAEB0 /* ShareModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C12509631F6905F9006ED55E /* Networking */ = {
@@ -550,6 +563,7 @@
 				C12509CA1F6912A8006ED55E /* Utilities.swift */,
 				C1250A0B1F692111006ED55E /* APIResultCheck.swift */,
 				C14A61A91F6B5E63005A1E65 /* UIString+Extension.swift */,
+				C11E20B71F7E21DB001F7234 /* ShareTool.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1013,6 +1027,7 @@
 				C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */,
 				C1250A021F691F78006ED55E /* SyncHybridCache.swift in Sources */,
 				C11B6EC31F7CE3C500EAAEB0 /* ShareController.swift in Sources */,
+				C11B6EC91F7D1C5E00EAAEB0 /* ShareCollectionCell.swift in Sources */,
 				C1E7451B1F7C99FD00FDB0F9 /* CategoryModel.swift in Sources */,
 				C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */,
 				C1D535221F7BBFE100376686 /* CategoryCollectionController.swift in Sources */,
@@ -1047,6 +1062,7 @@
 				FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */,
 				C12509FF1F691F78006ED55E /* HybridCache.swift in Sources */,
 				C11B6EC71F7CEFDE00EAAEB0 /* ShareButton.swift in Sources */,
+				C11E20B81F7E21DB001F7234 /* ShareTool.swift in Sources */,
 				C1250A061F691F78006ED55E /* StorageAware.swift in Sources */,
 				C12509D51F6912A8006ED55E /* UIDevice+Extension.swift in Sources */,
 				C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */,
@@ -1055,6 +1071,7 @@
 				C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */,
 				C12509A01F69079E006ED55E /* ONService.swift in Sources */,
 				C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */,
+				C11B6ECC1F7D1DDA00EAAEB0 /* ShareModel.swift in Sources */,
 				C18B4F311F6A6F5B001E2E56 /* ArticleHomeTataCell.swift in Sources */,
 				C1250A0A1F6920C8006ED55E /* LoginAPIManager.swift in Sources */,
 				C1250A0E1F692171006ED55E /* NotificationConst.swift in Sources */,
@@ -1068,7 +1085,6 @@
 				C12509991F69079E006ED55E /* ONLogger.swift in Sources */,
 				C18B4F351F6A6FAF001E2E56 /* ArticleHomePicCell.swift in Sources */,
 				C12509F71F691F78006ED55E /* Config.swift in Sources */,
-				C11B6EC51F7CE3EA00EAAEB0 /* ShareView.swift in Sources */,
 				C12509961F69079E006ED55E /* ONCache.swift in Sources */,
 				C125099F1F69079E006ED55E /* ONRequestGenerator.swift in Sources */,
 			);
