@@ -30,6 +30,7 @@ struct Icon {
     static let topCalendar = "top_calendar"
     static let topMine = "top_me"
     static let topTitleLogo = "top_logo"
+    static let topSearch = "top_search"
     
     // Article
     static let comment = "comment_16"
