@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ CategoryModel **分类**页数据模型
+ */
 struct CategoryModel {
     public var categoryIcon: String?
     public var categoryName: String?

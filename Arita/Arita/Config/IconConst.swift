@@ -36,6 +36,7 @@ struct Icon {
     static let userIcon = "icon_portrait"
     static let categoryIcon = "button_classify"
     static let share = "share"
+    static let shareButton = "button_share"
     
     // Share
     static let shareWechatFriends = "share_weixin"

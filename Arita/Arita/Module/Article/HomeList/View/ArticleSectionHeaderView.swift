@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ ArticleSectionHeaderView **文章**页列表头视图
+ */
 class ArticleSectionHeaderView: UITableViewHeaderFooterView {
 
     // MARK: - Init Methods

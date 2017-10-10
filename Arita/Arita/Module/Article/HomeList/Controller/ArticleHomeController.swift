@@ -59,7 +59,9 @@ class ArticleHomeController: BaseController {
     
     // MARK: - Event Response
     @objc private func gotoCalendar() {
-        
+        let tataDailyController = ArticleCollectionController(with: "塔塔报")
+        tataDailyController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(tataDailyController, animated: true)
     }
     
     @objc private func gotoMine() {
@@ -166,7 +168,11 @@ extension ArticleHomeController: UITableViewDataSource {
 
 // MARK: - TableView Delegate
 extension ArticleHomeController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dailyCheckController = DailyCheckController()
+        dailyCheckController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(dailyCheckController, animated: true)
+    }
 }
 
 // MARK: - Getters and Setters

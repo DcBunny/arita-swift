@@ -71,6 +71,45 @@ extension String {
                                                                             NSParagraphStyleAttributeName: paraStyle])
         return attributeString
     }
+    
+    /// 文章每日列表文章标题样式
+    public func convertArticleTitleString() -> NSAttributedString? {
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineSpacing = 8
+        paraStyle.alignment = .center
+        let attributeString = NSAttributedString(string: self, attributes: [NSFontAttributeName: Font.size20D!,
+                                                                            NSForegroundColorAttributeName: Color.hexea9120!,
+                                                                            NSParagraphStyleAttributeName: paraStyle])
+        return attributeString
+    }
+    
+    /// 文章每日列表文章内容样式
+    public func convertArticleContentString() -> NSAttributedString? {
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineSpacing = 5
+        paraStyle.alignment = .left
+        let attributeString = NSAttributedString(string: self, attributes: [NSFontAttributeName: Font.size13!,
+                                                                            NSForegroundColorAttributeName: Color.hex4a4a4a!,
+                                                                            NSParagraphStyleAttributeName: paraStyle])
+        return attributeString
+    }
+    
+    /// 计算文本size
+    ///
+    /// - Parameters:
+    ///   - attribute: 字体的attribute
+    ///   - size: size
+    ///   - lineBreakMode: lineBreakMode
+    /// - Returns: 计算出的size
+    public func sizeForString(attribute: [String: Any], in size: CGSize, lineBreakMode: NSLineBreakMode?) -> CGSize {
+        var attr = attribute
+        if lineBreakMode != nil {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineBreakMode = lineBreakMode!
+            attr.updateValue(paragraphStyle, forKey: NSParagraphStyleAttributeName)
+        }
+        return ((self as NSString).boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attr, context: nil)).size
+    }
 }
 
 /**

@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ CategoryCollectionCell **分类**页cell视图
+ */
 class CategoryCollectionCell: UICollectionViewCell {
     // MARK: - Init Methods
     override init(frame: CGRect) {
