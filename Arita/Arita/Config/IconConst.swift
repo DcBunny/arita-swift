@@ -67,4 +67,7 @@ struct Icon {
     static let class16 = "class16"
     static let class17 = "class17"
     static let class18 = "class18"
+    
+    // Goods
+    static let likeListIcon = "button_likelist"
 }
