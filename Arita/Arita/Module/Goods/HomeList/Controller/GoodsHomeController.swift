@@ -52,8 +52,8 @@ class GoodsHomeController: BaseController
     }
     
     private func setPageViews() {
-        //        tableView.delegate = self
-        //        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     // MARK: - Controller Attributes
@@ -74,18 +74,32 @@ class GoodsHomeController: BaseController
     }
 }
 
+extension GoodsHomeController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: Goods4GridCell.self), for: indexPath) as! Goods4GridCell
+
+        return cell
+    }
+}
+
+extension GoodsHomeController: UITableViewDelegate {
+    
+}
+
 // MARK: - Getters and Setters
 extension GoodsHomeController {
+    
     fileprivate var tableView: UITableView {
         if _tableView == nil {
             _tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
             _tableView?.backgroundColor = Color.hexf5f5f5
             _tableView?.showsVerticalScrollIndicator = false
-            _tableView?.register(ArticleHomeTataCell.self, forCellReuseIdentifier: String(describing: ArticleHomeTataCell.self))
-            _tableView?.register(ArticleHomeNormalCell.self, forCellReuseIdentifier: String(describing: ArticleHomeNormalCell.self))
-            _tableView?.register(ArticleHomeTextCell.self, forCellReuseIdentifier: String(describing: ArticleHomeTextCell.self))
-            _tableView?.register(ArticleHomePicCell.self, forCellReuseIdentifier: String(describing: ArticleHomePicCell.self))
-            _tableView?.register(ArticleSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: String(describing: ArticleSectionHeaderView.self))
+            _tableView?.register(Goods4GridCell.self, forCellReuseIdentifier: String(describing: Goods4GridCell.self))
             _tableView?.estimatedRowHeight = Size.screenWidth + 156
             _tableView?.rowHeight = UITableViewAutomaticDimension
             _tableView?.separatorStyle = .none

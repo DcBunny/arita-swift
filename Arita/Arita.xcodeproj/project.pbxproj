@@ -101,6 +101,8 @@
 		C1F17BBF1F6937F3001153BA /* ArticleHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BBE1F6937F3001153BA /* ArticleHomeController.swift */; };
 		C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC01F693825001153BA /* GoodsHomeController.swift */; };
 		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
+		FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */; };
+		FD46AAF11F8E2B5600CCB603 /* GoodsGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -203,6 +205,8 @@
 		C1F17BC01F693825001153BA /* GoodsHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsHomeController.swift; sourceTree = "<group>"; };
 		C1F17BC21F69382E001153BA /* MineHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineHomeController.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
+		FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods4GridCell.swift; sourceTree = "<group>"; };
+		FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsGridCell.swift; sourceTree = "<group>"; };
 		FD5BBEA01F68D1A3002D8146 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -752,6 +756,8 @@
 		C1D5351D1F7BBF9200376686 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */,
+				FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1035,6 +1041,7 @@
 				C12509FB1F691F78006ED55E /* StorageKind.swift in Sources */,
 				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
 				C1E7451D1F7CA6C400FDB0F9 /* CategoryCollectionCell.swift in Sources */,
+				FD46AAF11F8E2B5600CCB603 /* GoodsGridCell.swift in Sources */,
 				C1F17BB01F692766001153BA /* GuideController.swift in Sources */,
 				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
@@ -1053,6 +1060,7 @@
 				C12509B31F69097C006ED55E /* BaseController.swift in Sources */,
 				C1250A0C1F692111006ED55E /* APIResultCheck.swift in Sources */,
 				C12509D11F6912A8006ED55E /* ONCheckTool.swift in Sources */,
+				FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */,
 				C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */,
 				C12509CB1F6912A8006ED55E /* Array+Extension.swift in Sources */,
 				C12509D71F6912A8006ED55E /* Utilities.swift in Sources */,
