@@ -49,28 +49,18 @@ class MineHomeHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Public Attributes
     /// 用户头像
-    public var userAvatar: String? = nil {
+    public var userAvatar = "" {
         didSet {
-            if userAvatar != nil {
-                userAvatarButton.kf.setImage(with: URL(string: userAvatar!), for: .normal)
-                userAvatarButton.kf.setImage(with: URL(string: userAvatar!), for: .highlighted)
-            } else {
-                userAvatarButton.setImage(UIImage(named: Icon.userAvatar), for: .normal)
-                userAvatarButton.setImage(UIImage(named: Icon.userAvatar), for: .highlighted)
-            }
+            userAvatarButton.kf.setImage(with: URL(string: userAvatar), for: .normal, placeholder: UIImage(named: Icon.userAvatar), options: nil, progressBlock: nil, completionHandler: nil)
+            userAvatarButton.kf.setImage(with: URL(string: userAvatar), for: .highlighted, placeholder: UIImage(named: Icon.userAvatar), options: nil, progressBlock: nil, completionHandler: nil)
         }
     }
     
     /// 用户昵称
-    public var userName: String? = nil {
+    public var userName = "请登录" {
         didSet {
-            if userName != nil {
                 userButton.setTitle(userName, for: .normal)
                 userButton.setTitle(userName, for: .highlighted)
-            } else {
-                userButton.setTitle("请登录", for: .normal)
-                userButton.setTitle("请登录", for: .highlighted)
-            }
         }
     }
     
@@ -96,6 +86,9 @@ extension MineHomeHeaderView {
     var userButton: UIButton {
         if _userButton == nil {
             _userButton = UIButton()
+            _userButton?.setTitleColor(Color.hexea9120, for: .normal)
+            _userButton?.setTitleColor(Color.hexea9120, for: .highlighted)
+            _userButton?.titleLabel?.font = Font.size20
             
             return _userButton!
         }

@@ -57,6 +57,10 @@ struct Icon {
     static let setting = "mine_setting"
     static let logout = "mine_logout"
     static let message = "icon_message"
+    static let appIcon = "pic_logo"
+    static let messageBg = "pic_message"
+    static let aboutUsBg = "pic_aboutus"
+    static let background = "pic_bg"
     
     // Category
     //TODO:  服务器返回，这个用作Demo 接口好了之后删除

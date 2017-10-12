@@ -1,5 +1,5 @@
 //
-//  MineHomeTableViewCell.swift
+//  MineUserInfoAvatarTableViewCell.swift
 //  Arita
 //
 //  Created by 潘东 on 2017/10/12.
@@ -9,9 +9,9 @@
 import UIKit
 
 /**
- * MineHomeTableViewCell **我的**页面主页cell
+ * MineUserInfoAvatarTableViewCell **用户信息**页面头像栏cell
  */
-class MineHomeTableViewCell: UITableViewCell {
+class MineUserInfoAvatarTableViewCell: UITableViewCell {
 
     // MARK: - Init Methods
     override init(style: UITableViewCellStyle, reuseIdentifier: String!)
@@ -29,31 +29,31 @@ class MineHomeTableViewCell: UITableViewCell {
     
     // MARK: - View Settings
     private func addCellViews() {
-        contentView.addSubview(itemIcon)
-        contentView.addSubview(itemNameLabel)
+        contentView.addSubview(itemLabel)
+        contentView.addSubview(avatarImageView)
         contentView.addSubview(nextIcon)
         contentView.addSubview(seperatorView)
     }
     
     private func layoutCellViews() {
-        itemIcon.snp.makeConstraints { (make) in
+        itemLabel.snp.makeConstraints { (make) in
             make.left.equalTo(contentView).offset(20)
-            make.size.equalTo(CGSize(width: 16, height: 16))
             make.centerY.equalTo(contentView)
-            make.right.equalTo(itemNameLabel.snp.left).offset(-15)
+            make.right.equalTo(avatarImageView.snp.left).offset(-15)
         }
         
-        itemNameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(itemIcon.snp.right).offset(15)
-            make.centerY.equalTo(itemIcon)
-            make.right.equalTo(nextIcon.snp.left).offset(-15)
+        avatarImageView.snp.makeConstraints { (make) in
+            make.left.equalTo(itemLabel.snp.right).offset(15)
+            make.centerY.equalTo(itemLabel)
+            make.size.equalTo(CGSize(width: 60, height: 60))
+            make.right.equalTo(nextIcon.snp.left).offset(-10)
         }
         
         nextIcon.snp.makeConstraints { (make) in
-            make.left.equalTo(itemNameLabel.snp.right).offset(15)
+            make.left.equalTo(avatarImageView.snp.right).offset(10)
             make.right.equalTo(contentView).offset(-20)
             make.centerY.equalTo(contentView)
-            make.size.equalTo(itemIcon)
+            make.size.equalTo(CGSize(width: 16, height: 16))
         }
         
         seperatorView.snp.makeConstraints { (make) in
@@ -69,49 +69,46 @@ class MineHomeTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    // MARK: - Public Methods
-    public var leftIcon = "" {
+    // MARK: - Public Attributes
+    public var userAvatar = "" {
         didSet {
-            itemIcon.image = UIImage(named: leftIcon)
-        }
-    }
-    
-    public var itemName = "" {
-        didSet {
-            itemNameLabel.text = itemName
+            avatarImageView.kf.setImage(with: URL(string: userAvatar), placeholder: UIImage(named: Icon.userAvatar), options: nil, progressBlock: nil, completionHandler: nil)
         }
     }
     
     // MARK: - Controller Attributes
-    fileprivate var _itemIcon: UIImageView?
-    fileprivate var _itemNameLabel: UILabel?
+    fileprivate var _itemLabel: UILabel?
+    fileprivate var _avatarImageView: UIImageView?
     fileprivate var _nextIcon: UIImageView?
     fileprivate var _seperatorView: UIView?
 }
 
 // MARK: - Getters and Setters
-extension MineHomeTableViewCell {
-    fileprivate var itemIcon: UIImageView {
-        if _itemIcon == nil {
-            _itemIcon = UIImageView()
+extension MineUserInfoAvatarTableViewCell {
+    fileprivate var itemLabel: UILabel {
+        if _itemLabel == nil {
+            _itemLabel = UILabel()
+            _itemLabel?.textColor = Color.hex2a2a2a
+            _itemLabel?.textAlignment = .left
+            _itemLabel?.font = Font.size14
+            _itemLabel?.text = "头像"
             
-            return _itemIcon!
+            return _itemLabel!
         }
         
-        return _itemIcon!
+        return _itemLabel!
     }
     
-    fileprivate var itemNameLabel: UILabel {
-        if _itemNameLabel == nil {
-            _itemNameLabel = UILabel()
-            _itemNameLabel?.textColor = Color.hex2a2a2a
-            _itemNameLabel?.textAlignment = .left
-            _itemNameLabel?.font = Font.size16
+    fileprivate var avatarImageView: UIImageView {
+        if _avatarImageView == nil {
+            _avatarImageView = UIImageView()
+            _avatarImageView?.layer.cornerRadius = 30
+            _avatarImageView?.layer.masksToBounds = true
             
-            return _itemNameLabel!
+            return _avatarImageView!
         }
         
-        return _itemNameLabel!
+        return _avatarImageView!
     }
     
     fileprivate var nextIcon: UIImageView {

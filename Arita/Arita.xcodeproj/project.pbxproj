@@ -88,6 +88,8 @@
 		C1A1DD911F8CD3260039B873 /* DailyCheckFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD901F8CD3260039B873 /* DailyCheckFlowLayout.swift */; };
 		C1A1DD931F8CD7850039B873 /* DailyCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD921F8CD7850039B873 /* DailyCheckCell.swift */; };
 		C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */; };
+		C1A98E1F1F8F8A6D00E56C5A /* MineSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A98E1E1F8F8A6D00E56C5A /* MineSettingController.swift */; };
+		C1A98E211F8F8BC100E56C5A /* MineNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A98E201F8F8BC100E56C5A /* MineNotificationTableViewCell.swift */; };
 		C1BCD4FB1F8CA20F0022C4F7 /* TataArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FA1F8CA20F0022C4F7 /* TataArticleModel.swift */; };
 		C1BCD4FD1F8CC2310022C4F7 /* ArticleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */; };
 		C1BCD4FF1F8CC6570022C4F7 /* ArticleDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */; };
@@ -97,6 +99,10 @@
 		C1C690041F8B60EE008B6054 /* TataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C690031F8B60EE008B6054 /* TataCollectionViewCell.swift */; };
 		C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8DB701F7B9F980016A0A2 /* ArticleSectionHeaderView.swift */; };
 		C1D535221F7BBFE100376686 /* CategoryCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D535211F7BBFE100376686 /* CategoryCollectionController.swift */; };
+		C1D8C92B1F8F603C002B0DDF /* MineUserInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D8C92A1F8F603C002B0DDF /* MineUserInfoController.swift */; };
+		C1D8C92D1F8F6156002B0DDF /* MineUserInfoAvatarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D8C92C1F8F6156002B0DDF /* MineUserInfoAvatarTableViewCell.swift */; };
+		C1D8C92F1F8F6166002B0DDF /* MineUserInfoNormalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D8C92E1F8F6166002B0DDF /* MineUserInfoNormalTableViewCell.swift */; };
+		C1D8C9311F8F7C12002B0DDF /* MineNormalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D8C9301F8F7C12002B0DDF /* MineNormalController.swift */; };
 		C1E7451B1F7C99FD00FDB0F9 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E7451A1F7C99FD00FDB0F9 /* CategoryModel.swift */; };
 		C1E7451D1F7CA6C400FDB0F9 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E7451C1F7CA6C400FDB0F9 /* CategoryCollectionCell.swift */; };
 		C1E745221F7CCECB00FDB0F9 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E745211F7CCECB00FDB0F9 /* libicucore.tbd */; };
@@ -201,6 +207,8 @@
 		C1A1DD901F8CD3260039B873 /* DailyCheckFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckFlowLayout.swift; sourceTree = "<group>"; };
 		C1A1DD921F8CD7850039B873 /* DailyCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckCell.swift; sourceTree = "<group>"; };
 		C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckController.swift; sourceTree = "<group>"; };
+		C1A98E1E1F8F8A6D00E56C5A /* MineSettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSettingController.swift; sourceTree = "<group>"; };
+		C1A98E201F8F8BC100E56C5A /* MineNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		C1BCD4FA1F8CA20F0022C4F7 /* TataArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TataArticleModel.swift; sourceTree = "<group>"; };
 		C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailController.swift; sourceTree = "<group>"; };
 		C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailCell.swift; sourceTree = "<group>"; };
@@ -210,6 +218,10 @@
 		C1C690031F8B60EE008B6054 /* TataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TataCollectionViewCell.swift; sourceTree = "<group>"; };
 		C1C8DB701F7B9F980016A0A2 /* ArticleSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSectionHeaderView.swift; sourceTree = "<group>"; };
 		C1D535211F7BBFE100376686 /* CategoryCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionController.swift; sourceTree = "<group>"; };
+		C1D8C92A1F8F603C002B0DDF /* MineUserInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineUserInfoController.swift; sourceTree = "<group>"; };
+		C1D8C92C1F8F6156002B0DDF /* MineUserInfoAvatarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineUserInfoAvatarTableViewCell.swift; sourceTree = "<group>"; };
+		C1D8C92E1F8F6166002B0DDF /* MineUserInfoNormalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineUserInfoNormalTableViewCell.swift; sourceTree = "<group>"; };
+		C1D8C9301F8F7C12002B0DDF /* MineNormalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineNormalController.swift; sourceTree = "<group>"; };
 		C1E7451A1F7C99FD00FDB0F9 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		C1E7451C1F7CA6C400FDB0F9 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
 		C1E745211F7CCECB00FDB0F9 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -808,6 +820,9 @@
 			isa = PBXGroup;
 			children = (
 				C1F17BC21F69382E001153BA /* MineHomeController.swift */,
+				C1D8C92A1F8F603C002B0DDF /* MineUserInfoController.swift */,
+				C1D8C9301F8F7C12002B0DDF /* MineNormalController.swift */,
+				C1A98E1E1F8F8A6D00E56C5A /* MineSettingController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -817,6 +832,9 @@
 			children = (
 				C198DDE41F8F0E54004BCB50 /* MineHomeTableViewCell.swift */,
 				C198DDE61F8F157A004BCB50 /* MineHomeHeaderView.swift */,
+				C1D8C92C1F8F6156002B0DDF /* MineUserInfoAvatarTableViewCell.swift */,
+				C1D8C92E1F8F6166002B0DDF /* MineUserInfoNormalTableViewCell.swift */,
+				C1A98E201F8F8BC100E56C5A /* MineNotificationTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -829,13 +847,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C1E7451E1F7CC15600FDB0F9 /* DaliyCheckCollection */ = {
+		C1E7451E1F7CC15600FDB0F9 /* DailyCheckCollection */ = {
 			isa = PBXGroup;
 			children = (
 				C1E745201F7CC18D00FDB0F9 /* View */,
 				C1E7451F1F7CC18600FDB0F9 /* Controller */,
 			);
-			path = DaliyCheckCollection;
+			path = DailyCheckCollection;
 			sourceTree = "<group>";
 		};
 		C1E7451F1F7CC18600FDB0F9 /* Controller */ = {
@@ -861,7 +879,7 @@
 				C1D535121F7BB91D00376686 /* HomeList */,
 				C1D535141F7BBB1B00376686 /* CategoryCollection */,
 				C1D535131F7BB9ED00376686 /* ArticleCollection */,
-				C1E7451E1F7CC15600FDB0F9 /* DaliyCheckCollection */,
+				C1E7451E1F7CC15600FDB0F9 /* DailyCheckCollection */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -1051,6 +1069,7 @@
 				C12509CE1F6912A8006ED55E /* String+ONCrypt.swift in Sources */,
 				C1250A001F691F78006ED55E /* DefaultCacheConverter.swift in Sources */,
 				C14A61AA1F6B5E63005A1E65 /* UIString+Extension.swift in Sources */,
+				C1D8C9311F8F7C12002B0DDF /* MineNormalController.swift in Sources */,
 				C1BCD4FF1F8CC6570022C4F7 /* ArticleDetailCell.swift in Sources */,
 				C12509DC1F691F23006ED55E /* UserCacheManager.swift in Sources */,
 				C14A61AE1F6BB4EF005A1E65 /* JGGGridView.swift in Sources */,
@@ -1061,6 +1080,7 @@
 				C12509931F69079E006ED55E /* ONApiProxy.swift in Sources */,
 				C1F17BB61F693452001153BA /* IconConst.swift in Sources */,
 				C12509D31F6912A8006ED55E /* Time+Extension.swift in Sources */,
+				C1A98E1F1F8F8A6D00E56C5A /* MineSettingController.swift in Sources */,
 				C12509F51F691F78006ED55E /* BasicHybridCache.swift in Sources */,
 				C1F17BBF1F6937F3001153BA /* ArticleHomeController.swift in Sources */,
 				C12509B81F690A7D006ED55E /* APIConst.swift in Sources */,
@@ -1076,6 +1096,7 @@
 				C11B6EC31F7CE3C500EAAEB0 /* ShareController.swift in Sources */,
 				C1C690041F8B60EE008B6054 /* TataCollectionViewCell.swift in Sources */,
 				C11B6EC91F7D1C5E00EAAEB0 /* ShareCollectionCell.swift in Sources */,
+				C1D8C92D1F8F6156002B0DDF /* MineUserInfoAvatarTableViewCell.swift in Sources */,
 				C1E7451B1F7C99FD00FDB0F9 /* CategoryModel.swift in Sources */,
 				C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */,
 				C1D535221F7BBFE100376686 /* CategoryCollectionController.swift in Sources */,
@@ -1108,11 +1129,13 @@
 				C1250A0C1F692111006ED55E /* APIResultCheck.swift in Sources */,
 				C12509D11F6912A8006ED55E /* ONCheckTool.swift in Sources */,
 				C1A1DD911F8CD3260039B873 /* DailyCheckFlowLayout.swift in Sources */,
+				C1A98E211F8F8BC100E56C5A /* MineNotificationTableViewCell.swift in Sources */,
 				C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */,
 				C12509CB1F6912A8006ED55E /* Array+Extension.swift in Sources */,
 				C12509D71F6912A8006ED55E /* Utilities.swift in Sources */,
 				C1F17BB21F692E13001153BA /* SizeConst.swift in Sources */,
 				C18B4F281F6A1D6E001E2E56 /* FontConst.swift in Sources */,
+				C1D8C92F1F8F6166002B0DDF /* MineUserInfoNormalTableViewCell.swift in Sources */,
 				C12509971F69079E006ED55E /* ONCacheObject.swift in Sources */,
 				FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */,
 				C12509FF1F691F78006ED55E /* HybridCache.swift in Sources */,
@@ -1138,6 +1161,7 @@
 				C12509F81F691F78006ED55E /* Cachable.swift in Sources */,
 				C12509FC1F691F78006ED55E /* NSData+Cache.swift in Sources */,
 				C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */,
+				C1D8C92B1F8F603C002B0DDF /* MineUserInfoController.swift in Sources */,
 				C12509F91F691F78006ED55E /* Capsule.swift in Sources */,
 				C12509991F69079E006ED55E /* ONLogger.swift in Sources */,
 				C18B4F351F6A6FAF001E2E56 /* ArticleHomePicCell.swift in Sources */,

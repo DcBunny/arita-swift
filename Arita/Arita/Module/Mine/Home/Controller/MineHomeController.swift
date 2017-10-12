@@ -70,18 +70,19 @@ class MineHomeController: BaseController {
         if isLogin {
             iconArray = [Icon.aboutUs, Icon.mailUs, Icon.scoreUs, Icon.recommendUs, Icon.setting, Icon.logout]
             nameArray = ["关于我们", "投稿合作", "评分", "推荐给朋友", "设置", "退出登录"]
-            userInfo = ["", "王晓天"]
+            userInfo = ["https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike220%2C5%2C5%2C220%2C73/sign=1cdd55c9dd62853586edda73f1861da3/b2de9c82d158ccbfeb0c9a0111d8bc3eb135415c.jpg", "胡歌"]
         } else {
             iconArray = [Icon.aboutUs, Icon.mailUs, Icon.scoreUs, Icon.recommendUs, Icon.setting]
             nameArray = ["关于我们", "投稿合作", "评分", "推荐给朋友", "设置"]
-            userInfo = [nil, nil]
+            userInfo = ["", "请登录"]
         }
     }
     
     // MARK: - Event Responses
     @objc fileprivate func userAvatarAction() {
         if isLogin {
-            // 进入用户个人信息页
+            let userInfoController = MineUserInfoController()
+            navigationController?.pushViewController(userInfoController, animated: true)
         } else {
             // 进入登录页面
             
@@ -90,7 +91,8 @@ class MineHomeController: BaseController {
     
     @objc fileprivate func userNameAction() {
         if isLogin {
-            // 已登录什么也不做
+            let userInfoController = MineUserInfoController()
+            navigationController?.pushViewController(userInfoController, animated: true)
         } else {
             // 未登录则去登录
         }
@@ -108,9 +110,9 @@ class MineHomeController: BaseController {
     
     fileprivate var iconArray = [Icon.aboutUs, Icon.mailUs, Icon.scoreUs, Icon.recommendUs, Icon.setting]
     fileprivate var nameArray = ["关于我们", "投稿合作", "评分", "推荐给朋友", "设置"]
-    fileprivate var userInfo: [String?] = [nil, nil]
+    fileprivate var userInfo = ["", "请登录"]
     //TODO:- 登录未确定
-    fileprivate var isLogin = false
+    fileprivate var isLogin = true
 }
 
 // MARK: - TableView Data Source
@@ -155,7 +157,31 @@ extension MineHomeController: UITableViewDataSource {
 // MARK: - TableView Delegate
 extension MineHomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        switch indexPath.row {
+        case 0:
+            let aboutUsController = MineNormalController(isAboutUs: true)
+            navigationController?.pushViewController(aboutUsController, animated: true)
+            
+        case 1:
+            let mailUsController = MineNormalController(isAboutUs: false)
+            navigationController?.pushViewController(mailUsController, animated: true)
+            
+        case 2:
+            print("评分")
+            
+        case 3:
+            print("推荐给好友")
+            
+        case 4:
+            let settingController = MineSettingController()
+            navigationController?.pushViewController(settingController, animated: true)
+            
+        case 5:
+            print("登出")
+            
+        default:
+            print("Impossible!")
+        }
     }
 }
 
@@ -196,6 +222,7 @@ extension MineHomeController {
             _mineTableView?.showsVerticalScrollIndicator = false
             _mineTableView?.separatorStyle = .none
             _mineTableView?.register(MineHomeTableViewCell.self, forCellReuseIdentifier: String(describing: MineHomeTableViewCell.self))
+            _mineTableView?.register(MineHomeHeaderView.self, forHeaderFooterViewReuseIdentifier: String(describing: MineHomeHeaderView.self))
             
             return _mineTableView!
         }

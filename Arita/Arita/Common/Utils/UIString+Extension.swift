@@ -94,6 +94,18 @@ extension String {
         return attributeString
     }
     
+    /// 我的模块关于我们/投稿合作内容样式
+    public func convertMineContentString() -> NSAttributedString? {
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineSpacing = 9
+        paraStyle.alignment = .center
+        
+        let attributeString = NSAttributedString(string: self, attributes: [NSFontAttributeName: Font.size14!,
+                                                                            NSForegroundColorAttributeName: Color.hex4a4a4a!,
+                                                                            NSParagraphStyleAttributeName: paraStyle])
+        return attributeString
+    }
+    
     /// 计算文本size
     ///
     /// - Parameters:

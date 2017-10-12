@@ -66,7 +66,8 @@ class ArticleHomeController: BaseController {
     
     @objc private func gotoMine() {
         let mineHomeController = MineHomeController()
-        present(mineHomeController, animated: true, completion: nil)
+        let mineHomeNav = UINavigationController(rootViewController: mineHomeController)
+        present(mineHomeNav, animated: true, completion: nil)
     }
     
     @objc fileprivate func gotoCategory() {
