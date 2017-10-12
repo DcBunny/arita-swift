@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ * ShareCollectionCell 分享页面CollectionView的cell
+ */
 class ShareCollectionCell: UICollectionViewCell {
     // MARK: - Init Methods
     override init(frame: CGRect) {

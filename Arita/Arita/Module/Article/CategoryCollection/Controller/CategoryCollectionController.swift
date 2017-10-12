@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ CategoryCollectionController **分类**页主页
+ */
 class CategoryCollectionController: BaseController {
 
     // MARK: - Life Cycle
@@ -82,14 +85,7 @@ extension CategoryCollectionController: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension CategoryCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        DispatchQueue.main.async {
-            let shareController = ShareController()
-            shareController.modalTransitionStyle = .crossDissolve
-            shareController.providesPresentationContextTransitionStyle = true
-            shareController.definesPresentationContext = true
-            shareController.modalPresentationStyle = .overFullScreen
-            self.present(shareController, animated: true, completion: nil)
-        }
+        
     }
 }
 

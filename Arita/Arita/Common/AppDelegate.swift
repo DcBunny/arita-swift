@@ -63,7 +63,7 @@ extension AppDelegate {
         Thread.sleep(forTimeInterval: 3.0)
         
         // 隐藏状态栏
-        UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.none)
+        UIApplication.shared.setStatusBarHidden(true, with: UIStatusBarAnimation.none)
         
         let userHasOnboarded = UserDefaults.standard.bool(forKey: kUserHasOnboard)
         

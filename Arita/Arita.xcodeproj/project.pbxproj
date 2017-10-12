@@ -83,6 +83,18 @@
 		C18B4F311F6A6F5B001E2E56 /* ArticleHomeTataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */; };
 		C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */; };
 		C18B4F351F6A6FAF001E2E56 /* ArticleHomePicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */; };
+		C198DDE51F8F0E54004BCB50 /* MineHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C198DDE41F8F0E54004BCB50 /* MineHomeTableViewCell.swift */; };
+		C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C198DDE61F8F157A004BCB50 /* MineHomeHeaderView.swift */; };
+		C1A1DD911F8CD3260039B873 /* DailyCheckFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD901F8CD3260039B873 /* DailyCheckFlowLayout.swift */; };
+		C1A1DD931F8CD7850039B873 /* DailyCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD921F8CD7850039B873 /* DailyCheckCell.swift */; };
+		C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */; };
+		C1BCD4FB1F8CA20F0022C4F7 /* TataArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FA1F8CA20F0022C4F7 /* TataArticleModel.swift */; };
+		C1BCD4FD1F8CC2310022C4F7 /* ArticleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */; };
+		C1BCD4FF1F8CC6570022C4F7 /* ArticleDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */; };
+		C1BCD5011F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD5001F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift */; };
+		C1C690001F8B4B59008B6054 /* ArticleCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C68FFF1F8B4B59008B6054 /* ArticleCollectionController.swift */; };
+		C1C690021F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C690011F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift */; };
+		C1C690041F8B60EE008B6054 /* TataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C690031F8B60EE008B6054 /* TataCollectionViewCell.swift */; };
 		C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8DB701F7B9F980016A0A2 /* ArticleSectionHeaderView.swift */; };
 		C1D535221F7BBFE100376686 /* CategoryCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D535211F7BBFE100376686 /* CategoryCollectionController.swift */; };
 		C1E7451B1F7C99FD00FDB0F9 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E7451A1F7C99FD00FDB0F9 /* CategoryModel.swift */; };
@@ -189,6 +201,18 @@
 		C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeTataCell.swift; sourceTree = "<group>"; };
 		C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeTextCell.swift; sourceTree = "<group>"; };
 		C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomePicCell.swift; sourceTree = "<group>"; };
+		C198DDE41F8F0E54004BCB50 /* MineHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineHomeTableViewCell.swift; sourceTree = "<group>"; };
+		C198DDE61F8F157A004BCB50 /* MineHomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineHomeHeaderView.swift; sourceTree = "<group>"; };
+		C1A1DD901F8CD3260039B873 /* DailyCheckFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckFlowLayout.swift; sourceTree = "<group>"; };
+		C1A1DD921F8CD7850039B873 /* DailyCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckCell.swift; sourceTree = "<group>"; };
+		C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckController.swift; sourceTree = "<group>"; };
+		C1BCD4FA1F8CA20F0022C4F7 /* TataArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TataArticleModel.swift; sourceTree = "<group>"; };
+		C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailController.swift; sourceTree = "<group>"; };
+		C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailCell.swift; sourceTree = "<group>"; };
+		C1BCD5001F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailFlowLayout.swift; sourceTree = "<group>"; };
+		C1C68FFF1F8B4B59008B6054 /* ArticleCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionController.swift; sourceTree = "<group>"; };
+		C1C690011F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionFlowLayout.swift; sourceTree = "<group>"; };
+		C1C690031F8B60EE008B6054 /* TataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TataCollectionViewCell.swift; sourceTree = "<group>"; };
 		C1C8DB701F7B9F980016A0A2 /* ArticleSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSectionHeaderView.swift; sourceTree = "<group>"; };
 		C1D535211F7BBFE100376686 /* CategoryCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionController.swift; sourceTree = "<group>"; };
 		C1E7451A1F7C99FD00FDB0F9 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
@@ -683,6 +707,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C1BCD4F71F8CA1F00022C4F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C1BCD4FA1F8CA20F0022C4F7 /* TataArticleModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C1D535121F7BB91D00376686 /* HomeList */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +728,7 @@
 		C1D535131F7BB9ED00376686 /* ArticleCollection */ = {
 			isa = PBXGroup;
 			children = (
+				C1BCD4F71F8CA1F00022C4F7 /* Model */,
 				C1D5351A1F7BBF6000376686 /* View */,
 				C1D535191F7BBF5A00376686 /* Controller */,
 			);
@@ -731,6 +764,8 @@
 		C1D535191F7BBF5A00376686 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C1C68FFF1F8B4B59008B6054 /* ArticleCollectionController.swift */,
+				C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -738,6 +773,10 @@
 		C1D5351A1F7BBF6000376686 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1C690011F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift */,
+				C1C690031F8B60EE008B6054 /* TataCollectionViewCell.swift */,
+				C1BCD5001F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift */,
+				C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -791,6 +830,8 @@
 		C1D535201F7BBFAC00376686 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C198DDE41F8F0E54004BCB50 /* MineHomeTableViewCell.swift */,
+				C198DDE61F8F157A004BCB50 /* MineHomeHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -815,6 +856,7 @@
 		C1E7451F1F7CC18600FDB0F9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -822,6 +864,8 @@
 		C1E745201F7CC18D00FDB0F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1A1DD901F8CD3260039B873 /* DailyCheckFlowLayout.swift */,
+				C1A1DD921F8CD7850039B873 /* DailyCheckCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -928,6 +972,7 @@
 				TargetAttributes = {
 					FD5BBE9F1F68D1A3002D8146 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = MUGPCKW3CX;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1022,6 +1067,7 @@
 				C1250A001F691F78006ED55E /* DefaultCacheConverter.swift in Sources */,
 				FD46AAF31F8F11D300CCB603 /* GoodsNormalCell.swift in Sources */,
 				C14A61AA1F6B5E63005A1E65 /* UIString+Extension.swift in Sources */,
+				C1BCD4FF1F8CC6570022C4F7 /* ArticleDetailCell.swift in Sources */,
 				C12509DC1F691F23006ED55E /* UserCacheManager.swift in Sources */,
 				C14A61AE1F6BB4EF005A1E65 /* JGGGridView.swift in Sources */,
 				C12509901F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift in Sources */,
@@ -1039,10 +1085,12 @@
 				C12509FE1F691F78006ED55E /* String+Cache.swift in Sources */,
 				C12509BC1F6912A0006ED55E /* ONTipCenter.swift in Sources */,
 				C12509D01F6912A8006ED55E /* NetWorkHelper.swift in Sources */,
+				C1BCD5011F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift in Sources */,
 				C12509CF1F6912A8006ED55E /* NetwokConst.swift in Sources */,
 				C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */,
 				C1250A021F691F78006ED55E /* SyncHybridCache.swift in Sources */,
 				C11B6EC31F7CE3C500EAAEB0 /* ShareController.swift in Sources */,
+				C1C690041F8B60EE008B6054 /* TataCollectionViewCell.swift in Sources */,
 				C11B6EC91F7D1C5E00EAAEB0 /* ShareCollectionCell.swift in Sources */,
 				C1E7451B1F7C99FD00FDB0F9 /* CategoryModel.swift in Sources */,
 				C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */,
@@ -1050,17 +1098,23 @@
 				C12509CD1F6912A8006ED55E /* ONDigest.swift in Sources */,
 				C12509FB1F691F78006ED55E /* StorageKind.swift in Sources */,
 				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
+				C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */,
+				C1BCD4FD1F8CC2310022C4F7 /* ArticleDetailController.swift in Sources */,
 				C1E7451D1F7CA6C400FDB0F9 /* CategoryCollectionCell.swift in Sources */,
 				FD46AAF11F8E2B5600CCB603 /* GoodsGridCell.swift in Sources */,
 				C1F17BB01F692766001153BA /* GuideController.swift in Sources */,
 				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
 				C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */,
+				C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */,
 				C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */,
+				C1C690001F8B4B59008B6054 /* ArticleCollectionController.swift in Sources */,
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
+				C1BCD4FB1F8CA20F0022C4F7 /* TataArticleModel.swift in Sources */,
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
 				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
 				C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */,
+				C198DDE51F8F0E54004BCB50 /* MineHomeTableViewCell.swift in Sources */,
 				C12509941F69079E006ED55E /* ONAPIBaseManager.swift in Sources */,
 				C12509F61F691F78006ED55E /* Cache.swift in Sources */,
 				C125099E1F69079E006ED55E /* ONNetworkingConfigurationManager.swift in Sources */,
@@ -1073,6 +1127,7 @@
 				C12509D11F6912A8006ED55E /* ONCheckTool.swift in Sources */,
 				FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */,
 				FD46AAF51F8F423B00CCB603 /* GoodsHomeHeaderView.swift in Sources */,
+				C1A1DD911F8CD3260039B873 /* DailyCheckFlowLayout.swift in Sources */,
 				C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */,
 				C12509CB1F6912A8006ED55E /* Array+Extension.swift in Sources */,
 				C12509D71F6912A8006ED55E /* Utilities.swift in Sources */,
@@ -1086,10 +1141,12 @@
 				C1250A061F691F78006ED55E /* StorageAware.swift in Sources */,
 				C12509D51F6912A8006ED55E /* UIDevice+Extension.swift in Sources */,
 				C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */,
+				C1C690021F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift in Sources */,
 				C1250A071F691F78006ED55E /* StorageFactory.swift in Sources */,
 				C14A61AC1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift in Sources */,
 				C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */,
 				C12509A01F69079E006ED55E /* ONService.swift in Sources */,
+				C1A1DD931F8CD7850039B873 /* DailyCheckCell.swift in Sources */,
 				C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */,
 				C11B6ECC1F7D1DDA00EAAEB0 /* ShareModel.swift in Sources */,
 				C18B4F311F6A6F5B001E2E56 /* ArticleHomeTataCell.swift in Sources */,
@@ -1245,17 +1302,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 东 潘 (9PX858K9RP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "d8e145bd-bf1a-463b-a253-91fddbaa81ec";
+				PROVISIONING_PROFILE_SPECIFIER = arita_dev_current;
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1267,17 +1324,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 东 潘 (9PX858K9RP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "2aac7aea-c413-40d6-be9f-090a5a0a1ea7";
+				PROVISIONING_PROFILE_SPECIFIER = arita_adhoc_current;
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

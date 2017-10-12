@@ -131,7 +131,7 @@ extension JGGGridViewDelegate {
  JGGGridView 九宫格试图
  */
 class JGGGridView: UIView {
-    //MARK:- 初始化方法
+    // MARK:- 初始化方法
     init(with dataSource: JGGGridViewDataSource?, and delegate: JGGGridViewDelegate?) {
         super.init(frame: CGRect.zero)
         
@@ -149,7 +149,7 @@ class JGGGridView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - 试图设置
+    // MARK: - 试图设置
     public func creatJGGView() {
         guard dataSource != nil else { return }
         // 防止多次添加数据源导致重复增加UIImageView
@@ -183,13 +183,13 @@ class JGGGridView: UIView {
         }
     }
     
-    //MARK: - 公开属性
+    // MARK: - 公开属性
     ///九宫格显示的数据源
     public var dataSource: JGGGridViewDataSource?
     ///九宫格视图代理
     public var delegate: JGGGridViewDelegate?
     
-    //MARK: - 公开方法
+    // MARK: - 公开方法
     ///获取九宫格图片的宽
     public func imageWidth() -> CGFloat {
         if self.dataSource == nil {
