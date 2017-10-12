@@ -103,6 +103,9 @@
 		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
 		FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */; };
 		FD46AAF11F8E2B5600CCB603 /* GoodsGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */; };
+		FD46AAF31F8F11D300CCB603 /* GoodsNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */; };
+		FD46AAF51F8F423B00CCB603 /* GoodsHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF41F8F423B00CCB603 /* GoodsHomeHeaderView.swift */; };
+		FD46AAF71F8F644000CCB603 /* GoodsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF61F8F644000CCB603 /* GoodsCategoryCell.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -207,6 +210,9 @@
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
 		FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods4GridCell.swift; sourceTree = "<group>"; };
 		FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsGridCell.swift; sourceTree = "<group>"; };
+		FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsNormalCell.swift; sourceTree = "<group>"; };
+		FD46AAF41F8F423B00CCB603 /* GoodsHomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsHomeHeaderView.swift; sourceTree = "<group>"; };
+		FD46AAF61F8F644000CCB603 /* GoodsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCategoryCell.swift; sourceTree = "<group>"; };
 		FD5BBEA01F68D1A3002D8146 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -758,6 +764,9 @@
 			children = (
 				FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */,
 				FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */,
+				FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */,
+				FD46AAF41F8F423B00CCB603 /* GoodsHomeHeaderView.swift */,
+				FD46AAF61F8F644000CCB603 /* GoodsCategoryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1011,6 +1020,7 @@
 			files = (
 				C12509CE1F6912A8006ED55E /* String+ONCrypt.swift in Sources */,
 				C1250A001F691F78006ED55E /* DefaultCacheConverter.swift in Sources */,
+				FD46AAF31F8F11D300CCB603 /* GoodsNormalCell.swift in Sources */,
 				C14A61AA1F6B5E63005A1E65 /* UIString+Extension.swift in Sources */,
 				C12509DC1F691F23006ED55E /* UserCacheManager.swift in Sources */,
 				C14A61AE1F6BB4EF005A1E65 /* JGGGridView.swift in Sources */,
@@ -1055,12 +1065,14 @@
 				C12509F61F691F78006ED55E /* Cache.swift in Sources */,
 				C125099E1F69079E006ED55E /* ONNetworkingConfigurationManager.swift in Sources */,
 				C12509DA1F69169C006ED55E /* UserManager.swift in Sources */,
+				FD46AAF71F8F644000CCB603 /* GoodsCategoryCell.swift in Sources */,
 				C1250A031F691F78006ED55E /* CacheEntry.swift in Sources */,
 				C12509D21F6912A8006ED55E /* RegexHelper.swift in Sources */,
 				C12509B31F69097C006ED55E /* BaseController.swift in Sources */,
 				C1250A0C1F692111006ED55E /* APIResultCheck.swift in Sources */,
 				C12509D11F6912A8006ED55E /* ONCheckTool.swift in Sources */,
 				FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */,
+				FD46AAF51F8F423B00CCB603 /* GoodsHomeHeaderView.swift in Sources */,
 				C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */,
 				C12509CB1F6912A8006ED55E /* Array+Extension.swift in Sources */,
 				C12509D71F6912A8006ED55E /* Utilities.swift in Sources */,

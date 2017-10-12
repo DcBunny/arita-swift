@@ -77,13 +77,37 @@ class GoodsHomeController: BaseController
 extension GoodsHomeController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: Goods4GridCell.self), for: indexPath) as! Goods4GridCell
-
-        return cell
+        if indexPath.row % 2 == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: Goods4GridCell.self), for: indexPath) as! Goods4GridCell
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GoodsNormalCell.self), for: indexPath) as! GoodsNormalCell
+            cell.goodImage.backgroundColor = UIColor.blue
+            cell.goodLabel.text = "1233211233211231231231231231aaa"
+            cell.goodPriceLabel.text = "¥" + "89"
+            
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return (10 + (UIScreen.main.bounds.width - 20) * 2 / 3 + 20 + 20 + 20 + ((Size.screenWidth - 60) / 3) * 3 + 20 + 20)
+    }
+    
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 0.001
+//    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = GoodsHomeHeaderView(reuseIdentifier: String(describing: GoodsHomeHeaderView.self))
+        headerView.imageUrl = "123"
+        
+        return headerView
     }
 }
 
@@ -100,6 +124,8 @@ extension GoodsHomeController {
             _tableView?.backgroundColor = Color.hexf5f5f5
             _tableView?.showsVerticalScrollIndicator = false
             _tableView?.register(Goods4GridCell.self, forCellReuseIdentifier: String(describing: Goods4GridCell.self))
+            _tableView?.register(GoodsNormalCell.self, forCellReuseIdentifier: String(describing: GoodsNormalCell.self))
+            _tableView?.register(GoodsHomeHeaderView.self, forHeaderFooterViewReuseIdentifier: String(describing: GoodsHomeHeaderView.self))
             _tableView?.estimatedRowHeight = Size.screenWidth + 156
             _tableView?.rowHeight = UITableViewAutomaticDimension
             _tableView?.separatorStyle = .none
