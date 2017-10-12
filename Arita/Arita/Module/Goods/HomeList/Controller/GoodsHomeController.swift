@@ -105,9 +105,16 @@ extension GoodsHomeController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = GoodsHomeHeaderView(reuseIdentifier: String(describing: GoodsHomeHeaderView.self))
+        headerView.albumButton.addTarget(self, action: #selector(gotoGoodsAlbum), for: .touchUpInside)
         headerView.imageUrl = "123"
         
         return headerView
+    }
+    
+    @objc private func gotoGoodsAlbum() {
+        let goodsAlbumCollection = GoodsCollectionController(with: "专题")
+        goodsAlbumCollection.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(goodsAlbumCollection, animated: true)
     }
 }
 

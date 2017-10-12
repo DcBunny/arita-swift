@@ -118,6 +118,9 @@
 		FD46AAF31F8F11D300CCB603 /* GoodsNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */; };
 		FD46AAF51F8F423B00CCB603 /* GoodsHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF41F8F423B00CCB603 /* GoodsHomeHeaderView.swift */; };
 		FD46AAF71F8F644000CCB603 /* GoodsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF61F8F644000CCB603 /* GoodsCategoryCell.swift */; };
+		FD46AAFB1F8F7C4600CCB603 /* GoodsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAFA1F8F7C4600CCB603 /* GoodsCollectionController.swift */; };
+		FD46AAFE1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAFD1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift */; };
+		FD46AB001F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAFF1F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -237,6 +240,9 @@
 		FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsNormalCell.swift; sourceTree = "<group>"; };
 		FD46AAF41F8F423B00CCB603 /* GoodsHomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsHomeHeaderView.swift; sourceTree = "<group>"; };
 		FD46AAF61F8F644000CCB603 /* GoodsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCategoryCell.swift; sourceTree = "<group>"; };
+		FD46AAFA1F8F7C4600CCB603 /* GoodsCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCollectionController.swift; sourceTree = "<group>"; };
+		FD46AAFD1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumCollectionFlowLayout.swift; sourceTree = "<group>"; };
+		FD46AAFF1F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		FD5BBEA01F68D1A3002D8146 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -885,6 +891,7 @@
 			isa = PBXGroup;
 			children = (
 				C1D5351B1F7BBF7C00376686 /* HomeList */,
+				FD46AAF81F8F7BAE00CCB603 /* GoodsCollection */,
 			);
 			path = Goods;
 			sourceTree = "<group>";
@@ -904,6 +911,32 @@
 				AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FD46AAF81F8F7BAE00CCB603 /* GoodsCollection */ = {
+			isa = PBXGroup;
+			children = (
+				FD46AAFC1F8F80A000CCB603 /* View */,
+				FD46AAF91F8F7C1100CCB603 /* Controller */,
+			);
+			path = GoodsCollection;
+			sourceTree = "<group>";
+		};
+		FD46AAF91F8F7C1100CCB603 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FD46AAFA1F8F7C4600CCB603 /* GoodsCollectionController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FD46AAFC1F8F80A000CCB603 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FD46AAFD1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift */,
+				FD46AAFF1F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FD5BBE971F68D1A3002D8146 = {
@@ -1092,6 +1125,7 @@
 				C11B6EC31F7CE3C500EAAEB0 /* ShareController.swift in Sources */,
 				C1C690041F8B60EE008B6054 /* TataCollectionViewCell.swift in Sources */,
 				C11B6EC91F7D1C5E00EAAEB0 /* ShareCollectionCell.swift in Sources */,
+				FD46AB001F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift in Sources */,
 				C1E7451B1F7C99FD00FDB0F9 /* CategoryModel.swift in Sources */,
 				C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */,
 				C1D535221F7BBFE100376686 /* CategoryCollectionController.swift in Sources */,
@@ -1125,6 +1159,7 @@
 				C12509B31F69097C006ED55E /* BaseController.swift in Sources */,
 				C1250A0C1F692111006ED55E /* APIResultCheck.swift in Sources */,
 				C12509D11F6912A8006ED55E /* ONCheckTool.swift in Sources */,
+				FD46AAFE1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift in Sources */,
 				FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */,
 				FD46AAF51F8F423B00CCB603 /* GoodsHomeHeaderView.swift in Sources */,
 				C1A1DD911F8CD3260039B873 /* DailyCheckFlowLayout.swift in Sources */,
@@ -1141,6 +1176,7 @@
 				C1250A061F691F78006ED55E /* StorageAware.swift in Sources */,
 				C12509D51F6912A8006ED55E /* UIDevice+Extension.swift in Sources */,
 				C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */,
+				FD46AAFB1F8F7C4600CCB603 /* GoodsCollectionController.swift in Sources */,
 				C1C690021F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift in Sources */,
 				C1250A071F691F78006ED55E /* StorageFactory.swift in Sources */,
 				C14A61AC1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift in Sources */,

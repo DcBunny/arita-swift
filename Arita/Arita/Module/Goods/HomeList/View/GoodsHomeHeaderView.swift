@@ -26,6 +26,7 @@ class GoodsHomeHeaderView: UITableViewHeaderFooterView {
     // MARK: - View Settings
     private func addHeaderViews() {
         addSubview(albumImage)
+        addSubview(albumButton)
         addSubview(splitLine)
         addSubview(categoryView)
         categoryView.addSubview(categoryCollection)
@@ -37,6 +38,10 @@ class GoodsHomeHeaderView: UITableViewHeaderFooterView {
             make.top.left.equalTo(self).offset(10)
             make.right.equalTo(self).offset(-10)
             make.height.equalTo(albumImage.snp.width).multipliedBy(2.0/3)
+        }
+        
+        albumButton.snp.makeConstraints { (make) in
+            make.edges.equalTo(albumImage)
         }
         
         splitLine.snp.makeConstraints { (make) in
@@ -79,6 +84,7 @@ class GoodsHomeHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Controller Attributes
     fileprivate var _albumImage: UIImageView?
+    fileprivate var _albumButton: UIButton?
     fileprivate var _splitLine: UIView?
     fileprivate var _categoryView: UIView?
     fileprivate var _categoryCollection: UICollectionView?
@@ -124,6 +130,14 @@ extension GoodsHomeHeaderView {
         }
         
         return _albumImage!
+    }
+    
+    var albumButton: UIButton {
+        if _albumButton == nil {
+            _albumButton = UIButton()
+        }
+        
+        return _albumButton!
     }
     
     fileprivate var splitLine: UIView {
