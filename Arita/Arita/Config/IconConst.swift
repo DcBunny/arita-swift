@@ -47,6 +47,17 @@ struct Icon {
     static let shareLink = "share_link"
     static let shareClose = "button_close"
     
+    // Mine
+    static let userAvatar = "mine_portrait"
+    static let next = "more"
+    static let aboutUs = "mine_info"
+    static let mailUs = "mine_mailus"
+    static let scoreUs = "mine_score"
+    static let recommendUs = "mine_recommend"
+    static let setting = "mine_setting"
+    static let logout = "mine_logout"
+    static let message = "icon_message"
+    
     // Category
     //TODO:  服务器返回，这个用作Demo 接口好了之后删除
     static let class01 = "class01"

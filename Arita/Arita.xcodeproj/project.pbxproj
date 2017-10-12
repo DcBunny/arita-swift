@@ -83,6 +83,8 @@
 		C18B4F311F6A6F5B001E2E56 /* ArticleHomeTataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */; };
 		C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */; };
 		C18B4F351F6A6FAF001E2E56 /* ArticleHomePicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */; };
+		C198DDE51F8F0E54004BCB50 /* MineHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C198DDE41F8F0E54004BCB50 /* MineHomeTableViewCell.swift */; };
+		C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C198DDE61F8F157A004BCB50 /* MineHomeHeaderView.swift */; };
 		C1A1DD911F8CD3260039B873 /* DailyCheckFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD901F8CD3260039B873 /* DailyCheckFlowLayout.swift */; };
 		C1A1DD931F8CD7850039B873 /* DailyCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD921F8CD7850039B873 /* DailyCheckCell.swift */; };
 		C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */; };
@@ -194,6 +196,8 @@
 		C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeTataCell.swift; sourceTree = "<group>"; };
 		C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeTextCell.swift; sourceTree = "<group>"; };
 		C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomePicCell.swift; sourceTree = "<group>"; };
+		C198DDE41F8F0E54004BCB50 /* MineHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineHomeTableViewCell.swift; sourceTree = "<group>"; };
+		C198DDE61F8F157A004BCB50 /* MineHomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineHomeHeaderView.swift; sourceTree = "<group>"; };
 		C1A1DD901F8CD3260039B873 /* DailyCheckFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckFlowLayout.swift; sourceTree = "<group>"; };
 		C1A1DD921F8CD7850039B873 /* DailyCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckCell.swift; sourceTree = "<group>"; };
 		C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckController.swift; sourceTree = "<group>"; };
@@ -811,6 +815,8 @@
 		C1D535201F7BBFAC00376686 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C198DDE41F8F0E54004BCB50 /* MineHomeTableViewCell.swift */,
+				C198DDE61F8F157A004BCB50 /* MineHomeHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -951,6 +957,7 @@
 				TargetAttributes = {
 					FD5BBE9F1F68D1A3002D8146 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = MUGPCKW3CX;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1082,6 +1089,7 @@
 				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
 				C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */,
+				C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */,
 				C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */,
 				C1C690001F8B4B59008B6054 /* ArticleCollectionController.swift in Sources */,
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
@@ -1089,6 +1097,7 @@
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
 				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
 				C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */,
+				C198DDE51F8F0E54004BCB50 /* MineHomeTableViewCell.swift in Sources */,
 				C12509941F69079E006ED55E /* ONAPIBaseManager.swift in Sources */,
 				C12509F61F691F78006ED55E /* Cache.swift in Sources */,
 				C125099E1F69079E006ED55E /* ONNetworkingConfigurationManager.swift in Sources */,
@@ -1273,17 +1282,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 东 潘 (9PX858K9RP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "d8e145bd-bf1a-463b-a253-91fddbaa81ec";
+				PROVISIONING_PROFILE_SPECIFIER = arita_dev_current;
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1295,17 +1304,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 东 潘 (9PX858K9RP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "2aac7aea-c413-40d6-be9f-090a5a0a1ea7";
+				PROVISIONING_PROFILE_SPECIFIER = arita_adhoc_current;
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

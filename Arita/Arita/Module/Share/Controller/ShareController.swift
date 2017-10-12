@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ * ShareController 分享页面主页
+ */
 class ShareController: BaseController {
 
     // MARK: - Life Cycle

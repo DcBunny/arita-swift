@@ -65,7 +65,8 @@ class ArticleHomeController: BaseController {
     }
     
     @objc private func gotoMine() {
-    
+        let mineHomeController = MineHomeController()
+        present(mineHomeController, animated: true, completion: nil)
     }
     
     @objc fileprivate func gotoCategory() {
@@ -77,7 +78,6 @@ class ArticleHomeController: BaseController {
     fileprivate var _tableView: UITableView?
     fileprivate var _categoryButton: UIButton?
 }
-
 
 // MARK: - TableView Data Source
 extension ArticleHomeController: UITableViewDataSource {
