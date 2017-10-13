@@ -66,7 +66,7 @@ class MineHomeController: BaseController {
         mineTableView.dataSource = self
     }
     
-    private func prepareData() {
+    fileprivate func prepareData() {
         if isLogin {
             iconArray = [Icon.aboutUs, Icon.mailUs, Icon.scoreUs, Icon.recommendUs, Icon.setting, Icon.logout]
             nameArray = ["关于我们", "投稿合作", "评分", "推荐给朋友", "设置", "退出登录"]
@@ -84,8 +84,10 @@ class MineHomeController: BaseController {
             let userInfoController = MineUserInfoController()
             navigationController?.pushViewController(userInfoController, animated: true)
         } else {
-            // 进入登录页面
-            
+            //TODO: - 进入登录页面
+            isLogin = true
+            prepareData()
+            mineTableView.reloadData()
         }
     }
     
@@ -94,7 +96,10 @@ class MineHomeController: BaseController {
             let userInfoController = MineUserInfoController()
             navigationController?.pushViewController(userInfoController, animated: true)
         } else {
-            // 未登录则去登录
+            //TODO: - 进入登录页面
+            isLogin = true
+            prepareData()
+            mineTableView.reloadData()
         }
     }
     
@@ -134,7 +139,7 @@ extension MineHomeController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 60
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -167,17 +172,26 @@ extension MineHomeController: UITableViewDelegate {
             navigationController?.pushViewController(mailUsController, animated: true)
             
         case 2:
-            print("评分")
+            UIApplication.shared.openURL(URL(string: "itms-apps://itunes.apple.com/app/id1125888897")!)
             
         case 3:
-            print("推荐给好友")
+            let qrCodeController = MineQRCodeController()
+            navigationController?.pushViewController(qrCodeController, animated: true)
             
         case 4:
             let settingController = MineSettingController()
             navigationController?.pushViewController(settingController, animated: true)
             
         case 5:
-            print("登出")
+            let alert = UIAlertController(title: "退出当前账号", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "确认退出", style: .default, handler: { [weak self] _ in
+                guard let strongSelf = self else { return }
+                strongSelf.isLogin = false
+                strongSelf.prepareData()
+                strongSelf.mineTableView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: "取消", style: .destructive, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
         default:
             print("Impossible!")

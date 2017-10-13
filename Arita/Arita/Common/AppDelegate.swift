@@ -95,6 +95,8 @@ extension AppDelegate {
 // MARK: - 初始化第三方分享(ShareSDK)
 extension AppDelegate {
     fileprivate func initialShareSDK() {
+        // 解决微信客户端无法发现的问题
+        WXApi.registerApp("wx4a3852a5ca53e339")
         ShareSDK.registerActivePlatforms(
             [
                 SSDKPlatformType.typeSinaWeibo.rawValue,

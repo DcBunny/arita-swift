@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 /**
  * MineSettingController **设置**页面主页
@@ -21,6 +22,7 @@ class MineSettingController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        sizeOfCache()
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,12 +63,79 @@ class MineSettingController: BaseController {
     }
     
     // MARK: - Private Methods
+    /// 当前缓存总大小
+    private func sizeOfCache() {
+        var sizeText = ""
+        KingfisherManager.shared.cache.calculateDiskCacheSize { [weak self] size in
+            guard let strongSelf = self else { return }
+            let fileSize = strongSelf.folderSizeAtPath()
+            let total = Float(size) + fileSize
+            if total / 1024 / 1024 > 1 {
+                let cacheSize = Double(total) / 1024 / 1024
+                sizeText = "已缓存" + String(Int(cacheSize)) + " M"
+            } else {
+                let cacheSize = Double(total) / 1024
+                sizeText = "已缓存" + String(Int(cacheSize)) + " K"
+            }
+            strongSelf.infoArray[0] = sizeText
+            DispatchQueue.main.async {
+                strongSelf.userInfoTableView.reloadData()
+            }
+        }
+    }
     
+    /// 当前系统缓存大小
+    private func folderSizeAtPath() -> Float {
+        let manager = FileManager.default
+        let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+        let files = manager.subpaths(atPath: cachePath!)
+        var folderSize: Float = 0.0
+        for fileName in files! {
+            let fullPath = cachePath?.appendingFormat("/\(fileName)")
+            let floder = try! manager.attributesOfItem(atPath: fullPath!)
+            // 用元组取出文件大小属性
+            for (abc,bcd) in floder {
+                // 只去出文件大小进行拼接
+                if abc == FileAttributeKey.size {
+                    folderSize += bcd as! Float
+                }
+            }
+        }
+        return folderSize
+    }
+    
+    /// 清除当前缓存
+    fileprivate func clearCache() {
+        KingfisherManager.shared.cache.clearDiskCache { [weak self] in
+            guard let strongSelf = self else { return }
+            let manager = FileManager.default
+            let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+            let files = manager.subpaths(atPath: cachePath!)
+            for fileName in files! {            // 拼接路径
+                if !fileName.contains("Snapshots") {
+                    let path = cachePath!.appendingFormat("/\(fileName)")
+                    // 判断是否可以删除
+                    if(manager.fileExists(atPath: path)){
+                        // 删除
+                        do {
+                            try manager.removeItem(atPath: path as String)
+                        } catch let error {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
+            
+            DispatchQueue.main.async {
+                strongSelf.sizeOfCache()
+            }
+        }
+    }
     // MARK: - Controller Attributes
     fileprivate var _userInfoTableView: UITableView?
     
     fileprivate var itemArray = ["清空缓存", "开启推送"]
-    fileprivate var infoArray = ["已缓存 24M", "35"]
+    fileprivate var infoArray = ["", "35"]
 }
 
 // MARK: - TableView Data Source
@@ -102,7 +171,7 @@ extension MineSettingController: UITableViewDataSource {
 extension MineSettingController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            print("清理缓存")
+            clearCache()
         }
     }
 }

@@ -90,6 +90,8 @@
 		C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */; };
 		C1A98E1F1F8F8A6D00E56C5A /* MineSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A98E1E1F8F8A6D00E56C5A /* MineSettingController.swift */; };
 		C1A98E211F8F8BC100E56C5A /* MineNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A98E201F8F8BC100E56C5A /* MineNotificationTableViewCell.swift */; };
+		C1BB87641F9062A5006EA9D8 /* MineQRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB87631F9062A5006EA9D8 /* MineQRCodeController.swift */; };
+		C1BB87661F906EE9006EA9D8 /* AuthorizationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB87651F906EE9006EA9D8 /* AuthorizationTool.swift */; };
 		C1BCD4FB1F8CA20F0022C4F7 /* TataArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FA1F8CA20F0022C4F7 /* TataArticleModel.swift */; };
 		C1BCD4FD1F8CC2310022C4F7 /* ArticleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */; };
 		C1BCD4FF1F8CC6570022C4F7 /* ArticleDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */; };
@@ -111,6 +113,7 @@
 		C1E745281F7CCEEA00FDB0F9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E745271F7CCEEA00FDB0F9 /* JavaScriptCore.framework */; };
 		C1E7452A1F7CCEF400FDB0F9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E745291F7CCEF400FDB0F9 /* ImageIO.framework */; };
 		C1E7452C1F7CCEFD00FDB0F9 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E7452B1F7CCEFD00FDB0F9 /* libsqlite3.tbd */; };
+		C1EFC9541F9099C2005A5CF6 /* CacheTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC9531F9099C2005A5CF6 /* CacheTool.swift */; };
 		C1F17BB01F692766001153BA /* GuideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BAF1F692766001153BA /* GuideController.swift */; };
 		C1F17BB21F692E13001153BA /* SizeConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BB11F692E13001153BA /* SizeConst.swift */; };
 		C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BB31F692E38001153BA /* ColorConst.swift */; };
@@ -209,6 +212,8 @@
 		C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckController.swift; sourceTree = "<group>"; };
 		C1A98E1E1F8F8A6D00E56C5A /* MineSettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSettingController.swift; sourceTree = "<group>"; };
 		C1A98E201F8F8BC100E56C5A /* MineNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		C1BB87631F9062A5006EA9D8 /* MineQRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineQRCodeController.swift; sourceTree = "<group>"; };
+		C1BB87651F906EE9006EA9D8 /* AuthorizationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationTool.swift; sourceTree = "<group>"; };
 		C1BCD4FA1F8CA20F0022C4F7 /* TataArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TataArticleModel.swift; sourceTree = "<group>"; };
 		C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailController.swift; sourceTree = "<group>"; };
 		C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailCell.swift; sourceTree = "<group>"; };
@@ -230,6 +235,8 @@
 		C1E745271F7CCEEA00FDB0F9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		C1E745291F7CCEF400FDB0F9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C1E7452B1F7CCEFD00FDB0F9 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		C1EFC9521F9096A9005A5CF6 /* area.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		C1EFC9531F9099C2005A5CF6 /* CacheTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheTool.swift; sourceTree = "<group>"; };
 		C1F17BAF1F692766001153BA /* GuideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideController.swift; sourceTree = "<group>"; };
 		C1F17BB11F692E13001153BA /* SizeConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeConst.swift; sourceTree = "<group>"; };
 		C1F17BB31F692E38001153BA /* ColorConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConst.swift; sourceTree = "<group>"; };
@@ -356,6 +363,7 @@
 			children = (
 				C12509AC1F69092C006ED55E /* LaunchScreen.storyboard */,
 				C12509AE1F69092C006ED55E /* Main.storyboard */,
+				C1EFC9521F9096A9005A5CF6 /* area.plist */,
 				FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */,
 				FD5BBEAF1F68D1A3002D8146 /* Info.plist */,
 			);
@@ -600,6 +608,8 @@
 				C1250A0B1F692111006ED55E /* APIResultCheck.swift */,
 				C14A61A91F6B5E63005A1E65 /* UIString+Extension.swift */,
 				C11E20B71F7E21DB001F7234 /* ShareTool.swift */,
+				C1BB87651F906EE9006EA9D8 /* AuthorizationTool.swift */,
+				C1EFC9531F9099C2005A5CF6 /* CacheTool.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -822,6 +832,7 @@
 				C1F17BC21F69382E001153BA /* MineHomeController.swift */,
 				C1D8C92A1F8F603C002B0DDF /* MineUserInfoController.swift */,
 				C1D8C9301F8F7C12002B0DDF /* MineNormalController.swift */,
+				C1BB87631F9062A5006EA9D8 /* MineQRCodeController.swift */,
 				C1A98E1E1F8F8A6D00E56C5A /* MineSettingController.swift */,
 			);
 			path = Controller;
@@ -1067,6 +1078,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C12509CE1F6912A8006ED55E /* String+ONCrypt.swift in Sources */,
+				C1BB87661F906EE9006EA9D8 /* AuthorizationTool.swift in Sources */,
 				C1250A001F691F78006ED55E /* DefaultCacheConverter.swift in Sources */,
 				C14A61AA1F6B5E63005A1E65 /* UIString+Extension.swift in Sources */,
 				C1D8C9311F8F7C12002B0DDF /* MineNormalController.swift in Sources */,
@@ -1088,6 +1100,7 @@
 				C12509921F69079E006ED55E /* URLRequest+ONNetworkingMethods.swift in Sources */,
 				C12509FE1F691F78006ED55E /* String+Cache.swift in Sources */,
 				C12509BC1F6912A0006ED55E /* ONTipCenter.swift in Sources */,
+				C1EFC9541F9099C2005A5CF6 /* CacheTool.swift in Sources */,
 				C12509D01F6912A8006ED55E /* NetWorkHelper.swift in Sources */,
 				C1BCD5011F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift in Sources */,
 				C12509CF1F6912A8006ED55E /* NetwokConst.swift in Sources */,
@@ -1135,6 +1148,7 @@
 				C12509D71F6912A8006ED55E /* Utilities.swift in Sources */,
 				C1F17BB21F692E13001153BA /* SizeConst.swift in Sources */,
 				C18B4F281F6A1D6E001E2E56 /* FontConst.swift in Sources */,
+				C1BB87641F9062A5006EA9D8 /* MineQRCodeController.swift in Sources */,
 				C1D8C92F1F8F6166002B0DDF /* MineUserInfoNormalTableViewCell.swift in Sources */,
 				C12509971F69079E006ED55E /* ONCacheObject.swift in Sources */,
 				FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */,

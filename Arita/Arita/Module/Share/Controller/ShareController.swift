@@ -77,16 +77,16 @@ class ShareController: BaseController {
     private func findSharePlatform() {
         shareModel.append(ShareModel.shareLink())
 
-        if !QQApiInterface.isQQInstalled() {
+        if QQApiInterface.isQQInstalled() {
             shareModel.insert(ShareModel.shareQzone(), at: 0)
             shareModel.insert(ShareModel.shareQQ(), at: 0)
         }
 
-        if !WeiboSDK.isWeiboAppInstalled() {
+        if WeiboSDK.isWeiboAppInstalled() {
             shareModel.insert(ShareModel.shareWeibo(), at: 0)
         }
-
-        if !WXApi.isWXAppInstalled() {
+        
+        if WXApi.isWXAppInstalled() {
             shareModel.insert(ShareModel.shareWechatMoments(), at: 0)
             shareModel.insert(ShareModel.shareWechatFriends(), at: 0)
         }
@@ -147,6 +147,7 @@ extension ShareController: UICollectionViewDelegateFlowLayout {
 extension ShareController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ShareCollectionCell.self), for: indexPath) as! ShareCollectionCell
+        
         guard let shareType = cell.shareType else { return }
         ShareTool.sharedInstance.shareWith(content: nil, to: shareType)
     }

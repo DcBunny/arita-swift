@@ -33,7 +33,7 @@ class MineHomeHeaderView: UITableViewHeaderFooterView {
     
     private func layoutHeaderViews() {
         userAvatarButton.snp.makeConstraints { (make) in
-            make.top.equalTo(contentView).offset(35)
+            make.top.equalTo(contentView).offset(40)
             make.centerX.equalTo(contentView)
             make.size.equalTo(CGSize(width: 77, height: 77))
             make.bottom.equalTo(userButton.snp.top).offset(-20)
@@ -43,7 +43,7 @@ class MineHomeHeaderView: UITableViewHeaderFooterView {
             make.centerX.equalTo(userAvatarButton)
             make.top.equalTo(userAvatarButton.snp.bottom).offset(20)
             make.left.right.equalTo(contentView)
-            make.bottom.equalTo(contentView).offset(-30)
+            make.bottom.equalTo(contentView).offset(-35)
         }
     }
     

@@ -61,6 +61,7 @@ struct Icon {
     static let messageBg = "pic_message"
     static let aboutUsBg = "pic_aboutus"
     static let background = "pic_bg"
+    static let qrCode = "code"
     
     // Category
     //TODO:  服务器返回，这个用作Demo 接口好了之后删除
