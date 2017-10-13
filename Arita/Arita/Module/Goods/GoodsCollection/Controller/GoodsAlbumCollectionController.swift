@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GoodsCollectionController: BaseController {
+class GoodsAlbumCollectionController: BaseController {
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -69,7 +69,7 @@ class GoodsCollectionController: BaseController {
 //TODO: 需要后期删除
 private let tataArticleModel = TataArticleModel.demoModel()
 // MARK: - UICollecitonView Data Source
-extension GoodsCollectionController: UICollectionViewDataSource {
+extension GoodsAlbumCollectionController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -86,15 +86,15 @@ extension GoodsCollectionController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollecitonView Delegate
-extension GoodsCollectionController: UICollectionViewDelegate {
+extension GoodsAlbumCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let articleDetailController = ArticleDetailController(with: "塔塔报")
-//        navigationController?.pushViewController(articleDetailController, animated: true)
+        let goodsAlbumController = GoodsAlbumController()
+        navigationController?.pushViewController(goodsAlbumController, animated: true)
     }
 }
 
 // MARK: - Getters and Setters
-extension GoodsCollectionController {
+extension GoodsAlbumCollectionController {
     fileprivate var goodsAlbumCollectionView: UICollectionView {
         if _goodsAlbumCollectionView == nil {
             let goodsAlbumCollectionFlowLayout = GoodsAlbumCollectionFlowLayout()

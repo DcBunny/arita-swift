@@ -118,9 +118,11 @@
 		FD46AAF31F8F11D300CCB603 /* GoodsNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */; };
 		FD46AAF51F8F423B00CCB603 /* GoodsHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF41F8F423B00CCB603 /* GoodsHomeHeaderView.swift */; };
 		FD46AAF71F8F644000CCB603 /* GoodsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF61F8F644000CCB603 /* GoodsCategoryCell.swift */; };
-		FD46AAFB1F8F7C4600CCB603 /* GoodsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAFA1F8F7C4600CCB603 /* GoodsCollectionController.swift */; };
+		FD46AAFB1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAFA1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift */; };
 		FD46AAFE1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAFD1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift */; };
 		FD46AB001F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAFF1F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift */; };
+		FD46AB021F8F924E00CCB603 /* GoodsAlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AB011F8F924E00CCB603 /* GoodsAlbumController.swift */; };
+		FD46AB041F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AB031F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -240,9 +242,11 @@
 		FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsNormalCell.swift; sourceTree = "<group>"; };
 		FD46AAF41F8F423B00CCB603 /* GoodsHomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsHomeHeaderView.swift; sourceTree = "<group>"; };
 		FD46AAF61F8F644000CCB603 /* GoodsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCategoryCell.swift; sourceTree = "<group>"; };
-		FD46AAFA1F8F7C4600CCB603 /* GoodsCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCollectionController.swift; sourceTree = "<group>"; };
+		FD46AAFA1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumCollectionController.swift; sourceTree = "<group>"; };
 		FD46AAFD1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		FD46AAFF1F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		FD46AB011F8F924E00CCB603 /* GoodsAlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumController.swift; sourceTree = "<group>"; };
+		FD46AB031F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumCollectionReusableView.swift; sourceTree = "<group>"; };
 		FD5BBEA01F68D1A3002D8146 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -925,7 +929,8 @@
 		FD46AAF91F8F7C1100CCB603 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FD46AAFA1F8F7C4600CCB603 /* GoodsCollectionController.swift */,
+				FD46AAFA1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift */,
+				FD46AB011F8F924E00CCB603 /* GoodsAlbumController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -935,6 +940,7 @@
 			children = (
 				FD46AAFD1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift */,
 				FD46AAFF1F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift */,
+				FD46AB031F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1130,6 +1136,7 @@
 				C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */,
 				C1D535221F7BBFE100376686 /* CategoryCollectionController.swift in Sources */,
 				C12509CD1F6912A8006ED55E /* ONDigest.swift in Sources */,
+				FD46AB041F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift in Sources */,
 				C12509FB1F691F78006ED55E /* StorageKind.swift in Sources */,
 				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
 				C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */,
@@ -1144,6 +1151,7 @@
 				C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */,
 				C1C690001F8B4B59008B6054 /* ArticleCollectionController.swift in Sources */,
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
+				FD46AB021F8F924E00CCB603 /* GoodsAlbumController.swift in Sources */,
 				C1BCD4FB1F8CA20F0022C4F7 /* TataArticleModel.swift in Sources */,
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
 				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
@@ -1176,7 +1184,7 @@
 				C1250A061F691F78006ED55E /* StorageAware.swift in Sources */,
 				C12509D51F6912A8006ED55E /* UIDevice+Extension.swift in Sources */,
 				C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */,
-				FD46AAFB1F8F7C4600CCB603 /* GoodsCollectionController.swift in Sources */,
+				FD46AAFB1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift in Sources */,
 				C1C690021F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift in Sources */,
 				C1250A071F691F78006ED55E /* StorageFactory.swift in Sources */,
 				C14A61AC1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift in Sources */,

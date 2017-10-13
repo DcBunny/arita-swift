@@ -56,10 +56,6 @@ class GoodsHomeController: BaseController
         tableView.dataSource = self
     }
     
-    // MARK: - Controller Attributes
-    fileprivate var _tableView: UITableView?
-    fileprivate var _categoryButton: UIButton?
-    
     // MARK: - Event Response
     @objc private func searchGoods() {
         
@@ -72,6 +68,10 @@ class GoodsHomeController: BaseController
     @objc fileprivate func gotoCategory() {
         
     }
+    
+    // MARK: - Controller Attributes
+    fileprivate var _tableView: UITableView?
+    fileprivate var _categoryButton: UIButton?
 }
 
 extension GoodsHomeController: UITableViewDataSource {
@@ -99,10 +99,6 @@ extension GoodsHomeController: UITableViewDataSource {
         return (10 + (UIScreen.main.bounds.width - 20) * 2 / 3 + 20 + 20 + 20 + ((Size.screenWidth - 60) / 3) * 3 + 20 + 20)
     }
     
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 0.001
-//    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = GoodsHomeHeaderView(reuseIdentifier: String(describing: GoodsHomeHeaderView.self))
         headerView.albumButton.addTarget(self, action: #selector(gotoGoodsAlbum), for: .touchUpInside)
@@ -112,7 +108,7 @@ extension GoodsHomeController: UITableViewDataSource {
     }
     
     @objc private func gotoGoodsAlbum() {
-        let goodsAlbumCollection = GoodsCollectionController(with: "专题")
+        let goodsAlbumCollection = GoodsAlbumCollectionController(with: "专题")
         goodsAlbumCollection.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(goodsAlbumCollection, animated: true)
     }
