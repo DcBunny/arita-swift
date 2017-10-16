@@ -85,10 +85,10 @@ class GoodsHomeHeaderView: UITableViewHeaderFooterView {
     // MARK: - Controller Attributes
     fileprivate var _albumImage: UIImageView?
     fileprivate var _albumButton: UIButton?
-    fileprivate var _splitLine: UIView?
+    fileprivate var _splitLine: UIImageView?
     fileprivate var _categoryView: UIView?
     fileprivate var _categoryCollection: UICollectionView?
-    fileprivate var _bottomSplitLine: UIView?
+    fileprivate var _bottomSplitLine: UIImageView?
 }
 
 // MARK: - UICollecitonView Data Source
@@ -140,10 +140,10 @@ extension GoodsHomeHeaderView {
         return _albumButton!
     }
     
-    fileprivate var splitLine: UIView {
+    fileprivate var splitLine: UIImageView {
         if _bottomSplitLine == nil {
-            _bottomSplitLine = UIView()
-            _bottomSplitLine?.backgroundColor = UIColor.black
+            _bottomSplitLine = UIImageView()
+            _bottomSplitLine?.image = UIImage(named: Icon.dottedLine)
         }
         
         return _bottomSplitLine!
@@ -179,10 +179,10 @@ extension GoodsHomeHeaderView {
         return _categoryCollection!
     }
     
-    fileprivate var bottomSplitLine: UIView {
+    fileprivate var bottomSplitLine: UIImageView {
         if _splitLine == nil {
-            _splitLine = UIView()
-            _splitLine?.backgroundColor = UIColor.black
+            _splitLine = UIImageView()
+            _splitLine?.image = UIImage(named: Icon.dottedLine)
         }
         
         return _splitLine!
