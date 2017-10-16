@@ -72,9 +72,11 @@ extension GoodsAlbumController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        if kind == UICollectionElementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: GoodsAlbumCollectionReusableView.self), for: indexPath)
-            
-            return header
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: GoodsAlbumCollectionReusableView.self), for: indexPath) as! GoodsAlbumCollectionReusableView
+        header.imageUrl = "123"
+        header.contentString = "不管一款产品在设计、研发阶段经历了怎样的反复测试、精心打磨、耗费了多少人力物力，它总要一点或者简单或者隆重的仪式感，以合适的姿态亮相。它总要一点或者简单或者隆重的仪式感，它总要一点或者简单或者隆重的仪式感"
+        
+        return header
 //        }
     }
 }
@@ -88,17 +90,16 @@ extension GoodsAlbumController: UICollectionViewDelegate {
     }
 }
 
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return (10 + (UIScreen.main.bounds.width - 20) * 2 / 3 + 20 + 20 + 20 + ((Size.screenWidth - 60) / 3) * 3 + 20 + 20)
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = GoodsHomeHeaderView(reuseIdentifier: String(describing: GoodsHomeHeaderView.self))
-//        headerView.albumButton.addTarget(self, action: #selector(gotoGoodsAlbum), for: .touchUpInside)
-//        headerView.imageUrl = "123"
-//
-//        return headerView
-//    }
+// MARK: - UICollectionViewDelegateFlowLayout
+extension GoodsAlbumController: UICollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let headerString = "不管一款产品在设计、研发阶段经历了怎样的反复测试、精心打磨、耗费了多少人力物力，它总要一点或者简单或者隆重的仪式感，以合适的姿态亮相。它总要一点或者简单或者隆重的仪式感，它总要一点或者简单或者隆重的仪式感"
+        let contentSize = headerString.sizeForFont(Font.size13!, size: CGSize(width: Size.screenWidth - 50, height: CGFloat(MAXFLOAT)), lineBreakMode: .byWordWrapping)
+        let headerHeight = 5 + (Size.screenWidth - 20) * 2 / 3 + 15 + 20 + 10 + contentSize.height
+        
+        return CGSize(width: Size.screenWidth, height: headerHeight)
+    }
+}
 
 // MARK: - Getters and Setters
 extension GoodsAlbumController {
@@ -110,8 +111,6 @@ extension GoodsAlbumController {
             flowLayout.minimumLineSpacing = 5
             flowLayout.minimumInteritemSpacing = 5
             flowLayout.itemSize = CGSize(width: ((Size.screenWidth - 25) / 2), height: 275)
-            let headerHeight = 5 + (Size.screenWidth - 20) * 2 / 3 + 15 + 20 + 10 + 50
-            flowLayout.headerReferenceSize = CGSize(width: Size.screenWidth, height: 275)
             _collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
             _collectionView?.register(GoodsGridCell.self, forCellWithReuseIdentifier: String(describing: GoodsGridCell.self))
             _collectionView?.showsVerticalScrollIndicator = false

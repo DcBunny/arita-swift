@@ -31,9 +31,8 @@ class GoodsAlbumCollectionReusableView: UICollectionReusableView {
     private func layoutHeaderViews() {
         bgView.snp.makeConstraints { (make) in
             make.top.equalTo(self).offset(5)
-            make.left.equalTo(self).offset(10)
+            make.left.right.equalTo(self)
             make.bottom.equalTo(self).offset(-10)
-            make.right.equalTo(self).offset(-10)
         }
         
         albumImage.snp.makeConstraints { (make) in
@@ -42,7 +41,7 @@ class GoodsAlbumCollectionReusableView: UICollectionReusableView {
         }
         
         contentLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(albumImage).offset(15)
+            make.top.equalTo(albumImage.snp.bottom).offset(15)
             make.left.equalTo(albumImage).offset(15)
             make.right.equalTo(albumImage).offset(-15)
             make.bottom.equalTo(bgView).offset(-20)
@@ -53,6 +52,12 @@ class GoodsAlbumCollectionReusableView: UICollectionReusableView {
     public var imageUrl: String? = "" {
         didSet {
             albumImage.backgroundColor = UIColor.green
+        }
+    }
+    
+    public var contentString: String? = "" {
+        didSet {
+            contentLabel.text = contentString
         }
     }
     
@@ -87,8 +92,11 @@ extension GoodsAlbumCollectionReusableView {
     fileprivate var contentLabel: UILabel {
         if _contentLabel == nil {
             _contentLabel = UILabel()
+            _contentLabel?.font = Font.size13
+            _contentLabel?.textColor = Color.hex4a4a4a
             _contentLabel?.textAlignment = .left
             _contentLabel?.numberOfLines = 5
+            _contentLabel?.lineBreakMode = .byWordWrapping
             
             return _contentLabel!
         }
