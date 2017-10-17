@@ -103,6 +103,7 @@ extension GoodsHomeController: UITableViewDataSource {
         let headerView = GoodsHomeHeaderView(reuseIdentifier: String(describing: GoodsHomeHeaderView.self))
         headerView.albumButton.addTarget(self, action: #selector(gotoGoodsAlbum), for: .touchUpInside)
         headerView.imageUrl = "123"
+        headerView.delegate = self
         
         return headerView
     }
@@ -116,6 +117,15 @@ extension GoodsHomeController: UITableViewDataSource {
 
 extension GoodsHomeController: UITableViewDelegate {
     
+}
+
+// MARK: - GoodsHomeHeaderDelegate
+extension GoodsHomeController: GoodsHomeHeaderDelegate {
+    func category(disSelectAt indexPath: IndexPath) {
+        let category = CategoryController(with: "分类名")
+        category.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(category, animated: true)
+    }
 }
 
 // MARK: - Getters and Setters

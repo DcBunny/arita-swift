@@ -110,4 +110,3 @@ extension GoodsAlbumCollectionController {
         return _goodsAlbumCollectionView!
     }
 }
-

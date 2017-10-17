@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol GoodsHomeHeaderDelegate: class {
+    func category(disSelectAt indexPath: IndexPath)
+}
+
 class GoodsHomeHeaderView: UITableViewHeaderFooterView {
+    
+    weak var delegate: GoodsHomeHeaderDelegate?
 
     // MARK: - Init Methods
     override init(reuseIdentifier: String?) {
@@ -113,9 +119,7 @@ extension GoodsHomeHeaderView: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension GoodsHomeHeaderView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ShareCollectionCell.self), for: indexPath) as! ShareCollectionCell
-        //        guard let shareType = cell.shareType else { return }
-        //        ShareTool.sharedInstance.shareWith(content: nil, to: shareType)
+        delegate?.category(disSelectAt: indexPath)
     }
 }
 

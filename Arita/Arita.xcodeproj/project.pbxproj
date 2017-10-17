@@ -113,6 +113,7 @@
 		C1F17BBF1F6937F3001153BA /* ArticleHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BBE1F6937F3001153BA /* ArticleHomeController.swift */; };
 		C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC01F693825001153BA /* GoodsHomeController.swift */; };
 		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
+		FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2748A81F959EBC0056F8C4 /* CategoryController.swift */; };
 		FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */; };
 		FD46AAF11F8E2B5600CCB603 /* GoodsGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */; };
 		FD46AAF31F8F11D300CCB603 /* GoodsNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */; };
@@ -237,6 +238,7 @@
 		C1F17BC01F693825001153BA /* GoodsHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsHomeController.swift; sourceTree = "<group>"; };
 		C1F17BC21F69382E001153BA /* MineHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineHomeController.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
+		FD2748A81F959EBC0056F8C4 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods4GridCell.swift; sourceTree = "<group>"; };
 		FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsGridCell.swift; sourceTree = "<group>"; };
 		FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsNormalCell.swift; sourceTree = "<group>"; };
@@ -896,6 +898,7 @@
 			children = (
 				C1D5351B1F7BBF7C00376686 /* HomeList */,
 				FD46AAF81F8F7BAE00CCB603 /* GoodsCollection */,
+				FD2748A51F959E560056F8C4 /* GoodsCategory */,
 			);
 			path = Goods;
 			sourceTree = "<group>";
@@ -915,6 +918,30 @@
 				AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FD2748A51F959E560056F8C4 /* GoodsCategory */ = {
+			isa = PBXGroup;
+			children = (
+				FD2748A61F959E820056F8C4 /* View */,
+				FD2748A71F959E870056F8C4 /* Controller */,
+			);
+			path = GoodsCategory;
+			sourceTree = "<group>";
+		};
+		FD2748A61F959E820056F8C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FD2748A71F959E870056F8C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FD2748A81F959EBC0056F8C4 /* CategoryController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		FD46AAF81F8F7BAE00CCB603 /* GoodsCollection */ = {
@@ -1201,6 +1228,7 @@
 				C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */,
 				C12509F81F691F78006ED55E /* Cachable.swift in Sources */,
 				C12509FC1F691F78006ED55E /* NSData+Cache.swift in Sources */,
+				FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */,
 				C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */,
 				C12509F91F691F78006ED55E /* Capsule.swift in Sources */,
 				C12509991F69079E006ED55E /* ONLogger.swift in Sources */,

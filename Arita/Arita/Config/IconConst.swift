@@ -83,4 +83,5 @@ struct Icon {
     // Goods
     static let likeListIcon = "button_likelist"
     static let dottedLine = "dottedLine"
+    static let menuIcon = "icon_pulldown"
 }

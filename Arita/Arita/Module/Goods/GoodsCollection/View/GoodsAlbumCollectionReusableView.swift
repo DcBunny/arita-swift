@@ -104,4 +104,3 @@ extension GoodsAlbumCollectionReusableView {
         return _contentLabel!
     }
 }
-
