@@ -126,6 +126,7 @@
 		FD46AB041F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AB031F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
+		FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -253,6 +254,7 @@
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD5BBEAF1F68D1A3002D8146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -932,6 +934,7 @@
 		FD2748A61F959E820056F8C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1178,6 +1181,7 @@
 				C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */,
 				C1C690001F8B4B59008B6054 /* ArticleCollectionController.swift in Sources */,
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
+				FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */,
 				FD46AB021F8F924E00CCB603 /* GoodsAlbumController.swift in Sources */,
 				C1BCD4FB1F8CA20F0022C4F7 /* TataArticleModel.swift in Sources */,
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,

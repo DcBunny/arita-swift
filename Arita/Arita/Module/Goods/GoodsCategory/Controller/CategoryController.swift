@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class CategoryController: BaseController {
 
@@ -18,6 +19,9 @@ class CategoryController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        
+        categoryTableHeightConstraint?.update(offset: 120)
+        priceTableHeightConstraint?.update(offset: 200)
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,6 +53,8 @@ class CategoryController: BaseController {
         menuView.addSubview(rightArrow)
         menuView.addSubview(leftButton)
         menuView.addSubview(rightButton)
+        view.addSubview(categoryTable)
+        view.addSubview(priceTable)
     }
     
     private func layoutPageViews() {
@@ -88,19 +94,44 @@ class CategoryController: BaseController {
             make.left.equalTo(menuView.snp.centerX)
             make.top.right.bottom.equalTo(menuView)
         }
+        
+        categoryTable.snp.makeConstraints { (make) in
+            make.top.equalTo(menuView.snp.bottom)
+            make.left.equalTo(view).offset(6)
+            make.right.equalTo(view.snp.centerX)
+            categoryTableHeightConstraint = make.height.equalTo(0).constraint
+        }
+        
+        priceTable.snp.makeConstraints { (make) in
+            make.top.equalTo(menuView.snp.bottom)
+            make.right.equalTo(view).offset(-6)
+            make.left.equalTo(view.snp.centerX)
+            priceTableHeightConstraint = make.height.equalTo(0).constraint
+        }
     }
     
     private func setPageViews() {
-        leftButton.addTarget(self, action: #selector(changeMenuOption(_:)), for: .touchUpInside)
-        rightButton.addTarget(self, action: #selector(changeMenuOption(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(changeMenuOption), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(changeMenuOption), for: .touchUpInside)
+        
+        categoryTable.dataSource = self
+        categoryTable.delegate = self
+        priceTable.dataSource = self
+        priceTable.delegate = self
     }
     
     // MARK: - Event Responses
     @objc private func changeMenuOption(sender: UIButton) {
         if sender == leftButton {
-            print("left")
+            if !priceTable.isHidden {
+                priceTable.isHidden = true
+            }
+            categoryTable.isHidden = !categoryTable.isHidden
         } else {
-            print("right")
+            if !categoryTable.isHidden {
+                categoryTable.isHidden = true
+            }
+            priceTable.isHidden = !priceTable.isHidden
         }
     }
     
@@ -117,6 +148,12 @@ class CategoryController: BaseController {
     fileprivate var _rightArrow: UIImageView?
     fileprivate var _rightButton: UIButton?
     
+    fileprivate var _categoryTable: UITableView?
+    fileprivate var _priceTable: UITableView?
+    
+    fileprivate var categoryTableHeightConstraint: Constraint? = nil
+    fileprivate var priceTableHeightConstraint: Constraint? = nil
+    
     let categorys = ["全部", "笔记本", "台式"]
     let prices = ["全部", "0~1000", "1000~2000", "2000~3000", "3000~4000"]
 }
@@ -124,7 +161,7 @@ class CategoryController: BaseController {
 // MARK: - UITableViewDataSource
 extension CategoryController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView.tag == 0 {
+        if tableView == categoryTable {
             return 3
         } else {
             return 5
@@ -132,15 +169,15 @@ extension CategoryController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView.tag == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "xxx", for: indexPath) as! ArticleHomeTataCell
-//            cell.textLabel?.text = categorys[indexPath.row]
-//            cell.tintColor = Color.hex4a4a4a
+        if tableView == categoryTable {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MenuOptionCell.self), for: indexPath) as! MenuOptionCell
+            cell.titleText = categorys[indexPath.row]
+            
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "xxx", for: indexPath) as! ArticleHomeTataCell
-//            cell.textLabel?.text = prices[indexPath.row]
-//            cell.tintColor = Color.hex4a4a4a
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MenuOptionCell.self), for: indexPath) as! MenuOptionCell
+            cell.titleText = prices[indexPath.row]
+            
             return cell
         }
     }
@@ -148,7 +185,6 @@ extension CategoryController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension CategoryController: UITableViewDelegate {
-    
 }
 
 // MARK: - Getters and Setters
@@ -218,5 +254,33 @@ extension CategoryController {
         }
         
         return _rightButton!
+    }
+    
+    fileprivate var categoryTable: UITableView {
+        if _categoryTable == nil {
+            _categoryTable = UITableView(frame: .zero, style: UITableViewStyle.plain)
+            _categoryTable?.backgroundColor = UIColor.white
+            _categoryTable?.showsVerticalScrollIndicator = false
+            _categoryTable?.register(MenuOptionCell.self, forCellReuseIdentifier: String(describing: MenuOptionCell.self))
+            _categoryTable?.rowHeight = 40
+            _categoryTable?.separatorStyle = .none
+            _categoryTable?.isHidden = true
+        }
+        
+        return _categoryTable!
+    }
+    
+    fileprivate var priceTable: UITableView {
+        if _priceTable == nil {
+            _priceTable = UITableView(frame: .zero, style: UITableViewStyle.plain)
+            _priceTable?.backgroundColor = UIColor.white
+            _priceTable?.showsVerticalScrollIndicator = false
+            _priceTable?.register(MenuOptionCell.self, forCellReuseIdentifier: String(describing: MenuOptionCell.self))
+            _priceTable?.rowHeight = 40
+            _priceTable?.separatorStyle = .none
+            _priceTable?.isHidden = true
+        }
+        
+        return _priceTable!
     }
 }
