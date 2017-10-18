@@ -37,7 +37,7 @@ class GoodsHomeController: BaseController
     
     private func addPageViews() {
         view.addSubview(tableView)
-        view.addSubview(categoryButton)
+        view.addSubview(likeButton)
     }
     
     private func layoutPageViews() {
@@ -45,7 +45,7 @@ class GoodsHomeController: BaseController
             make.edges.equalTo(view)
         }
         
-        categoryButton.snp.makeConstraints { (make) in
+        likeButton.snp.makeConstraints { (make) in
             make.size.equalTo(CGSize(width: 44, height: 44))
             make.right.bottom.equalTo(view).offset(-15)
         }
@@ -58,20 +58,22 @@ class GoodsHomeController: BaseController
     
     // MARK: - Event Response
     @objc private func searchGoods() {
-        
+        let search = GoodsSearchController()
+        search.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(search, animated: true)
     }
     
     @objc private func gotoMine() {
         
     }
     
-    @objc fileprivate func gotoCategory() {
+    @objc fileprivate func gotoLike() {
         
     }
     
     // MARK: - Controller Attributes
     fileprivate var _tableView: UITableView?
-    fileprivate var _categoryButton: UIButton?
+    fileprivate var _likeButton: UIButton?
 }
 
 extension GoodsHomeController: UITableViewDataSource {
@@ -151,16 +153,14 @@ extension GoodsHomeController {
         return _tableView!
     }
     
-    fileprivate var categoryButton: UIButton {
-        if _categoryButton == nil {
-            _categoryButton = UIButton()
-            _categoryButton?.setImage(UIImage(named: Icon.likeListIcon), for: .normal)
-            _categoryButton?.setImage(UIImage(named: Icon.likeListIcon), for: .highlighted)
-            _categoryButton?.addTarget(self, action: #selector(gotoCategory), for: .touchUpInside)
-            
-            return _categoryButton!
+    fileprivate var likeButton: UIButton {
+        if _likeButton == nil {
+            _likeButton = UIButton()
+            _likeButton?.setImage(UIImage(named: Icon.likeListIcon), for: .normal)
+            _likeButton?.setImage(UIImage(named: Icon.likeListIcon), for: .highlighted)
+            _likeButton?.addTarget(self, action: #selector(gotoLike), for: .touchUpInside)
         }
         
-        return _categoryButton!
+        return _likeButton!
     }
 }

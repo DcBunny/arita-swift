@@ -128,6 +128,7 @@
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
 		FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */; };
 		FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941041F96FA5900F8ED10 /* GoodsCell.swift */; };
+		FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -257,6 +258,7 @@
 		FD5BBEAF1F68D1A3002D8146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		FDC941041F96FA5900F8ED10 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
+		FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSearchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -903,6 +905,7 @@
 				C1D5351B1F7BBF7C00376686 /* HomeList */,
 				FD46AAF81F8F7BAE00CCB603 /* GoodsCollection */,
 				FD2748A51F959E560056F8C4 /* GoodsCategory */,
+				FDC941061F97252400F8ED10 /* GoodsSearch */,
 			);
 			path = Goods;
 			sourceTree = "<group>";
@@ -1007,6 +1010,30 @@
 				C12509631F6905F9006ED55E /* Networking */,
 			);
 			path = Arita;
+			sourceTree = "<group>";
+		};
+		FDC941061F97252400F8ED10 /* GoodsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				FDC941081F97255500F8ED10 /* View */,
+				FDC941071F97254E00F8ED10 /* Controller */,
+			);
+			path = GoodsSearch;
+			sourceTree = "<group>";
+		};
+		FDC941071F97254E00F8ED10 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FDC941081F97255500F8ED10 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1179,6 +1206,7 @@
 				FD46AAF11F8E2B5600CCB603 /* GoodsGridCell.swift in Sources */,
 				C1F17BB01F692766001153BA /* GuideController.swift in Sources */,
 				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
+				FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
 				C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */,
 				C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */,

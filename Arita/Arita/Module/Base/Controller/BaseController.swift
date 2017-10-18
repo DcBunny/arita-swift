@@ -266,7 +266,11 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
      */
     public func setNaviRightTextBtn(_ text: String, action: Selector) {
         let barBtnItem = UIBarButtonItem(title: text, style: .plain, target: self, action: action)
-        barBtnItem.isEnabled = false
+        let textAttributs = [NSFontAttributeName: Font.size13!,
+                             NSForegroundColorAttributeName: Color.hex4a4a4a!]
+        barBtnItem.setTitleTextAttributes(textAttributs, for: .normal)
+        barBtnItem.setTitleTextAttributes(textAttributs, for: .highlighted)
+
         let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         negativeSpacer.width = -10
         navigationItem.rightBarButtonItems = [barBtnItem, negativeSpacer]
