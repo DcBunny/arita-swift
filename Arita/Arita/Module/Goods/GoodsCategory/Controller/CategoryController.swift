@@ -53,6 +53,7 @@ class CategoryController: BaseController {
         menuView.addSubview(rightArrow)
         menuView.addSubview(leftButton)
         menuView.addSubview(rightButton)
+        view.addSubview(goodsTable)
         view.addSubview(categoryTable)
         view.addSubview(priceTable)
     }
@@ -95,6 +96,11 @@ class CategoryController: BaseController {
             make.top.right.bottom.equalTo(menuView)
         }
         
+        goodsTable.snp.makeConstraints { (make) in
+            make.top.equalTo(menuView.snp.bottom)
+            make.left.right.bottom.equalTo(view)
+        }
+        
         categoryTable.snp.makeConstraints { (make) in
             make.top.equalTo(menuView.snp.bottom)
             make.left.equalTo(view).offset(6)
@@ -118,6 +124,9 @@ class CategoryController: BaseController {
         categoryTable.delegate = self
         priceTable.dataSource = self
         priceTable.delegate = self
+        
+        goodsTable.dataSource = self
+        goodsTable.delegate = self
     }
     
     // MARK: - Event Responses
@@ -154,6 +163,8 @@ class CategoryController: BaseController {
     fileprivate var categoryTableHeightConstraint: Constraint? = nil
     fileprivate var priceTableHeightConstraint: Constraint? = nil
     
+    fileprivate var _goodsTable: UITableView?
+    
     let categorys = ["全部", "笔记本", "台式"]
     let prices = ["全部", "0~1000", "1000~2000", "2000~3000", "3000~4000"]
 }
@@ -161,7 +172,9 @@ class CategoryController: BaseController {
 // MARK: - UITableViewDataSource
 extension CategoryController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == categoryTable {
+        if tableView == goodsTable {
+            return 6
+        } else if tableView == categoryTable {
             return 3
         } else {
             return 5
@@ -169,7 +182,13 @@ extension CategoryController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == categoryTable {
+        if tableView == goodsTable {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GoodsCell.self), for: indexPath) as! GoodsCell
+            cell.picUrl = ""
+            
+            return cell
+            
+        } else if tableView == categoryTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MenuOptionCell.self), for: indexPath) as! MenuOptionCell
             cell.titleText = categorys[indexPath.row]
             
@@ -282,5 +301,19 @@ extension CategoryController {
         }
         
         return _priceTable!
+    }
+    
+    fileprivate var goodsTable: UITableView {
+        if _goodsTable == nil {
+            _goodsTable = UITableView(frame: .zero, style: UITableViewStyle.plain)
+            _goodsTable?.backgroundColor = UIColor.white
+            _goodsTable?.showsVerticalScrollIndicator = false
+            _goodsTable?.register(GoodsCell.self, forCellReuseIdentifier: String(describing: GoodsCell.self))
+            _goodsTable?.estimatedRowHeight = 110
+            _goodsTable?.rowHeight = UITableViewAutomaticDimension
+            _goodsTable?.separatorStyle = .none
+        }
+        
+        return _goodsTable!
     }
 }
