@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import MJRefresh
 
 class CategoryController: BaseController {
 
@@ -312,6 +313,9 @@ extension CategoryController {
             _goodsTable?.estimatedRowHeight = 110
             _goodsTable?.rowHeight = UITableViewAutomaticDimension
             _goodsTable?.separatorStyle = .none
+            _goodsTable?.backgroundColor = UIColor.clear
+            _goodsTable?.mj_header = MJRefreshNormalHeader()
+            _goodsTable?.mj_footer = MJRefreshAutoNormalFooter()
         }
         
         return _goodsTable!
