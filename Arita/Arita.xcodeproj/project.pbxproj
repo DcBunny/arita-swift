@@ -126,6 +126,10 @@
 		FD46AB041F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AB031F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
+		FD74AF6E1F987FFE00938B06 /* GoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF6D1F987FFE00938B06 /* GoodsController.swift */; };
+		FD74AF731F9884FA00938B06 /* WRCycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF701F9884F000938B06 /* WRCycleCell.swift */; };
+		FD74AF741F9884FD00938B06 /* WRCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF711F9884F000938B06 /* WRCycleScrollView.swift */; };
+		FD74AF751F9884FF00938B06 /* WRProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF721F9884F000938B06 /* WRProxy.swift */; };
 		FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */; };
 		FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941041F96FA5900F8ED10 /* GoodsCell.swift */; };
 		FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */; };
@@ -256,6 +260,10 @@
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD5BBEAF1F68D1A3002D8146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD74AF6D1F987FFE00938B06 /* GoodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsController.swift; sourceTree = "<group>"; };
+		FD74AF701F9884F000938B06 /* WRCycleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRCycleCell.swift; sourceTree = "<group>"; };
+		FD74AF711F9884F000938B06 /* WRCycleScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRCycleScrollView.swift; sourceTree = "<group>"; };
+		FD74AF721F9884F000938B06 /* WRProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRProxy.swift; sourceTree = "<group>"; };
 		FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		FDC941041F96FA5900F8ED10 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSearchController.swift; sourceTree = "<group>"; };
@@ -381,6 +389,7 @@
 		C12509671F69066F006ED55E /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FD74AF6F1F9884F000938B06 /* WRCycleScrollView */,
 				C12509DD1F691F49006ED55E /* Cache */,
 			);
 			path = Vendor;
@@ -905,6 +914,7 @@
 				C1D5351B1F7BBF7C00376686 /* HomeList */,
 				FD46AAF81F8F7BAE00CCB603 /* GoodsCollection */,
 				FD2748A51F959E560056F8C4 /* GoodsCategory */,
+				FD74AF6A1F987F7000938B06 /* GoodsController */,
 				FDC941061F97252400F8ED10 /* GoodsSearch */,
 			);
 			path = Goods;
@@ -1010,6 +1020,40 @@
 				C12509631F6905F9006ED55E /* Networking */,
 			);
 			path = Arita;
+			sourceTree = "<group>";
+		};
+		FD74AF6A1F987F7000938B06 /* GoodsController */ = {
+			isa = PBXGroup;
+			children = (
+				FD74AF6C1F987FA100938B06 /* View */,
+				FD74AF6B1F987F9000938B06 /* Controller */,
+			);
+			path = GoodsController;
+			sourceTree = "<group>";
+		};
+		FD74AF6B1F987F9000938B06 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FD74AF6D1F987FFE00938B06 /* GoodsController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FD74AF6C1F987FA100938B06 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FD74AF6F1F9884F000938B06 /* WRCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				FD74AF701F9884F000938B06 /* WRCycleCell.swift */,
+				FD74AF711F9884F000938B06 /* WRCycleScrollView.swift */,
+				FD74AF721F9884F000938B06 /* WRProxy.swift */,
+			);
+			path = WRCycleScrollView;
 			sourceTree = "<group>";
 		};
 		FDC941061F97252400F8ED10 /* GoodsSearch */ = {
@@ -1198,6 +1242,7 @@
 				FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */,
 				C12509CD1F6912A8006ED55E /* ONDigest.swift in Sources */,
 				FD46AB041F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift in Sources */,
+				FD74AF6E1F987FFE00938B06 /* GoodsController.swift in Sources */,
 				C12509FB1F691F78006ED55E /* StorageKind.swift in Sources */,
 				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
 				C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */,
@@ -1248,7 +1293,9 @@
 				C12509D51F6912A8006ED55E /* UIDevice+Extension.swift in Sources */,
 				C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */,
 				FD46AAFB1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift in Sources */,
+				FD74AF751F9884FF00938B06 /* WRProxy.swift in Sources */,
 				C1C690021F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift in Sources */,
+				FD74AF741F9884FD00938B06 /* WRCycleScrollView.swift in Sources */,
 				C1250A071F691F78006ED55E /* StorageFactory.swift in Sources */,
 				C14A61AC1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift in Sources */,
 				C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */,
@@ -1262,6 +1309,7 @@
 				C1F17BB81F6934D0001153BA /* RootController.swift in Sources */,
 				C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */,
 				C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */,
+				FD74AF731F9884FA00938B06 /* WRCycleCell.swift in Sources */,
 				C12509F81F691F78006ED55E /* Cachable.swift in Sources */,
 				C12509FC1F691F78006ED55E /* NSData+Cache.swift in Sources */,
 				FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */,

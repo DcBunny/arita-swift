@@ -118,7 +118,11 @@ extension GoodsHomeController: UITableViewDataSource {
 }
 
 extension GoodsHomeController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let good = GoodsController()
+        good.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(good, animated: true)
+    }
 }
 
 // MARK: - GoodsHomeHeaderDelegate
