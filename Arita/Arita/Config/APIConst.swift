@@ -15,10 +15,10 @@ import Foundation
  */
 
 struct API {
-    static let offlineApiBaseUrl = "http://183.230.40.213:50070"
-    static let offlineApiCommonPath = "hewu"
-    static let offlineApiVersion = "v2"
-    static let onlineApiBaseUrl = "http://appapi.heclouds.com"
-    static let onlineApiCommonPath = "hewu"
-    static let onlineApiVersion = "2.0"
+    static let offlineApiBaseUrl = "http://test.arita.cc"
+    static let offlineApiCommonPath = "ios"
+    static let offlineApiVersion = ""
+    static let onlineApiBaseUrl = "http://test.arita.cc"
+    static let onlineApiCommonPath = "ios"
+    static let onlineApiVersion = ""
 }

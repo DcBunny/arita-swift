@@ -133,6 +133,7 @@
 		FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */; };
 		FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941041F96FA5900F8ED10 /* GoodsCell.swift */; };
 		FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */; };
+		FDCF46BC1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -267,6 +268,7 @@
 		FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		FDC941041F96FA5900F8ED10 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSearchController.swift; sourceTree = "<group>"; };
+		FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestGoodsAlbumManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -426,6 +428,7 @@
 		C125096B1F690720006ED55E /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				FDCF46BA1F9DC41600F3A894 /* Goods */,
 				C1250A081F69209D006ED55E /* Login&Register */,
 			);
 			path = APIManager;
@@ -1080,6 +1083,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		FDCF46BA1F9DC41600F3A894 /* Goods */ = {
+			isa = PBXGroup;
+			children = (
+				FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */,
+			);
+			path = Goods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1214,6 +1225,7 @@
 				C12509DC1F691F23006ED55E /* UserCacheManager.swift in Sources */,
 				C14A61AE1F6BB4EF005A1E65 /* JGGGridView.swift in Sources */,
 				C12509901F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift in Sources */,
+				FDCF46BC1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift in Sources */,
 				C12509CC1F6912A8006ED55E /* Data+ONCrypt.swift in Sources */,
 				C125099B1F69079E006ED55E /* ONAppConfiguration.swift in Sources */,
 				C12509FD1F691F78006ED55E /* NSDate+Cache.swift in Sources */,

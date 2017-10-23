@@ -8,6 +8,7 @@
 
 import UIKit
 import MJRefresh
+import SwiftyJSON
 
 /**
  GoodsHomeController **良品**页主页
@@ -21,6 +22,8 @@ class GoodsHomeController: BaseController
         addPageViews()
         layoutPageViews()
         setPageViews()
+        setAPIManager()
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,6 +59,15 @@ class GoodsHomeController: BaseController
         tableView.dataSource = self
     }
     
+    private func setAPIManager() {
+        latestGoodsAlbumManager.paramSource = self
+        latestGoodsAlbumManager.delegate = self
+    }
+    
+    private func loadData() {
+        latestGoodsAlbumManager.loadData()
+    }
+    
     // MARK: - Event Response
     @objc private func searchGoods() {
         let search = GoodsSearchController()
@@ -74,6 +86,8 @@ class GoodsHomeController: BaseController
     // MARK: - Controller Attributes
     fileprivate var _tableView: UITableView?
     fileprivate var _likeButton: UIButton?
+    
+    fileprivate var _latestGoodsAlbumManager: LatestGoodsAlbumManager?
 }
 
 extension GoodsHomeController: UITableViewDataSource {
@@ -134,6 +148,37 @@ extension GoodsHomeController: GoodsHomeHeaderDelegate {
     }
 }
 
+// MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
+extension GoodsHomeController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return ["timestamp": 0, "albumNum": 1]
+    }
+}
+
+extension GoodsHomeController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+//        tableView.mj_header.endRefreshing()
+//        tableView.mj_footer.endRefreshing()
+//        self.dismissONLoadingView()
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data)
+        print(json)
+        
+//        tableView.reloadData()
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+//        tableView.mj_footer.endRefreshing()
+//        tableView.mj_header.endRefreshing()
+//        self.dismissONLoadingView()
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
+}
+
 // MARK: - Getters and Setters
 extension GoodsHomeController {
     
@@ -166,5 +211,13 @@ extension GoodsHomeController {
         }
         
         return _likeButton!
+    }
+    
+    fileprivate var latestGoodsAlbumManager: LatestGoodsAlbumManager {
+        if _latestGoodsAlbumManager == nil {
+            _latestGoodsAlbumManager = LatestGoodsAlbumManager()
+        }
+        
+        return _latestGoodsAlbumManager!
     }
 }
