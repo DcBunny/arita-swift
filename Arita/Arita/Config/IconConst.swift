@@ -30,6 +30,7 @@ struct Icon {
     static let topCalendar = "top_calendar"
     static let topMine = "top_me"
     static let topTitleLogo = "top_logo"
+    static let topSearch = "top_search"
     
     // Article
     static let comment = "comment_16"
@@ -83,4 +84,13 @@ struct Icon {
     static let class16 = "class16"
     static let class17 = "class17"
     static let class18 = "class18"
+    
+    // Goods
+    static let likeListIcon = "button_likelist"
+    static let dottedLine = "dottedLine"
+    static let menuIcon = "icon_pulldown"
+    static let searchIcon = "icon_search"
+    static let noResultIcon = "pic_searchnothing"
+    static let likeIcon = "like_active"
+    static let buyIcon = "buy"
 }

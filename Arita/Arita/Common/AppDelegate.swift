@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // SetUp RootController
+        ONServiceFactory.sharedInstance.dataSource = self
         chooseRootVC()
         beginMonitorPerformance()
         adaptationIOS11()
@@ -53,6 +54,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+}
+
+// MARK: - 设置API接口工厂方法相关
+extension AppDelegate: ONServiceFactoryDataSource {
+    internal func servicesKindsOfServiceFactory() -> [String : String] {
+        return [kArita: "Arita"]
     }
 }
 

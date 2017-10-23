@@ -31,4 +31,5 @@ struct Color {
     static let hex2a2a2a = UIColor(hex: 0x2a2a2a)
     static let hex40bf2c = UIColor(hex: 0x40bf2c)
     static let hexececec = UIColor(hex: 0xececec)
+    static let hexd3d3d3 = UIColor(hex: 0xd3d3d3)
 }

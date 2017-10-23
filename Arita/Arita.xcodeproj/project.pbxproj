@@ -122,8 +122,27 @@
 		C1F17BBF1F6937F3001153BA /* ArticleHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BBE1F6937F3001153BA /* ArticleHomeController.swift */; };
 		C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC01F693825001153BA /* GoodsHomeController.swift */; };
 		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
+		FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2748A81F959EBC0056F8C4 /* CategoryController.swift */; };
+		FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */; };
+		FD46AAF11F8E2B5600CCB603 /* GoodsGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */; };
+		FD46AAF31F8F11D300CCB603 /* GoodsNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */; };
+		FD46AAF51F8F423B00CCB603 /* GoodsHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF41F8F423B00CCB603 /* GoodsHomeHeaderView.swift */; };
+		FD46AAF71F8F644000CCB603 /* GoodsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF61F8F644000CCB603 /* GoodsCategoryCell.swift */; };
+		FD46AAFB1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAFA1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift */; };
+		FD46AAFE1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAFD1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift */; };
+		FD46AB001F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAFF1F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift */; };
+		FD46AB021F8F924E00CCB603 /* GoodsAlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AB011F8F924E00CCB603 /* GoodsAlbumController.swift */; };
+		FD46AB041F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AB031F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
+		FD74AF6E1F987FFE00938B06 /* GoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF6D1F987FFE00938B06 /* GoodsController.swift */; };
+		FD74AF731F9884FA00938B06 /* WRCycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF701F9884F000938B06 /* WRCycleCell.swift */; };
+		FD74AF741F9884FD00938B06 /* WRCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF711F9884F000938B06 /* WRCycleScrollView.swift */; };
+		FD74AF751F9884FF00938B06 /* WRProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF721F9884F000938B06 /* WRProxy.swift */; };
+		FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */; };
+		FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941041F96FA5900F8ED10 /* GoodsCell.swift */; };
+		FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */; };
+		FDCF46BC1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -246,10 +265,29 @@
 		C1F17BC01F693825001153BA /* GoodsHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsHomeController.swift; sourceTree = "<group>"; };
 		C1F17BC21F69382E001153BA /* MineHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineHomeController.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
+		FD2748A81F959EBC0056F8C4 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
+		FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods4GridCell.swift; sourceTree = "<group>"; };
+		FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsGridCell.swift; sourceTree = "<group>"; };
+		FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsNormalCell.swift; sourceTree = "<group>"; };
+		FD46AAF41F8F423B00CCB603 /* GoodsHomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsHomeHeaderView.swift; sourceTree = "<group>"; };
+		FD46AAF61F8F644000CCB603 /* GoodsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCategoryCell.swift; sourceTree = "<group>"; };
+		FD46AAFA1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumCollectionController.swift; sourceTree = "<group>"; };
+		FD46AAFD1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumCollectionFlowLayout.swift; sourceTree = "<group>"; };
+		FD46AAFF1F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		FD46AB011F8F924E00CCB603 /* GoodsAlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumController.swift; sourceTree = "<group>"; };
+		FD46AB031F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumCollectionReusableView.swift; sourceTree = "<group>"; };
 		FD5BBEA01F68D1A3002D8146 /* Arita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD5BBEAF1F68D1A3002D8146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD74AF6D1F987FFE00938B06 /* GoodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsController.swift; sourceTree = "<group>"; };
+		FD74AF701F9884F000938B06 /* WRCycleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRCycleCell.swift; sourceTree = "<group>"; };
+		FD74AF711F9884F000938B06 /* WRCycleScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRCycleScrollView.swift; sourceTree = "<group>"; };
+		FD74AF721F9884F000938B06 /* WRProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRProxy.swift; sourceTree = "<group>"; };
+		FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
+		FDC941041F96FA5900F8ED10 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
+		FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSearchController.swift; sourceTree = "<group>"; };
+		FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestGoodsAlbumManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +411,7 @@
 		C12509671F69066F006ED55E /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FD74AF6F1F9884F000938B06 /* WRCycleScrollView */,
 				C12509DD1F691F49006ED55E /* Cache */,
 			);
 			path = Vendor;
@@ -409,6 +448,7 @@
 		C125096B1F690720006ED55E /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				FDCF46BA1F9DC41600F3A894 /* Goods */,
 				C1250A081F69209D006ED55E /* Login&Register */,
 			);
 			path = APIManager;
@@ -813,6 +853,11 @@
 		C1D5351D1F7BBF9200376686 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */,
+				FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */,
+				FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */,
+				FD46AAF41F8F423B00CCB603 /* GoodsHomeHeaderView.swift */,
+				FD46AAF61F8F644000CCB603 /* GoodsCategoryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -899,6 +944,10 @@
 			isa = PBXGroup;
 			children = (
 				C1D5351B1F7BBF7C00376686 /* HomeList */,
+				FD46AAF81F8F7BAE00CCB603 /* GoodsCollection */,
+				FD2748A51F959E560056F8C4 /* GoodsCategory */,
+				FD74AF6A1F987F7000938B06 /* GoodsController */,
+				FDC941061F97252400F8ED10 /* GoodsSearch */,
 			);
 			path = Goods;
 			sourceTree = "<group>";
@@ -918,6 +967,60 @@
 				AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FD2748A51F959E560056F8C4 /* GoodsCategory */ = {
+			isa = PBXGroup;
+			children = (
+				FD2748A61F959E820056F8C4 /* View */,
+				FD2748A71F959E870056F8C4 /* Controller */,
+			);
+			path = GoodsCategory;
+			sourceTree = "<group>";
+		};
+		FD2748A61F959E820056F8C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */,
+				FDC941041F96FA5900F8ED10 /* GoodsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FD2748A71F959E870056F8C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FD2748A81F959EBC0056F8C4 /* CategoryController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FD46AAF81F8F7BAE00CCB603 /* GoodsCollection */ = {
+			isa = PBXGroup;
+			children = (
+				FD46AAFC1F8F80A000CCB603 /* View */,
+				FD46AAF91F8F7C1100CCB603 /* Controller */,
+			);
+			path = GoodsCollection;
+			sourceTree = "<group>";
+		};
+		FD46AAF91F8F7C1100CCB603 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FD46AAFA1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift */,
+				FD46AB011F8F924E00CCB603 /* GoodsAlbumController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FD46AAFC1F8F80A000CCB603 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FD46AAFD1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift */,
+				FD46AAFF1F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift */,
+				FD46AB031F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FD5BBE971F68D1A3002D8146 = {
@@ -949,6 +1052,72 @@
 				C12509631F6905F9006ED55E /* Networking */,
 			);
 			path = Arita;
+			sourceTree = "<group>";
+		};
+		FD74AF6A1F987F7000938B06 /* GoodsController */ = {
+			isa = PBXGroup;
+			children = (
+				FD74AF6C1F987FA100938B06 /* View */,
+				FD74AF6B1F987F9000938B06 /* Controller */,
+			);
+			path = GoodsController;
+			sourceTree = "<group>";
+		};
+		FD74AF6B1F987F9000938B06 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FD74AF6D1F987FFE00938B06 /* GoodsController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FD74AF6C1F987FA100938B06 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FD74AF6F1F9884F000938B06 /* WRCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				FD74AF701F9884F000938B06 /* WRCycleCell.swift */,
+				FD74AF711F9884F000938B06 /* WRCycleScrollView.swift */,
+				FD74AF721F9884F000938B06 /* WRProxy.swift */,
+			);
+			path = WRCycleScrollView;
+			sourceTree = "<group>";
+		};
+		FDC941061F97252400F8ED10 /* GoodsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				FDC941081F97255500F8ED10 /* View */,
+				FDC941071F97254E00F8ED10 /* Controller */,
+			);
+			path = GoodsSearch;
+			sourceTree = "<group>";
+		};
+		FDC941071F97254E00F8ED10 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FDC941081F97255500F8ED10 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FDCF46BA1F9DC41600F3A894 /* Goods */ = {
+			isa = PBXGroup;
+			children = (
+				FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */,
+			);
+			path = Goods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1080,12 +1249,14 @@
 				C12509CE1F6912A8006ED55E /* String+ONCrypt.swift in Sources */,
 				C1BB87661F906EE9006EA9D8 /* AuthorizationTool.swift in Sources */,
 				C1250A001F691F78006ED55E /* DefaultCacheConverter.swift in Sources */,
+				FD46AAF31F8F11D300CCB603 /* GoodsNormalCell.swift in Sources */,
 				C14A61AA1F6B5E63005A1E65 /* UIString+Extension.swift in Sources */,
 				C1D8C9311F8F7C12002B0DDF /* MineNormalController.swift in Sources */,
 				C1BCD4FF1F8CC6570022C4F7 /* ArticleDetailCell.swift in Sources */,
 				C12509DC1F691F23006ED55E /* UserCacheManager.swift in Sources */,
 				C14A61AE1F6BB4EF005A1E65 /* JGGGridView.swift in Sources */,
 				C12509901F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift in Sources */,
+				FDCF46BC1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift in Sources */,
 				C12509CC1F6912A8006ED55E /* Data+ONCrypt.swift in Sources */,
 				C125099B1F69079E006ED55E /* ONAppConfiguration.swift in Sources */,
 				C12509FD1F691F78006ED55E /* NSDate+Cache.swift in Sources */,
@@ -1110,23 +1281,31 @@
 				C1C690041F8B60EE008B6054 /* TataCollectionViewCell.swift in Sources */,
 				C11B6EC91F7D1C5E00EAAEB0 /* ShareCollectionCell.swift in Sources */,
 				C1D8C92D1F8F6156002B0DDF /* MineUserInfoAvatarTableViewCell.swift in Sources */,
+				FD46AB001F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift in Sources */,
 				C1E7451B1F7C99FD00FDB0F9 /* CategoryModel.swift in Sources */,
 				C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */,
 				C1D535221F7BBFE100376686 /* CategoryCollectionController.swift in Sources */,
+				FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */,
 				C12509CD1F6912A8006ED55E /* ONDigest.swift in Sources */,
+				FD46AB041F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift in Sources */,
+				FD74AF6E1F987FFE00938B06 /* GoodsController.swift in Sources */,
 				C12509FB1F691F78006ED55E /* StorageKind.swift in Sources */,
 				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
 				C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */,
 				C1BCD4FD1F8CC2310022C4F7 /* ArticleDetailController.swift in Sources */,
 				C1E7451D1F7CA6C400FDB0F9 /* CategoryCollectionCell.swift in Sources */,
+				FD46AAF11F8E2B5600CCB603 /* GoodsGridCell.swift in Sources */,
 				C1F17BB01F692766001153BA /* GuideController.swift in Sources */,
 				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
+				FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
 				C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */,
 				C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */,
 				C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */,
 				C1C690001F8B4B59008B6054 /* ArticleCollectionController.swift in Sources */,
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
+				FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */,
+				FD46AB021F8F924E00CCB603 /* GoodsAlbumController.swift in Sources */,
 				C1BCD4FB1F8CA20F0022C4F7 /* TataArticleModel.swift in Sources */,
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
 				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
@@ -1136,11 +1315,15 @@
 				C12509F61F691F78006ED55E /* Cache.swift in Sources */,
 				C125099E1F69079E006ED55E /* ONNetworkingConfigurationManager.swift in Sources */,
 				C12509DA1F69169C006ED55E /* UserManager.swift in Sources */,
+				FD46AAF71F8F644000CCB603 /* GoodsCategoryCell.swift in Sources */,
 				C1250A031F691F78006ED55E /* CacheEntry.swift in Sources */,
 				C12509D21F6912A8006ED55E /* RegexHelper.swift in Sources */,
 				C12509B31F69097C006ED55E /* BaseController.swift in Sources */,
 				C1250A0C1F692111006ED55E /* APIResultCheck.swift in Sources */,
 				C12509D11F6912A8006ED55E /* ONCheckTool.swift in Sources */,
+				FD46AAFE1F8F81CC00CCB603 /* GoodsAlbumCollectionFlowLayout.swift in Sources */,
+				FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */,
+				FD46AAF51F8F423B00CCB603 /* GoodsHomeHeaderView.swift in Sources */,
 				C1A1DD911F8CD3260039B873 /* DailyCheckFlowLayout.swift in Sources */,
 				C1A98E211F8F8BC100E56C5A /* MineNotificationTableViewCell.swift in Sources */,
 				C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */,
@@ -1158,7 +1341,10 @@
 				C1250A061F691F78006ED55E /* StorageAware.swift in Sources */,
 				C12509D51F6912A8006ED55E /* UIDevice+Extension.swift in Sources */,
 				C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */,
+				FD46AAFB1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift in Sources */,
+				FD74AF751F9884FF00938B06 /* WRProxy.swift in Sources */,
 				C1C690021F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift in Sources */,
+				FD74AF741F9884FD00938B06 /* WRCycleScrollView.swift in Sources */,
 				C1250A071F691F78006ED55E /* StorageFactory.swift in Sources */,
 				C14A61AC1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift in Sources */,
 				C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */,
@@ -1172,8 +1358,10 @@
 				C1F17BB81F6934D0001153BA /* RootController.swift in Sources */,
 				C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */,
 				C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */,
+				FD74AF731F9884FA00938B06 /* WRCycleCell.swift in Sources */,
 				C12509F81F691F78006ED55E /* Cachable.swift in Sources */,
 				C12509FC1F691F78006ED55E /* NSData+Cache.swift in Sources */,
+				FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */,
 				C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */,
 				C1D8C92B1F8F603C002B0DDF /* MineUserInfoController.swift in Sources */,
 				C12509F91F691F78006ED55E /* Capsule.swift in Sources */,
