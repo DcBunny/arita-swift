@@ -184,9 +184,11 @@ extension GoodsHomeController: UITableViewDataSource {
 
 extension GoodsHomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let good = GoodsController()
-        good.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(good, animated: true)
+        if indexPath.row % 2 != 0 {
+            let good = GoodsController(id: goodsArray[indexPath.row/2 + 4]["ID"].stringValue)
+            good.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(good, animated: true)
+        }
     }
 }
 
@@ -251,9 +253,14 @@ extension GoodsHomeController: ONAPIManagerCallBackDelegate {
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
-//        tableView.mj_footer.endRefreshing()
-//        tableView.mj_header.endRefreshing()
-//        self.dismissONLoadingView()
+        if tableView.mj_header.isRefreshing() {
+            tableView.mj_header.endRefreshing()
+        }
+        
+        if tableView.mj_footer.isRefreshing() {
+            tableView.mj_footer.endRefreshing()
+        }
+        
         if let errorMessage = manager.errorMessage {
             ONTipCenter.showToast(errorMessage)
         }

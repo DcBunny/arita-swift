@@ -123,6 +123,7 @@
 		C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC01F693825001153BA /* GoodsHomeController.swift */; };
 		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
 		FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2748A81F959EBC0056F8C4 /* CategoryController.swift */; };
+		FD40C68D1F9E1D0900863BD6 /* GoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */; };
 		FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */; };
 		FD46AAF11F8E2B5600CCB603 /* GoodsGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */; };
 		FD46AAF31F8F11D300CCB603 /* GoodsNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */; };
@@ -268,6 +269,7 @@
 		C1F17BC21F69382E001153BA /* MineHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineHomeController.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
 		FD2748A81F959EBC0056F8C4 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
+		FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsManager.swift; sourceTree = "<group>"; };
 		FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods4GridCell.swift; sourceTree = "<group>"; };
 		FD46AAF01F8E2B5600CCB603 /* GoodsGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsGridCell.swift; sourceTree = "<group>"; };
 		FD46AAF21F8F11D300CCB603 /* GoodsNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsNormalCell.swift; sourceTree = "<group>"; };
@@ -1122,6 +1124,7 @@
 				FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */,
 				FDCF46BD1F9DE88200F3A894 /* GoodsCategoryManager.swift */,
 				FDCF46BF1F9E019D00F3A894 /* GoodsListManager.swift */,
+				FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */,
 			);
 			path = Goods;
 			sourceTree = "<group>";
@@ -1279,6 +1282,7 @@
 				C12509BC1F6912A0006ED55E /* ONTipCenter.swift in Sources */,
 				C1EFC9541F9099C2005A5CF6 /* CacheTool.swift in Sources */,
 				C12509D01F6912A8006ED55E /* NetWorkHelper.swift in Sources */,
+				FD40C68D1F9E1D0900863BD6 /* GoodsManager.swift in Sources */,
 				C1BCD5011F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift in Sources */,
 				C12509CF1F6912A8006ED55E /* NetwokConst.swift in Sources */,
 				C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */,
