@@ -67,6 +67,12 @@ class GoodsHomeController: BaseController
     private func setAPIManager() {
         latestGoodsAlbumManager.paramSource = self
         latestGoodsAlbumManager.delegate = self
+        
+        goodsCategoryManager.paramSource = self
+        goodsCategoryManager.delegate = self
+        
+        goodsListManager.paramSource = self
+        goodsListManager.delegate = self
     }
     
     private func initPageData() {
@@ -75,10 +81,17 @@ class GoodsHomeController: BaseController
     
     @objc private func loadPageData() {
         latestGoodsAlbumManager.loadData()
+        goodsCategoryManager.loadData()
+        goodsNum = -1
+        goodsListManager.loadData()
     }
     
     @objc private func loadMorePageData() {
-        
+        if goodsArray.count < goodsNum {
+            goodsListManager.loadData()
+        } else {
+            tableView.mj_footer.endRefreshingWithNoMoreData()
+        }
     }
     
     // MARK: - Event Response
@@ -105,37 +118,58 @@ class GoodsHomeController: BaseController
         kAlbumImage: "",
         kAlbumId: ""
     ]
+    
+    fileprivate var _goodsCategoryManager: GoodsCategoryManager?
+    fileprivate var goodsCategoryArray: [JSON] = []
+    
+    fileprivate var _goodsListManager: GoodsListManager?
+    fileprivate var goodsArray: [JSON] = []
+    fileprivate var goodsNum = -1
 }
 
 extension GoodsHomeController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        let count = goodsArray.count
+        if count % 5 != 0 {
+            return count/5 * 2 + 1
+        } else {
+            return count/5 * 2
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: Goods4GridCell.self), for: indexPath) as! Goods4GridCell
+            var data: [JSON] = []
+            for i in 0...3 {
+                if indexPath.row/2 * 5 + i < goodsArray.count {
+                    data.append(goodsArray[indexPath.row/2 * 5 + i])
+                }
+            }
+            cell.cellData = data
             
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GoodsNormalCell.self), for: indexPath) as! GoodsNormalCell
-            cell.goodImage.backgroundColor = UIColor.blue
-            cell.goodLabel.text = "1233211233211231231231231231aaa"
-            cell.goodPriceLabel.text = "¥" + "89"
+            cell.cellData = goodsArray[indexPath.row/2 + 4]
             
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (10 + (UIScreen.main.bounds.width - 20) * 2 / 3 + 20 + 20 + 20 + ((Size.screenWidth - 60) / 3) * 3 + 20 + 20)
+        let categoryNum = goodsCategoryArray.count
+        let rowNum = ceil(Double(categoryNum/3))
+        let categoryViewHeight = ((Size.screenWidth - 60) / 3) * CGFloat(rowNum)
+        return (10 + (UIScreen.main.bounds.width - 20) * 2 / 3 + 20 + 20 + 20 + categoryViewHeight + 20 + 20)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = GoodsHomeHeaderView(reuseIdentifier: String(describing: GoodsHomeHeaderView.self))
         headerView.albumButton.addTarget(self, action: #selector(gotoGoodsAlbum), for: .touchUpInside)
         headerView.imageUrl = latestGoodsAlbum[kAlbumImage]
+        headerView.categoryData = goodsCategoryArray
         headerView.delegate = self
         
         return headerView
@@ -169,7 +203,18 @@ extension GoodsHomeController: GoodsHomeHeaderDelegate {
 extension GoodsHomeController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["timestamp": 0, "albumNum": 1]
+        if manager === latestGoodsAlbumManager {
+            return ["timestamp": 0, "albumNum": 1]
+        } else if manager === goodsCategoryManager {
+            return ["categoryID": 5]
+        } else {
+            if goodsNum == -1 {
+                return ["timestamp": 0, "goodsNum": 20]
+            } else {
+                let timestamp = goodsArray[goodsArray.count - 1]["publish_time"].stringValue
+                return ["timestamp": timestamp, "goodsNum": 20]
+            }
+        }
     }
 }
 
@@ -179,10 +224,28 @@ extension GoodsHomeController: ONAPIManagerCallBackDelegate {
         if tableView.mj_header.isRefreshing() {
             tableView.mj_header.endRefreshing()
         }
+        
+        if tableView.mj_footer.isRefreshing() {
+            tableView.mj_footer.endRefreshing()
+        }
+        
         let data = manager.fetchDataWithReformer(nil)
         let json = JSON(data: data as! Data)
-        latestGoodsAlbum[kAlbumImage] = json["albumFreshList"][0]["album_index_thumb_path"].stringValue
-        latestGoodsAlbum[kAlbumId] = json["albumFreshList"][0]["ID"].stringValue
+        if manager === latestGoodsAlbumManager {
+            latestGoodsAlbum[kAlbumImage] = json["albumFreshList"][0]["album_index_thumb_path"].stringValue
+            latestGoodsAlbum[kAlbumId] = json["albumFreshList"][0]["ID"].stringValue
+        } else if manager === goodsCategoryManager {
+            goodsCategoryArray = json.arrayValue
+        } else {
+            if goodsNum == -1 {
+                goodsNum = json["goodsNum"].intValue
+                goodsArray.removeAll()
+                goodsArray = json["goodsArr"].arrayValue
+            } else {
+                goodsNum = json["goodsNum"].intValue
+                goodsArray += json["goodsArr"].arrayValue
+            }
+        }
         
         tableView.reloadData()
     }
@@ -237,5 +300,21 @@ extension GoodsHomeController {
         }
         
         return _latestGoodsAlbumManager!
+    }
+    
+    fileprivate var goodsCategoryManager: GoodsCategoryManager {
+        if _goodsCategoryManager == nil {
+            _goodsCategoryManager = GoodsCategoryManager()
+        }
+        
+        return _goodsCategoryManager!
+    }
+    
+    fileprivate var goodsListManager: GoodsListManager {
+        if _goodsListManager == nil {
+            _goodsListManager = GoodsListManager()
+        }
+        
+        return _goodsListManager!
     }
 }

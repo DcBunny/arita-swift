@@ -143,6 +143,8 @@
 		FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941041F96FA5900F8ED10 /* GoodsCell.swift */; };
 		FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */; };
 		FDCF46BC1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */; };
+		FDCF46BE1F9DE88200F3A894 /* GoodsCategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCF46BD1F9DE88200F3A894 /* GoodsCategoryManager.swift */; };
+		FDCF46C01F9E019D00F3A894 /* GoodsListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCF46BF1F9E019D00F3A894 /* GoodsListManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -288,6 +290,8 @@
 		FDC941041F96FA5900F8ED10 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSearchController.swift; sourceTree = "<group>"; };
 		FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestGoodsAlbumManager.swift; sourceTree = "<group>"; };
+		FDCF46BD1F9DE88200F3A894 /* GoodsCategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCategoryManager.swift; sourceTree = "<group>"; };
+		FDCF46BF1F9E019D00F3A894 /* GoodsListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsListManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,9 +382,9 @@
 				C1F17BBC1F693796001153BA /* Goods */,
 				C1F17BBB1F69378B001153BA /* Article */,
 				C125096C1F690735006ED55E /* Base */,
-				C125096B1F690720006ED55E /* APIManager */,
 				C125096A1F690708006ED55E /* Login&Register */,
 				C12509691F6906F8006ED55E /* Guide */,
+				C125096B1F690720006ED55E /* APIManager */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -1116,6 +1120,8 @@
 			isa = PBXGroup;
 			children = (
 				FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */,
+				FDCF46BD1F9DE88200F3A894 /* GoodsCategoryManager.swift */,
+				FDCF46BF1F9E019D00F3A894 /* GoodsListManager.swift */,
 			);
 			path = Goods;
 			sourceTree = "<group>";
@@ -1289,6 +1295,7 @@
 				C12509CD1F6912A8006ED55E /* ONDigest.swift in Sources */,
 				FD46AB041F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift in Sources */,
 				FD74AF6E1F987FFE00938B06 /* GoodsController.swift in Sources */,
+				FDCF46BE1F9DE88200F3A894 /* GoodsCategoryManager.swift in Sources */,
 				C12509FB1F691F78006ED55E /* StorageKind.swift in Sources */,
 				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
 				C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */,
@@ -1325,6 +1332,7 @@
 				FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */,
 				FD46AAF51F8F423B00CCB603 /* GoodsHomeHeaderView.swift in Sources */,
 				C1A1DD911F8CD3260039B873 /* DailyCheckFlowLayout.swift in Sources */,
+				FDCF46C01F9E019D00F3A894 /* GoodsListManager.swift in Sources */,
 				C1A98E211F8F8BC100E56C5A /* MineNotificationTableViewCell.swift in Sources */,
 				C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */,
 				C12509CB1F6912A8006ED55E /* Array+Extension.swift in Sources */,

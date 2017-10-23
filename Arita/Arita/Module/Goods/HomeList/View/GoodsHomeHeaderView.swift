@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 protocol GoodsHomeHeaderDelegate: class {
     func category(disSelectAt indexPath: IndexPath)
@@ -88,6 +89,12 @@ class GoodsHomeHeaderView: UITableViewHeaderFooterView {
         }
     }
     
+    public var categoryData: [JSON]? = [] {
+        didSet {
+            categoryCollection.reloadData()
+        }
+    }
+    
     // MARK: - Controller Attributes
     fileprivate var _albumImage: UIImageView?
     fileprivate var _albumButton: UIButton?
@@ -104,13 +111,15 @@ extension GoodsHomeHeaderView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return categoryData?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GoodsCategoryCell.self), for: indexPath) as! GoodsCategoryCell
-        cell.categoryImage.backgroundColor = UIColor.blue
-        cell.categoryLabel.text = "趣玩"
+        if let data = categoryData {
+            cell.categoryImage.kf.setImage(with: URL(string: data[indexPath.row]["thumb_path"].stringValue))
+            cell.categoryLabel.text = data[indexPath.row]["channel_name"].stringValue
+        }
         
         return cell
     }
