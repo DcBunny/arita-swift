@@ -84,7 +84,7 @@ class GoodsHomeHeaderView: UITableViewHeaderFooterView {
     // MARK: - Public Attributes
     public var imageUrl: String? = "" {
         didSet {
-            albumImage.backgroundColor = UIColor.green
+            albumImage.kf.setImage(with: URL(string: imageUrl!))
         }
     }
     

@@ -10,6 +10,9 @@ import UIKit
 import MJRefresh
 import SwiftyJSON
 
+fileprivate let kAlbumImage = "AlbumImage"
+fileprivate let kAlbumId = "AlbumId"
+
 /**
  GoodsHomeController **良品**页主页
  */
@@ -23,7 +26,7 @@ class GoodsHomeController: BaseController
         layoutPageViews()
         setPageViews()
         setAPIManager()
-        loadData()
+        initPageData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,6 +60,8 @@ class GoodsHomeController: BaseController
     private func setPageViews() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.mj_header.setRefreshingTarget(self, refreshingAction: #selector(loadPageData))
+        tableView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMorePageData))
     }
     
     private func setAPIManager() {
@@ -64,8 +69,16 @@ class GoodsHomeController: BaseController
         latestGoodsAlbumManager.delegate = self
     }
     
-    private func loadData() {
+    private func initPageData() {
+        tableView.mj_header.beginRefreshing()
+    }
+    
+    @objc private func loadPageData() {
         latestGoodsAlbumManager.loadData()
+    }
+    
+    @objc private func loadMorePageData() {
+        
     }
     
     // MARK: - Event Response
@@ -88,6 +101,10 @@ class GoodsHomeController: BaseController
     fileprivate var _likeButton: UIButton?
     
     fileprivate var _latestGoodsAlbumManager: LatestGoodsAlbumManager?
+    fileprivate var latestGoodsAlbum: [String: String] = [
+        kAlbumImage: "",
+        kAlbumId: ""
+    ]
 }
 
 extension GoodsHomeController: UITableViewDataSource {
@@ -118,7 +135,7 @@ extension GoodsHomeController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = GoodsHomeHeaderView(reuseIdentifier: String(describing: GoodsHomeHeaderView.self))
         headerView.albumButton.addTarget(self, action: #selector(gotoGoodsAlbum), for: .touchUpInside)
-        headerView.imageUrl = "123"
+        headerView.imageUrl = latestGoodsAlbum[kAlbumImage]
         headerView.delegate = self
         
         return headerView
@@ -159,14 +176,15 @@ extension GoodsHomeController: ONAPIManagerParamSource {
 extension GoodsHomeController: ONAPIManagerCallBackDelegate {
     
     func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
-//        tableView.mj_header.endRefreshing()
-//        tableView.mj_footer.endRefreshing()
-//        self.dismissONLoadingView()
+        if tableView.mj_header.isRefreshing() {
+            tableView.mj_header.endRefreshing()
+        }
         let data = manager.fetchDataWithReformer(nil)
         let json = JSON(data: data as! Data)
-        print(json)
+        latestGoodsAlbum[kAlbumImage] = json["albumFreshList"][0]["album_index_thumb_path"].stringValue
+        latestGoodsAlbum[kAlbumId] = json["albumFreshList"][0]["ID"].stringValue
         
-//        tableView.reloadData()
+        tableView.reloadData()
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
