@@ -132,6 +132,7 @@ extension MineQRCodeController {
             _shadowView?.layer.shadowRadius = CGFloat(2)
             _shadowView?.layer.masksToBounds = false
             _shadowView?.layer.shadowColor = Color.hexe4e4e4!.cgColor
+            _shadowView?.layer.shadowOpacity = 1.0
             
             return _shadowView!
         }
