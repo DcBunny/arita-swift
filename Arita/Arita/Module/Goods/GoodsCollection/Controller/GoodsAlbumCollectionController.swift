@@ -83,6 +83,7 @@ class GoodsAlbumCollectionController: BaseController {
 
 //TODO: 需要后期删除
 private let tataArticleModel = TataArticleModel.demoModel()
+
 // MARK: - UICollecitonView Data Source
 extension GoodsAlbumCollectionController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -104,7 +105,7 @@ extension GoodsAlbumCollectionController: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension GoodsAlbumCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let goodsAlbumController = GoodsAlbumController()
+        let goodsAlbumController = GoodsAlbumController(id: albumArray[indexPath.row]["ID"].stringValue)
         navigationController?.pushViewController(goodsAlbumController, animated: true)
     }
 }

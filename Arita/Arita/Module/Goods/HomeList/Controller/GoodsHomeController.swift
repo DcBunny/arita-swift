@@ -148,6 +148,7 @@ extension GoodsHomeController: UITableViewDataSource {
                 }
             }
             cell.cellData = data
+            cell.delegate = self
             
             return cell
         } else {
@@ -198,6 +199,15 @@ extension GoodsHomeController: GoodsHomeHeaderDelegate {
         let category = CategoryController(with: "分类名")
         category.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(category, animated: true)
+    }
+}
+
+// MARK: - Goods4GridDelegate
+extension GoodsHomeController: Goods4GridDelegate {
+    func goods(disSelectAt indexPath: IndexPath) {
+        let good = GoodsController(id: String(indexPath.row))
+        good.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(good, animated: true)
     }
 }
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import MJRefresh
+import SwiftyJSON
 
 class GoodsAlbumController: BaseController {
 
@@ -18,10 +19,21 @@ class GoodsAlbumController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        setAPIManager()
+        loadPageData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    init(id: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.id = id
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Controller Settings
@@ -47,8 +59,25 @@ class GoodsAlbumController: BaseController {
         collectionView.dataSource = self
     }
     
+    private func setAPIManager() {
+        goodsAlbumManager.paramSource = self
+        goodsAlbumManager.delegate = self
+    }
+    
+    private func loadPageData() {
+        goodsAlbumManager.loadData()
+    }
+    
     // MARK: - Controller Attributes
     fileprivate var _collectionView: UICollectionView?
+    
+    fileprivate var id: String?
+    fileprivate var _goodsAlbumManager: GoodsAlbumManager?
+    fileprivate var albumDetail = [
+        "imgUrl": "",
+        "desc": ""
+    ]
+    fileprivate var relateGoods: [JSON] = []
 }
 
 // MARK: - UICollecitonView Data Source
@@ -58,14 +87,14 @@ extension GoodsAlbumController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return relateGoods.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GoodsGridCell.self), for: indexPath) as! GoodsGridCell
-        cell.goodImage.backgroundColor = UIColor.blue
-        cell.goodLabel.text = "1233211233211231231231231231aaa"
-        cell.goodPriceLabel.text = "¥" + "89"
+        cell.goodImage.kf.setImage(with: URL(string: relateGoods[indexPath.row]["thumb_path"].stringValue))
+        cell.goodLabel.text = relateGoods[indexPath.row]["title"].stringValue
+        cell.goodPriceLabel.text = "¥" + relateGoods[indexPath.row]["price"].stringValue
         
         return cell
     }
@@ -73,8 +102,8 @@ extension GoodsAlbumController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        if kind == UICollectionElementKindSectionHeader {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: GoodsAlbumCollectionReusableView.self), for: indexPath) as! GoodsAlbumCollectionReusableView
-        header.imageUrl = "123"
-        header.contentString = "不管一款产品在设计、研发阶段经历了怎样的反复测试、精心打磨、耗费了多少人力物力，它总要一点或者简单或者隆重的仪式感，以合适的姿态亮相。它总要一点或者简单或者隆重的仪式感，它总要一点或者简单或者隆重的仪式感"
+        header.imageUrl = albumDetail["imgUrl"]
+        header.contentString = albumDetail["desc"]
         
         return header
 //        }
@@ -84,9 +113,9 @@ extension GoodsAlbumController: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension GoodsAlbumController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ShareCollectionCell.self), for: indexPath) as! ShareCollectionCell
-        //        guard let shareType = cell.shareType else { return }
-        //        ShareTool.sharedInstance.shareWith(content: nil, to: shareType)
+        let good = GoodsController(id: relateGoods[indexPath.row]["ID"].stringValue)
+        good.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(good, animated: true)
     }
 }
 
@@ -98,6 +127,32 @@ extension GoodsAlbumController: UICollectionViewDelegateFlowLayout {
         let headerHeight = 5 + (Size.screenWidth - 20) * 2 / 3 + 15 + 20 + 10 + contentSize.height
         
         return CGSize(width: Size.screenWidth, height: headerHeight)
+    }
+}
+
+// MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
+extension GoodsAlbumController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return ["id": id!]
+    }
+}
+
+extension GoodsAlbumController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data)
+        albumDetail["imgUrl"] = json["album_thumb_path"].stringValue
+        albumDetail["desc"] = json["album_desc"].stringValue
+        relateGoods = json["relativeGoodsArr"].arrayValue
+        collectionView.reloadData()
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
     }
 }
 
@@ -117,10 +172,16 @@ extension GoodsAlbumController {
             _collectionView?.translatesAutoresizingMaskIntoConstraints = false
             _collectionView?.backgroundColor = UIColor.clear
             _collectionView?.register(GoodsAlbumCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: GoodsAlbumCollectionReusableView.self))
-            _collectionView?.mj_header = MJRefreshNormalHeader()
-            _collectionView?.mj_footer = MJRefreshAutoNormalFooter()
         }
         
         return _collectionView!
+    }
+    
+    fileprivate var goodsAlbumManager: GoodsAlbumManager {
+        if _goodsAlbumManager == nil {
+            _goodsAlbumManager = GoodsAlbumManager()
+        }
+        
+        return _goodsAlbumManager!
     }
 }

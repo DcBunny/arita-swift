@@ -9,7 +9,13 @@
 import UIKit
 import SwiftyJSON
 
+protocol Goods4GridDelegate: class {
+    func goods(disSelectAt indexPath: IndexPath)
+}
+
 class Goods4GridCell: UITableViewCell {
+    
+    weak var delegate: Goods4GridDelegate?
     
     // MARK: - Init Methods
     override init(style: UITableViewCellStyle, reuseIdentifier: String!)
@@ -81,9 +87,7 @@ extension Goods4GridCell: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension Goods4GridCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let category = CategoryController(with: "分类名")
-//        category.hidesBottomBarWhenPushed = true
-//        navigationController?.pushViewController(category, animated: true)
+        delegate?.goods(disSelectAt: indexPath)
     }
 }
 

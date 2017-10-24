@@ -123,6 +123,7 @@
 		C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC01F693825001153BA /* GoodsHomeController.swift */; };
 		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
 		FD0E21A41F9EDF4C00C51C81 /* GoodsAblumListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */; };
+		FD0E21A61F9F199700C51C81 /* GoodsAlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A51F9F199700C51C81 /* GoodsAlbumManager.swift */; };
 		FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2748A81F959EBC0056F8C4 /* CategoryController.swift */; };
 		FD40C68D1F9E1D0900863BD6 /* GoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */; };
 		FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */; };
@@ -270,6 +271,7 @@
 		C1F17BC21F69382E001153BA /* MineHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineHomeController.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
 		FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAblumListManager.swift; sourceTree = "<group>"; };
+		FD0E21A51F9F199700C51C81 /* GoodsAlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumManager.swift; sourceTree = "<group>"; };
 		FD2748A81F959EBC0056F8C4 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsManager.swift; sourceTree = "<group>"; };
 		FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods4GridCell.swift; sourceTree = "<group>"; };
@@ -1125,6 +1127,7 @@
 			children = (
 				FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */,
 				FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */,
+				FD0E21A51F9F199700C51C81 /* GoodsAlbumManager.swift */,
 				FDCF46BD1F9DE88200F3A894 /* GoodsCategoryManager.swift */,
 				FDCF46BF1F9E019D00F3A894 /* GoodsListManager.swift */,
 				FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */,
@@ -1325,6 +1328,7 @@
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
 				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
 				C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */,
+				FD0E21A61F9F199700C51C81 /* GoodsAlbumManager.swift in Sources */,
 				C198DDE51F8F0E54004BCB50 /* MineHomeTableViewCell.swift in Sources */,
 				C12509941F69079E006ED55E /* ONAPIBaseManager.swift in Sources */,
 				C12509F61F691F78006ED55E /* Cache.swift in Sources */,
