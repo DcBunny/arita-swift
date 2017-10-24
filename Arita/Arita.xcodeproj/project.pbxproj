@@ -122,6 +122,7 @@
 		C1F17BBF1F6937F3001153BA /* ArticleHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BBE1F6937F3001153BA /* ArticleHomeController.swift */; };
 		C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC01F693825001153BA /* GoodsHomeController.swift */; };
 		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
+		FD0E21A41F9EDF4C00C51C81 /* GoodsAblumListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */; };
 		FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2748A81F959EBC0056F8C4 /* CategoryController.swift */; };
 		FD40C68D1F9E1D0900863BD6 /* GoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */; };
 		FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */; };
@@ -268,6 +269,7 @@
 		C1F17BC01F693825001153BA /* GoodsHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsHomeController.swift; sourceTree = "<group>"; };
 		C1F17BC21F69382E001153BA /* MineHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineHomeController.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
+		FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAblumListManager.swift; sourceTree = "<group>"; };
 		FD2748A81F959EBC0056F8C4 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsManager.swift; sourceTree = "<group>"; };
 		FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods4GridCell.swift; sourceTree = "<group>"; };
@@ -1122,6 +1124,7 @@
 			isa = PBXGroup;
 			children = (
 				FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */,
+				FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */,
 				FDCF46BD1F9DE88200F3A894 /* GoodsCategoryManager.swift */,
 				FDCF46BF1F9E019D00F3A894 /* GoodsListManager.swift */,
 				FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */,
@@ -1313,6 +1316,7 @@
 				C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */,
 				C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */,
 				C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */,
+				FD0E21A41F9EDF4C00C51C81 /* GoodsAblumListManager.swift in Sources */,
 				C1C690001F8B4B59008B6054 /* ArticleCollectionController.swift in Sources */,
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
 				FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */,

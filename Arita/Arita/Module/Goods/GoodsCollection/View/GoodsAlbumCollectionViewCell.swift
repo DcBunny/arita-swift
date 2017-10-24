@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class GoodsAlbumCollectionViewCell: UICollectionViewCell {
     // MARK: - Init Methods
@@ -73,13 +74,13 @@ class GoodsAlbumCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Public Attributes
-    public var tataArticleModel: TataArticleModel = TataArticleModel.initial() {
+    public var album: JSON? = nil {
         didSet {
-            titleLabel.attributedText = tataArticleModel.tataDate?.convertArticleTitleString()
-            picView.kf.setImage(with: URL(string: tataArticleModel.tataPic!))
-            contentLabel.attributedText = tataArticleModel.tataContent?.convertArticleContentString()
-            numLabel.text = "12" + "件良品"
-            dateLabel.text = "2017-10-12"
+            titleLabel.attributedText = album!["album_title"].stringValue.convertArticleTitleString()
+            picView.kf.setImage(with: URL(string: album!["album_thumb_path"].stringValue))
+            contentLabel.attributedText = album!["album_desc"].stringValue.convertArticleContentString()
+            numLabel.text = album!["goods_num"].stringValue + "件良品"
+            dateLabel.text = album!["time_ago"].stringValue
         }
     }
     

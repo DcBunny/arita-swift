@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class GoodsAlbumCollectionController: BaseController {
 
@@ -18,6 +19,8 @@ class GoodsAlbumCollectionController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        setAPIManager()
+        loadPageData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,6 +60,15 @@ class GoodsAlbumCollectionController: BaseController {
         goodsAlbumCollectionView.dataSource = self
     }
     
+    private func setAPIManager() {
+        goodsAblumListManager.paramSource = self
+        goodsAblumListManager.delegate = self
+    }
+    
+    private func loadPageData() {
+        goodsAblumListManager.loadData()
+    }
+    
     // MARK: - Event Responses
     
     // MARK: - Private Methods
@@ -64,6 +76,9 @@ class GoodsAlbumCollectionController: BaseController {
     // MARK: - Controller Attributes
     fileprivate var _goodsAlbumCollectionView: UICollectionView?
     fileprivate var conTitle: String?
+    
+    fileprivate var _goodsAlbumListManager: GoodsAblumListManager?
+    fileprivate var albumArray: [JSON] = []
 }
 
 //TODO: 需要后期删除
@@ -75,12 +90,13 @@ extension GoodsAlbumCollectionController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tataArticleModel.count
+        return albumArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GoodsAlbumCollectionViewCell.self), for: indexPath) as! GoodsAlbumCollectionViewCell
-        cell.tataArticleModel = tataArticleModel[indexPath.row]
+        cell.album = albumArray[indexPath.row]
+        
         return cell
     }
 }
@@ -90,6 +106,30 @@ extension GoodsAlbumCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let goodsAlbumController = GoodsAlbumController()
         navigationController?.pushViewController(goodsAlbumController, animated: true)
+    }
+}
+
+// MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
+extension GoodsAlbumCollectionController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return ["timestamp": 0, "albumNum": 10000]
+    }
+}
+
+extension GoodsAlbumCollectionController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data)
+        albumArray = json["albumArr"].arrayValue
+        goodsAlbumCollectionView.reloadData()
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
     }
 }
 
@@ -108,5 +148,13 @@ extension GoodsAlbumCollectionController {
         }
         
         return _goodsAlbumCollectionView!
+    }
+    
+    fileprivate var goodsAblumListManager: GoodsAblumListManager {
+        if _goodsAlbumListManager == nil {
+            _goodsAlbumListManager = GoodsAblumListManager()
+        }
+        
+        return _goodsAlbumListManager!
     }
 }

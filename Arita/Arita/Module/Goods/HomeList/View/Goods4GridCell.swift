@@ -81,9 +81,9 @@ extension Goods4GridCell: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension Goods4GridCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ShareCollectionCell.self), for: indexPath) as! ShareCollectionCell
-//        guard let shareType = cell.shareType else { return }
-//        ShareTool.sharedInstance.shareWith(content: nil, to: shareType)
+//        let category = CategoryController(with: "分类名")
+//        category.hidesBottomBarWhenPushed = true
+//        navigationController?.pushViewController(category, animated: true)
     }
 }
 
