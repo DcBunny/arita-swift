@@ -1,17 +1,17 @@
 //
-//  GoodsCategoryManager.swift
+//  GoodsChildListManager.swift
 //  Arita
 //
-//  Created by 李宏博 on 2017/10/23.
+//  Created by 李宏博 on 2017/10/25.
 //  Copyright © 2017年 arita. All rights reserved.
 //
 
 import Foundation
 
 /**
- ** 获取良品二级分类
+ ** 获取子类良品列表
  */
-class GoodsCategoryManager: ONAPIBaseManager {
+class GoodsChildListManager: ONAPIBaseManager {
     override init() {
         super.init()
         
@@ -19,9 +19,9 @@ class GoodsCategoryManager: ONAPIBaseManager {
     }
 }
 
-extension GoodsCategoryManager: ONAPIManager {
+extension GoodsChildListManager: ONAPIManager {
     func methodName() -> String {
-        return "get_channels"
+        return "get_child_goods"
     }
     
     func serviceType() -> String {
@@ -33,7 +33,7 @@ extension GoodsCategoryManager: ONAPIManager {
     }
 }
 
-extension GoodsCategoryManager: ONAPIManagerValidator {
+extension GoodsChildListManager: ONAPIManagerValidator {
     func manager(_ manager: ONAPIBaseManager, isCorrectWithParamsData data: ONParamData) -> Bool {
         // 这里检测接口参数是否正确，例如可以检查输入的电话号码是否是符合规范的，如果返回false，则不会进行实际的请求。
         //        if let errorMsg = ONCheckTool.checkPhoneNum(phone: data["username"] as? String) {

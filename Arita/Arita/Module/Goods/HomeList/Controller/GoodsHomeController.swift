@@ -196,7 +196,7 @@ extension GoodsHomeController: UITableViewDelegate {
 // MARK: - GoodsHomeHeaderDelegate
 extension GoodsHomeController: GoodsHomeHeaderDelegate {
     func category(disSelectAt indexPath: IndexPath) {
-        let category = CategoryController(with: "分类名")
+        let category = CategoryController(with: "分类名", id: goodsCategoryArray[indexPath.row]["ID"].stringValue)
         category.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(category, animated: true)
     }

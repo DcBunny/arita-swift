@@ -124,6 +124,8 @@
 		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
 		FD0E21A41F9EDF4C00C51C81 /* GoodsAblumListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */; };
 		FD0E21A61F9F199700C51C81 /* GoodsAlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A51F9F199700C51C81 /* GoodsAlbumManager.swift */; };
+		FD0E21A81F9F27E900C51C81 /* GoodsThirdCategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A71F9F27E900C51C81 /* GoodsThirdCategoryManager.swift */; };
+		FD0E21AA1FA0708500C51C81 /* GoodsChildListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A91FA0708500C51C81 /* GoodsChildListManager.swift */; };
 		FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2748A81F959EBC0056F8C4 /* CategoryController.swift */; };
 		FD40C68D1F9E1D0900863BD6 /* GoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */; };
 		FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */; };
@@ -272,6 +274,8 @@
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
 		FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAblumListManager.swift; sourceTree = "<group>"; };
 		FD0E21A51F9F199700C51C81 /* GoodsAlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumManager.swift; sourceTree = "<group>"; };
+		FD0E21A71F9F27E900C51C81 /* GoodsThirdCategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsThirdCategoryManager.swift; sourceTree = "<group>"; };
+		FD0E21A91FA0708500C51C81 /* GoodsChildListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsChildListManager.swift; sourceTree = "<group>"; };
 		FD2748A81F959EBC0056F8C4 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsManager.swift; sourceTree = "<group>"; };
 		FD46AAEE1F8E25B700CCB603 /* Goods4GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods4GridCell.swift; sourceTree = "<group>"; };
@@ -1129,7 +1133,9 @@
 				FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */,
 				FD0E21A51F9F199700C51C81 /* GoodsAlbumManager.swift */,
 				FDCF46BD1F9DE88200F3A894 /* GoodsCategoryManager.swift */,
+				FD0E21A71F9F27E900C51C81 /* GoodsThirdCategoryManager.swift */,
 				FDCF46BF1F9E019D00F3A894 /* GoodsListManager.swift */,
+				FD0E21A91FA0708500C51C81 /* GoodsChildListManager.swift */,
 				FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */,
 			);
 			path = Goods;
@@ -1306,6 +1312,7 @@
 				FD46AB041F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift in Sources */,
 				FD74AF6E1F987FFE00938B06 /* GoodsController.swift in Sources */,
 				FDCF46BE1F9DE88200F3A894 /* GoodsCategoryManager.swift in Sources */,
+				FD0E21AA1FA0708500C51C81 /* GoodsChildListManager.swift in Sources */,
 				C12509FB1F691F78006ED55E /* StorageKind.swift in Sources */,
 				C12509A41F6907B9006ED55E /* Arita.swift in Sources */,
 				C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */,
@@ -1385,6 +1392,7 @@
 				C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */,
 				C1D8C92B1F8F603C002B0DDF /* MineUserInfoController.swift in Sources */,
 				C12509F91F691F78006ED55E /* Capsule.swift in Sources */,
+				FD0E21A81F9F27E900C51C81 /* GoodsThirdCategoryManager.swift in Sources */,
 				C12509991F69079E006ED55E /* ONLogger.swift in Sources */,
 				C18B4F351F6A6FAF001E2E56 /* ArticleHomePicCell.swift in Sources */,
 				C12509F71F691F78006ED55E /* Config.swift in Sources */,

@@ -9,6 +9,10 @@
 import UIKit
 import SnapKit
 import MJRefresh
+import SwiftyJSON
+
+fileprivate let prices = ["全部", "0 - 1999", "2000 - 2999", "3000 - 5999", "6000 - 30000"]
+fileprivate let priceCondition = [[0, 30000], [0, 1999], [2000, 2999], [3000, 5999], [6000, 30000]]
 
 class CategoryController: BaseController {
 
@@ -20,8 +24,9 @@ class CategoryController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        setAPIManager()
+        loadPageData()
         
-        categoryTableHeightConstraint?.update(offset: 120)
         priceTableHeightConstraint?.update(offset: 200)
     }
     
@@ -31,9 +36,10 @@ class CategoryController: BaseController {
     }
     
     // MARK: - Init Methods
-    init(with title: String) {
-        self.conTitle = title
+    init(with title: String, id: String) {
         super.init(nibName: nil, bundle: nil)
+        self.conTitle = title
+        self.id = id
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -130,6 +136,15 @@ class CategoryController: BaseController {
         goodsTable.delegate = self
     }
     
+    private func setAPIManager() {
+        thirdCategoryManager.paramSource = self
+        thirdCategoryManager.delegate = self
+    }
+    
+    private func loadPageData() {
+        thirdCategoryManager.loadData()
+    }
+    
     // MARK: - Event Responses
     @objc private func changeMenuOption(sender: UIButton) {
         if sender == leftButton {
@@ -149,6 +164,7 @@ class CategoryController: BaseController {
     
     // MARK: - Controller Attributes
     fileprivate var conTitle: String?
+    fileprivate var id: String?
     
     fileprivate var _menuView: UIView?
     fileprivate var _leftLabel: UILabel?
@@ -166,8 +182,8 @@ class CategoryController: BaseController {
     
     fileprivate var _goodsTable: UITableView?
     
-    let categorys = ["全部", "笔记本", "台式"]
-    let prices = ["全部", "0~1000", "1000~2000", "2000~3000", "3000~4000"]
+    fileprivate var _thirdCategoryManager: GoodsThirdCategoryManager?
+    fileprivate var categoryArray: [JSON] = []
 }
 
 // MARK: - UITableViewDataSource
@@ -176,7 +192,7 @@ extension CategoryController: UITableViewDataSource {
         if tableView == goodsTable {
             return 6
         } else if tableView == categoryTable {
-            return 3
+            return categoryArray.count
         } else {
             return 5
         }
@@ -191,7 +207,7 @@ extension CategoryController: UITableViewDataSource {
             
         } else if tableView == categoryTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MenuOptionCell.self), for: indexPath) as! MenuOptionCell
-            cell.titleText = categorys[indexPath.row]
+            cell.titleText = categoryArray[indexPath.row]["child_name"].stringValue
             
             return cell
         } else {
@@ -205,6 +221,31 @@ extension CategoryController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension CategoryController: UITableViewDelegate {
+}
+
+// MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
+extension CategoryController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return ["channelID": id!]
+    }
+}
+
+extension CategoryController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data)
+        categoryArray = json.arrayValue
+        categoryTableHeightConstraint?.update(offset: categoryArray.count * 40)
+        categoryTable.reloadData()
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
 }
 
 // MARK: - Getters and Setters
@@ -250,7 +291,7 @@ extension CategoryController {
     fileprivate var rightLabel: UILabel {
         if _rightLabel == nil {
             _rightLabel = UILabel()
-            _rightLabel?.text = "价格排序"
+            _rightLabel?.text = "价格筛选"
             _rightLabel?.textColor = Color.hex4a4a4a
             _rightLabel?.font = Font.size13
             _rightLabel?.textAlignment = .center
@@ -319,5 +360,13 @@ extension CategoryController {
         }
         
         return _goodsTable!
+    }
+    
+    fileprivate var thirdCategoryManager: GoodsThirdCategoryManager {
+        if _thirdCategoryManager == nil {
+            _thirdCategoryManager = GoodsThirdCategoryManager()
+        }
+        
+        return _thirdCategoryManager!
     }
 }
