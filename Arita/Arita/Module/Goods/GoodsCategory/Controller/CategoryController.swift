@@ -25,9 +25,7 @@ class CategoryController: BaseController {
         layoutPageViews()
         setPageViews()
         setAPIManager()
-        loadPageData()
-        
-        priceTableHeightConstraint?.update(offset: 200)
+        initPageData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -119,7 +117,7 @@ class CategoryController: BaseController {
             make.top.equalTo(menuView.snp.bottom)
             make.right.equalTo(view).offset(-6)
             make.left.equalTo(view.snp.centerX)
-            priceTableHeightConstraint = make.height.equalTo(0).constraint
+            make.height.equalTo(200)
         }
     }
     
@@ -134,15 +132,21 @@ class CategoryController: BaseController {
         
         goodsTable.dataSource = self
         goodsTable.delegate = self
+        goodsTable.mj_header.setRefreshingTarget(self, refreshingAction: #selector(loadPageData))
+        goodsTable.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMorePageData))
     }
     
     private func setAPIManager() {
         thirdCategoryManager.paramSource = self
         thirdCategoryManager.delegate = self
+        
+        goodsChildListManager.paramSource = self
+        goodsChildListManager.delegate = self
     }
     
-    private func loadPageData() {
+    private func initPageData() {
         thirdCategoryManager.loadData()
+        goodsTable.mj_header.beginRefreshing()
     }
     
     // MARK: - Event Responses
@@ -157,6 +161,19 @@ class CategoryController: BaseController {
                 categoryTable.isHidden = true
             }
             priceTable.isHidden = !priceTable.isHidden
+        }
+    }
+    
+    @objc private func loadPageData() {
+        goodsNum = -1
+        goodsChildListManager.loadData()
+    }
+    
+    @objc private func loadMorePageData() {
+        if goodsArray.count < goodsNum {
+            goodsChildListManager.loadData()
+        } else {
+            goodsTable.mj_footer.endRefreshingWithNoMoreData()
         }
     }
     
@@ -178,30 +195,37 @@ class CategoryController: BaseController {
     fileprivate var _priceTable: UITableView?
     
     fileprivate var categoryTableHeightConstraint: Constraint? = nil
-    fileprivate var priceTableHeightConstraint: Constraint? = nil
     
     fileprivate var _goodsTable: UITableView?
     
     fileprivate var _thirdCategoryManager: GoodsThirdCategoryManager?
     fileprivate var categoryArray: [JSON] = []
+    
+    fileprivate var _goodsChildListManager: GoodsChildListManager?
+    fileprivate var goodsArray: [JSON] = []
+    
+    fileprivate var childId = -1
+    fileprivate var minPrice = 0
+    fileprivate var maxPrice = 30000
+    fileprivate var goodsNum = -1
 }
 
 // MARK: - UITableViewDataSource
 extension CategoryController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == goodsTable {
-            return 6
+            return goodsArray.count
         } else if tableView == categoryTable {
             return categoryArray.count
         } else {
-            return 5
+            return prices.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == goodsTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GoodsCell.self), for: indexPath) as! GoodsCell
-            cell.picUrl = ""
+            cell.goodData = goodsArray[indexPath.row]
             
             return cell
             
@@ -221,24 +245,74 @@ extension CategoryController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension CategoryController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView === categoryTable {
+            childId = categoryArray[indexPath.row]["ID"].intValue
+            loadDataWithCondition(tableView)
+        } else {
+            minPrice = priceCondition[indexPath.row][0]
+            maxPrice = priceCondition[indexPath.row][1]
+            loadDataWithCondition(tableView)
+        }
+    }
+    
+    func loadDataWithCondition(_ tableView: UITableView) {
+        goodsNum = -1
+        goodsChildListManager.loadData()
+        tableView.isHidden = true
+    }
 }
 
 // MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
 extension CategoryController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["channelID": id!]
+        if manager === goodsChildListManager {
+            var params: [String: Any] = ["channel_ID": id!, "goodsNum": 20, "minPrice": minPrice, "maxPrice": maxPrice]
+            if goodsNum == -1 {
+                params["id"] = 0
+            } else {
+                params["id"] = goodsArray[goodsArray.count - 1]["goods_ID"].stringValue
+            }
+            if childId != -1 {
+                params["childID"] = childId
+            }
+            
+            return params
+        } else {
+            return ["channelID": id!]
+        }
     }
 }
 
 extension CategoryController: ONAPIManagerCallBackDelegate {
     
     func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        if goodsTable.mj_header.isRefreshing() {
+            goodsTable.mj_header.endRefreshing()
+        }
+        
+        if goodsTable.mj_footer.isRefreshing() {
+            goodsTable.mj_footer.endRefreshing()
+        }
+        
         let data = manager.fetchDataWithReformer(nil)
         let json = JSON(data: data as! Data)
-        categoryArray = json.arrayValue
-        categoryTableHeightConstraint?.update(offset: categoryArray.count * 40)
-        categoryTable.reloadData()
+        if manager === goodsChildListManager {
+            if goodsNum == -1 {
+                goodsNum = json["goodsNum"].intValue
+                goodsArray.removeAll()
+                goodsArray = json["goodsArrNew"].arrayValue
+            } else {
+                goodsNum = json["goodsNum"].intValue
+                goodsArray += json["goodsArrNew"].arrayValue
+            }
+            goodsTable.reloadData()
+        } else {
+            categoryArray = json.arrayValue
+            categoryTableHeightConstraint?.update(offset: categoryArray.count * 40)
+            categoryTable.reloadData()
+        }
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
@@ -368,5 +442,13 @@ extension CategoryController {
         }
         
         return _thirdCategoryManager!
+    }
+    
+    fileprivate var goodsChildListManager: GoodsChildListManager {
+        if _goodsChildListManager == nil {
+            _goodsChildListManager = GoodsChildListManager()
+        }
+        
+        return _goodsChildListManager!
     }
 }
