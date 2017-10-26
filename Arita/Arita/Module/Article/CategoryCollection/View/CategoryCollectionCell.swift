@@ -52,10 +52,10 @@ class CategoryCollectionCell: UICollectionViewCell {
     }
     
     // MARK: - Public Attributes
-    public var categoryModel: CategoryModel = CategoryModel.initial() {
+    public var categoryModel: CategoryModel = CategoryModel.initial()[0] {
         didSet {
-            categoryIcon.image = UIImage(named: categoryModel.categoryIcon!)
-            categoryName.text = categoryModel.categoryName
+            categoryIcon.kf.setImage(with: URL(string: categoryModel.channelIcon), placeholder: UIImage(named: Icon.class01), options: nil, progressBlock: nil, completionHandler: nil)
+            categoryName.text = categoryModel.channelName
             updateTime.text = categoryModel.updateTime
         }
     }

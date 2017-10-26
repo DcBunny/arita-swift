@@ -35,6 +35,7 @@ class ArticleHomeTataCell: UITableViewCell {
         shadowView.addSubview(bodyView)
         bodyView.addSubview(picView)
         bodyView.addSubview(contentLabel)
+        picView.addSubview(jggView)
     }
     
     private func layoutCellViews() {
@@ -68,6 +69,10 @@ class ArticleHomeTataCell: UITableViewCell {
             ConstraintMaker.top.equalTo(picView.snp.bottom).offset(15)
             ConstraintMaker.bottom.equalTo(bodyView).offset(-35)
         }
+        
+        jggView.snp.makeConstraints { (make) in
+            make.edges.equalTo(picView)
+        }
     }
     
     private func setCellViews() {
@@ -84,7 +89,7 @@ class ArticleHomeTataCell: UITableViewCell {
     
     public var picUrl = "" {
         didSet {
-            picView.kf.setImage(with: URL(string: picUrl))
+            picView.kf.setImage(with: URL(string: picUrl), placeholder: UIImage(named: Icon.placeHolderArticle11), options: nil, progressBlock: nil, completionHandler: nil)
         }
     }
     
@@ -100,12 +105,19 @@ class ArticleHomeTataCell: UITableViewCell {
         }
     }
     
+    public var isJGG: Bool = false {
+        didSet {
+            jggView.isHidden = !isJGG
+        }
+    }
+    
     // MARK: - Controller Attributes
     fileprivate var _titleLabel: UILabel?
     fileprivate var _shadowView: UIView?
     fileprivate var _bodyView: UIView?
     fileprivate var _picView: UIImageView?
     fileprivate var _contentLabel: UILabel?
+    fileprivate var _jggView: JGGView?
 }
 
 // MARK: - Getters and Setters
@@ -175,5 +187,49 @@ extension ArticleHomeTataCell {
         }
         
         return _contentLabel!
+    }
+    
+    fileprivate var jggView: JGGView {
+        if _jggView == nil {
+            _jggView = JGGView()
+            _jggView?.isHidden = true
+            
+            return _jggView!
+        }
+        
+        return _jggView!
+    }
+}
+
+/// 九宫格蒙层
+class JGGView: UIView {
+    // MARK: - Init Methods
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.clear
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ rect: CGRect) {
+        if let ctx = UIGraphicsGetCurrentContext() {
+            ctx.setLineWidth(1 / Size.screenScale)
+            ctx.setStrokeColor(UIColor.white.cgColor)
+            for i in 0..<2 {
+                let startPoint = CGPoint(x: self.frame.origin.x, y: self.frame.origin.y + CGFloat(i + 1) * (self.frame.size.height - 2 / Size.screenScale) / 3)
+                let endPoint = CGPoint(x: self.frame.origin.x + self.frame.width, y: self.frame.origin.y + CGFloat(i + 1) * (self.frame.size.height - 2 / Size.screenScale) / 3)
+                let line = [startPoint, endPoint]
+                ctx.strokeLineSegments(between: line)
+            }
+            
+            for i in 0..<2 {
+                let startPoint = CGPoint(x: self.frame.origin.x + CGFloat(i + 1) * (self.frame.size.width - 2 / Size.screenScale) / 3, y: self.frame.origin.y)
+                let endPoint = CGPoint(x: self.frame.origin.x + CGFloat(i + 1) * (self.frame.size.width - 2 / Size.screenScale) / 3, y: self.frame.origin.y + self.frame.height)
+                let line = [startPoint, endPoint]
+                ctx.strokeLineSegments(between: line)
+            }
+        }
     }
 }

@@ -42,10 +42,12 @@ class ArticleDetailCell: UICollectionViewCell {
         }
         
         detailWebView.snp.makeConstraints { (make) in
-            make.left.equalTo(bodyView).offset(15)
-            make.right.equalTo(bodyView).offset(-15)
-            make.top.bottom.equalTo(bodyView)
+            make.edges.equalTo(bodyView)
         }
+    }
+    
+    private func setPageViews() {
+        backgroundColor = UIColor.white
     }
     
     // MARK: - Public Attributes
@@ -97,6 +99,9 @@ extension ArticleDetailCell {
     fileprivate var detailWebView: WKWebView {
         if _detailWebView == nil {
             _detailWebView = WKWebView(frame: .zero)
+            _detailWebView?.backgroundColor = UIColor.clear
+            _detailWebView?.scrollView.showsVerticalScrollIndicator = false
+            _detailWebView?.scrollView.showsHorizontalScrollIndicator = false
             
             return _detailWebView!
         }

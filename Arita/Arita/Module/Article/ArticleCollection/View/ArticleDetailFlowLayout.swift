@@ -30,7 +30,7 @@ class ArticleDetailFlowLayout: UICollectionViewFlowLayout {
         rect.origin.x = proposedContentOffset.x
         rect.origin.y = 0
         rect.size = (self.collectionView?.frame.size)!
-        
+    
         let attributesArray = super.layoutAttributesForElements(in: rect)
         let centerX = (self.collectionView?.frame.size.width)! / 2 + proposedContentOffset.x
         var minDelta = CGFloat(MAXFLOAT)
@@ -39,7 +39,7 @@ class ArticleDetailFlowLayout: UICollectionViewFlowLayout {
                 minDelta = attrs.center.x - centerX
             }
         }
-        
+
         return CGPoint(x: proposedContentOffset.x + CGFloat(minDelta), y: proposedContentOffset.y)
     }
 }

@@ -83,7 +83,7 @@ class ArticleHomeNormalCell: UITableViewCell {
     
     public var picUrl = "" {
         didSet {
-            picView.kf.setImage(with: URL(string: picUrl))
+            picView.kf.setImage(with: URL(string: picUrl), placeholder: UIImage(named: Icon.placeHolderArticle32), options: nil, progressBlock: nil, completionHandler: nil)
         }
     }
     

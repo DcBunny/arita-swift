@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 /**
  ArticleDetailController **文章详情列表**页主页(包括塔塔报详情列表以及其他分类，更换不同的cell)
@@ -21,6 +22,7 @@ class ArticleDetailController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,8 +31,9 @@ class ArticleDetailController: BaseController {
     }
     
     // MARK: - Init Methods
-    init(with title: String) {
+    init(with title: String?, and time: String) {
         self.conTitle = title
+        self.time = time
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,7 +50,6 @@ class ArticleDetailController: BaseController {
     
     private func addPageViews() {
         view.addSubview(articleDetailCollectionView)
-        
     }
     
     private func layoutPageViews() {
@@ -60,12 +62,21 @@ class ArticleDetailController: BaseController {
         articleDetailCollectionView.backgroundColor = Color.hexf5f5f5
         articleDetailCollectionView.delegate = self
         articleDetailCollectionView.dataSource = self
+        tatabaoDetailAPIManager.delegate = self
+        tatabaoDetailAPIManager.paramSource = self
+    }
+    
+    private func loadData() {
+        tatabaoDetailAPIManager.loadData()
     }
     
     // MARK: - Event Responses
     @objc private func gotoShare() {
+        if currentIndex == nil { currentIndex = IndexPath(item: 0, section: 0) }
+        let shareUrl = API.articleDetailUrl + idArray[currentIndex!.row]
+        guard !isScrolling else { return }
         DispatchQueue.main.async {
-            let shareController = ShareController()
+            let shareController = ShareController(url: shareUrl)
             shareController.modalTransitionStyle = .crossDissolve
             shareController.providesPresentationContextTransitionStyle = true
             shareController.definesPresentationContext = true
@@ -79,6 +90,45 @@ class ArticleDetailController: BaseController {
     // MARK: - Controller Attributes
     fileprivate var _articleDetailCollectionView: UICollectionView?
     fileprivate var conTitle: String?
+    fileprivate var time: String
+    fileprivate var isScrolling = false
+    fileprivate var currentIndex: IndexPath? = IndexPath(item: 0, section: 0)
+    fileprivate var tatabaoDetailAPIManager = TataBaoDetailAPIManager()
+    fileprivate var idArray: [String] = [String]()
+}
+
+// MARK: - ONAPIManagerParamSource
+extension ArticleDetailController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        if manager is TataBaoDetailAPIManager {
+            return ["time": self.time]
+        } else {
+            return ["time": "0"]
+        }
+    }
+}
+
+// MARK: - ONAPIManagerCallBackDelegate
+extension ArticleDetailController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        if manager is TataBaoDetailAPIManager {
+            let data = manager.fetchDataWithReformer(nil)
+            let json = JSON(data: data as! Data).arrayValue
+            for item in json {
+                idArray.append(item["article_ID"].stringValue)
+            }
+            articleDetailCollectionView.reloadData()
+        }
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
 }
 
 // MARK: - UICollecitonView Data Source
@@ -88,20 +138,32 @@ extension ArticleDetailController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return idArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ArticleDetailCell.self), for: indexPath) as! ArticleDetailCell
-        cell.webUrl = "https://www.baidu.com"
+        cell.webUrl = API.articleDetailUrl + idArray[indexPath.row]
         return cell
     }
 }
 
 // MARK: - UICollecitonView Delegate
 extension ArticleDetailController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+    
+}
+
+// MARK: - UIScrollView Delegate
+extension ArticleDetailController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pInView = self.view.convert(self.articleDetailCollectionView.center, to: self.articleDetailCollectionView)
+        let indexNow = self.articleDetailCollectionView.indexPathForItem(at: pInView)
+        currentIndex = indexNow
+        isScrolling = false
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isScrolling = true
     }
 }
 
@@ -115,6 +177,7 @@ extension ArticleDetailController {
             _articleDetailCollectionView?.showsVerticalScrollIndicator = false
             _articleDetailCollectionView?.showsHorizontalScrollIndicator = false
             _articleDetailCollectionView?.translatesAutoresizingMaskIntoConstraints = false
+            _articleDetailCollectionView?.backgroundColor = UIColor.white
             
             return _articleDetailCollectionView!
         }

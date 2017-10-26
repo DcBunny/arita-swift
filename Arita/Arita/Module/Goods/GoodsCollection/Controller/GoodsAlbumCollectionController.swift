@@ -66,8 +66,6 @@ class GoodsAlbumCollectionController: BaseController {
     fileprivate var conTitle: String?
 }
 
-//TODO: 需要后期删除
-private let tataArticleModel = TataArticleModel.demoModel()
 // MARK: - UICollecitonView Data Source
 extension GoodsAlbumCollectionController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -75,12 +73,14 @@ extension GoodsAlbumCollectionController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tataArticleModel.count
+//        return tataArticleModel.count
+        return 1
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GoodsAlbumCollectionViewCell.self), for: indexPath) as! GoodsAlbumCollectionViewCell
-        cell.tataArticleModel = tataArticleModel[indexPath.row]
+//        cell.tataArticleModel = tataArticleModel[indexPath.row]
         return cell
     }
 }

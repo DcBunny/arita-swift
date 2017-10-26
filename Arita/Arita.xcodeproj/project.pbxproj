@@ -78,11 +78,17 @@
 		C14A61AA1F6B5E63005A1E65 /* UIString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A61A91F6B5E63005A1E65 /* UIString+Extension.swift */; };
 		C14A61AC1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A61AB1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift */; };
 		C14A61AE1F6BB4EF005A1E65 /* JGGGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A61AD1F6BB4EF005A1E65 /* JGGGridView.swift */; };
+		C1602DC31F9DFA0200EA1945 /* ArticleHomeAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1602DC21F9DFA0200EA1945 /* ArticleHomeAPIManager.swift */; };
+		C1602DC71F9E026300EA1945 /* ArtcileHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1602DC61F9E026300EA1945 /* ArtcileHomeModel.swift */; };
+		C189F3AF1FA1C2890090F023 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C189F3AE1FA1C2890090F023 /* ButtonView.swift */; };
+		C189F3B31FA1DCCA0090F023 /* MineShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C189F3B21FA1DCCA0090F023 /* MineShareController.swift */; };
 		C18B4F281F6A1D6E001E2E56 /* FontConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F271F6A1D6E001E2E56 /* FontConst.swift */; };
 		C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F2C1F6A314B001E2E56 /* ArticleTitleView.swift */; };
 		C18B4F311F6A6F5B001E2E56 /* ArticleHomeTataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */; };
 		C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */; };
 		C18B4F351F6A6FAF001E2E56 /* ArticleHomePicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */; };
+		C195BE5B1FA023E200E9B9C9 /* TataBaoAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195BE5A1FA023E200E9B9C9 /* TataBaoAPIManager.swift */; };
+		C195BE5D1FA036BE00E9B9C9 /* TataBaoDetailAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195BE5C1FA036BE00E9B9C9 /* TataBaoDetailAPIManager.swift */; };
 		C198DDE51F8F0E54004BCB50 /* MineHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C198DDE41F8F0E54004BCB50 /* MineHomeTableViewCell.swift */; };
 		C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C198DDE61F8F157A004BCB50 /* MineHomeHeaderView.swift */; };
 		C1A1DD911F8CD3260039B873 /* DailyCheckFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD901F8CD3260039B873 /* DailyCheckFlowLayout.swift */; };
@@ -90,9 +96,12 @@
 		C1A1DD951F8CD8030039B873 /* DailyCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */; };
 		C1A98E1F1F8F8A6D00E56C5A /* MineSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A98E1E1F8F8A6D00E56C5A /* MineSettingController.swift */; };
 		C1A98E211F8F8BC100E56C5A /* MineNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A98E201F8F8BC100E56C5A /* MineNotificationTableViewCell.swift */; };
+		C1AED65F1FA06A6800D4374F /* ArticleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AED65E1FA06A6800D4374F /* ArticleAPIManager.swift */; };
+		C1AED6611FA0703200D4374F /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AED6601FA0703200D4374F /* ArticleCollectionViewCell.swift */; };
+		C1AED6641FA082B200D4374F /* CategoryCollectionAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AED6631FA082B200D4374F /* CategoryCollectionAPIManager.swift */; };
 		C1BB87641F9062A5006EA9D8 /* MineQRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB87631F9062A5006EA9D8 /* MineQRCodeController.swift */; };
 		C1BB87661F906EE9006EA9D8 /* AuthorizationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB87651F906EE9006EA9D8 /* AuthorizationTool.swift */; };
-		C1BCD4FB1F8CA20F0022C4F7 /* TataArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FA1F8CA20F0022C4F7 /* TataArticleModel.swift */; };
+		C1BCD4FB1F8CA20F0022C4F7 /* ArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FA1F8CA20F0022C4F7 /* ArticleModel.swift */; };
 		C1BCD4FD1F8CC2310022C4F7 /* ArticleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */; };
 		C1BCD4FF1F8CC6570022C4F7 /* ArticleDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */; };
 		C1BCD5011F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD5001F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift */; };
@@ -219,11 +228,17 @@
 		C14A61A91F6B5E63005A1E65 /* UIString+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIString+Extension.swift"; sourceTree = "<group>"; };
 		C14A61AB1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeNormalCell.swift; sourceTree = "<group>"; };
 		C14A61AD1F6BB4EF005A1E65 /* JGGGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JGGGridView.swift; sourceTree = "<group>"; };
+		C1602DC21F9DFA0200EA1945 /* ArticleHomeAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleHomeAPIManager.swift; sourceTree = "<group>"; };
+		C1602DC61F9E026300EA1945 /* ArtcileHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtcileHomeModel.swift; sourceTree = "<group>"; };
+		C189F3AE1FA1C2890090F023 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		C189F3B21FA1DCCA0090F023 /* MineShareController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineShareController.swift; sourceTree = "<group>"; };
 		C18B4F271F6A1D6E001E2E56 /* FontConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontConst.swift; sourceTree = "<group>"; };
 		C18B4F2C1F6A314B001E2E56 /* ArticleTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTitleView.swift; sourceTree = "<group>"; };
 		C18B4F301F6A6F5B001E2E56 /* ArticleHomeTataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeTataCell.swift; sourceTree = "<group>"; };
 		C18B4F321F6A6F98001E2E56 /* ArticleHomeTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeTextCell.swift; sourceTree = "<group>"; };
 		C18B4F341F6A6FAF001E2E56 /* ArticleHomePicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomePicCell.swift; sourceTree = "<group>"; };
+		C195BE5A1FA023E200E9B9C9 /* TataBaoAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TataBaoAPIManager.swift; sourceTree = "<group>"; };
+		C195BE5C1FA036BE00E9B9C9 /* TataBaoDetailAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TataBaoDetailAPIManager.swift; sourceTree = "<group>"; };
 		C198DDE41F8F0E54004BCB50 /* MineHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineHomeTableViewCell.swift; sourceTree = "<group>"; };
 		C198DDE61F8F157A004BCB50 /* MineHomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineHomeHeaderView.swift; sourceTree = "<group>"; };
 		C1A1DD901F8CD3260039B873 /* DailyCheckFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckFlowLayout.swift; sourceTree = "<group>"; };
@@ -231,9 +246,12 @@
 		C1A1DD941F8CD8030039B873 /* DailyCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckController.swift; sourceTree = "<group>"; };
 		C1A98E1E1F8F8A6D00E56C5A /* MineSettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSettingController.swift; sourceTree = "<group>"; };
 		C1A98E201F8F8BC100E56C5A /* MineNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		C1AED65E1FA06A6800D4374F /* ArticleAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleAPIManager.swift; sourceTree = "<group>"; };
+		C1AED6601FA0703200D4374F /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
+		C1AED6631FA082B200D4374F /* CategoryCollectionAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionAPIManager.swift; sourceTree = "<group>"; };
 		C1BB87631F9062A5006EA9D8 /* MineQRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineQRCodeController.swift; sourceTree = "<group>"; };
 		C1BB87651F906EE9006EA9D8 /* AuthorizationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationTool.swift; sourceTree = "<group>"; };
-		C1BCD4FA1F8CA20F0022C4F7 /* TataArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TataArticleModel.swift; sourceTree = "<group>"; };
+		C1BCD4FA1F8CA20F0022C4F7 /* ArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
 		C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailController.swift; sourceTree = "<group>"; };
 		C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailCell.swift; sourceTree = "<group>"; };
 		C1BCD5001F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailFlowLayout.swift; sourceTree = "<group>"; };
@@ -448,6 +466,7 @@
 		C125096B1F690720006ED55E /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				C1602DC01F9DF9CB00EA1945 /* Article */,
 				FDCF46BA1F9DC41600F3A894 /* Goods */,
 				C1250A081F69209D006ED55E /* Login&Register */,
 			);
@@ -730,6 +749,24 @@
 			path = "Login&Register";
 			sourceTree = "<group>";
 		};
+		C1602DC01F9DF9CB00EA1945 /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				C1AED6621FA0828D00D4374F /* CategoryCollection */,
+				C195BE591FA023BB00E9B9C9 /* ArticleCollection */,
+				C1602DC11F9DF9D600EA1945 /* HomeList */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
+		C1602DC11F9DF9D600EA1945 /* HomeList */ = {
+			isa = PBXGroup;
+			children = (
+				C1602DC21F9DFA0200EA1945 /* ArticleHomeAPIManager.swift */,
+			);
+			path = HomeList;
+			sourceTree = "<group>";
+		};
 		C18B4F291F6A30E7001E2E56 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,14 +792,33 @@
 		C18B4F2B1F6A312A001E2E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C1602DC61F9E026300EA1945 /* ArtcileHomeModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C195BE591FA023BB00E9B9C9 /* ArticleCollection */ = {
+			isa = PBXGroup;
+			children = (
+				C195BE5A1FA023E200E9B9C9 /* TataBaoAPIManager.swift */,
+				C195BE5C1FA036BE00E9B9C9 /* TataBaoDetailAPIManager.swift */,
+				C1AED65E1FA06A6800D4374F /* ArticleAPIManager.swift */,
+			);
+			path = ArticleCollection;
+			sourceTree = "<group>";
+		};
+		C1AED6621FA0828D00D4374F /* CategoryCollection */ = {
+			isa = PBXGroup;
+			children = (
+				C1AED6631FA082B200D4374F /* CategoryCollectionAPIManager.swift */,
+			);
+			path = CategoryCollection;
 			sourceTree = "<group>";
 		};
 		C1BCD4F71F8CA1F00022C4F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C1BCD4FA1F8CA20F0022C4F7 /* TataArticleModel.swift */,
+				C1BCD4FA1F8CA20F0022C4F7 /* ArticleModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -828,6 +884,7 @@
 				C1C690011F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift */,
 				C1C690031F8B60EE008B6054 /* TataCollectionViewCell.swift */,
 				C1BCD5001F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift */,
+				C1AED6601FA0703200D4374F /* ArticleCollectionViewCell.swift */,
 				C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */,
 			);
 			path = View;
@@ -875,6 +932,7 @@
 			isa = PBXGroup;
 			children = (
 				C1F17BC21F69382E001153BA /* MineHomeController.swift */,
+				C189F3B21FA1DCCA0090F023 /* MineShareController.swift */,
 				C1D8C92A1F8F603C002B0DDF /* MineUserInfoController.swift */,
 				C1D8C9301F8F7C12002B0DDF /* MineNormalController.swift */,
 				C1BB87631F9062A5006EA9D8 /* MineQRCodeController.swift */,
@@ -891,6 +949,7 @@
 				C1D8C92C1F8F6156002B0DDF /* MineUserInfoAvatarTableViewCell.swift */,
 				C1D8C92E1F8F6166002B0DDF /* MineUserInfoNormalTableViewCell.swift */,
 				C1A98E201F8F8BC100E56C5A /* MineNotificationTableViewCell.swift */,
+				C189F3AE1FA1C2890090F023 /* ButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1253,6 +1312,7 @@
 				C14A61AA1F6B5E63005A1E65 /* UIString+Extension.swift in Sources */,
 				C1D8C9311F8F7C12002B0DDF /* MineNormalController.swift in Sources */,
 				C1BCD4FF1F8CC6570022C4F7 /* ArticleDetailCell.swift in Sources */,
+				C1602DC31F9DFA0200EA1945 /* ArticleHomeAPIManager.swift in Sources */,
 				C12509DC1F691F23006ED55E /* UserCacheManager.swift in Sources */,
 				C14A61AE1F6BB4EF005A1E65 /* JGGGridView.swift in Sources */,
 				C12509901F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift in Sources */,
@@ -1264,6 +1324,7 @@
 				C1F17BB61F693452001153BA /* IconConst.swift in Sources */,
 				C12509D31F6912A8006ED55E /* Time+Extension.swift in Sources */,
 				C1A98E1F1F8F8A6D00E56C5A /* MineSettingController.swift in Sources */,
+				C1AED65F1FA06A6800D4374F /* ArticleAPIManager.swift in Sources */,
 				C12509F51F691F78006ED55E /* BasicHybridCache.swift in Sources */,
 				C1F17BBF1F6937F3001153BA /* ArticleHomeController.swift in Sources */,
 				C12509B81F690A7D006ED55E /* APIConst.swift in Sources */,
@@ -1298,6 +1359,7 @@
 				C1F17BB01F692766001153BA /* GuideController.swift in Sources */,
 				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
 				FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */,
+				C195BE5B1FA023E200E9B9C9 /* TataBaoAPIManager.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
 				C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */,
 				C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */,
@@ -1306,7 +1368,7 @@
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
 				FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */,
 				FD46AB021F8F924E00CCB603 /* GoodsAlbumController.swift in Sources */,
-				C1BCD4FB1F8CA20F0022C4F7 /* TataArticleModel.swift in Sources */,
+				C1BCD4FB1F8CA20F0022C4F7 /* ArticleModel.swift in Sources */,
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
 				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
 				C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */,
@@ -1336,6 +1398,8 @@
 				C12509971F69079E006ED55E /* ONCacheObject.swift in Sources */,
 				FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */,
 				C12509FF1F691F78006ED55E /* HybridCache.swift in Sources */,
+				C189F3B31FA1DCCA0090F023 /* MineShareController.swift in Sources */,
+				C1AED6641FA082B200D4374F /* CategoryCollectionAPIManager.swift in Sources */,
 				C11B6EC71F7CEFDE00EAAEB0 /* ShareButton.swift in Sources */,
 				C11E20B81F7E21DB001F7234 /* ShareTool.swift in Sources */,
 				C1250A061F691F78006ED55E /* StorageAware.swift in Sources */,
@@ -1352,6 +1416,8 @@
 				C1A1DD931F8CD7850039B873 /* DailyCheckCell.swift in Sources */,
 				C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */,
 				C11B6ECC1F7D1DDA00EAAEB0 /* ShareModel.swift in Sources */,
+				C1602DC71F9E026300EA1945 /* ArtcileHomeModel.swift in Sources */,
+				C189F3AF1FA1C2890090F023 /* ButtonView.swift in Sources */,
 				C18B4F311F6A6F5B001E2E56 /* ArticleHomeTataCell.swift in Sources */,
 				C1250A0A1F6920C8006ED55E /* LoginAPIManager.swift in Sources */,
 				C1250A0E1F692171006ED55E /* NotificationConst.swift in Sources */,
@@ -1359,6 +1425,7 @@
 				C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */,
 				C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */,
 				FD74AF731F9884FA00938B06 /* WRCycleCell.swift in Sources */,
+				C1AED6611FA0703200D4374F /* ArticleCollectionViewCell.swift in Sources */,
 				C12509F81F691F78006ED55E /* Cachable.swift in Sources */,
 				C12509FC1F691F78006ED55E /* NSData+Cache.swift in Sources */,
 				FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */,
@@ -1367,6 +1434,7 @@
 				C12509F91F691F78006ED55E /* Capsule.swift in Sources */,
 				C12509991F69079E006ED55E /* ONLogger.swift in Sources */,
 				C18B4F351F6A6FAF001E2E56 /* ArticleHomePicCell.swift in Sources */,
+				C195BE5D1FA036BE00E9B9C9 /* TataBaoDetailAPIManager.swift in Sources */,
 				C12509F71F691F78006ED55E /* Config.swift in Sources */,
 				C12509961F69079E006ED55E /* ONCache.swift in Sources */,
 				C125099F1F69079E006ED55E /* ONRequestGenerator.swift in Sources */,
@@ -1513,12 +1581,12 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d8e145bd-bf1a-463b-a253-91fddbaa81ec";
-				PROVISIONING_PROFILE_SPECIFIER = arita_dev_current;
+				PROVISIONING_PROFILE = "c6da3bc2-d402-47cf-8e48-a791bc39294d";
+				PROVISIONING_PROFILE_SPECIFIER = "arita-current-develop";
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1535,12 +1603,12 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2aac7aea-c413-40d6-be9f-090a5a0a1ea7";
-				PROVISIONING_PROFILE_SPECIFIER = arita_adhoc_current;
+				PROVISIONING_PROFILE = "a6fcd55a-6df4-4318-9374-aca505c341a0";
+				PROVISIONING_PROFILE_SPECIFIER = "arita-current-adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

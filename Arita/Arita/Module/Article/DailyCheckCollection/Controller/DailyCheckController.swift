@@ -21,6 +21,7 @@ class DailyCheckController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,6 +30,14 @@ class DailyCheckController: BaseController {
     }
     
     // MARK: - Init Methods
+    init(_ tataInfo: ArticleHomeModel) {
+        self.todayTata = tataInfo
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Controller Settings
     private func setNavigationBar() {
@@ -60,17 +69,24 @@ class DailyCheckController: BaseController {
         dailyCheckCollectionView.backgroundColor = UIColor.clear
         dailyCheckCollectionView.delegate = self
         dailyCheckCollectionView.dataSource = self
+        
+        articleAPIManager.delegate = self
+        articleAPIManager.paramSource = self
+    }
+    
+    private func loadData() {
+        articleAPIManager.loadData()
     }
     
     // MARK: - Event Responses
     @objc fileprivate func gotoShare() {
         DispatchQueue.main.async {
-            let shareController = ShareController()
-            shareController.modalTransitionStyle = .crossDissolve
-            shareController.providesPresentationContextTransitionStyle = true
-            shareController.definesPresentationContext = true
-            shareController.modalPresentationStyle = .overFullScreen
-            self.present(shareController, animated: true, completion: nil)
+//            let shareController = ShareController()
+//            shareController.modalTransitionStyle = .crossDissolve
+//            shareController.providesPresentationContextTransitionStyle = true
+//            shareController.definesPresentationContext = true
+//            shareController.modalPresentationStyle = .overFullScreen
+//            self.present(shareController, animated: true, completion: nil)
         }
     }
     
@@ -79,6 +95,47 @@ class DailyCheckController: BaseController {
     // MARK: - Controller Attributes
     fileprivate var _dailyCheckCollectionView: UICollectionView?
     fileprivate var _shareButton: UIButton?
+    fileprivate var articleAPIManager = ArticleAPIManager()
+    fileprivate var todayTata: ArticleHomeModel
+}
+
+// MARK: - ONAPIManagerParamSource
+extension DailyCheckController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return ["timestamp": todayTata.timeStamp, "articlesNum": 1000, "channel_ID": 44]
+    }
+}
+
+// MARK: - ONAPIManagerCallBackDelegate
+extension DailyCheckController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+//        if isFirst {
+//            articleModel.removeAll()
+//            isFirst = false
+//        }
+//        if manager is TataBaoAPIManager {
+//            let data = manager.fetchDataWithReformer(nil)
+//            let viewModel = ArticleViewModel(data: data)
+//            articleModel = viewModel.articles
+//            totalCount = viewModel.totalCount
+//            articleCollectionView.reloadData()
+//        } else if manager is ArticleAPIManager {
+//            let data = manager.fetchDataWithReformer(nil)
+//            let viewModel = NormalArticleViewModel(data: data)
+//            articleModel = viewModel.articles
+//            totalCount = viewModel.totalCount
+//            articleCollectionView.reloadData()
+//        }
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
 }
 
 // MARK: - UICollecitonView Data Source

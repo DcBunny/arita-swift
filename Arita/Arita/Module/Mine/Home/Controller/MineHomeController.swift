@@ -175,8 +175,14 @@ extension MineHomeController: UITableViewDelegate {
             UIApplication.shared.openURL(URL(string: "itms-apps://itunes.apple.com/app/id1125888897")!)
             
         case 3:
-            let qrCodeController = MineQRCodeController()
-            navigationController?.pushViewController(qrCodeController, animated: true)
+            DispatchQueue.main.async {
+                let shareController = MineShareController()
+                shareController.modalTransitionStyle = .crossDissolve
+                shareController.providesPresentationContextTransitionStyle = true
+                shareController.definesPresentationContext = true
+                shareController.modalPresentationStyle = .overFullScreen
+                self.present(shareController, animated: true, completion: nil)
+            }
             
         case 4:
             let settingController = MineSettingController()
@@ -198,7 +204,6 @@ extension MineHomeController: UITableViewDelegate {
         }
     }
 }
-
 
 // MARK: - Getters and Setters
 extension MineHomeController {

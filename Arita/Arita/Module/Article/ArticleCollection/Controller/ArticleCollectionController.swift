@@ -21,6 +21,7 @@ class ArticleCollectionController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,9 +30,22 @@ class ArticleCollectionController: BaseController {
     }
     
     // MARK: - Init Methods
-    init(with title: String) {
-        self.conTitle = title
-        super.init(nibName: nil, bundle: nil)
+    init(with articleInfo: Any, isFromHome: Bool, isTata: Bool) {
+        self.isFromHome = isFromHome
+        self.isTata = isTata
+        if isFromHome {
+            let info = articleInfo as! ArticleHomeModel
+            self.conTitle = info.channelName
+            self.channelID = info.channelId
+            self.timeStamp = info.timeStamp
+            super.init(nibName: nil, bundle: nil)
+        } else {
+            let info = articleInfo as! CategoryModel
+            self.conTitle = info.channelName
+            self.channelID = info.channelID
+            self.timeStamp = info.publicTime
+            super.init(nibName: nil, bundle: nil)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +72,19 @@ class ArticleCollectionController: BaseController {
         articleCollectionView.backgroundColor = Color.hexf5f5f5
         articleCollectionView.delegate = self
         articleCollectionView.dataSource = self
+        
+        tatabaoAPIManager.delegate = self
+        tatabaoAPIManager.paramSource = self
+        articleAPIManager.delegate = self
+        articleAPIManager.paramSource = self
+    }
+    
+    private func loadData() {
+        if isTata {
+            tatabaoAPIManager.loadData()
+        } else {
+            articleAPIManager.loadData()
+        }
     }
     
     // MARK: - Event Responses
@@ -67,10 +94,62 @@ class ArticleCollectionController: BaseController {
     // MARK: - Controller Attributes
     fileprivate var _articleCollectionView: UICollectionView?
     fileprivate var conTitle: String?
+    fileprivate var isTata: Bool
+    fileprivate var isFromHome: Bool
+    fileprivate var channelID: Int
+    fileprivate var timeStamp: String
+    fileprivate var tatabaoAPIManager = TataBaoAPIManager()
+    fileprivate var articleAPIManager = ArticleAPIManager()
+    fileprivate var articleModel: [ArticleModel] = [ArticleModel.initial]
+    fileprivate var totalCount = 0
+    fileprivate var isFirst = true
 }
 
-//TODO: 需要后期删除
-private let tataArticleModel = TataArticleModel.demoModel()
+// MARK: - ONAPIManagerParamSource
+extension ArticleCollectionController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        if manager is TataBaoAPIManager {
+            return ["timestamp": timeStamp, "articlesNum": 1000]
+        } else if manager is ArticleAPIManager {
+            return ["timestamp": timeStamp, "articlesNum": 1000, "channel_ID": channelID]
+        } else {
+            return [:]
+        }
+    }
+}
+
+// MARK: - ONAPIManagerCallBackDelegate
+extension ArticleCollectionController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        if isFirst {
+            articleModel.removeAll()
+            isFirst = false
+        }
+        if manager is TataBaoAPIManager {
+            let data = manager.fetchDataWithReformer(nil)
+            let viewModel = ArticleViewModel(data: data)
+            articleModel = viewModel.articles
+            totalCount = viewModel.totalCount
+            articleCollectionView.reloadData()
+        } else if manager is ArticleAPIManager {
+            let data = manager.fetchDataWithReformer(nil)
+            let viewModel = NormalArticleViewModel(data: data)
+            articleModel = viewModel.articles
+            totalCount = viewModel.totalCount
+            articleCollectionView.reloadData()
+        }
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+       
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
+}
+
 // MARK: - UICollecitonView Data Source
 extension ArticleCollectionController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -78,20 +157,26 @@ extension ArticleCollectionController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tataArticleModel.count
+        return articleModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TataCollectionViewCell.self), for: indexPath) as! TataCollectionViewCell
-        cell.tataArticleModel = tataArticleModel[indexPath.row]
-        return cell
+        if isTata {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TataCollectionViewCell.self), for: indexPath) as! TataCollectionViewCell
+            cell.tataArticleModel = articleModel[indexPath.row]
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ArticleCollectionViewCell.self), for: indexPath) as! ArticleCollectionViewCell
+            cell.articleModel = articleModel[indexPath.row]
+            return cell
+        }
     }
 }
 
 // MARK: - UICollecitonView Delegate
 extension ArticleCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let articleDetailController = ArticleDetailController(with: "塔塔报")
+        let articleDetailController = ArticleDetailController(with: conTitle, and: articleModel[indexPath.row].articleDate)
         navigationController?.pushViewController(articleDetailController, animated: true)
     }
 }
@@ -103,6 +188,7 @@ extension ArticleCollectionController {
             let articleCollectionFlowLayout = ArticleCollectionFlowLayout()
             _articleCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: articleCollectionFlowLayout)
             _articleCollectionView?.register(TataCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: TataCollectionViewCell.self))
+            _articleCollectionView?.register(ArticleCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: ArticleCollectionViewCell.self))
             _articleCollectionView?.showsVerticalScrollIndicator = false
             _articleCollectionView?.showsHorizontalScrollIndicator = false
             _articleCollectionView?.translatesAutoresizingMaskIntoConstraints = false

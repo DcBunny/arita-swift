@@ -7,39 +7,154 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 /**
  CategoryModel **分类**页数据模型
  */
 struct CategoryModel {
-    public var categoryIcon: String?
-    public var categoryName: String?
-    public var updateTime: String?
+    public var channelIcon: String
+    public var channelName: String
+    public var updateTime: String
+    public var channelID: Int
+    public var publicTime: String
     
-    //TODO: - 后期删除
-    public static func demoModel() -> [CategoryModel] {
-        return [CategoryModel(categoryIcon: Icon.class01, categoryName: "创意集结号", updateTime: "10分钟前更新"),
-                CategoryModel(categoryIcon: Icon.class02, categoryName: "用镜头说话", updateTime: "10分钟前更新"),
-                CategoryModel(categoryIcon: Icon.class03, categoryName: "汽车之间", updateTime: "20分钟前更新"),
-                CategoryModel(categoryIcon: Icon.class04, categoryName: "建筑黑板报", updateTime: "20分钟前更新"),
-                CategoryModel(categoryIcon: Icon.class05, categoryName: "我爱我家", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class06, categoryName: "生活在别处", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class07, categoryName: "手工爱好者", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class08, categoryName: "趣你的", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class09, categoryName: "看不懂的艺术", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class10, categoryName: "插画物语", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class11, categoryName: "设计奇葩但有用", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class12, categoryName: "烧脑高科技", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class13, categoryName: "时尚时尚最时尚", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class14, categoryName: "一起去旅行", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class15, categoryName: "小宠当家", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class16, categoryName: "生活圆桌", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class17, categoryName: "热炒冷知识", updateTime: "昨天更新"),
-                CategoryModel(categoryIcon: Icon.class18, categoryName: "吃很重要", updateTime: "昨天更新")
-        ]
+    init(data channelInfo: JSON) {
+        self.channelIcon = channelInfo["thumb_path"].stringValue
+        self.channelName = channelInfo["channel_name"].stringValue
+        self.updateTime = channelInfo["time_ago"].stringValue
+        self.publicTime = channelInfo["publish_time"].stringValue
+        self.channelID = channelInfo["ID"].intValue
     }
     
-    public static func initial() -> CategoryModel {
-        return CategoryModel(categoryIcon: nil, categoryName: nil, updateTime: nil)
+    //TODO: - 后期删除
+    public static func initial() -> [CategoryModel] {
+        return [CategoryModel(data: [
+                    "thumb_path": Icon.class01,
+                    "channel_name": "创意集结号",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class02,
+                    "channel_name": "用镜头说话",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class03,
+                    "channel_name": "汽车之间",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class04,
+                    "channel_name": "建筑黑板报",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class05,
+                    "channel_name": "我爱我家",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class06,
+                    "channel_name": "生活在别处",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class07,
+                    "channel_name": "手工爱好者",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class08,
+                    "channel_name": "趣你的",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class09,
+                    "channel_name": "看不懂的艺术",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class10,
+                    "channel_name": "插画物语",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class11,
+                    "channel_name": "设计奇葩但有用",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class12,
+                    "channel_name": "烧脑高科技",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class13,
+                    "channel_name": "时尚时尚最时尚",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class14,
+                    "channel_name": "一起去旅行",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class15,
+                    "channel_name": "小宠当家",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class16,
+                    "channel_name": "生活圆桌",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class17,
+                    "channel_name": "热炒冷知识",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ]),
+                CategoryModel(data: [
+                    "thumb_path": Icon.class18,
+                    "channel_name": "吃很重要",
+                    "time_ago": "10分钟前更新",
+                    "publish_time": "2017-10-25 09:00:07",
+                    "ID": 0
+                    ])
+        ]
     }
 }

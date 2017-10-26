@@ -38,6 +38,8 @@ struct Icon {
     static let categoryIcon = "button_classify"
     static let share = "share"
     static let shareButton = "button_share"
+    static let placeHolderArticle11 = "pic_placeholderWenzhang1x1"
+    static let placeHolderArticle32 = "pic_placeholderWenzhang3x2"
     
     // Share
     static let shareWechatFriends = "share_weixin"
@@ -63,6 +65,12 @@ struct Icon {
     static let aboutUsBg = "pic_aboutus"
     static let background = "pic_bg"
     static let qrCode = "code"
+    
+    // Recommend
+    static let buttonQQ = "button_qq"
+    static let buttonWeibo = "button_qq"
+    static let buttonWechatFriends = "button_weixin"
+    static let buttonWechatMoments = "button_friends"
     
     // Category
     //TODO:  服务器返回，这个用作Demo 接口好了之后删除

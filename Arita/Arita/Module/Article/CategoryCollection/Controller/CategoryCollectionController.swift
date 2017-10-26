@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 /**
  CategoryCollectionController **分类**页主页
@@ -21,6 +22,7 @@ class CategoryCollectionController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,6 +55,13 @@ class CategoryCollectionController: BaseController {
         categoryCollectionView.backgroundColor = Color.hexf5f5f5!
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
+        
+        categoryCollectionAPIManager.delegate = self
+        categoryCollectionAPIManager.paramSource = self
+    }
+    
+    private func loadData() {
+        categoryCollectionAPIManager.loadData()
     }
     
     // MARK: - Event Responses
@@ -61,10 +70,43 @@ class CategoryCollectionController: BaseController {
     
     // MARK: - Controller Attributes
     fileprivate var _categoryCollectionView: UICollectionView?
+    fileprivate var isFirst = true
+    fileprivate var categoryCollectionAPIManager = CategoryCollectionAPIManager()
+    fileprivate var channelModel: [CategoryModel] = CategoryModel.initial()
 }
 
-//TODO: 需要后期删除
-private let categoryModel = CategoryModel.demoModel()
+// MARK: - ONAPIManagerParamSource
+extension CategoryCollectionController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return [:]
+    }
+}
+
+// MARK: - ONAPIManagerCallBackDelegate
+extension CategoryCollectionController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        if isFirst {
+            channelModel.removeAll()
+            isFirst = false
+        }
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data).arrayValue
+        for data in json {
+            channelModel.append(CategoryModel(data: data))
+        }
+        categoryCollectionView.reloadData()
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
+}
+
 // MARK: - UICollecitonView Data Source
 extension CategoryCollectionController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -72,12 +114,12 @@ extension CategoryCollectionController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoryModel.count
+        return channelModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CategoryCollectionCell.self), for: indexPath) as! CategoryCollectionCell
-        cell.categoryModel = categoryModel[indexPath.row]
+        cell.categoryModel = channelModel[indexPath.row]
         return cell
     }
 }
@@ -85,7 +127,15 @@ extension CategoryCollectionController: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension CategoryCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if channelModel[indexPath.row].channelName == "塔塔报" {
+            let tataDailyController = ArticleCollectionController(with: channelModel[indexPath.row], isFromHome: false, isTata: true)
+            tataDailyController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(tataDailyController, animated: true)
+        } else {
+            let articleListController = ArticleCollectionController(with: channelModel[indexPath.row], isFromHome: false, isTata: false)
+            articleListController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(articleListController, animated: true)
+        }
     }
 }
 
@@ -110,4 +160,3 @@ extension CategoryCollectionController {
         return _categoryCollectionView!
     }
 }
-

@@ -53,6 +53,6 @@ extension LatestGoodsAlbumManager: ONAPIManagerValidator {
     
     func manager(_ manager: ONAPIBaseManager, isCorrectWithCallBackData data: Data) -> Bool {
         // 这里检测返回的数据是否是正确的，比如判断返回码是否正确。
-        return APIResultCheck.checkResult(manager, isCorrectWithCallBackData: data)
+        return true
     }
 }

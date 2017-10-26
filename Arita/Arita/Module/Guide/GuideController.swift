@@ -54,8 +54,17 @@ class GuideController: BaseController {
     }
     
     private func layoutPageViews() {
-        scrollView.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.edges.equalTo(view)
+        if #available(iOS 11.0, *) {
+            scrollView.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+                ConstraintMaker.left.equalTo(view)
+                ConstraintMaker.right.equalTo(view)
+                ConstraintMaker.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            }
+        } else {
+            scrollView.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.edges.equalTo(view)
+            }
         }
     }
     

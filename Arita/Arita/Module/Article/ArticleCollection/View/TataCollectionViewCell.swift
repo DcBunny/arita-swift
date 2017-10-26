@@ -70,12 +70,12 @@ class TataCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Public Attributes
-    public var tataArticleModel: TataArticleModel = TataArticleModel.initial() {
+    public var tataArticleModel: ArticleModel = ArticleModel.initial {
         didSet {
-            dateLabel.attributedText = tataArticleModel.tataDate?.convertDateString()
-            picView.kf.setImage(with: URL(string: tataArticleModel.tataPic!))
-            titleLabel.attributedText = tataArticleModel.tataTitle?.convertArticleTitleString()
-            contentLabel.attributedText = tataArticleModel.tataContent?.convertArticleContentString()
+            dateLabel.attributedText = tataArticleModel.articleDate.convertStringToDateString()?.convertDateString()
+            picView.kf.setImage(with: URL(string: tataArticleModel.articlePic), placeholder: UIImage(named: Icon.placeHolderArticle32), options: nil, progressBlock: nil, completionHandler: nil)
+            titleLabel.attributedText = tataArticleModel.articleTitle.convertArticleTitleString()
+            contentLabel.attributedText = tataArticleModel.articleContent.convertArticleContentString()
         }
     }
     

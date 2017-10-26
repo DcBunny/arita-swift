@@ -30,6 +30,15 @@ class ShareController: BaseController {
     }
     
     // MARK: - Init Methods
+    init(url: String) {
+        self.shareUrl = url
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: - Controller Settings
     private func setNavigationBar() {
@@ -114,11 +123,10 @@ class ShareController: BaseController {
     private var topHeight = CGFloat(Size.screenHeight / 2 - 197)
     private var bottomHeight = CGFloat(Size.screenHeight / 2 - 200)
     
+    fileprivate var shareUrl: String
+    
     fileprivate var shareModel: [ShareModel] = []
 }
-
-//TODO: 后期删除
-private let shareDemo = ShareModel.demoModel()
 
 // MARK: - UICollecitonView Data Source
 extension ShareController: UICollectionViewDataSource {
@@ -146,10 +154,9 @@ extension ShareController: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollecitonView Delegate
 extension ShareController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ShareCollectionCell.self), for: indexPath) as! ShareCollectionCell
-        
+        let cell = collectionView.cellForItem(at: indexPath) as! ShareCollectionCell
         guard let shareType = cell.shareType else { return }
-        ShareTool.sharedInstance.shareWith(content: nil, to: shareType)
+        ShareTool.sharedInstance.shareWith(content: shareUrl, to: shareType)
     }
 }
 

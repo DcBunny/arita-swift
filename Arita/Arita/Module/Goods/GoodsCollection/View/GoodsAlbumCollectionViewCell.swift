@@ -73,11 +73,11 @@ class GoodsAlbumCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Public Attributes
-    public var tataArticleModel: TataArticleModel = TataArticleModel.initial() {
+    public var tataArticleModel: ArticleModel = ArticleModel.initial {
         didSet {
-            titleLabel.attributedText = tataArticleModel.tataDate?.convertArticleTitleString()
-            picView.kf.setImage(with: URL(string: tataArticleModel.tataPic!))
-            contentLabel.attributedText = tataArticleModel.tataContent?.convertArticleContentString()
+            titleLabel.attributedText = tataArticleModel.articleDate.convertArticleTitleString()
+            picView.kf.setImage(with: URL(string: tataArticleModel.articlePic), placeholder: UIImage(named: Icon.placeHolderArticle32), options: nil, progressBlock: nil, completionHandler: nil)
+            contentLabel.attributedText = tataArticleModel.articleContent.convertArticleContentString()
             numLabel.text = "12" + "件良品"
             dateLabel.text = "2017-10-12"
         }

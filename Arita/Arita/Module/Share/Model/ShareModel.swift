@@ -22,17 +22,6 @@ struct ShareModel {
     public var shareName: String?
     public var shareType: ShareType?
     
-    //TODO: - 后期删除
-    public static func demoModel() -> [ShareModel] {
-        return [ShareModel(shareIcon: Icon.shareWechatFriends, shareName: "微信好友", shareType: .wechatFriends),
-                ShareModel(shareIcon: Icon.shareWechatMoments, shareName: "微信朋友圈", shareType: .wechatMoments),
-                ShareModel(shareIcon: Icon.shareWeibo, shareName: "新浪微博", shareType: .weibo),
-                ShareModel(shareIcon: Icon.shareQQ, shareName: "QQ好友", shareType: .qq),
-                ShareModel(shareIcon: Icon.shareQzone, shareName: "QQ空间", shareType: .qZone),
-                ShareModel(shareIcon: Icon.shareLink, shareName: "复制链接", shareType: .link)
-        ]
-    }
-    
     public static func initial() -> ShareModel {
         return ShareModel(shareIcon: nil, shareName: nil, shareType: nil)
     }
