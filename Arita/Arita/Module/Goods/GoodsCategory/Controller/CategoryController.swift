@@ -166,6 +166,7 @@ class CategoryController: BaseController {
     
     @objc private func loadPageData() {
         goodsNum = -1
+        currentPage = 1
         goodsChildListManager.loadData()
     }
     
@@ -208,6 +209,7 @@ class CategoryController: BaseController {
     fileprivate var minPrice = 0
     fileprivate var maxPrice = 30000
     fileprivate var goodsNum = -1
+    fileprivate var currentPage = 1
 }
 
 // MARK: - UITableViewDataSource
@@ -249,7 +251,7 @@ extension CategoryController: UITableViewDelegate {
         if tableView === categoryTable {
             childId = categoryArray[indexPath.row]["ID"].intValue
             loadDataWithCondition(tableView)
-        } else {
+        } else if tableView === priceTable {
             minPrice = priceCondition[indexPath.row][0]
             maxPrice = priceCondition[indexPath.row][1]
             loadDataWithCondition(tableView)
@@ -258,6 +260,7 @@ extension CategoryController: UITableViewDelegate {
     
     func loadDataWithCondition(_ tableView: UITableView) {
         goodsNum = -1
+        currentPage = 1
         goodsChildListManager.loadData()
         tableView.isHidden = true
     }
@@ -268,12 +271,7 @@ extension CategoryController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
         if manager === goodsChildListManager {
-            var params: [String: Any] = ["channel_ID": id!, "goodsNum": 20, "minPrice": minPrice, "maxPrice": maxPrice]
-            if goodsNum == -1 {
-                params["id"] = 0
-            } else {
-                params["id"] = goodsArray[goodsArray.count - 1]["goods_ID"].stringValue
-            }
+            var params: [String: Any] = ["channel_ID": id!, "goodsNum": 20, "minPrice": minPrice, "maxPrice": maxPrice, "currentPage": currentPage]
             if childId != -1 {
                 params["childID"] = childId
             }
@@ -307,6 +305,7 @@ extension CategoryController: ONAPIManagerCallBackDelegate {
                 goodsNum = json["goodsNum"].intValue
                 goodsArray += json["goodsArrNew"].arrayValue
             }
+            currentPage += 1
             goodsTable.reloadData()
         } else {
             categoryArray = json.arrayValue
