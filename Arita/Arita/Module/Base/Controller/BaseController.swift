@@ -267,7 +267,7 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
     public func setNaviRightTextBtn(_ text: String, action: Selector) {
         let barBtnItem = UIBarButtonItem(title: text, style: .plain, target: self, action: action)
         let textAttributs = [NSFontAttributeName: Font.size13!,
-                             NSForegroundColorAttributeName: Color.hex4a4a4a!]
+                             NSForegroundColorAttributeName: Color.hex007aff!]
         barBtnItem.setTitleTextAttributes(textAttributs, for: .normal)
         barBtnItem.setTitleTextAttributes(textAttributs, for: .highlighted)
 
@@ -375,11 +375,11 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    // MARK: - Private Methods
-    @objc private func pop() {
+    @objc func pop() {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    // MARK: - Private Methods
     /// 移除所有item
     private func removeBarItem() {
         navigationItem.leftBarButtonItem = nil

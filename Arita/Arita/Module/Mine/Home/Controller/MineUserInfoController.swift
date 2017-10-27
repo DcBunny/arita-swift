@@ -11,6 +11,7 @@ import UIKit
 /**
  * MineUserInfoController **用户信息**页面主页
  */
+let AritaKeyWindow = UIApplication.shared.keyWindow ?? (UIApplication.shared.delegate as! AppDelegate).window
 class MineUserInfoController: BaseController {
 
     // MARK: - Life Cycle
@@ -112,7 +113,56 @@ extension MineUserInfoController: UITableViewDataSource {
 // MARK: - TableView Delegate
 extension MineUserInfoController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        switch indexPath.row {
+        case 0:
+            DispatchQueue.main.async {
+                let avatarController = MineChooseAvatarController(delegate: self)
+                avatarController.delegate = self
+                avatarController.modalTransitionStyle = .crossDissolve
+                avatarController.providesPresentationContextTransitionStyle = true
+                avatarController.definesPresentationContext = true
+                avatarController.modalPresentationStyle = .overFullScreen
+                self.present(avatarController, animated: true, completion: nil)
+            }
+            
+        case 1:
+            let modifiedNicknameController = MineNicknameController()
+            navigationController?.pushViewController(modifiedNicknameController, animated: true)
+            
+        case 2, 3:
+            print("生日")
+            
+        case 4:
+            let chooseSexController = MineSexChooseController()
+            navigationController?.pushViewController(chooseSexController, animated: true)
+            
+        case 5:
+            DispatchQueue.main.async {
+                let addressController = MineAddressController()
+                addressController.backClosure = { (location :Location) -> Void in
+                    let cell = tableView.cellForRow(at: indexPath) as! MineUserInfoNormalTableViewCell
+                    cell.infoName = location.province + " " + location.city
+                }
+                addressController.modalTransitionStyle = .crossDissolve
+                addressController.providesPresentationContextTransitionStyle = true
+                addressController.definesPresentationContext = true
+                addressController.modalPresentationStyle = .overFullScreen
+                self.present(addressController, animated: true, completion: nil)
+            }
+            
+        default:
+            print("Impossible!")
+        }
+    }
+}
+
+extension MineUserInfoController: ChooseAvatarDelegate {
+    func chooseAvatarController(at index: Int) {
+        if index == 0 {
+            print("照相")
+        } else {
+            print("选择相片")
+        }
     }
 }
 

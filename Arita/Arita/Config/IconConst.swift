@@ -65,6 +65,8 @@ struct Icon {
     static let aboutUsBg = "pic_aboutus"
     static let background = "pic_bg"
     static let qrCode = "code"
+    static let sexChoose = "icon_choise"
+    static let clearIcon = "eliminate"
     
     // Recommend
     static let buttonQQ = "button_qq"

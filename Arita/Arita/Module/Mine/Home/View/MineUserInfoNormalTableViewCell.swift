@@ -39,12 +39,15 @@ class MineUserInfoNormalTableViewCell: UITableViewCell {
         itemLabel.snp.makeConstraints { (make) in
             make.left.equalTo(contentView).offset(20)
             make.centerY.equalTo(contentView)
+            make.height.equalTo(contentView)
+            make.width.equalTo(50)
             make.right.equalTo(infoLabel.snp.left).offset(-15)
         }
         
         infoLabel.snp.makeConstraints { (make) in
             make.left.equalTo(itemLabel.snp.right).offset(15)
             make.centerY.equalTo(itemLabel)
+            make.height.equalTo(itemLabel)
             make.right.equalTo(nextIcon.snp.left).offset(-10)
         }
         

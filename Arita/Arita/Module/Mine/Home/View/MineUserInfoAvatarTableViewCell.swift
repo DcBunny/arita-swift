@@ -39,11 +39,11 @@ class MineUserInfoAvatarTableViewCell: UITableViewCell {
         itemLabel.snp.makeConstraints { (make) in
             make.left.equalTo(contentView).offset(20)
             make.centerY.equalTo(contentView)
-            make.right.equalTo(avatarImageView.snp.left).offset(-15)
+            make.height.equalTo(contentView)
+            make.width.equalTo(50)
         }
         
         avatarImageView.snp.makeConstraints { (make) in
-            make.left.equalTo(itemLabel.snp.right).offset(15)
             make.centerY.equalTo(itemLabel)
             make.size.equalTo(CGSize(width: 60, height: 60))
             make.right.equalTo(nextIcon.snp.left).offset(-10)

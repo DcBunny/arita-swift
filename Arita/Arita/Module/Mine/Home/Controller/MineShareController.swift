@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ * MineShareController **我的**页面推荐给好友主页
+ */
 class MineShareController: BaseController {
 
     // MARK: - Life Cycle
@@ -42,6 +45,7 @@ class MineShareController: BaseController {
             make.left.right.top.equalTo(view)
             make.bottom.equalTo(backView.snp.top)
         }
+        
         backView.snp.makeConstraints { (make) in
             make.top.equalTo(maskView.snp.bottom)
             make.left.right.equalTo(view)
@@ -89,13 +93,13 @@ class MineShareController: BaseController {
     private func setPageViews() {
         let tapGestureDismiss = UITapGestureRecognizer(target: self, action: #selector(viewDismiss))
         maskView.backgroundColor = Color.hex000000Alpha50
+        maskView.addGestureRecognizer(tapGestureDismiss)
         view.backgroundColor = UIColor.clear
         seperatorView.backgroundColor = Color.hexe4e4e4
         shareWechatFriendButton.tag = 0
         shareWechatMomentButton.tag = 1
         shareWechatFriendButton.addTarget(self, action: #selector(shareAction(sender:)), for: .touchUpInside)
         shareWechatMomentButton.addTarget(self, action: #selector(shareAction(sender:)), for: .touchUpInside)
-        maskView.addGestureRecognizer(tapGestureDismiss)
         
         ShareTool.sharedInstance.delegate = self
     }
