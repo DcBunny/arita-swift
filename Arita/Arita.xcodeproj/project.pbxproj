@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2ECEC0453384269A4EF5D7FC /* Pods_Arita.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E6A58748EE8EBB287358C /* Pods_Arita.framework */; };
+		8175D3DC1FA7072200E5CA9E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8175D3DB1FA7072200E5CA9E /* LoginController.swift */; };
 		C107B6FD1FA2FE600085CE25 /* MineNicknameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C107B6FC1FA2FE600085CE25 /* MineNicknameController.swift */; };
 		C11B6EC31F7CE3C500EAAEB0 /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B6EC21F7CE3C500EAAEB0 /* ShareController.swift */; };
 		C11B6EC71F7CEFDE00EAAEB0 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B6EC61F7CEFDE00EAAEB0 /* ShareButton.swift */; };
@@ -175,6 +176,7 @@
 
 /* Begin PBXFileReference section */
 		495E6A58748EE8EBB287358C /* Pods_Arita.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arita.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8175D3DB1FA7072200E5CA9E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.release.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.release.xcconfig"; sourceTree = "<group>"; };
 		C107B6FC1FA2FE600085CE25 /* MineNicknameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineNicknameController.swift; sourceTree = "<group>"; };
 		C11B6EC21F7CE3C500EAAEB0 /* ShareController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 		C125096A1F690708006ED55E /* Login&Register */ = {
 			isa = PBXGroup;
 			children = (
+				8175D3DB1FA7072200E5CA9E /* LoginController.swift */,
 			);
 			path = "Login&Register";
 			sourceTree = "<group>";
@@ -1413,6 +1416,7 @@
 				C1D8C92D1F8F6156002B0DDF /* MineUserInfoAvatarTableViewCell.swift in Sources */,
 				FD46AB001F8F825E00CCB603 /* GoodsAlbumCollectionViewCell.swift in Sources */,
 				C1E7451B1F7C99FD00FDB0F9 /* CategoryModel.swift in Sources */,
+				8175D3DC1FA7072200E5CA9E /* LoginController.swift in Sources */,
 				C1F17BB41F692E38001153BA /* ColorConst.swift in Sources */,
 				C1D535221F7BBFE100376686 /* CategoryCollectionController.swift in Sources */,
 				FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */,
