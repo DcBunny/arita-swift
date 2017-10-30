@@ -156,7 +156,7 @@ extension ShareController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! ShareCollectionCell
         guard let shareType = cell.shareType else { return }
-        ShareTool.sharedInstance.shareWith(content: shareUrl, to: shareType)
+//        ShareTool.sharedInstance.shareWith(content: shareUrl, to: shareType)
     }
 }
 

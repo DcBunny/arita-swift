@@ -67,6 +67,7 @@ struct Icon {
     static let qrCode = "code"
     static let sexChoose = "icon_choise"
     static let clearIcon = "eliminate"
+    static let shareIcon = "app_icon_1024"
     
     // Recommend
     static let buttonQQ = "button_qq"

@@ -76,6 +76,8 @@
 		C1250A0A1F6920C8006ED55E /* LoginAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A091F6920C8006ED55E /* LoginAPIManager.swift */; };
 		C1250A0C1F692111006ED55E /* APIResultCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A0B1F692111006ED55E /* APIResultCheck.swift */; };
 		C1250A0E1F692171006ED55E /* NotificationConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1250A0D1F692171006ED55E /* NotificationConst.swift */; };
+		C13E1F3A1FA6BA1B008B21A8 /* MineAgeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13E1F391FA6BA1B008B21A8 /* MineAgeController.swift */; };
+		C13E1F3C1FA6C400008B21A8 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13E1F3B1FA6C400008B21A8 /* Constellation.swift */; };
 		C14468C01FA31229001E3283 /* addressCode in Resources */ = {isa = PBXBuildFile; fileRef = C14468BB1FA31229001E3283 /* addressCode */; };
 		C14468C11FA31229001E3283 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = C14468BC1FA31229001E3283 /* area.plist */; };
 		C14468C21FA31229001E3283 /* AreaPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14468BD1FA31229001E3283 /* AreaPickerView.swift */; };
@@ -236,6 +238,8 @@
 		C1250A091F6920C8006ED55E /* LoginAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAPIManager.swift; sourceTree = "<group>"; };
 		C1250A0B1F692111006ED55E /* APIResultCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResultCheck.swift; sourceTree = "<group>"; };
 		C1250A0D1F692171006ED55E /* NotificationConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationConst.swift; sourceTree = "<group>"; };
+		C13E1F391FA6BA1B008B21A8 /* MineAgeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineAgeController.swift; sourceTree = "<group>"; };
+		C13E1F3B1FA6C400008B21A8 /* Constellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constellation.swift; sourceTree = "<group>"; };
 		C14468BB1FA31229001E3283 /* addressCode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = addressCode; sourceTree = "<group>"; };
 		C14468BC1FA31229001E3283 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		C14468BD1FA31229001E3283 /* AreaPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaPickerView.swift; sourceTree = "<group>"; };
@@ -690,6 +694,7 @@
 				C11E20B71F7E21DB001F7234 /* ShareTool.swift */,
 				C1BB87651F906EE9006EA9D8 /* AuthorizationTool.swift */,
 				C1EFC9531F9099C2005A5CF6 /* CacheTool.swift */,
+				C13E1F3B1FA6C400008B21A8 /* Constellation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -974,6 +979,7 @@
 				C1B1CE731FA2D5F20071C559 /* MineSexChooseController.swift */,
 				C107B6FC1FA2FE600085CE25 /* MineNicknameController.swift */,
 				C14468C51FA31311001E3283 /* MineAddressController.swift */,
+				C13E1F391FA6BA1B008B21A8 /* MineAgeController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1399,6 +1405,7 @@
 				FD46AAF11F8E2B5600CCB603 /* GoodsGridCell.swift in Sources */,
 				C1F17BB01F692766001153BA /* GuideController.swift in Sources */,
 				C12509FA1F691F78006ED55E /* Expiry.swift in Sources */,
+				C13E1F3A1FA6BA1B008B21A8 /* MineAgeController.swift in Sources */,
 				FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */,
 				C195BE5B1FA023E200E9B9C9 /* TataBaoAPIManager.swift in Sources */,
 				C14468C61FA31311001E3283 /* MineAddressController.swift in Sources */,
@@ -1419,6 +1426,7 @@
 				C198DDE51F8F0E54004BCB50 /* MineHomeTableViewCell.swift in Sources */,
 				C1B1CE741FA2D5F20071C559 /* MineSexChooseController.swift in Sources */,
 				C12509941F69079E006ED55E /* ONAPIBaseManager.swift in Sources */,
+				C13E1F3C1FA6C400008B21A8 /* Constellation.swift in Sources */,
 				C12509F61F691F78006ED55E /* Cache.swift in Sources */,
 				C125099E1F69079E006ED55E /* ONNetworkingConfigurationManager.swift in Sources */,
 				C12509DA1F69169C006ED55E /* UserManager.swift in Sources */,

@@ -56,7 +56,7 @@ class MineSettingController: BaseController {
     // MARK: - Event Responses
     @objc fileprivate func switchAction(sender: UISwitch) {
         if sender.isOn {
-            print("打开了")
+            
         } else {
             print("关闭了")
         }

@@ -113,7 +113,12 @@ class MineShareController: BaseController {
             shareType = ShareType.wechatMoments
         }
         let shareUrl = API.shareUrl
-        ShareTool.sharedInstance.shareWith(content: shareUrl, to: shareType)
+        let content = [ShareKey.shareUrlKey: shareUrl,
+                       ShareKey.shareTitleKey: "阿里塔 - 创意生活新媒体",
+                       ShareKey.shareDescribtionKey: "阿里塔 · 不止有趣\n每天精彩尽在塔塔报",
+                       ShareKey.shareImageUrlKey: ""
+        ]
+        ShareTool.sharedInstance.shareWith(content: content, to: shareType)
     }
     
     // MARK: - Controller Attributes

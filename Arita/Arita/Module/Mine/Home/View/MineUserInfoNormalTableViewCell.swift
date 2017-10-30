@@ -40,7 +40,7 @@ class MineUserInfoNormalTableViewCell: UITableViewCell {
             make.left.equalTo(contentView).offset(20)
             make.centerY.equalTo(contentView)
             make.height.equalTo(contentView)
-            make.width.equalTo(50)
+            make.width.equalTo(100)
             make.right.equalTo(infoLabel.snp.left).offset(-15)
         }
         

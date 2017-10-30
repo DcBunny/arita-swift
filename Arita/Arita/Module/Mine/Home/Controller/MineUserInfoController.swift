@@ -130,7 +130,26 @@ extension MineUserInfoController: UITableViewDelegate {
             navigationController?.pushViewController(modifiedNicknameController, animated: true)
             
         case 2, 3:
-            print("生日")
+            DispatchQueue.main.async {
+                let ageController = MineAgeController()
+                ageController.backClosure = { (currentAge: String, currentXingzuo: String) -> Void in
+                    let cell = tableView.cellForRow(at: indexPath) as! MineUserInfoNormalTableViewCell
+                    if indexPath.row == 2 {
+                        cell.infoName = currentAge
+                        let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as! MineUserInfoNormalTableViewCell
+                        cell.infoName = currentXingzuo
+                    } else if indexPath.row == 3 {
+                        cell.infoName = currentXingzuo
+                        let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! MineUserInfoNormalTableViewCell
+                        cell.infoName = currentAge
+                    }
+                }
+                ageController.modalTransitionStyle = .crossDissolve
+                ageController.providesPresentationContextTransitionStyle = true
+                ageController.definesPresentationContext = true
+                ageController.modalPresentationStyle = .overFullScreen
+                self.present(ageController, animated: true, completion: nil)
+            }
             
         case 4:
             let chooseSexController = MineSexChooseController()

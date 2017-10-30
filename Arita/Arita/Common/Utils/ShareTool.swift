@@ -8,6 +8,14 @@
 
 import Foundation
 
+/// 分享参数KEY
+struct ShareKey {
+    static let shareUrlKey = "shareUrl"
+    static let shareTitleKey = "title"
+    static let shareDescribtionKey = "describtion"
+    static let shareImageUrlKey = "imageUrl"
+}
+
 /**
  ShareDelegate 分享工具代理方法
  */
@@ -56,7 +64,7 @@ extension ShareDelegate {
     }
     
     func didCanceled(shareTo platform: ShareType) {
-        ONTipCenter.showToast("取消分享")
+        print("分享取消")
     }
 }
 
@@ -68,17 +76,17 @@ class ShareTool {
     
     public var delegate: ShareDelegate?
     
-    public func shareWith(content: String?, to shareType: ShareType) {
+    public func shareWith(content: Dictionary<String, String>, to shareType: ShareType) {
         let shareParames = NSMutableDictionary()
         shareParames.ssdkEnableUseClientShare()
         var platformType: SSDKPlatformType!
-        var shareText = "分享内容"
-        let shareTitle = "分享标题"
-        let shareUrl = NSURL(string: content!) as URL!
+        var shareText = content[ShareKey.shareDescribtionKey] ?? "分享内容"
+        let shareTitle = content[ShareKey.shareTitleKey] ?? "分享标题"
+        let shareUrl = NSURL(string: content[ShareKey.shareUrlKey]!) as URL!
         var shareContentType = SSDKContentType.webPage
         
-        let url = URL(string: "image url")
-        var thumbImage = UIImage(named: Icon.appIcon)!
+        let url = URL(string: ShareKey.shareImageUrlKey)
+        var thumbImage = UIImage(named: Icon.shareIcon)!
         if url != nil {
             let data = NSData(contentsOf: url!)! as Data
             thumbImage = UIImage(data: data, scale: 1.0)!
