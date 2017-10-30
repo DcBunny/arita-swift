@@ -8,6 +8,8 @@
 
 import UIKit
 import WebKit
+import WebViewJavascriptBridge
+import SwiftyJSON
 
 /**
  ArticleDetailCell **文章详情列表**页的cell
@@ -19,6 +21,7 @@ class ArticleDetailCell: UICollectionViewCell {
         
         addPageViews()
         layoutPageViews()
+        setPageViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +61,20 @@ class ArticleDetailCell: UICollectionViewCell {
                 detailWebView.load(request)
             }
         }
+    }
+    
+    func setJSBridge() {
+        let jsBridge: WKWebViewJavascriptBridge!
+        jsBridge = WKWebViewJavascriptBridge(for: detailWebView)
+        jsBridge.setWebViewDelegate(self)
+        jsBridge.callHandler("articleDetail", data: "调用JS") { (response) in
+            let json = JSON(response as Any)
+            let data = json["data"]
+            print(data["title"].stringValue)
+            print(data["content"].stringValue)
+            print(data["imageUrl"].stringValue)
+        }
+        print(jsBridge)
     }
     
     // MARK: - Controller Attributes

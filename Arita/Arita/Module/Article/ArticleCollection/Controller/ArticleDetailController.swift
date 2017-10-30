@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import WebViewJavascriptBridge
 
 /**
  ArticleDetailController **文章详情列表**页主页(包括塔塔报详情列表以及其他分类，更换不同的cell)
@@ -73,6 +74,8 @@ class ArticleDetailController: BaseController {
     // MARK: - Event Responses
     @objc private func gotoShare() {
         if currentIndex == nil { currentIndex = IndexPath(item: 0, section: 0) }
+        let cell = articleDetailCollectionView.cellForItem(at: currentIndex!) as! ArticleDetailCell
+        cell.setJSBridge()
         let shareUrl = API.articleDetailUrl + idArray[currentIndex!.row]
         guard !isScrolling else { return }
         DispatchQueue.main.async {
