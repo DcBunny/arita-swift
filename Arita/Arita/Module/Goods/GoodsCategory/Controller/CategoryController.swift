@@ -9,6 +9,10 @@
 import UIKit
 import SnapKit
 import MJRefresh
+import SwiftyJSON
+
+fileprivate let prices = ["全部", "0 - 1999", "2000 - 2999", "3000 - 5999", "6000 - 30000"]
+fileprivate let priceCondition = [[0, 30000], [0, 1999], [2000, 2999], [3000, 5999], [6000, 30000]]
 
 class CategoryController: BaseController {
 
@@ -20,9 +24,8 @@ class CategoryController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
-        
-        categoryTableHeightConstraint?.update(offset: 120)
-        priceTableHeightConstraint?.update(offset: 200)
+        setAPIManager()
+        initPageData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,9 +34,10 @@ class CategoryController: BaseController {
     }
     
     // MARK: - Init Methods
-    init(with title: String) {
-        self.conTitle = title
+    init(with title: String, id: String) {
         super.init(nibName: nil, bundle: nil)
+        self.conTitle = title
+        self.id = id
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -113,7 +117,7 @@ class CategoryController: BaseController {
             make.top.equalTo(menuView.snp.bottom)
             make.right.equalTo(view).offset(-6)
             make.left.equalTo(view.snp.centerX)
-            priceTableHeightConstraint = make.height.equalTo(0).constraint
+            make.height.equalTo(200)
         }
     }
     
@@ -128,6 +132,21 @@ class CategoryController: BaseController {
         
         goodsTable.dataSource = self
         goodsTable.delegate = self
+        goodsTable.mj_header.setRefreshingTarget(self, refreshingAction: #selector(loadPageData))
+        goodsTable.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(loadMorePageData))
+    }
+    
+    private func setAPIManager() {
+        thirdCategoryManager.paramSource = self
+        thirdCategoryManager.delegate = self
+        
+        goodsChildListManager.paramSource = self
+        goodsChildListManager.delegate = self
+    }
+    
+    private func initPageData() {
+        thirdCategoryManager.loadData()
+        goodsTable.mj_header.beginRefreshing()
     }
     
     // MARK: - Event Responses
@@ -145,10 +164,25 @@ class CategoryController: BaseController {
         }
     }
     
+    @objc private func loadPageData() {
+        goodsNum = -1
+        currentPage = 1
+        goodsChildListManager.loadData()
+    }
+    
+    @objc private func loadMorePageData() {
+        if goodsArray.count < goodsNum {
+            goodsChildListManager.loadData()
+        } else {
+            goodsTable.mj_footer.endRefreshingWithNoMoreData()
+        }
+    }
+    
     // MARK: - Private Methods
     
     // MARK: - Controller Attributes
     fileprivate var conTitle: String?
+    fileprivate var id: String?
     
     fileprivate var _menuView: UIView?
     fileprivate var _leftLabel: UILabel?
@@ -162,36 +196,44 @@ class CategoryController: BaseController {
     fileprivate var _priceTable: UITableView?
     
     fileprivate var categoryTableHeightConstraint: Constraint? = nil
-    fileprivate var priceTableHeightConstraint: Constraint? = nil
     
     fileprivate var _goodsTable: UITableView?
     
-    let categorys = ["全部", "笔记本", "台式"]
-    let prices = ["全部", "0~1000", "1000~2000", "2000~3000", "3000~4000"]
+    fileprivate var _thirdCategoryManager: GoodsThirdCategoryManager?
+    fileprivate var categoryArray: [JSON] = []
+    
+    fileprivate var _goodsChildListManager: GoodsChildListManager?
+    fileprivate var goodsArray: [JSON] = []
+    
+    fileprivate var childId = -1
+    fileprivate var minPrice = 0
+    fileprivate var maxPrice = 30000
+    fileprivate var goodsNum = -1
+    fileprivate var currentPage = 1
 }
 
 // MARK: - UITableViewDataSource
 extension CategoryController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == goodsTable {
-            return 6
+            return goodsArray.count
         } else if tableView == categoryTable {
-            return 3
+            return categoryArray.count
         } else {
-            return 5
+            return prices.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == goodsTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GoodsCell.self), for: indexPath) as! GoodsCell
-            cell.picUrl = ""
+            cell.goodData = goodsArray[indexPath.row]
             
             return cell
             
         } else if tableView == categoryTable {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MenuOptionCell.self), for: indexPath) as! MenuOptionCell
-            cell.titleText = categorys[indexPath.row]
+            cell.titleText = categoryArray[indexPath.row]["child_name"].stringValue
             
             return cell
         } else {
@@ -205,6 +247,78 @@ extension CategoryController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension CategoryController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView === categoryTable {
+            childId = categoryArray[indexPath.row]["ID"].intValue
+            loadDataWithCondition(tableView)
+        } else if tableView === priceTable {
+            minPrice = priceCondition[indexPath.row][0]
+            maxPrice = priceCondition[indexPath.row][1]
+            loadDataWithCondition(tableView)
+        }
+    }
+    
+    func loadDataWithCondition(_ tableView: UITableView) {
+        goodsNum = -1
+        currentPage = 1
+        goodsChildListManager.loadData()
+        tableView.isHidden = true
+    }
+}
+
+// MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
+extension CategoryController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        if manager === goodsChildListManager {
+            var params: [String: Any] = ["channel_ID": id!, "goodsNum": 20, "minPrice": minPrice, "maxPrice": maxPrice, "currentPage": currentPage]
+            if childId != -1 {
+                params["childID"] = childId
+            }
+            
+            return params
+        } else {
+            return ["channelID": id!]
+        }
+    }
+}
+
+extension CategoryController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        if goodsTable.mj_header.isRefreshing() {
+            goodsTable.mj_header.endRefreshing()
+        }
+        
+        if goodsTable.mj_footer.isRefreshing() {
+            goodsTable.mj_footer.endRefreshing()
+        }
+        
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data)
+        if manager === goodsChildListManager {
+            if goodsNum == -1 {
+                goodsNum = json["goodsNum"].intValue
+                goodsArray.removeAll()
+                goodsArray = json["goodsArrNew"].arrayValue
+            } else {
+                goodsNum = json["goodsNum"].intValue
+                goodsArray += json["goodsArrNew"].arrayValue
+            }
+            currentPage += 1
+            goodsTable.reloadData()
+        } else {
+            categoryArray = json.arrayValue
+            categoryTableHeightConstraint?.update(offset: categoryArray.count * 40)
+            categoryTable.reloadData()
+        }
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
 }
 
 // MARK: - Getters and Setters
@@ -250,7 +364,7 @@ extension CategoryController {
     fileprivate var rightLabel: UILabel {
         if _rightLabel == nil {
             _rightLabel = UILabel()
-            _rightLabel?.text = "价格排序"
+            _rightLabel?.text = "价格筛选"
             _rightLabel?.textColor = Color.hex4a4a4a
             _rightLabel?.font = Font.size13
             _rightLabel?.textAlignment = .center
@@ -319,5 +433,21 @@ extension CategoryController {
         }
         
         return _goodsTable!
+    }
+    
+    fileprivate var thirdCategoryManager: GoodsThirdCategoryManager {
+        if _thirdCategoryManager == nil {
+            _thirdCategoryManager = GoodsThirdCategoryManager()
+        }
+        
+        return _thirdCategoryManager!
+    }
+    
+    fileprivate var goodsChildListManager: GoodsChildListManager {
+        if _goodsChildListManager == nil {
+            _goodsChildListManager = GoodsChildListManager()
+        }
+        
+        return _goodsChildListManager!
     }
 }

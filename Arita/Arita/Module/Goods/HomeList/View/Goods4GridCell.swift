@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import SwiftyJSON
+
+protocol Goods4GridDelegate: class {
+    func goods(disSelectAt indexPath: IndexPath)
+}
 
 class Goods4GridCell: UITableViewCell {
+    
+    weak var delegate: Goods4GridDelegate?
     
     // MARK: - Init Methods
     override init(style: UITableViewCellStyle, reuseIdentifier: String!)
@@ -46,6 +53,13 @@ class Goods4GridCell: UITableViewCell {
         goodsCollection.delegate = self
     }
     
+    // MARK: - Public Attributes
+    public var cellData: [JSON]? = [] {
+        didSet {
+            goodsCollection.reloadData()
+        }
+    }
+    
     // MARK: - Controller Attributes
     fileprivate var _goodsCollection: UICollectionView?
 }
@@ -57,14 +71,14 @@ extension Goods4GridCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return cellData?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GoodsGridCell.self), for: indexPath) as! GoodsGridCell
-        cell.goodImage.backgroundColor = UIColor.blue
-        cell.goodLabel.text = "1233211233211231231231231231aaa"
-        cell.goodPriceLabel.text = "¥" + "89"
+        cell.goodImage.kf.setImage(with: URL(string: cellData![indexPath.row]["thumb_path"].stringValue))
+        cell.goodLabel.text = cellData![indexPath.row]["title"].stringValue
+        cell.goodPriceLabel.text = "¥" + cellData![indexPath.row]["price"].stringValue
         
         return cell
     }
@@ -73,9 +87,7 @@ extension Goods4GridCell: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension Goods4GridCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ShareCollectionCell.self), for: indexPath) as! ShareCollectionCell
-//        guard let shareType = cell.shareType else { return }
-//        ShareTool.sharedInstance.shareWith(content: nil, to: shareType)
+        delegate?.goods(disSelectAt: indexPath)
     }
 }
 

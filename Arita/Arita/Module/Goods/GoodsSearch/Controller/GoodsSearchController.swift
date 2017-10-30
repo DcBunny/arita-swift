@@ -108,7 +108,7 @@ extension GoodsSearchController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GoodsCell.self), for: indexPath) as! GoodsCell
-        cell.picUrl = ""
+        cell.goodData = nil
         
         return cell
     }

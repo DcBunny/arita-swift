@@ -1,5 +1,5 @@
 //
-//  LatestGoodsAlbumManager.swift
+//  GoodsManager.swift
 //  Arita
 //
 //  Created by 李宏博 on 2017/10/23.
@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- ** 获取最新的良品专辑
+ ** 获取良品首页列表
  */
-class LatestGoodsAlbumManager: ONAPIBaseManager {
+class GoodsManager: ONAPIBaseManager {
     override init() {
         super.init()
         
@@ -19,9 +19,9 @@ class LatestGoodsAlbumManager: ONAPIBaseManager {
     }
 }
 
-extension LatestGoodsAlbumManager: ONAPIManager {
+extension GoodsManager: ONAPIManager {
     func methodName() -> String {
-        return "album_list_fresh"
+        return "get_goods_detail"
     }
     
     func serviceType() -> String {
@@ -33,7 +33,7 @@ extension LatestGoodsAlbumManager: ONAPIManager {
     }
 }
 
-extension LatestGoodsAlbumManager: ONAPIManagerValidator {
+extension GoodsManager: ONAPIManagerValidator {
     func manager(_ manager: ONAPIBaseManager, isCorrectWithParamsData data: ONParamData) -> Bool {
         // 这里检测接口参数是否正确，例如可以检查输入的电话号码是否是符合规范的，如果返回false，则不会进行实际的请求。
         //        if let errorMsg = ONCheckTool.checkPhoneNum(phone: data["username"] as? String) {

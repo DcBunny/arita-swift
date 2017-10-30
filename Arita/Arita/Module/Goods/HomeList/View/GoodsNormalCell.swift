@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class GoodsNormalCell: UITableViewCell {
 
@@ -63,6 +64,15 @@ class GoodsNormalCell: UITableViewCell {
         selectionStyle = .none
     }
     
+    // MARK: - Public Attributes
+    public var cellData: JSON? = nil {
+        didSet {
+            goodImage.kf.setImage(with: URL(string: cellData!["thumb_path"].stringValue))
+            goodLabel.text = cellData!["title"].stringValue
+            goodPriceLabel.text = "¥" + cellData!["price"].stringValue
+        }
+    }
+    
     // MARK: - Controller Attributes
     fileprivate var _bgView: UIView?
     fileprivate var _goodImage: UIImageView?
@@ -73,7 +83,7 @@ class GoodsNormalCell: UITableViewCell {
 // MARK: - Getters and Setters
 extension GoodsNormalCell {
     
-    var bgView: UIView {
+    fileprivate var bgView: UIView {
         if _bgView == nil {
             _bgView = UIView()
             _bgView?.backgroundColor = UIColor.white
@@ -84,7 +94,7 @@ extension GoodsNormalCell {
         return _bgView!
     }
     
-    var goodImage: UIImageView {
+    fileprivate var goodImage: UIImageView {
         if _goodImage == nil {
             _goodImage = UIImageView()
             
@@ -94,7 +104,7 @@ extension GoodsNormalCell {
         return _goodImage!
     }
     
-    var goodLabel: UILabel {
+    fileprivate var goodLabel: UILabel {
         if _goodLabel == nil {
             _goodLabel = UILabel()
             _goodLabel?.textColor = Color.hex2a2a2a
@@ -108,7 +118,7 @@ extension GoodsNormalCell {
         return _goodLabel!
     }
     
-    var goodPriceLabel: UILabel {
+    fileprivate var goodPriceLabel: UILabel {
         if _goodPriceLabel == nil {
             _goodPriceLabel = UILabel()
             _goodPriceLabel?.textColor = Color.hexea9120

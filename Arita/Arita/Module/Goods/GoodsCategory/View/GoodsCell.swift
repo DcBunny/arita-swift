@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class GoodsCell: UITableViewCell {
 
@@ -72,12 +73,12 @@ class GoodsCell: UITableViewCell {
     }
     
     // MARK: - Public Attributes
-    public var picUrl = "" {
+    public var goodData: JSON? = nil {
         didSet {
-            goodImage.backgroundColor = UIColor.blue
-            titleLabel.text = "这是一个创意的乱七八糟东西"
-            contentLabel.text = "不管一款产品在设计、研发阶段经历了怎样的反复测试、精心打磨、耗费了多少人力物力，它总要一点或者简单或者隆重的仪式感，以合适的姿态亮相。它总要一点或者简单或者隆重的仪式感，它总要一点或者简单或者隆重的仪式感"
-            priceLabel.text = "¥" + "259"
+            goodImage.kf.setImage(with: URL(string: goodData!["thumb_path"].stringValue))
+            titleLabel.text = goodData!["title"].stringValue
+            contentLabel.text = goodData!["description"].stringValue
+            priceLabel.text = "¥" + goodData!["price"].stringValue
         }
     }
     

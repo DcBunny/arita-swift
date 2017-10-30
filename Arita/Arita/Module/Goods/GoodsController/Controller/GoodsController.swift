@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class GoodsController: BaseController {
 
@@ -16,11 +17,21 @@ class GoodsController: BaseController {
         setNavigationBar()
         addPageViews()
         layoutPageViews()
-        setPageViews()
+        setAPIManager()
+        loadPageData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    init(id: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.id = id
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Controller Settings
@@ -85,17 +96,13 @@ class GoodsController: BaseController {
         }
     }
     
-    private func setPageViews() {
-        let serverImages = ["http://p.lrlz.com/data/upload/mobile/special/s252/s252_05471521705899113.png",
-                            "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007678060723.png",
-                            "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007587372591.png",
-                            "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007388249407.png",
-                            "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
-        cycleImageView.serverImgArray = serverImages
-        
-        titleLabel.text = "简约知性系列家具地毯 白线格"
-        contentLabel.text = "不管一款产品在设计、研发阶段经历了怎样的反复测试、精心打磨、耗费了多少人力物力，它总要一点或者简单或者隆重的仪式感，以合适的姿态亮相。它总要一点或者简单或者隆重的仪式感，它总要一点或者简单或者隆重的仪式感"
-        priceLabel.text = "¥" + "186"
+    private func setAPIManager() {
+        goodsManager.paramSource = self
+        goodsManager.delegate = self
+    }
+    
+    private func loadPageData() {
+        goodsManager.loadData()
     }
     
     // MARK: - Controller Attributes
@@ -107,6 +114,39 @@ class GoodsController: BaseController {
     fileprivate var _likeButton: UIButton?
     fileprivate var _shareButton: UIButton?
     fileprivate var _buyButton: UIButton?
+    
+    fileprivate var id: String?
+    fileprivate var _goodsManager: GoodsManager?
+}
+
+// MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
+extension GoodsController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return ["goodsID": id!]
+    }
+}
+
+extension GoodsController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data)
+        var serverImages: [String] = []
+        for img in json["imgArr"].arrayValue {
+            serverImages.append(img.stringValue)
+        }
+        cycleImageView.serverImgArray = serverImages
+        titleLabel.text = json["title"].stringValue
+        contentLabel.text = json["description"].stringValue
+        priceLabel.text = "¥" + json["price"].stringValue
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
 }
 
 // MARK: - Getters and Setters
@@ -196,5 +236,13 @@ extension GoodsController {
         }
         
         return _buyButton!
+    }
+    
+    fileprivate var goodsManager: GoodsManager {
+        if _goodsManager == nil {
+            _goodsManager = GoodsManager()
+        }
+        
+        return _goodsManager!
     }
 }

@@ -1,17 +1,17 @@
 //
-//  LatestGoodsAlbumManager.swift
+//  GoodsThirdCategoryManager.swift
 //  Arita
 //
-//  Created by 李宏博 on 2017/10/23.
+//  Created by 李宏博 on 2017/10/24.
 //  Copyright © 2017年 arita. All rights reserved.
 //
 
 import Foundation
 
 /**
- ** 获取最新的良品专辑
+ ** 获取良品三级分类
  */
-class LatestGoodsAlbumManager: ONAPIBaseManager {
+class GoodsThirdCategoryManager: ONAPIBaseManager {
     override init() {
         super.init()
         
@@ -19,9 +19,9 @@ class LatestGoodsAlbumManager: ONAPIBaseManager {
     }
 }
 
-extension LatestGoodsAlbumManager: ONAPIManager {
+extension GoodsThirdCategoryManager: ONAPIManager {
     func methodName() -> String {
-        return "album_list_fresh"
+        return "get_goods_child"
     }
     
     func serviceType() -> String {
@@ -33,7 +33,7 @@ extension LatestGoodsAlbumManager: ONAPIManager {
     }
 }
 
-extension LatestGoodsAlbumManager: ONAPIManagerValidator {
+extension GoodsThirdCategoryManager: ONAPIManagerValidator {
     func manager(_ manager: ONAPIBaseManager, isCorrectWithParamsData data: ONParamData) -> Bool {
         // 这里检测接口参数是否正确，例如可以检查输入的电话号码是否是符合规范的，如果返回false，则不会进行实际的请求。
         //        if let errorMsg = ONCheckTool.checkPhoneNum(phone: data["username"] as? String) {
