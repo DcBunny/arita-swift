@@ -85,11 +85,13 @@ class ShareTool {
         let shareUrl = NSURL(string: content[ShareKey.shareUrlKey]!) as URL!
         var shareContentType = SSDKContentType.webPage
         
-        let url = URL(string: ShareKey.shareImageUrlKey)
+        let url = URL(string: content[ShareKey.shareImageUrlKey]!)
         var thumbImage = UIImage(named: Icon.shareIcon)!
         if url != nil {
-            let data = NSData(contentsOf: url!)! as Data
-            thumbImage = UIImage(data: data, scale: 1.0)!
+            let data = NSData(contentsOf: url!) as Data?
+            if data != nil {
+                thumbImage = UIImage(data: data!, scale: 1.0)!
+            }
         }
         let imageData = UIImagePNGRepresentation(thumbImage)
         if (imageData?.count)! > 1024 * 32 {

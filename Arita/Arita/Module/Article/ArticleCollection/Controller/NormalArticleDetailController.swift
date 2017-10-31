@@ -1,8 +1,8 @@
 //
-//  ArticleDetailCell.swift
+//  NormalArticleDetailController.swift
 //  Arita
 //
-//  Created by 潘东 on 2017/10/10.
+//  Created by 潘东 on 2017/10/31.
 //  Copyright © 2017年 arita. All rights reserved.
 //
 
@@ -10,32 +10,55 @@ import UIKit
 import WebKit
 
 /**
- ArticleDetailCell **文章详情列表**页的cell
+ NormalArticleDetailController **一般分类文章详情列表**页主页
  */
-class ArticleDetailCell: UICollectionViewCell {
-    // MARK: - Init Methods
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+class NormalArticleDetailController: BaseController {
+
+    // MARK: - Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        setNavigationBar()
         addPageViews()
         layoutPageViews()
         setPageViews()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Init Methods
+    init(conTitle: String?, content: [String: String]) {
+        self.content =  content
+        self.conTitle = conTitle
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - View Settings
+    // MARK: - Controller Settings
+    private func setNavigationBar() {
+        setNaviBar(type: .normal)
+        setNaviBar(title: conTitle, font: Font.size15)
+        setNaviRightIconBtn(UIImage(named: Icon.share)!, action: #selector(gotoShare))
+    }
+    
     private func addPageViews() {
-        contentView.addSubview(shadowView)
+        view.addSubview(shadowView)
         shadowView.addSubview(bodyView)
         bodyView.addSubview(detailWebView)
     }
     
     private func layoutPageViews() {
         shadowView.snp.makeConstraints { (make) in
-            make.edges.equalTo(contentView)
+            make.left.equalTo(view).offset(6)
+            make.right.equalTo(view).offset(-6)
+            make.top.equalTo(view).offset(5)
+            make.bottom.equalTo(view).offset(-6)
         }
         
         bodyView.snp.makeConstraints { (make) in
@@ -48,16 +71,23 @@ class ArticleDetailCell: UICollectionViewCell {
     }
     
     private func setPageViews() {
-        backgroundColor = Color.hexf5f5f5
+        if let url = URL(string: content[ShareKey.shareUrlKey]!) {
+            let request = URLRequest(url: url)
+            detailWebView.load(request)
+        }
+        view.backgroundColor = Color.hexf5f5f5
     }
     
-    // MARK: - Public Attributes
-    public var webUrl = "https://www.baidu.com" {
-        didSet {
-            if let url = URL(string: webUrl) {
-                let request = URLRequest(url: url)
-                detailWebView.load(request)
-            }
+    // MARK: - Event Responses
+    @objc private func gotoShare() {
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
+            let shareController = ShareController(content: strongSelf.content)
+            shareController.modalTransitionStyle = .crossDissolve
+            shareController.providesPresentationContextTransitionStyle = true
+            shareController.definesPresentationContext = true
+            shareController.modalPresentationStyle = .overFullScreen
+            strongSelf.present(shareController, animated: true, completion: nil)
         }
     }
     
@@ -65,10 +95,12 @@ class ArticleDetailCell: UICollectionViewCell {
     fileprivate var _shadowView: UIView?
     fileprivate var _bodyView: UIView?
     fileprivate var _detailWebView: WKWebView?
+    private var content: [String: String]!
+    private var conTitle: String?
 }
 
 // MARK: - Getters and Setters
-extension ArticleDetailCell {
+extension NormalArticleDetailController {
     fileprivate var shadowView: UIView {
         if _shadowView == nil {
             _shadowView = UIView()
@@ -110,3 +142,4 @@ extension ArticleDetailCell {
         return _detailWebView!
     }
 }
+

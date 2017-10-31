@@ -176,8 +176,19 @@ extension ArticleCollectionController: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension ArticleCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let articleDetailController = ArticleDetailController(with: conTitle, and: articleModel[indexPath.row].articleDate)
-        navigationController?.pushViewController(articleDetailController, animated: true)
+        if isTata {
+            let articleDetailController = ArticleDetailController(with: conTitle, and: articleModel[indexPath.row].articleDate)
+            navigationController?.pushViewController(articleDetailController, animated: true)
+        } else {
+            let shareUrl = API.articleDetailUrl + "\(articleModel[indexPath.row].articleID)"
+            let content = [ShareKey.shareUrlKey: shareUrl,
+                           ShareKey.shareTitleKey: articleModel[indexPath.row].articleTitle,
+                           ShareKey.shareDescribtionKey: articleModel[indexPath.row].articleContent,
+                           ShareKey.shareImageUrlKey: articleModel[indexPath.row].articlePic
+            ]
+            let normalArticleDetailController = NormalArticleDetailController(conTitle: conTitle, content: content)
+            navigationController?.pushViewController(normalArticleDetailController, animated: true)
+        }
     }
 }
 

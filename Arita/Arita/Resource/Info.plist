@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Futura LT Book Oblique.ttf</string>
+	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>允许阿里塔使用您的相机进行拍照</string>
 	<key>NSPhotoLibraryUsageDescription</key>

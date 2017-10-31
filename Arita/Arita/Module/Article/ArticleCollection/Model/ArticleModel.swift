@@ -20,6 +20,7 @@ struct ArticleModel {
     public var timeStamp: String
     public var authorName: String
     public var authorLogo: String
+    public var articleID: Int
     
     init(data articleInfo: JSON) {
         self.articlePic = articleInfo["thumb_path"].stringValue
@@ -31,6 +32,7 @@ struct ArticleModel {
         self.timeStamp = articleInfo["publish_time"].stringValue
         self.authorName = articleInfo["name"].stringValue
         self.authorLogo = articleInfo["logo_path"].stringValue
+        self.articleID = articleInfo["ID"].intValue
     }
     
     static var initial: ArticleModel {
@@ -41,6 +43,7 @@ struct ArticleModel {
             "publish_time": "2017-10-24 17:30:10",
             "logo_path": "",
             "name": "Wiser arise",
+            "ID": 0
             ])
     }
 }

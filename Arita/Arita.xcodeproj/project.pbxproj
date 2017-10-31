@@ -116,6 +116,8 @@
 		C1BCD4FD1F8CC2310022C4F7 /* ArticleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */; };
 		C1BCD4FF1F8CC6570022C4F7 /* ArticleDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */; };
 		C1BCD5011F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BCD5001F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift */; };
+		C1C19DA61FA820ED00D92067 /* Futura LT Book Oblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1C19DA51FA820ED00D92067 /* Futura LT Book Oblique.ttf */; };
+		C1C19DA81FA8275200D92067 /* NormalArticleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C19DA71FA8275200D92067 /* NormalArticleDetailController.swift */; };
 		C1C690001F8B4B59008B6054 /* ArticleCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C68FFF1F8B4B59008B6054 /* ArticleCollectionController.swift */; };
 		C1C690021F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C690011F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift */; };
 		C1C690041F8B60EE008B6054 /* TataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C690031F8B60EE008B6054 /* TataCollectionViewCell.swift */; };
@@ -285,6 +287,8 @@
 		C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailController.swift; sourceTree = "<group>"; };
 		C1BCD4FE1F8CC6570022C4F7 /* ArticleDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailCell.swift; sourceTree = "<group>"; };
 		C1BCD5001F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailFlowLayout.swift; sourceTree = "<group>"; };
+		C1C19DA51FA820ED00D92067 /* Futura LT Book Oblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura LT Book Oblique.ttf"; sourceTree = "<group>"; };
+		C1C19DA71FA8275200D92067 /* NormalArticleDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalArticleDetailController.swift; sourceTree = "<group>"; };
 		C1C68FFF1F8B4B59008B6054 /* ArticleCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionController.swift; sourceTree = "<group>"; };
 		C1C690011F8B5F94008B6054 /* ArticleCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		C1C690031F8B60EE008B6054 /* TataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TataCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -455,6 +459,7 @@
 		C12509661F69065D006ED55E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C1C19DA51FA820ED00D92067 /* Futura LT Book Oblique.ttf */,
 				C12509AC1F69092C006ED55E /* LaunchScreen.storyboard */,
 				C12509AE1F69092C006ED55E /* Main.storyboard */,
 				C1EFC9521F9096A9005A5CF6 /* area.plist */,
@@ -926,6 +931,7 @@
 			children = (
 				C1C68FFF1F8B4B59008B6054 /* ArticleCollectionController.swift */,
 				C1BCD4FC1F8CC2310022C4F7 /* ArticleDetailController.swift */,
+				C1C19DA71FA8275200D92067 /* NormalArticleDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1308,6 +1314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C12509981F69079E006ED55E /* iPhoneTypeDefine.plist in Resources */,
+				C1C19DA61FA820ED00D92067 /* Futura LT Book Oblique.ttf in Resources */,
 				C12509B11F69092C006ED55E /* Main.storyboard in Resources */,
 				C12509B01F69092C006ED55E /* LaunchScreen.storyboard in Resources */,
 				FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */,
@@ -1403,6 +1410,7 @@
 				C1EFC9541F9099C2005A5CF6 /* CacheTool.swift in Sources */,
 				C12509D01F6912A8006ED55E /* NetWorkHelper.swift in Sources */,
 				FD40C68D1F9E1D0900863BD6 /* GoodsManager.swift in Sources */,
+				C1C19DA81FA8275200D92067 /* NormalArticleDetailController.swift in Sources */,
 				C1BCD5011F8CC68E0022C4F7 /* ArticleDetailFlowLayout.swift in Sources */,
 				C12509CF1F6912A8006ED55E /* NetwokConst.swift in Sources */,
 				C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */,
