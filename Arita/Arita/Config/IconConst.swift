@@ -108,4 +108,5 @@ struct Icon {
     // Login
     static let userNameIcon = "icon_user"
     static let pwdIcon = "icon_key"
+    static let loginLogo = "pic_login"
 }

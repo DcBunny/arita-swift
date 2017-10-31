@@ -33,7 +33,7 @@ class LoginController: BaseController {
     
     private func addPageViews() {
         view.addSubview(backGroundView)
-        backGroundView.addSubview(loginView)
+        view.addSubview(loginView)
         
         loginView.addSubview(userNameView)
         userNameView.addSubview(userNameIcon)
@@ -44,6 +44,9 @@ class LoginController: BaseController {
         pwdView.addSubview(pwdText)
         
         loginView.addSubview(loginButton)
+        loginView.addSubview(tipsLabel)
+        loginView.addSubview(tipsButton)
+        loginView.addSubview(logo)
     }
     
     private func layoutPageViews() {
@@ -97,16 +100,38 @@ class LoginController: BaseController {
             make.centerX.equalTo(loginView)
             make.size.equalTo(CGSize(width: 100, height: 44))
         }
+        
+        tipsLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(loginButton.snp.bottom).offset(20)
+            make.right.equalTo(loginButton.snp.centerX).offset(5)
+        }
+        
+        tipsButton.snp.makeConstraints { (make) in
+            make.top.bottom.equalTo(tipsLabel)
+            make.left.equalTo(tipsLabel.snp.right)
+            make.width.equalTo(50)
+        }
+        
+        logo.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize(width: 49, height: 49))
+            make.top.equalTo(tipsLabel.snp.bottom).offset(30)
+            make.centerX.equalTo(loginView)
+        }
     }
     
     private func setPageViews() {
         view.backgroundColor = Color.hexf5f5f5
         
         loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
+        tipsButton.addTarget(self, action: #selector(register), for: .touchUpInside)
     }
     
     @objc private func login() {
         print("login")
+    }
+    
+    @objc private func register() {
+        print("register")
     }
     
     // MARK: - Controller Attributes
@@ -122,6 +147,11 @@ class LoginController: BaseController {
     fileprivate var _pwdText: UITextField?
     
     fileprivate var _loginButton: UIButton?
+    
+    fileprivate var _tipsLabel: UILabel?
+    fileprivate var _tipsButton: UIButton?
+    
+    fileprivate var _logo: UIImageView?
 }
 
 // MARK: - Getters and Setters
@@ -226,5 +256,36 @@ extension LoginController {
         }
         
         return _loginButton!
+    }
+    
+    fileprivate var tipsLabel: UILabel {
+        if _tipsLabel == nil {
+            _tipsLabel = UILabel()
+            _tipsLabel?.font = Font.size12
+            _tipsLabel?.textColor = Color.hex919191
+            _tipsLabel?.text = "还没有账号？"
+        }
+        
+        return _tipsLabel!
+    }
+    
+    fileprivate var tipsButton: UIButton {
+        if _tipsButton == nil {
+            _tipsButton = UIButton()
+            _tipsButton?.setTitle("点击注册", for: .normal)
+            _tipsButton?.setTitleColor(Color.hexea9120, for: .normal)
+            _tipsButton?.titleLabel?.font = Font.size12
+        }
+        
+        return _tipsButton!
+    }
+    
+    fileprivate var logo: UIImageView {
+        if _logo == nil {
+            _logo = UIImageView()
+            _logo?.image = UIImage(named: Icon.loginLogo)
+        }
+        
+        return _logo!
     }
 }
