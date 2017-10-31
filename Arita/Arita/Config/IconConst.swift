@@ -104,4 +104,8 @@ struct Icon {
     static let noResultIcon = "pic_searchnothing"
     static let likeIcon = "like_active"
     static let buyIcon = "buy"
+    
+    // Login
+    static let userNameIcon = "icon_user"
+    static let pwdIcon = "icon_key"
 }
