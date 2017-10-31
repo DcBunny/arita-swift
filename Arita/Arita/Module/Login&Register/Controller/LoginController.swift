@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class LoginController: BaseController {
 
@@ -18,6 +19,7 @@ class LoginController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        setAPIManager()
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,8 +128,13 @@ class LoginController: BaseController {
         tipsButton.addTarget(self, action: #selector(register), for: .touchUpInside)
     }
     
+    private func setAPIManager() {
+        loginManager.paramSource = self
+        loginManager.delegate = self
+    }
+    
     @objc private func login() {
-        print("login")
+        loginManager.loadData()
     }
     
     @objc private func register() {
@@ -152,6 +159,38 @@ class LoginController: BaseController {
     fileprivate var _tipsButton: UIButton?
     
     fileprivate var _logo: UIImageView?
+    
+    fileprivate var _loginManager: LoginAPIManager?
+}
+
+// MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
+extension LoginController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return [
+            "cellphone": userNameText.text!,
+            "password": pwdText.text!
+        ]
+    }
+}
+
+extension LoginController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data)
+        
+        let loginInfo = LoginInfo(username: userNameText.text!, password: pwdText.text!)
+        UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
+        let authInfo = AuthInfo(token: json.stringValue)
+        UserManager.sharedInstance.setAuthData(authInfo: authInfo)
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
 }
 
 // MARK: - Getters and Setters
@@ -287,5 +326,13 @@ extension LoginController {
         }
         
         return _logo!
+    }
+    
+    fileprivate var loginManager: LoginAPIManager {
+        if _loginManager == nil {
+            _loginManager = LoginAPIManager()
+        }
+        
+        return _loginManager!
     }
 }

@@ -22,14 +22,14 @@ struct UserInfo: HandyJSON {
 struct LoginInfo: HandyJSON {
     var username = ""
     var password = ""
-    var lastLoginTime = 0.0
+//    var lastLoginTime = 0.0
 }
 
 // 认证信息类
 struct AuthInfo: HandyJSON {
     var token: String?
-    var session: String?
-    var secret: String?
+//    var session: String?
+//    var secret: String?
 }
 
 // 用户信息类
@@ -93,16 +93,16 @@ class UserManager {
     }
     
     func setAuthData(authInfo: AuthInfo) {
-        currentUser?.authInfo?.session = authInfo.session
+//        currentUser?.authInfo?.session = authInfo.session
         currentUser?.authInfo?.token = authInfo.token
         
         saveInfoToLocal()
     }
     
     func updateAuthData(session: String, token: String, secret: String) {
-        currentUser?.authInfo?.session = session
+//        currentUser?.authInfo?.session = session
         currentUser?.authInfo?.token = token
-        currentUser?.authInfo?.secret = secret
+//        currentUser?.authInfo?.secret = secret
         saveInfoToLocal()
     }
     
@@ -155,48 +155,49 @@ class UserManager {
 }
 
 // 自动登录
-extension UserManager {
-    func autoLogin() {
-        guard let _ = self.currentUser?.loginInfo?.password else {
-            return
-        }
-        if let lastLoginTime = self.currentUser?.loginInfo?.lastLoginTime {
-            // 超时自动登录
-            if Date().timeIntervalSince1970 - lastLoginTime < 23 * 60 * 60.0 {
-                return
-            }
-        }
-        loginAPIManager.paramSource = self
-        loginAPIManager.delegate = self
-        loginAPIManager.loadData()
-    }
-}
+//extension UserManager {
+//    func autoLogin() {
+//        guard let _ = self.currentUser?.loginInfo?.password else {
+//            return
+//        }
+//        if let lastLoginTime = self.currentUser?.loginInfo?.lastLoginTime {
+//            // 超时自动登录
+//            if Date().timeIntervalSince1970 - lastLoginTime < 23 * 60 * 60.0 {
+//                return
+//            }
+//        }
+//        loginAPIManager.paramSource = self
+//        loginAPIManager.delegate = self
+//        loginAPIManager.loadData()
+//    }
+//}
+//
+//extension UserManager: ONAPIManagerParamSource {
+//    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+//        return ["username": (self.currentUser?.loginInfo?.username)!,"password": (self.currentUser?.loginInfo?.password)!]
+//    }
+//}
+//
+//extension UserManager: ONAPIManagerCallBackDelegate {
+//    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+//        print(manager.fetchDataWithReformer(nil))
+//        let data = manager.fetchDataWithReformer(nil)
+//        let json = JSON(data: data as! Data)
+//        if let user_info = json["payload"]["user_info"].rawString() {
+//            let userInfo = UserInfo.deserialize(from: user_info)
+//            UserManager.sharedInstance.updateUserInfo(userInfo: userInfo!)
+//        }
+//        if let payload = json["payload"].rawString() {
+//            let authInfo = AuthInfo.deserialize(from: payload)
+//            UserManager.sharedInstance.setAuthData(authInfo: authInfo!)
+//        }
+//        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: NotificationConst.loginSuccess)))
+//    }
+//
+//    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+//        if let errorMessage = manager.errorMessage {
+//            ONTipCenter.showToast(errorMessage)
+//        }
+//    }
+//}
 
-extension UserManager: ONAPIManagerParamSource {
-    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["username": (self.currentUser?.loginInfo?.username)!,"password": (self.currentUser?.loginInfo?.password)!]
-    }
-}
-
-extension UserManager: ONAPIManagerCallBackDelegate {
-    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
-        print(manager.fetchDataWithReformer(nil))
-        let data = manager.fetchDataWithReformer(nil)
-        let json = JSON(data: data as! Data)
-        if let user_info = json["payload"]["user_info"].rawString() {
-            let userInfo = UserInfo.deserialize(from: user_info)
-            UserManager.sharedInstance.updateUserInfo(userInfo: userInfo!)
-        }
-        if let payload = json["payload"].rawString() {
-            let authInfo = AuthInfo.deserialize(from: payload)
-            UserManager.sharedInstance.setAuthData(authInfo: authInfo!)
-        }
-        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: NotificationConst.loginSuccess)))
-    }
-    
-    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
-        if let errorMessage = manager.errorMessage {
-            ONTipCenter.showToast(errorMessage)
-        }
-    }
-}

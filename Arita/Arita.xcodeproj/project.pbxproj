@@ -366,6 +366,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		813C7B571FA874B4005CCAF7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8175D3DB1FA7072200E5CA9E /* LoginController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		A9CDD4037053B8AC1E1A5AE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,7 +508,7 @@
 		C125096A1F690708006ED55E /* Login&Register */ = {
 			isa = PBXGroup;
 			children = (
-				8175D3DB1FA7072200E5CA9E /* LoginController.swift */,
+				813C7B571FA874B4005CCAF7 /* Controller */,
 			);
 			path = "Login&Register";
 			sourceTree = "<group>";
