@@ -17,6 +17,8 @@ let log = XCGLogger.default
 let kArita = "kArita"
 let kBuglyAppId = "900037900"
 let kUserHasOnboard = "kUserHasOnboard"
+let aLiYunKey = "LTAIUpgXwM5M1UIw"
+let aLiYunSecret = "jGVoCI1bQymrgkY4RBpVx721bmgEz6"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

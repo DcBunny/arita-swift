@@ -24,6 +24,7 @@ target 'Arita' do
     pod 'Bugly', '2.4.8'
     pod 'IQKeyboardManagerSwift', '4.0.10'
     pod 'GDPerformanceView-Swift', '1.2.0'
+    pod 'AliyunOSSiOS', '2.6.3'
     
     # ShareSDK
     pod 'ShareSDK3'

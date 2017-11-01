@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias ChoosedLocation = (Location) -> Void
+typealias ChangedLocationCallback = () -> Void
 /**
  *  日期选择器主页
  */
@@ -55,6 +55,8 @@ class MineAddressController: BaseController {
     }
     
     private func setPageViews() {
+        updateInfoAPIManager.delegate = self
+        updateInfoAPIManager.paramSource = self
         let tapGestureDismiss = UITapGestureRecognizer(target: self, action: #selector(viewDismiss))
         maskView.backgroundColor = Color.hex000000Alpha50
         maskView.addGestureRecognizer(tapGestureDismiss)
@@ -74,7 +76,50 @@ class MineAddressController: BaseController {
     lazy var myLocate: Location = {
         return Location()
     }()
-    var backClosure: ChoosedLocation?
+    var backClosure: ChangedLocationCallback?
+    fileprivate var updateInfoAPIManager = UpdateUserInfoAPIManager()
+}
+
+// MARK: - ONAPIManagerParamSource
+extension MineAddressController: ONAPIManagerParamSource {
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        if (UserManager.sharedInstance.getUserInfo()?.userId != nil) && (UserManager.sharedInstance.getUserInfo()!.userId! > 0) {
+            return ["id": UserManager.sharedInstance.getUserInfo()!.userId!,
+                    "area": (myLocate.province + " " + myLocate.city).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "nickname": UserManager.sharedInstance.getUserInfo()?.nickname.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "headimgurl": UserManager.sharedInstance.getUserInfo()?.avatar.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "age": UserManager.sharedInstance.getUserInfo()?.age.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "xingzuo": UserManager.sharedInstance.getUserInfo()?.conste.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "gender": UserManager.sharedInstance.getUserInfo()?.gender ?? 0
+            ]
+        } else {
+            return ["uid": UserManager.sharedInstance.getUserInfo()!.uid!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "area": (myLocate.province + " " + myLocate.city).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "gender": UserManager.sharedInstance.getUserInfo()?.gender ?? 0,
+                    "thirdType": UserManager.sharedInstance.getUserInfo()?.thirdType?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? 0,
+                    "nickname": UserManager.sharedInstance.getUserInfo()?.nickname.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "headimgurl": UserManager.sharedInstance.getUserInfo()?.avatar.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "age": UserManager.sharedInstance.getUserInfo()?.age.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "xingzuo": UserManager.sharedInstance.getUserInfo()?.conste.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+            ]
+        }
+    }
+}
+
+// MARK: - ONAPIManagerCallBackDelegate
+extension MineAddressController: ONAPIManagerCallBackDelegate {
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        UserManager.sharedInstance.updateUserArea(area: myLocate.province + " " + myLocate.city)
+        viewDismiss()
+        if self.backClosure != nil {
+            self.backClosure!()
+        }
+        ONTipCenter.showToast("更新用户地区成功")
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        ONTipCenter.showToast("更新用户地区失败，请稍候再试")
+    }
 }
 
 extension MineAddressController: AreaPickerViewDelegate {
@@ -83,10 +128,9 @@ extension MineAddressController: AreaPickerViewDelegate {
     }
     
     func sure(areaPickerView: AreaPickerView, locate: Location) {
-        viewDismiss()
-        if self.backClosure != nil {
-            self.backClosure!(locate)
-        }
+        myLocate.province = locate.province
+        myLocate.city = locate.city
+        updateInfoAPIManager.loadData()
     }
     
     func cancel(areaPickerView: AreaPickerView, locate: Location) {
