@@ -85,9 +85,12 @@ class MineHomeController: BaseController {
             navigationController?.pushViewController(userInfoController, animated: true)
         } else {
             //TODO: - 进入登录页面
-            isLogin = true
-            prepareData()
-            mineTableView.reloadData()
+//            isLogin = true
+//            prepareData()
+//            mineTableView.reloadData()
+            
+            let login = LoginController()
+            navigationController?.pushViewController(login, animated: true)
         }
     }
     
