@@ -69,6 +69,11 @@ class MineAgeController: BaseController {
         maskView.backgroundColor = Color.hex000000Alpha50
         maskView.addGestureRecognizer(tapGestureDismiss)
         view.backgroundColor = UIColor.clear
+//        if let date = UserManager.sharedInstance.getUserInfo()?.birthdayDate {
+//            datePickerView.date = date
+//        } else {
+//            datePickerView.date = Date()
+//        }
     }
     
     // MARK: - Event Responses
@@ -96,7 +101,7 @@ class MineAgeController: BaseController {
     fileprivate var _datePickerView: UIDatePicker?
     fileprivate var _toolBar: UIToolbar?
     fileprivate var maskView = UIView()
-    fileprivate var choosedDate = Date()
+    fileprivate var choosedDate = UserManager.sharedInstance.getUserInfo()?.birthdayDate ?? Date()
     fileprivate var currentAge = ""
     fileprivate var currentXingzuo = ""
     var backClosure: ChangedAgeCallback?
@@ -132,7 +137,7 @@ extension MineAgeController: ONAPIManagerParamSource {
 // MARK: - ONAPIManagerCallBackDelegate
 extension MineAgeController: ONAPIManagerCallBackDelegate {
     func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
-        UserManager.sharedInstance.updateUserAgeAndConste(age: currentAge, conste: currentXingzuo)
+        UserManager.sharedInstance.updateUserAgeAndConste(age: currentAge, conste: currentXingzuo, birthdayDate: choosedDate)
         viewDismiss()
         if self.backClosure != nil {
             self.backClosure!()
@@ -153,6 +158,7 @@ extension MineAgeController {
             _datePickerView?.datePickerMode = .date
             _datePickerView?.addTarget(self, action: #selector(chooseDate(_:)), for: .valueChanged)
             _datePickerView?.backgroundColor = UIColor.white
+            _datePickerView?.date = choosedDate
             
             return _datePickerView!
         }

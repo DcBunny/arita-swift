@@ -149,6 +149,7 @@ extension MineNicknameController {
             _textView?.backgroundColor = Color.hexffffff
             _textView?.autoresizingMask = .flexibleHeight
             _textView?.isScrollEnabled = false
+            _textView?.text = UserManager.sharedInstance.getUserInfo()?.nickname
             
             return _textView!
         }

@@ -103,7 +103,7 @@ class DailyCheckController: BaseController {
 extension DailyCheckController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["timestamp": todayTata.timeStamp, "articlesNum": 1000, "channel_ID": 44]
+        return ["timestamp": 0, "articlesNum": 1000, "channel_ID": 44]
     }
 }
 

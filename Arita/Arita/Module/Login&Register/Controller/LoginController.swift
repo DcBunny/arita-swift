@@ -184,7 +184,7 @@ extension LoginController: ONAPIManagerCallBackDelegate {
         UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
         let authInfo = AuthInfo(token: json.stringValue)
         UserManager.sharedInstance.setAuthData(authInfo: authInfo)
-        pop()
+        navigationController?.popViewController(animated: true)
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {

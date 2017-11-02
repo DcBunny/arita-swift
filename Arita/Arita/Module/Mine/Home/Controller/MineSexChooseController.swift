@@ -51,14 +51,18 @@ class MineSexChooseController: BaseController {
         tableView.dataSource = self
         updateInfoAPIManager.delegate = self
         updateInfoAPIManager.paramSource = self
+        
+        if UserManager.sharedInstance.getUserInfo()?.gender == 0 {
+            selectedState = [true, false]
+        } else if UserManager.sharedInstance.getUserInfo()?.gender == 1 {
+            selectedState = [false, true]
+        }
     }
     
     // MARK: - Event Responses
     @objc private func save() {
         updateInfoAPIManager.loadData()
     }
-
-    // MARK: - Private Methods
     
     // MARK: - Controller Attributes
     fileprivate var _tableView: UITableView?

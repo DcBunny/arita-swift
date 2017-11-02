@@ -131,6 +131,8 @@
 		C1D8C92F1F8F6166002B0DDF /* MineUserInfoNormalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D8C92E1F8F6166002B0DDF /* MineUserInfoNormalTableViewCell.swift */; };
 		C1D8C9311F8F7C12002B0DDF /* MineNormalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D8C9301F8F7C12002B0DDF /* MineNormalController.swift */; };
 		C1DE0A001FA2C3C700E153E0 /* MineChooseAvatarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DE09FF1FA2C3C700E153E0 /* MineChooseAvatarController.swift */; };
+		C1E581B61FAAAD12007B5A8B /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E581B51FAAAD12007B5A8B /* libresolv.tbd */; };
+		C1E581B81FAAAD25007B5A8B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E581B71FAAAD1C007B5A8B /* SystemConfiguration.framework */; };
 		C1E7451B1F7C99FD00FDB0F9 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E7451A1F7C99FD00FDB0F9 /* CategoryModel.swift */; };
 		C1E7451D1F7CA6C400FDB0F9 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E7451C1F7CA6C400FDB0F9 /* CategoryCollectionCell.swift */; };
 		C1E745221F7CCECB00FDB0F9 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C1E745211F7CCECB00FDB0F9 /* libicucore.tbd */; };
@@ -305,6 +307,8 @@
 		C1D8C92E1F8F6166002B0DDF /* MineUserInfoNormalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineUserInfoNormalTableViewCell.swift; sourceTree = "<group>"; };
 		C1D8C9301F8F7C12002B0DDF /* MineNormalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineNormalController.swift; sourceTree = "<group>"; };
 		C1DE09FF1FA2C3C700E153E0 /* MineChooseAvatarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineChooseAvatarController.swift; sourceTree = "<group>"; };
+		C1E581B51FAAAD12007B5A8B /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		C1E581B71FAAAD1C007B5A8B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C1E7451A1F7C99FD00FDB0F9 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		C1E7451C1F7CA6C400FDB0F9 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
 		C1E745211F7CCECB00FDB0F9 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -361,6 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1E581B81FAAAD25007B5A8B /* SystemConfiguration.framework in Frameworks */,
 				C1E7452C1F7CCEFD00FDB0F9 /* libsqlite3.tbd in Frameworks */,
 				C1E7452A1F7CCEF400FDB0F9 /* ImageIO.framework in Frameworks */,
 				C1E745281F7CCEEA00FDB0F9 /* JavaScriptCore.framework in Frameworks */,
@@ -368,6 +373,7 @@
 				C1E745241F7CCED600FDB0F9 /* libz.tbd in Frameworks */,
 				C1E745221F7CCECB00FDB0F9 /* libicucore.tbd in Frameworks */,
 				2ECEC0453384269A4EF5D7FC /* Pods_Arita.framework in Frameworks */,
+				C1E581B61FAAAD12007B5A8B /* libresolv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +391,8 @@
 		A9CDD4037053B8AC1E1A5AE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1E581B71FAAAD1C007B5A8B /* SystemConfiguration.framework */,
+				C1E581B51FAAAD12007B5A8B /* libresolv.tbd */,
 				C1E7452B1F7CCEFD00FDB0F9 /* libsqlite3.tbd */,
 				C1E745291F7CCEF400FDB0F9 /* ImageIO.framework */,
 				C1E745271F7CCEEA00FDB0F9 /* JavaScriptCore.framework */,

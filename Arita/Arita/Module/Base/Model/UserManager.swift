@@ -15,6 +15,7 @@ struct UserInfo: HandyJSON {
     var userId: Int?
     var uid: String?
     var thirdType: String?
+    var birthdayDate: Date?
     var username = ""
     var nickname = ""
     var avatar = ""
@@ -120,9 +121,10 @@ class UserManager {
         saveInfoToLocal()
     }
     
-    func updateUserAgeAndConste(age: String, conste: String) {
+    func updateUserAgeAndConste(age: String, conste: String, birthdayDate: Date) {
         currentUser?.userInfo?.age = age
         currentUser?.userInfo?.conste = conste
+        currentUser?.userInfo?.birthdayDate = birthdayDate
         
         saveInfoToLocal()
     }

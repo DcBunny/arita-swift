@@ -61,8 +61,14 @@ class MineAddressController: BaseController {
         maskView.backgroundColor = Color.hex000000Alpha50
         maskView.addGestureRecognizer(tapGestureDismiss)
         view.backgroundColor = UIColor.clear
-        myLocate.province = "北京市"
-        myLocate.city = "东城区"
+        let areaDetails = UserManager.sharedInstance.getUserInfo()?.area.split(separator: " ")
+        if areaDetails != nil && areaDetails!.count >= 2 {
+            myLocate.province = String(areaDetails![0])
+            myLocate.city = String(areaDetails![1])
+        } else {
+            myLocate.province = "北京市"
+            myLocate.city = "东城区"
+        }
         areaPickerView.shouldSelected(proName: myLocate.province, cityName: myLocate.city)
     }
     
