@@ -379,6 +379,10 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return isStatusHidden
+    }
+    
     // MARK: - Private Methods
     /// 移除所有item
     private func removeBarItem() {

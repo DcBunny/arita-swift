@@ -64,4 +64,12 @@ public extension UIDevice {
     public func coefficient() -> CGFloat {
         return UIDevice.current.isIphone5() ? 0.82 : 1.0
     }
+    
+    public func isIphoneX() -> Bool {
+        if UIScreen.main.bounds.height == 812 {
+            return true
+        }
+        
+        return false
+    }
 }

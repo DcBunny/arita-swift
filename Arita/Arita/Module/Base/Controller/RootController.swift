@@ -26,6 +26,10 @@ class RootController: UITabBarController {
         super.didReceiveMemoryWarning()
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return isStatusHidden
+    }
+    
     // MARK: - Controller Settings
     private func setSubController() {
         let articleNav = UINavigationController(rootViewController: ArticleHomeController())

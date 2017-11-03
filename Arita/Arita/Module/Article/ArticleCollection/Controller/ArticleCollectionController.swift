@@ -180,6 +180,7 @@ extension ArticleCollectionController: UICollectionViewDelegate {
             let articleDetailController = ArticleDetailController(with: conTitle, and: articleModel[indexPath.row].articleDate)
             navigationController?.pushViewController(articleDetailController, animated: true)
         } else {
+            if self.channelID == 34 { return }
             let shareUrl = API.articleDetailUrl + "\(articleModel[indexPath.row].articleID)"
             let content = [ShareKey.shareUrlKey: shareUrl,
                            ShareKey.shareTitleKey: articleModel[indexPath.row].articleTitle,
