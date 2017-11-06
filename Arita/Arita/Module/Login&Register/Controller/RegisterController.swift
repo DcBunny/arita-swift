@@ -1,15 +1,15 @@
 //
-//  LoginController.swift
+//  RegisterController.swift
 //  Arita
 //
-//  Created by DcBunny on 2017/10/30.
+//  Created by 李宏博 on 2017/11/6.
 //  Copyright © 2017年 arita. All rights reserved.
 //
 
 import UIKit
 import SwiftyJSON
 
-class LoginController: BaseController {
+class RegisterController: BaseController {
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -30,25 +30,27 @@ class LoginController: BaseController {
     // MARK: - Controller Settings
     private func setNavigationBar() {
         setNaviBar(type: .normal)
-        setNaviBar(title: ("登录"), font: Font.size15)
+        setNaviBar(title: ("注册"), font: Font.size15)
     }
     
     private func addPageViews() {
         view.addSubview(backGroundView)
-        view.addSubview(loginView)
+        view.addSubview(registerView)
         
-        loginView.addSubview(userNameView)
+        registerView.addSubview(userNameView)
         userNameView.addSubview(userNameIcon)
         userNameView.addSubview(userNameText)
         
-        loginView.addSubview(pwdView)
+        registerView.addSubview(pwdView)
         pwdView.addSubview(pwdIcon)
         pwdView.addSubview(pwdText)
         
-        loginView.addSubview(loginButton)
-        loginView.addSubview(tipsLabel)
-        loginView.addSubview(tipsButton)
-        loginView.addSubview(logo)
+        registerView.addSubview(loginButton)
+        registerView.addSubview(tipsLabel)
+        registerView.addSubview(tipsButton)
+        registerView.addSubview(logo)
+        registerView.addSubview(protocolLabel)
+        registerView.addSubview(protocolButton)
     }
     
     private func layoutPageViews() {
@@ -56,14 +58,14 @@ class LoginController: BaseController {
             make.edges.equalTo(view)
         }
         
-        loginView.snp.makeConstraints { (make) in
+        registerView.snp.makeConstraints { (make) in
             make.center.equalTo(backGroundView)
             make.size.equalTo(CGSize(width: 320, height: 450))
         }
         
         userNameView.snp.makeConstraints { (make) in
-            make.top.equalTo(loginView).offset(40)
-            make.centerX.equalTo(loginView)
+            make.top.equalTo(registerView).offset(40)
+            make.centerX.equalTo(registerView)
             make.size.equalTo(CGSize(width: 225, height: 44))
         }
         
@@ -81,7 +83,7 @@ class LoginController: BaseController {
         
         pwdView.snp.makeConstraints { (make) in
             make.top.equalTo(userNameView.snp.bottom).offset(15)
-            make.centerX.equalTo(loginView)
+            make.centerX.equalTo(registerView)
             make.size.equalTo(CGSize(width: 225, height: 44))
         }
         
@@ -99,7 +101,7 @@ class LoginController: BaseController {
         
         loginButton.snp.makeConstraints { (make) in
             make.top.equalTo(pwdView.snp.bottom).offset(30)
-            make.centerX.equalTo(loginView)
+            make.centerX.equalTo(registerView)
             make.size.equalTo(CGSize(width: 100, height: 44))
         }
         
@@ -117,34 +119,46 @@ class LoginController: BaseController {
         logo.snp.makeConstraints { (make) in
             make.size.equalTo(CGSize(width: 49, height: 49))
             make.top.equalTo(tipsLabel.snp.bottom).offset(30)
-            make.centerX.equalTo(loginView)
+            make.centerX.equalTo(registerView)
+        }
+        
+        protocolLabel.snp.makeConstraints { (make) in
+            make.bottom.equalTo(registerView).offset(-40)
+            make.centerX.equalTo(logo.snp.left).offset(-10)
+        }
+        
+        protocolButton.snp.makeConstraints { (make) in
+            make.top.bottom.equalTo(protocolLabel)
+            make.left.equalTo(protocolLabel.snp.right)
+            make.width.equalTo(75)
         }
     }
     
     private func setPageViews() {
         view.backgroundColor = Color.hexf5f5f5
         
-        loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
-        tipsButton.addTarget(self, action: #selector(register), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(register), for: .touchUpInside)
+        tipsButton.addTarget(self, action: #selector(pop), for: .touchUpInside)
+        protocolButton.addTarget(self, action: #selector(showProtocol), for: .touchUpInside)
     }
     
     private func setAPIManager() {
-        loginManager.paramSource = self
-        loginManager.delegate = self
-    }
-    
-    @objc private func login() {
-        loginManager.loadData()
+        registerManager.paramSource = self
+        registerManager.delegate = self
     }
     
     @objc private func register() {
-        let register = RegisterController()
-        navigationController?.pushViewController(register, animated: true)
+        registerManager.loadData()
+    }
+    
+    @objc private func showProtocol() {
+        let protocolView = RegisterProtocolController()
+        navigationController?.pushViewController(protocolView, animated: true)
     }
     
     // MARK: - Controller Attributes
     fileprivate var _backGroundView: UIImageView?
-    fileprivate var _loginView: UIView?
+    fileprivate var _registerView: UIView?
     
     fileprivate var _userNameView: UIView?
     fileprivate var _userNameIcon: UIImageView?
@@ -161,11 +175,14 @@ class LoginController: BaseController {
     
     fileprivate var _logo: UIImageView?
     
-    fileprivate var _loginManager: LoginAPIManager?
+    fileprivate var _protocolLabel: UILabel?
+    fileprivate var _protocolButton: UIButton?
+    
+    fileprivate var _registerManager: RegisterAPIManager?
 }
 
 // MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
-extension LoginController: ONAPIManagerParamSource {
+extension RegisterController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
         return [
@@ -175,7 +192,7 @@ extension LoginController: ONAPIManagerParamSource {
     }
 }
 
-extension LoginController: ONAPIManagerCallBackDelegate {
+extension RegisterController: ONAPIManagerCallBackDelegate {
     
     func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
         let data = manager.fetchDataWithReformer(nil)
@@ -188,7 +205,7 @@ extension LoginController: ONAPIManagerCallBackDelegate {
             UserManager.sharedInstance.setAuthData(authInfo: authInfo)
             dismiss(animated: true, completion: nil)
         } else {
-            ONTipCenter.showToast("找不到此用户，请重新确认")
+            ONTipCenter.showToast("注册失败，请重新尝试")
         }
     }
     
@@ -200,7 +217,7 @@ extension LoginController: ONAPIManagerCallBackDelegate {
 }
 
 // MARK: - Getters and Setters
-extension LoginController {
+extension RegisterController {
     fileprivate var backGroundView: UIImageView {
         if _backGroundView == nil {
             _backGroundView = UIImageView()
@@ -212,15 +229,15 @@ extension LoginController {
         return _backGroundView!
     }
     
-    fileprivate var loginView: UIView {
-        if _loginView == nil {
-            _loginView = UIView()
-            _loginView?.backgroundColor = UIColor.white
-            _loginView?.layer.cornerRadius = 5
-            _loginView?.layer.masksToBounds = true
+    fileprivate var registerView: UIView {
+        if _registerView == nil {
+            _registerView = UIView()
+            _registerView?.backgroundColor = UIColor.white
+            _registerView?.layer.cornerRadius = 5
+            _registerView?.layer.masksToBounds = true
         }
         
-        return _loginView!
+        return _registerView!
     }
     
     fileprivate var userNameView: UIView {
@@ -296,7 +313,7 @@ extension LoginController {
             _loginButton = UIButton()
             _loginButton?.layer.cornerRadius = 20
             _loginButton?.backgroundColor = Color.hexea9120
-            _loginButton?.setTitle("登录", for: .normal)
+            _loginButton?.setTitle("注册", for: .normal)
             _loginButton?.titleLabel?.font = Font.size16
         }
         
@@ -308,7 +325,7 @@ extension LoginController {
             _tipsLabel = UILabel()
             _tipsLabel?.font = Font.size12
             _tipsLabel?.textColor = Color.hex919191
-            _tipsLabel?.text = "还没有账号？"
+            _tipsLabel?.text = "已有账号？"
         }
         
         return _tipsLabel!
@@ -317,7 +334,7 @@ extension LoginController {
     fileprivate var tipsButton: UIButton {
         if _tipsButton == nil {
             _tipsButton = UIButton()
-            _tipsButton?.setTitle("点击注册", for: .normal)
+            _tipsButton?.setTitle("直接登录", for: .normal)
             _tipsButton?.setTitleColor(Color.hexea9120, for: .normal)
             _tipsButton?.titleLabel?.font = Font.size12
         }
@@ -328,17 +345,40 @@ extension LoginController {
     fileprivate var logo: UIImageView {
         if _logo == nil {
             _logo = UIImageView()
-            _logo?.image = UIImage(named: Icon.loginLogo)
+            _logo?.image = UIImage(named: Icon.registerLogo)
         }
         
         return _logo!
     }
     
-    fileprivate var loginManager: LoginAPIManager {
-        if _loginManager == nil {
-            _loginManager = LoginAPIManager()
+    fileprivate var registerManager: RegisterAPIManager {
+        if _registerManager == nil {
+            _registerManager = RegisterAPIManager()
         }
         
-        return _loginManager!
+        return _registerManager!
+    }
+    
+    fileprivate var protocolLabel: UILabel {
+        if _protocolLabel == nil {
+            _protocolLabel = UILabel()
+            _protocolLabel?.font = Font.size12
+            _protocolLabel?.textColor = Color.hex919191
+            _protocolLabel?.text = "注册后意味着你同意阿里塔的"
+        }
+        
+        return _protocolLabel!
+    }
+    
+    fileprivate var protocolButton: UIButton {
+        if _protocolButton == nil {
+            _protocolButton = UIButton()
+            _protocolButton?.setTitle("《用户协议》", for: .normal)
+            _protocolButton?.setTitleColor(Color.hexea9120, for: .normal)
+            _protocolButton?.titleLabel?.font = Font.size12
+        }
+        
+        return _protocolButton!
     }
 }
+

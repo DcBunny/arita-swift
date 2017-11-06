@@ -162,6 +162,9 @@
 		FD46AB041F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD46AB031F8F9C3B00CCB603 /* GoodsAlbumCollectionReusableView.swift */; };
 		FD5BBEA41F68D1A3002D8146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */; };
 		FD5BBEAB1F68D1A3002D8146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */; };
+		FD6DF45D1FB047D0007F5F93 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6DF45C1FB047D0007F5F93 /* RegisterController.swift */; };
+		FD6DF45F1FB04F7A007F5F93 /* RegisterAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6DF45E1FB04F7A007F5F93 /* RegisterAPIManager.swift */; };
+		FD6DF4611FB05D02007F5F93 /* RegisterProtocolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6DF4601FB05D02007F5F93 /* RegisterProtocolController.swift */; };
 		FD74AF6E1F987FFE00938B06 /* GoodsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF6D1F987FFE00938B06 /* GoodsController.swift */; };
 		FD74AF731F9884FA00938B06 /* WRCycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF701F9884F000938B06 /* WRCycleCell.swift */; };
 		FD74AF741F9884FD00938B06 /* WRCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF711F9884F000938B06 /* WRCycleScrollView.swift */; };
@@ -336,6 +339,9 @@
 		FD5BBEA31F68D1A3002D8146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD5BBEAA1F68D1A3002D8146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD5BBEAF1F68D1A3002D8146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD6DF45C1FB047D0007F5F93 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		FD6DF45E1FB04F7A007F5F93 /* RegisterAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPIManager.swift; sourceTree = "<group>"; };
+		FD6DF4601FB05D02007F5F93 /* RegisterProtocolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProtocolController.swift; sourceTree = "<group>"; };
 		FD74AF6D1F987FFE00938B06 /* GoodsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsController.swift; sourceTree = "<group>"; };
 		FD74AF701F9884F000938B06 /* WRCycleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRCycleCell.swift; sourceTree = "<group>"; };
 		FD74AF711F9884F000938B06 /* WRCycleScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRCycleScrollView.swift; sourceTree = "<group>"; };
@@ -370,6 +376,8 @@
 			isa = PBXGroup;
 			children = (
 				8175D3DB1FA7072200E5CA9E /* LoginController.swift */,
+				FD6DF45C1FB047D0007F5F93 /* RegisterController.swift */,
+				FD6DF4601FB05D02007F5F93 /* RegisterProtocolController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -796,6 +804,7 @@
 			isa = PBXGroup;
 			children = (
 				C1250A091F6920C8006ED55E /* LoginAPIManager.swift */,
+				FD6DF45E1FB04F7A007F5F93 /* RegisterAPIManager.swift */,
 			);
 			path = "Login&Register";
 			sourceTree = "<group>";
@@ -1403,6 +1412,7 @@
 				C1F17BB61F693452001153BA /* IconConst.swift in Sources */,
 				C12509D31F6912A8006ED55E /* Time+Extension.swift in Sources */,
 				C1A98E1F1F8F8A6D00E56C5A /* MineSettingController.swift in Sources */,
+				FD6DF4611FB05D02007F5F93 /* RegisterProtocolController.swift in Sources */,
 				C1AED65F1FA06A6800D4374F /* ArticleAPIManager.swift in Sources */,
 				C12509F51F691F78006ED55E /* BasicHybridCache.swift in Sources */,
 				C1F17BBF1F6937F3001153BA /* ArticleHomeController.swift in Sources */,
@@ -1497,6 +1507,7 @@
 				C11B6EC71F7CEFDE00EAAEB0 /* ShareButton.swift in Sources */,
 				C11E20B81F7E21DB001F7234 /* ShareTool.swift in Sources */,
 				C1250A061F691F78006ED55E /* StorageAware.swift in Sources */,
+				FD6DF45F1FB04F7A007F5F93 /* RegisterAPIManager.swift in Sources */,
 				C12509D51F6912A8006ED55E /* UIDevice+Extension.swift in Sources */,
 				C125099C1F69079E006ED55E /* ONLogConfiguration.swift in Sources */,
 				FD46AAFB1F8F7C4600CCB603 /* GoodsAlbumCollectionController.swift in Sources */,
@@ -1507,6 +1518,7 @@
 				C14A61AC1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift in Sources */,
 				C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */,
 				C12509A01F69079E006ED55E /* ONService.swift in Sources */,
+				FD6DF45D1FB047D0007F5F93 /* RegisterController.swift in Sources */,
 				C1A1DD931F8CD7850039B873 /* DailyCheckCell.swift in Sources */,
 				C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */,
 				C11B6ECC1F7D1DDA00EAAEB0 /* ShareModel.swift in Sources */,
