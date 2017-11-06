@@ -102,7 +102,9 @@ class GoodsHomeController: BaseController
     }
     
     @objc private func gotoMine() {
-        
+        let mineHomeController = MineHomeController()
+        let mineHomeNav = UINavigationController(rootViewController: mineHomeController)
+        present(mineHomeNav, animated: true, completion: nil)
     }
     
     @objc fileprivate func gotoLike() {
