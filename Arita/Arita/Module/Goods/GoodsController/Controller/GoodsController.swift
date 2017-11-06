@@ -17,6 +17,7 @@ class GoodsController: BaseController {
         setNavigationBar()
         addPageViews()
         layoutPageViews()
+        setPageViews()
         setAPIManager()
         loadPageData()
     }
@@ -96,6 +97,10 @@ class GoodsController: BaseController {
         }
     }
     
+    private func setPageViews() {
+        buyButton.addTarget(self, action: #selector(buy), for: .touchUpInside)
+    }
+    
     private func setAPIManager() {
         goodsManager.paramSource = self
         goodsManager.delegate = self
@@ -103,6 +108,13 @@ class GoodsController: BaseController {
     
     private func loadPageData() {
         goodsManager.loadData()
+    }
+    
+    @objc private func buy() {
+        if let link = buyLink {
+            let linkUrl = URL(string: link)
+            UIApplication.shared.openURL(linkUrl!)
+        }
     }
     
     // MARK: - Controller Attributes
@@ -117,6 +129,7 @@ class GoodsController: BaseController {
     
     fileprivate var id: String?
     fileprivate var _goodsManager: GoodsManager?
+    fileprivate var buyLink: String?
 }
 
 // MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
@@ -140,6 +153,7 @@ extension GoodsController: ONAPIManagerCallBackDelegate {
         titleLabel.text = json["title"].stringValue
         contentLabel.text = json["description"].stringValue
         priceLabel.text = "¥" + json["price"].stringValue
+        buyLink = json["buy_link"].stringValue
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
