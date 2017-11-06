@@ -112,22 +112,20 @@ class GoodsController: BaseController {
     }
     
     @objc private func share() {
-//        if currentIndex == nil { currentIndex = IndexPath(item: 0, section: 0) }
-//        let shareUrl = API.articleDetailUrl + idArray[currentIndex!.row]
-//        let content = [ShareKey.shareUrlKey: shareUrl,
-//                       ShareKey.shareTitleKey: titleArray[currentIndex!.row],
-//                       ShareKey.shareDescribtionKey: descriptionArray[currentIndex!.row],
-//                       ShareKey.shareImageUrlKey: imageUrlArray[currentIndex!.row]
-//        ]
-//        guard !isScrolling else { return }
-//        DispatchQueue.main.async {
-//            let shareController = ShareController(content: content)
-//            shareController.modalTransitionStyle = .crossDissolve
-//            shareController.providesPresentationContextTransitionStyle = true
-//            shareController.definesPresentationContext = true
-//            shareController.modalPresentationStyle = .overFullScreen
-//            self.present(shareController, animated: true, completion: nil)
-//        }
+        let shareUrl = API.goodsDetailUrl + id!
+        let content = [ShareKey.shareUrlKey: shareUrl,
+                       ShareKey.shareTitleKey: goodTitle!,
+                       ShareKey.shareDescribtionKey: goodDetail!,
+                       ShareKey.shareImageUrlKey: goodImg!
+        ]
+        DispatchQueue.main.async {
+            let shareController = ShareController(content: content)
+            shareController.modalTransitionStyle = .crossDissolve
+            shareController.providesPresentationContextTransitionStyle = true
+            shareController.definesPresentationContext = true
+            shareController.modalPresentationStyle = .overFullScreen
+            self.present(shareController, animated: true, completion: nil)
+        }
     }
     
     @objc private func buy() {
@@ -150,6 +148,9 @@ class GoodsController: BaseController {
     fileprivate var id: String?
     fileprivate var _goodsManager: GoodsManager?
     fileprivate var buyLink: String?
+    fileprivate var goodTitle: String?
+    fileprivate var goodDetail: String?
+    fileprivate var goodImg: String?
 }
 
 // MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
@@ -170,10 +171,13 @@ extension GoodsController: ONAPIManagerCallBackDelegate {
             serverImages.append(img.stringValue)
         }
         cycleImageView.serverImgArray = serverImages
-        titleLabel.text = json["title"].stringValue
-        contentLabel.text = json["description"].stringValue
+        goodTitle = json["title"].stringValue
+        titleLabel.text = goodTitle
+        goodDetail = json["description"].stringValue
+        contentLabel.text = goodDetail
         priceLabel.text = "¥" + json["price"].stringValue
         buyLink = json["buy_link"].stringValue
+        goodImg = json["thumb_path"].stringValue
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {

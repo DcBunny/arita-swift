@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class GoodsSearchController: BaseController {
     
@@ -75,18 +76,14 @@ class GoodsSearchController: BaseController {
     private func setPageViews() {
         tableView.delegate = self
         tableView.dataSource = self
+        
+        searchManager.paramSource = self
+        searchManager.delegate = self
     }
     
     // MARK: - Event Response
     @objc private func searchGoods() {
-        if showNum % 2 == 0 {
-            tableView.isHidden = false
-            noResultView.isHidden = true
-        } else {
-            tableView.isHidden = true
-            noResultView.isHidden = false
-        }
-        showNum += 1
+        searchManager.loadData()
     }
     
     // MARK: - Controller Attributes
@@ -97,13 +94,14 @@ class GoodsSearchController: BaseController {
     
     fileprivate var searchTerms: UITextField?
     
-    fileprivate var showNum = 0
+    fileprivate var searchArray: [JSON] = []
+    fileprivate var _searchManager: SearchManager?
 }
 
 extension GoodsSearchController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return searchArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -116,6 +114,32 @@ extension GoodsSearchController: UITableViewDataSource {
 
 extension GoodsSearchController: UITableViewDelegate {
     
+}
+
+// MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
+extension GoodsSearchController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return [
+            "search_word": searchTerms!.text!
+        ]
+    }
+}
+
+extension GoodsSearchController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data)
+        
+        print(json)
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
 }
 
 // MARK: - Getters and Setters
@@ -165,5 +189,13 @@ extension GoodsSearchController {
         }
         
         return _noResultLabel!
+    }
+    
+    fileprivate var searchManager: SearchManager {
+        if _searchManager == nil {
+            _searchManager = SearchManager()
+        }
+        
+        return _searchManager!
     }
 }

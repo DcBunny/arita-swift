@@ -267,7 +267,7 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
     public func setNaviRightTextBtn(_ text: String, action: Selector) {
         let barBtnItem = UIBarButtonItem(title: text, style: .plain, target: self, action: action)
         let textAttributs = [NSFontAttributeName: Font.size13!,
-                             NSForegroundColorAttributeName: Color.hex007aff!]
+                             NSForegroundColorAttributeName: Color.hex4a4a4a!]
         barBtnItem.setTitleTextAttributes(textAttributs, for: .normal)
         barBtnItem.setTitleTextAttributes(textAttributs, for: .highlighted)
 
