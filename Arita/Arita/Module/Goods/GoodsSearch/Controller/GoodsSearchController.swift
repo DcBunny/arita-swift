@@ -106,22 +106,27 @@ extension GoodsSearchController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GoodsCell.self), for: indexPath) as! GoodsCell
-        cell.goodData = nil
+        cell.goodData = searchArray[indexPath.row]
         
         return cell
     }
 }
 
 extension GoodsSearchController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let good = GoodsController(id: searchArray[indexPath.row]["ID"].stringValue)
+        navigationController?.pushViewController(good, animated: true)
+    }
 }
 
 // MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
 extension GoodsSearchController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        searchTerms?.resignFirstResponder()
+        let keyWord = searchTerms!.text!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         return [
-            "search_word": searchTerms!.text!
+            "search_word": keyWord!
         ]
     }
 }
@@ -132,7 +137,15 @@ extension GoodsSearchController: ONAPIManagerCallBackDelegate {
         let data = manager.fetchDataWithReformer(nil)
         let json = JSON(data: data as! Data)
         
-        print(json)
+        searchArray = json.arrayValue
+        if searchArray.count == 0 {
+            tableView.isHidden = true
+            noResultView.isHidden = false
+        } else {
+            tableView.isHidden = false
+            noResultView.isHidden = true
+            tableView.reloadData()
+        }
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
