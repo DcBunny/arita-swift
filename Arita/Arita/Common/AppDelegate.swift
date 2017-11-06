@@ -17,6 +17,9 @@ let log = XCGLogger.default
 let kArita = "kArita"
 let kBuglyAppId = "900037900"
 let kUserHasOnboard = "kUserHasOnboard"
+let aLiYunKey = "LTAIUpgXwM5M1UIw"
+let aLiYunSecret = "jGVoCI1bQymrgkY4RBpVx721bmgEz6"
+var isStatusHidden = !UIDevice.current.isIphoneX()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -68,11 +71,8 @@ extension AppDelegate: ONServiceFactoryDataSource {
 extension AppDelegate {
     fileprivate func chooseRootVC() {
         // 显示启动页3秒
-        Thread.sleep(forTimeInterval: 3.0)
-        
-        // 隐藏状态栏
-        UIApplication.shared.setStatusBarHidden(true, with: UIStatusBarAnimation.none)
-        
+//        Thread.sleep(forTimeInterval: 3.0)
+
         let userHasOnboarded = UserDefaults.standard.bool(forKey: kUserHasOnboard)
         
         if userHasOnboarded {

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AliyunOSSiOS
+import ALCameraViewController
 
 /**
  * MineUserInfoController **用户信息**页面主页
@@ -22,6 +24,13 @@ class MineUserInfoController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        prepareData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        prepareData()
+        userInfoTableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,20 +72,155 @@ class MineUserInfoController: BaseController {
     private func setPageViews() {
         userInfoTableView.delegate = self
         userInfoTableView.dataSource = self
+        
+        updateInfoAPIManager.delegate = self
+        updateInfoAPIManager.paramSource = self
+    }
+    
+    fileprivate func prepareData() {
+        infoArray = [UserManager.sharedInstance.getUserInfo()?.avatar,
+                     UserManager.sharedInstance.getUserInfo()?.nickname,
+                     UserManager.sharedInstance.getUserInfo()?.age,
+                     UserManager.sharedInstance.getUserInfo()?.conste,
+                     (UserManager.sharedInstance.getUserInfo()?.gender == 0 ? "男" : "女"),
+                     UserManager.sharedInstance.getUserInfo()?.area]
     }
     
     // MARK: - Event Responses
     
     // MARK: - Private Methods
+    fileprivate func uploadToOSS(data: Data?) {
+        guard data != nil else {
+            ONTipCenter.showToast("处理头像失败，请稍候再试")
+            return
+        }
+        
+        let objectKey = "User/\(getNowTime()).jpg"
+        print("URL: - \(API.UploadUrl)\(objectKey)")
+        let put = OSSPutObjectRequest()
+        put.bucketName = "zmcnxd"
+        put.objectKey = objectKey
+        put.uploadingData = data!
+        
+        let putTask = client.putObject(put)
+        putTask.continue ({ (task: OSSTask) -> Any? in
+            if task.error == nil {
+                self.headImgUrl = API.UploadUrl + objectKey
+                self.updateInfoAPIManager.loadData()
+            } else {
+                ONTipCenter.showToast("上传头像失败")
+            }
+            return nil
+        })
+    }
+    
+    fileprivate func handleImage(image: UIImage?) {
+        if image != nil {
+            // 判断图片是不是 png 格式的文件
+            if UIImagePNGRepresentation(image!) != nil {
+                // 返回为 png 图像。
+                let imageNew = imageWithImageSimple(image!, scaleTo: CGSize(width: 200, height: 200))
+                if imageNew != nil {
+                    self.imageData = UIImagePNGRepresentation(imageNew!)
+                }
+            } else {
+                // 返回为 JPEG 图像。
+                let imageNew = imageWithImageSimple(image!, scaleTo: CGSize(width: 200, height: 200))
+                if imageNew != nil {
+                    self.imageData = UIImageJPEGRepresentation(imageNew!, 0.1)
+                }
+            }
+            uploadToOSS(data: self.imageData)
+        } else {
+            ONTipCenter.showToast("处理头像失败，请稍候再试")
+        }
+        
+    }
+    
+    /**
+     *  压缩图片尺寸
+     *
+     *  - parameter image:   图片
+     *  - parameter newSize: 大小
+     *
+     *  - Returns: 真实图片
+     */
+    private func imageWithImageSimple(_ image: UIImage, scaleTo size: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContext(size)
+        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
+    /**
+     *  返回当前时间
+     *
+     *  - Returns: 当前时间
+     */
+    private func getNowTime() -> String {
+        var date = ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYYMMddhhmmssSSS"
+        date = dateFormatter.string(from: Date())
+        let last = arc4random() % 10000
+        return "\(date)-\(last)"
+    }
     
     // MARK: - Controller Attributes
     fileprivate var _shadowView: UIView?
     fileprivate var _bodyView: UIView?
     fileprivate var _userInfoTableView: UITableView?
+    fileprivate var client = OSSClient(endpoint: API.endPoint, credentialProvider: OSSPlainTextAKSKPairCredentialProvider(plainTextAccessKey: aLiYunKey, secretKey: aLiYunSecret))
+    fileprivate var imageData: Data? = Data()
+    fileprivate var headImgUrl: String? = nil
+    
+    fileprivate var updateInfoAPIManager = UpdateUserInfoAPIManager()
     
     fileprivate var itemArray = ["头像", "昵称", "年龄", "星座", "性别", "地区"]
-    fileprivate var infoArray = ["胡歌", "35", "巨蟹座", "男", "重庆 渝中区"]
+    fileprivate var infoArray: [String?] = []
 }
+
+// MARK: - ONAPIManagerParamSource
+extension MineUserInfoController: ONAPIManagerParamSource {
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        if (UserManager.sharedInstance.getUserInfo()?.userId != nil) && (UserManager.sharedInstance.getUserInfo()!.userId! > 0) {
+            return ["id": UserManager.sharedInstance.getUserInfo()!.userId!,
+                    "nickname": UserManager.sharedInstance.getUserInfo()?.nickname.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "headimgurl": (headImgUrl ?? "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "age": UserManager.sharedInstance.getUserInfo()?.age.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "xingzuo": UserManager.sharedInstance.getUserInfo()?.conste.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "gender": UserManager.sharedInstance.getUserInfo()!.gender,
+                    "area": UserManager.sharedInstance.getUserInfo()?.area.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            ]
+        } else {
+            return ["uid": UserManager.sharedInstance.getUserInfo()!.uid!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "gender": UserManager.sharedInstance.getUserInfo()!.gender,
+                    "thirdType": UserManager.sharedInstance.getUserInfo()?.thirdType?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? 0,
+                    "nickname": UserManager.sharedInstance.getUserInfo()?.nickname.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "headimgurl": (headImgUrl ?? "").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "age": UserManager.sharedInstance.getUserInfo()?.age.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "xingzuo": UserManager.sharedInstance.getUserInfo()?.conste.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "area": UserManager.sharedInstance.getUserInfo()?.area.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            ]
+        }
+    }
+}
+
+// MARK: - ONAPIManagerCallBackDelegate
+extension MineUserInfoController: ONAPIManagerCallBackDelegate {
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        UserManager.sharedInstance.updateUserAvatar(avatar: headImgUrl ?? "")
+        prepareData()
+        userInfoTableView.reloadData()
+        ONTipCenter.showToast("更新用户头像成功")
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        ONTipCenter.showToast("更新用户头像失败，请稍候再试")
+    }
+}
+
 
 // MARK: - TableView Data Source
 extension MineUserInfoController: UITableViewDataSource {
@@ -99,12 +243,12 @@ extension MineUserInfoController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MineUserInfoAvatarTableViewCell.self), for: indexPath) as! MineUserInfoAvatarTableViewCell
-            cell.userAvatar = "https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike220%2C5%2C5%2C220%2C73/sign=1cdd55c9dd62853586edda73f1861da3/b2de9c82d158ccbfeb0c9a0111d8bc3eb135415c.jpg"
+            cell.userAvatar = infoArray[indexPath.row]!
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MineUserInfoNormalTableViewCell.self), for: indexPath) as! MineUserInfoNormalTableViewCell
             cell.itemName = itemArray[indexPath.row]
-            cell.infoName = infoArray[indexPath.row - 1]
+            cell.infoName = infoArray[indexPath.row]!
             return cell
         }
     }
@@ -132,17 +276,10 @@ extension MineUserInfoController: UITableViewDelegate {
         case 2, 3:
             DispatchQueue.main.async {
                 let ageController = MineAgeController()
-                ageController.backClosure = { (currentAge: String, currentXingzuo: String) -> Void in
-                    let cell = tableView.cellForRow(at: indexPath) as! MineUserInfoNormalTableViewCell
-                    if indexPath.row == 2 {
-                        cell.infoName = currentAge
-                        let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as! MineUserInfoNormalTableViewCell
-                        cell.infoName = currentXingzuo
-                    } else if indexPath.row == 3 {
-                        cell.infoName = currentXingzuo
-                        let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! MineUserInfoNormalTableViewCell
-                        cell.infoName = currentAge
-                    }
+                ageController.backClosure = { [weak self] () -> Void in
+                    guard let strongSelf = self else { return }
+                    strongSelf.prepareData()
+                    strongSelf.userInfoTableView.reloadData()
                 }
                 ageController.modalTransitionStyle = .crossDissolve
                 ageController.providesPresentationContextTransitionStyle = true
@@ -158,9 +295,10 @@ extension MineUserInfoController: UITableViewDelegate {
         case 5:
             DispatchQueue.main.async {
                 let addressController = MineAddressController()
-                addressController.backClosure = { (location :Location) -> Void in
-                    let cell = tableView.cellForRow(at: indexPath) as! MineUserInfoNormalTableViewCell
-                    cell.infoName = location.province + " " + location.city
+                addressController.backClosure = { [weak self] () -> Void in
+                    guard let strongSelf = self else { return }
+                    strongSelf.prepareData()
+                    strongSelf.userInfoTableView.reloadData()
                 }
                 addressController.modalTransitionStyle = .crossDissolve
                 addressController.providesPresentationContextTransitionStyle = true
@@ -177,10 +315,22 @@ extension MineUserInfoController: UITableViewDelegate {
 
 extension MineUserInfoController: ChooseAvatarDelegate {
     func chooseAvatarController(at index: Int) {
+        viewDismiss()
         if index == 0 {
-            print("照相")
+            let cameraVC = CameraViewController(completion: { [weak self] (image, asset) in
+                guard let strongSelf = self else { return }
+                strongSelf.handleImage(image: image)
+                strongSelf.dismiss(animated: true, completion: nil)
+            })
+            present(cameraVC, animated: true, completion: nil)
         } else {
-            print("选择相片")
+            let croppingParameters = CroppingParameters(isEnabled: true, allowResizing: true, allowMoving: true, minimumSize: CGSize(width: 60, height: 60))
+            let photoLibraryVC = CameraViewController.imagePickerViewController(croppingParameters: croppingParameters, completion: { [weak self] (image, asset) in
+                guard let strongSelf = self else { return }
+                strongSelf.handleImage(image: image)
+                strongSelf.dismiss(animated: true, completion: nil)
+            })
+            present(photoLibraryVC, animated: true, completion: nil)
         }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 /**
  * MineHomeController **我的**页面主页
@@ -22,11 +23,17 @@ class MineHomeController: BaseController {
         layoutPageViews()
         setPageViews()
         prepareData()
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
     }
     
     // MARK: - Init Methods
@@ -64,13 +71,16 @@ class MineHomeController: BaseController {
     private func setPageViews() {
         mineTableView.delegate = self
         mineTableView.dataSource = self
+        
+        userInfoAPIManager.delegate = self
+        userInfoAPIManager.paramSource = self
     }
     
     fileprivate func prepareData() {
-        if isLogin {
+        if UserManager.sharedInstance.isLogin() {
             iconArray = [Icon.aboutUs, Icon.mailUs, Icon.scoreUs, Icon.recommendUs, Icon.setting, Icon.logout]
             nameArray = ["关于我们", "投稿合作", "评分", "推荐给朋友", "设置", "退出登录"]
-            userInfo = ["https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike220%2C5%2C5%2C220%2C73/sign=1cdd55c9dd62853586edda73f1861da3/b2de9c82d158ccbfeb0c9a0111d8bc3eb135415c.jpg", "胡歌"]
+            userInfo = [UserManager.sharedInstance.currentUser!.userInfo!.avatar, UserManager.sharedInstance.currentUser!.userInfo!.nickname]
         } else {
             iconArray = [Icon.aboutUs, Icon.mailUs, Icon.scoreUs, Icon.recommendUs, Icon.setting]
             nameArray = ["关于我们", "投稿合作", "评分", "推荐给朋友", "设置"]
@@ -80,35 +90,34 @@ class MineHomeController: BaseController {
     
     // MARK: - Event Responses
     @objc fileprivate func userAvatarAction() {
-        if isLogin {
+        if UserManager.sharedInstance.isLogin() {
             let userInfoController = MineUserInfoController()
             navigationController?.pushViewController(userInfoController, animated: true)
         } else {
-            //TODO: - 进入登录页面
-//            isLogin = true
-//            prepareData()
-//            mineTableView.reloadData()
-            
             let login = LoginController()
             navigationController?.pushViewController(login, animated: true)
         }
     }
     
     @objc fileprivate func userNameAction() {
-        if isLogin {
+        if UserManager.sharedInstance.isLogin() {
             let userInfoController = MineUserInfoController()
             navigationController?.pushViewController(userInfoController, animated: true)
         } else {
-            //TODO: - 进入登录页面
-            isLogin = true
-            prepareData()
-            mineTableView.reloadData()
+            let login = LoginController()
+            navigationController?.pushViewController(login, animated: true)
         }
     }
     
     // MARK: - Private Methods
     fileprivate func calculateHeight() -> CGFloat {
         return "请登录".sizeForFont(Font.size20!, size: CGSize(width: self.view.bounds.size.width, height: CGFloat(MAXFLOAT)), lineBreakMode: NSLineBreakMode.byTruncatingTail).height
+    }
+    
+    fileprivate func loadData() {
+        if UserManager.sharedInstance.isLogin() {
+            userInfoAPIManager.loadData()
+        }
     }
     
     // MARK: - Controller Attributes
@@ -119,8 +128,35 @@ class MineHomeController: BaseController {
     fileprivate var iconArray = [Icon.aboutUs, Icon.mailUs, Icon.scoreUs, Icon.recommendUs, Icon.setting]
     fileprivate var nameArray = ["关于我们", "投稿合作", "评分", "推荐给朋友", "设置"]
     fileprivate var userInfo = ["", "请登录"]
-    //TODO:- 登录未确定
-    fileprivate var isLogin = true
+
+    fileprivate var userInfoAPIManager = UserInfoAPIManager()
+}
+
+// MARK: - ONAPIManagerParamSource
+extension MineHomeController: ONAPIManagerParamSource {
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return ["id": UserManager.sharedInstance.getAuthData()!.token!]
+    }
+}
+
+// MARK: - ONAPIManagerCallBackDelegate
+extension MineHomeController: ONAPIManagerCallBackDelegate {
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        let data = manager.fetchDataWithReformer(nil)
+        let jsonString = JSON(data).rawString()
+        var userInfo = UserInfo.deserialize(from: jsonString)
+        //TODO: 这里需要处理下结构体里的各个属性的赋值问题
+        userInfo!.birthdayDate = UserManager.sharedInstance.getUserInfo()?.birthdayDate
+        UserManager.sharedInstance.updateUserInfo(userInfo: userInfo!)
+        prepareData()
+        mineTableView.reloadData()
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
 }
 
 // MARK: - TableView Data Source
@@ -195,7 +231,7 @@ extension MineHomeController: UITableViewDelegate {
             let alert = UIAlertController(title: "退出当前账号", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "确认退出", style: .default, handler: { [weak self] _ in
                 guard let strongSelf = self else { return }
-                strongSelf.isLogin = false
+                UserManager.sharedInstance.quit()
                 strongSelf.prepareData()
                 strongSelf.mineTableView.reloadData()
             }))

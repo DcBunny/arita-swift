@@ -65,6 +65,8 @@ class MineNicknameController: BaseController {
     }
     
     private func setPageViews() {
+        updateInfoAPIManager.delegate = self
+        updateInfoAPIManager.paramSource = self
         view.backgroundColor = Color.hexf5f5f5
         seperatorView.backgroundColor = Color.hexe4e4e4
         textView.textContainerInset = inset
@@ -75,7 +77,7 @@ class MineNicknameController: BaseController {
     
     // MARK: - Event Responses
     @objc private func save() {
-        
+        updateInfoAPIManager.loadData()
     }
     
     @objc fileprivate func clearText() {
@@ -93,6 +95,46 @@ class MineNicknameController: BaseController {
     fileprivate var _clearButton: UIButton?
     fileprivate var seperatorView = UIView()
     fileprivate var inset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 50)
+    fileprivate var updateInfoAPIManager = UpdateUserInfoAPIManager()
+}
+
+// MARK: - ONAPIManagerParamSource
+extension MineNicknameController: ONAPIManagerParamSource {
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        if (UserManager.sharedInstance.getUserInfo()?.userId != nil) && (UserManager.sharedInstance.getUserInfo()!.userId! > 0) {
+            return ["id": UserManager.sharedInstance.getUserInfo()!.userId!,
+                    "nickname": textView.text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "headimgurl": UserManager.sharedInstance.getUserInfo()?.avatar.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "age": UserManager.sharedInstance.getUserInfo()?.age.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "xingzuo": UserManager.sharedInstance.getUserInfo()?.conste.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "gender": UserManager.sharedInstance.getUserInfo()?.gender ?? 0,
+                    "area": UserManager.sharedInstance.getUserInfo()?.area.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            ]
+        } else {
+            return ["uid": UserManager.sharedInstance.getUserInfo()!.uid!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "thirdType": UserManager.sharedInstance.getUserInfo()?.thirdType?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? 0,
+                    "nickname": textView.text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "headimgurl": UserManager.sharedInstance.getUserInfo()?.avatar.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "age": UserManager.sharedInstance.getUserInfo()?.age.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "xingzuo": UserManager.sharedInstance.getUserInfo()?.conste.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "gender": UserManager.sharedInstance.getUserInfo()!.gender,
+                    "area": UserManager.sharedInstance.getUserInfo()?.area.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            ]
+        }
+    }
+}
+
+// MARK: - ONAPIManagerCallBackDelegate
+extension MineNicknameController: ONAPIManagerCallBackDelegate {
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        UserManager.sharedInstance.updateUserNickname(nickname: textView.text)
+        navigationController?.popViewController(animated: true)
+        ONTipCenter.showToast("更新用户昵称成功")
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        ONTipCenter.showToast("更新用户昵称失败，请稍候再试")
+    }
 }
 
 // MARK: - Getters and Setters
@@ -107,6 +149,7 @@ extension MineNicknameController {
             _textView?.backgroundColor = Color.hexffffff
             _textView?.autoresizingMask = .flexibleHeight
             _textView?.isScrollEnabled = false
+            _textView?.text = UserManager.sharedInstance.getUserInfo()?.nickname
             
             return _textView!
         }

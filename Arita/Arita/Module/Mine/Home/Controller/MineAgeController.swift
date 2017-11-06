@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias ChoosedAge = (String, String) -> Void
+typealias ChangedAgeCallback = () -> Void
 /**
  *  选择生日主页
  */
@@ -63,10 +63,17 @@ class MineAgeController: BaseController {
     }
     
     private func setPageViews() {
+        updateInfoAPIManager.delegate = self
+        updateInfoAPIManager.paramSource = self
         let tapGestureDismiss = UITapGestureRecognizer(target: self, action: #selector(viewDismiss))
         maskView.backgroundColor = Color.hex000000Alpha50
         maskView.addGestureRecognizer(tapGestureDismiss)
         view.backgroundColor = UIColor.clear
+//        if let date = UserManager.sharedInstance.getUserInfo()?.birthdayDate {
+//            datePickerView.date = date
+//        } else {
+//            datePickerView.date = Date()
+//        }
     }
     
     // MARK: - Event Responses
@@ -75,11 +82,8 @@ class MineAgeController: BaseController {
     }
     
     @objc fileprivate func datePickerSure() {
-        viewDismiss()
-        if self.backClosure != nil {
-            let (currentAge, currentXingzuo) = convertToAgeAndConstellation(with: choosedDate)
-            self.backClosure!(currentAge, currentXingzuo)
-        }
+        (currentAge, currentXingzuo) = convertToAgeAndConstellation(with: choosedDate)
+        updateInfoAPIManager.loadData()
     }
     
     @objc fileprivate func chooseDate(_ datePicker: UIDatePicker) {
@@ -97,8 +101,53 @@ class MineAgeController: BaseController {
     fileprivate var _datePickerView: UIDatePicker?
     fileprivate var _toolBar: UIToolbar?
     fileprivate var maskView = UIView()
-    fileprivate var choosedDate = Date()
-    var backClosure: ChoosedAge?
+    fileprivate var choosedDate = UserManager.sharedInstance.getUserInfo()?.birthdayDate ?? Date()
+    fileprivate var currentAge = ""
+    fileprivate var currentXingzuo = ""
+    var backClosure: ChangedAgeCallback?
+    fileprivate var updateInfoAPIManager = UpdateUserInfoAPIManager()
+}
+
+// MARK: - ONAPIManagerParamSource
+extension MineAgeController: ONAPIManagerParamSource {
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        if (UserManager.sharedInstance.getUserInfo()?.userId != nil) && (UserManager.sharedInstance.getUserInfo()!.userId! > 0) {
+            return ["id": UserManager.sharedInstance.getUserInfo()!.userId!,
+                    "age": currentAge.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "xingzuo": currentXingzuo.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "area": UserManager.sharedInstance.getUserInfo()?.area.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "nickname": UserManager.sharedInstance.getUserInfo()?.nickname.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "headimgurl": UserManager.sharedInstance.getUserInfo()?.avatar.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "gender": UserManager.sharedInstance.getUserInfo()?.gender ?? 0
+            ]
+        } else {
+            return ["uid": UserManager.sharedInstance.getUserInfo()!.uid!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "age": currentAge.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "xingzuo": currentXingzuo.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!,
+                    "area": UserManager.sharedInstance.getUserInfo()?.area.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "gender": UserManager.sharedInstance.getUserInfo()?.gender ?? 0,
+                    "thirdType": UserManager.sharedInstance.getUserInfo()?.thirdType?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? 0,
+                    "nickname": UserManager.sharedInstance.getUserInfo()?.nickname.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "",
+                    "headimgurl": UserManager.sharedInstance.getUserInfo()?.avatar.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            ]
+        }
+    }
+}
+
+// MARK: - ONAPIManagerCallBackDelegate
+extension MineAgeController: ONAPIManagerCallBackDelegate {
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        UserManager.sharedInstance.updateUserAgeAndConste(age: currentAge, conste: currentXingzuo, birthdayDate: choosedDate)
+        viewDismiss()
+        if self.backClosure != nil {
+            self.backClosure!()
+        }
+        ONTipCenter.showToast("更新用户年龄星座成功")
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        ONTipCenter.showToast("更新用户年龄星座失败，请稍候再试")
+    }
 }
 
 // MARK: - Getters and Setters
@@ -109,6 +158,7 @@ extension MineAgeController {
             _datePickerView?.datePickerMode = .date
             _datePickerView?.addTarget(self, action: #selector(chooseDate(_:)), for: .valueChanged)
             _datePickerView?.backgroundColor = UIColor.white
+            _datePickerView?.date = choosedDate
             
             return _datePickerView!
         }

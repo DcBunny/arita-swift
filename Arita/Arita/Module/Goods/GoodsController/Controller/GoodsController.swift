@@ -98,6 +98,7 @@ class GoodsController: BaseController {
     }
     
     private func setPageViews() {
+        shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
         buyButton.addTarget(self, action: #selector(buy), for: .touchUpInside)
     }
     
@@ -108,6 +109,25 @@ class GoodsController: BaseController {
     
     private func loadPageData() {
         goodsManager.loadData()
+    }
+    
+    @objc private func share() {
+//        if currentIndex == nil { currentIndex = IndexPath(item: 0, section: 0) }
+//        let shareUrl = API.articleDetailUrl + idArray[currentIndex!.row]
+//        let content = [ShareKey.shareUrlKey: shareUrl,
+//                       ShareKey.shareTitleKey: titleArray[currentIndex!.row],
+//                       ShareKey.shareDescribtionKey: descriptionArray[currentIndex!.row],
+//                       ShareKey.shareImageUrlKey: imageUrlArray[currentIndex!.row]
+//        ]
+//        guard !isScrolling else { return }
+//        DispatchQueue.main.async {
+//            let shareController = ShareController(content: content)
+//            shareController.modalTransitionStyle = .crossDissolve
+//            shareController.providesPresentationContextTransitionStyle = true
+//            shareController.definesPresentationContext = true
+//            shareController.modalPresentationStyle = .overFullScreen
+//            self.present(shareController, animated: true, completion: nil)
+//        }
     }
     
     @objc private func buy() {

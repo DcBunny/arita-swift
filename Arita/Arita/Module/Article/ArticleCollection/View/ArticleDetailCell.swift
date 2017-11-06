@@ -19,6 +19,7 @@ class ArticleDetailCell: UICollectionViewCell {
         
         addPageViews()
         layoutPageViews()
+        setPageViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,7 +48,7 @@ class ArticleDetailCell: UICollectionViewCell {
     }
     
     private func setPageViews() {
-        backgroundColor = UIColor.white
+        backgroundColor = Color.hexf5f5f5
     }
     
     // MARK: - Public Attributes
@@ -98,7 +99,7 @@ extension ArticleDetailCell {
     
     fileprivate var detailWebView: WKWebView {
         if _detailWebView == nil {
-            _detailWebView = WKWebView(frame: .zero)
+            _detailWebView = WKWebView(frame: CGRect.zero)
             _detailWebView?.backgroundColor = UIColor.clear
             _detailWebView?.scrollView.showsVerticalScrollIndicator = false
             _detailWebView?.scrollView.showsHorizontalScrollIndicator = false

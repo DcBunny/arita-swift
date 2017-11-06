@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 /**
- ArticleDetailController **文章详情列表**页主页(包括塔塔报详情列表以及其他分类，更换不同的cell)
+ ArticleDetailController **塔塔报文章详情列表**页主页
  */
 class ArticleDetailController: BaseController {
 
@@ -74,9 +74,14 @@ class ArticleDetailController: BaseController {
     @objc private func gotoShare() {
         if currentIndex == nil { currentIndex = IndexPath(item: 0, section: 0) }
         let shareUrl = API.articleDetailUrl + idArray[currentIndex!.row]
+        let content = [ShareKey.shareUrlKey: shareUrl,
+                       ShareKey.shareTitleKey: titleArray[currentIndex!.row],
+                       ShareKey.shareDescribtionKey: descriptionArray[currentIndex!.row],
+                       ShareKey.shareImageUrlKey: imageUrlArray[currentIndex!.row]
+        ]
         guard !isScrolling else { return }
         DispatchQueue.main.async {
-            let shareController = ShareController(url: shareUrl)
+            let shareController = ShareController(content: content)
             shareController.modalTransitionStyle = .crossDissolve
             shareController.providesPresentationContextTransitionStyle = true
             shareController.definesPresentationContext = true
@@ -84,8 +89,6 @@ class ArticleDetailController: BaseController {
             self.present(shareController, animated: true, completion: nil)
         }
     }
-    
-    // MARK: - Private Methods
     
     // MARK: - Controller Attributes
     fileprivate var _articleDetailCollectionView: UICollectionView?
@@ -95,17 +98,16 @@ class ArticleDetailController: BaseController {
     fileprivate var currentIndex: IndexPath? = IndexPath(item: 0, section: 0)
     fileprivate var tatabaoDetailAPIManager = TataBaoDetailAPIManager()
     fileprivate var idArray: [String] = [String]()
+    fileprivate var titleArray = [String]()
+    fileprivate var descriptionArray = [String]()
+    fileprivate var imageUrlArray = [String]()
 }
 
 // MARK: - ONAPIManagerParamSource
 extension ArticleDetailController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        if manager is TataBaoDetailAPIManager {
-            return ["time": self.time]
-        } else {
-            return ["time": "0"]
-        }
+        return ["time": self.time]
     }
 }
 
@@ -113,14 +115,15 @@ extension ArticleDetailController: ONAPIManagerParamSource {
 extension ArticleDetailController: ONAPIManagerCallBackDelegate {
     
     func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
-        if manager is TataBaoDetailAPIManager {
-            let data = manager.fetchDataWithReformer(nil)
-            let json = JSON(data: data as! Data).arrayValue
-            for item in json {
-                idArray.append(item["article_ID"].stringValue)
-            }
-            articleDetailCollectionView.reloadData()
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data).arrayValue
+        for item in json {
+            idArray.append(item["ID"].stringValue)
+            titleArray.append(item["title"].stringValue)
+            descriptionArray.append(item["description"].stringValue)
+            imageUrlArray.append(item["thumb_path"].stringValue)
         }
+        articleDetailCollectionView.reloadData()
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {

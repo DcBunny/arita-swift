@@ -259,9 +259,7 @@ extension CategoryController: UITableViewDelegate {
     }
     
     func loadDataWithCondition(_ tableView: UITableView) {
-        goodsNum = -1
-        currentPage = 1
-        goodsChildListManager.loadData()
+        goodsTable.mj_header.beginRefreshing()
         tableView.isHidden = true
     }
 }

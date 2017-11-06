@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 /**
  DailyCheckController **日签打卡机**页主页
@@ -80,13 +81,21 @@ class DailyCheckController: BaseController {
     
     // MARK: - Event Responses
     @objc fileprivate func gotoShare() {
+        if currentIndex == nil { currentIndex = IndexPath(item: 0, section: 0) }
+        let shareUrl = API.articleDetailUrl + idArray[currentIndex!.row]
+        let content = [ShareKey.shareUrlKey: shareUrl,
+                       ShareKey.shareTitleKey: titleArray[currentIndex!.row],
+                       ShareKey.shareDescribtionKey: descriptionArray[currentIndex!.row],
+                       ShareKey.shareImageUrlKey: imageUrlArray[currentIndex!.row]
+        ]
+        guard !isScrolling else { return }
         DispatchQueue.main.async {
-//            let shareController = ShareController()
-//            shareController.modalTransitionStyle = .crossDissolve
-//            shareController.providesPresentationContextTransitionStyle = true
-//            shareController.definesPresentationContext = true
-//            shareController.modalPresentationStyle = .overFullScreen
-//            self.present(shareController, animated: true, completion: nil)
+            let shareController = ShareController(content: content)
+            shareController.modalTransitionStyle = .crossDissolve
+            shareController.providesPresentationContextTransitionStyle = true
+            shareController.definesPresentationContext = true
+            shareController.modalPresentationStyle = .overFullScreen
+            self.present(shareController, animated: true, completion: nil)
         }
     }
     
@@ -97,13 +106,19 @@ class DailyCheckController: BaseController {
     fileprivate var _shareButton: UIButton?
     fileprivate var articleAPIManager = ArticleAPIManager()
     fileprivate var todayTata: ArticleHomeModel
+    fileprivate var isScrolling = false
+    fileprivate var currentIndex: IndexPath? = IndexPath(item: 0, section: 0)
+    fileprivate var idArray: [String] = [String]()
+    fileprivate var titleArray = [String]()
+    fileprivate var descriptionArray = [String]()
+    fileprivate var imageUrlArray = [String]()
 }
 
 // MARK: - ONAPIManagerParamSource
 extension DailyCheckController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["timestamp": todayTata.timeStamp, "articlesNum": 1000, "channel_ID": 44]
+        return ["timestamp": 0, "articlesNum": 1000, "channel_ID": 44]
     }
 }
 
@@ -111,23 +126,17 @@ extension DailyCheckController: ONAPIManagerParamSource {
 extension DailyCheckController: ONAPIManagerCallBackDelegate {
     
     func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
-//        if isFirst {
-//            articleModel.removeAll()
-//            isFirst = false
-//        }
-//        if manager is TataBaoAPIManager {
-//            let data = manager.fetchDataWithReformer(nil)
-//            let viewModel = ArticleViewModel(data: data)
-//            articleModel = viewModel.articles
-//            totalCount = viewModel.totalCount
-//            articleCollectionView.reloadData()
-//        } else if manager is ArticleAPIManager {
-//            let data = manager.fetchDataWithReformer(nil)
-//            let viewModel = NormalArticleViewModel(data: data)
-//            articleModel = viewModel.articles
-//            totalCount = viewModel.totalCount
-//            articleCollectionView.reloadData()
-//        }
+        
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data)
+        let items = json["articleArrNew"].arrayValue
+        for item in items {
+            idArray.append(item["ID"].stringValue)
+            titleArray.append(item["title"].stringValue)
+            descriptionArray.append(item["description"].stringValue)
+            imageUrlArray.append(item["thumb_path"].stringValue)
+        }
+        dailyCheckCollectionView.reloadData()
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
@@ -145,12 +154,12 @@ extension DailyCheckController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return idArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: DailyCheckCell.self), for: indexPath) as! DailyCheckCell
-        cell.dailyImage = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=123028776,535225046&fm=27&gp=0.jpg"
+        cell.dailyImage = imageUrlArray[indexPath.row]
         return cell
     }
 }
@@ -159,6 +168,20 @@ extension DailyCheckController: UICollectionViewDataSource {
 extension DailyCheckController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+    }
+}
+
+// MARK: - UIScrollView Delegate
+extension DailyCheckController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pInView = self.view.convert(self.dailyCheckCollectionView.center, to: self.dailyCheckCollectionView)
+        let indexNow = self.dailyCheckCollectionView.indexPathForItem(at: pInView)
+        currentIndex = indexNow
+        isScrolling = false
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isScrolling = true
     }
 }
 

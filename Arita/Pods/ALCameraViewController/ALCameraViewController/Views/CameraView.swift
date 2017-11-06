@@ -59,6 +59,7 @@ public class CameraView: UIView {
             session.startRunning()
             DispatchQueue.main.async() { [weak self] in
                 self?.createPreview()
+                self?.rotatePreview()
             }
         }
     }
@@ -100,6 +101,11 @@ public class CameraView: UIView {
             line.alpha = 0
         }
     }
+
+    public func configureZoom() {
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinch(gesture:)))
+        addGestureRecognizer(pinchGesture)
+    }
     
     internal func focus(gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: self)
@@ -134,6 +140,37 @@ public class CameraView: UIView {
                 }
         })
     }
+
+    internal func pinch(gesture: UIPinchGestureRecognizer) {
+        guard let device = device else { return }
+
+        // Return zoom value between the minimum and maximum zoom values
+        func minMaxZoom(_ factor: CGFloat) -> CGFloat {
+            return min(max(factor, 1.0), device.activeFormat.videoMaxZoomFactor)
+        }
+
+        func update(scale factor: CGFloat) {
+            do {
+                try device.lockForConfiguration()
+                defer { device.unlockForConfiguration() }
+                device.videoZoomFactor = factor
+            } catch {
+                print("\(error.localizedDescription)")
+            }
+        }
+
+        let velocity = gesture.velocity
+        let velocityFactor: CGFloat = 8.0
+        let desiredZoomFactor = device.videoZoomFactor + atan2(velocity, velocityFactor)
+
+        let newScaleFactor = minMaxZoom(desiredZoomFactor)
+        switch gesture.state {
+        case .began, .changed:
+            update(scale: newScaleFactor)
+        case _:
+            break
+        }
+    }
     
     private func createPreview() {
         
@@ -162,7 +199,7 @@ public class CameraView: UIView {
         let size = frame.size
 
         cameraQueue.sync {
-            takePhoto(output, videoOrientation: orientation, cropSize: size) { image in
+            takePhoto(output, videoOrientation: orientation, cameraPosition: device.position, cropSize: size) { image in
                 DispatchQueue.main.async() { [weak self] in
                     self?.isUserInteractionEnabled = true
                     completion(image)

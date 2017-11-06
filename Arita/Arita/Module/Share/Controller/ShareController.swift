@@ -30,8 +30,8 @@ class ShareController: BaseController {
     }
     
     // MARK: - Init Methods
-    init(url: String) {
-        self.shareUrl = url
+    init(content: [String: String]) {
+        self.content = content
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -123,7 +123,7 @@ class ShareController: BaseController {
     private var topHeight = CGFloat(Size.screenHeight / 2 - 197)
     private var bottomHeight = CGFloat(Size.screenHeight / 2 - 200)
     
-    fileprivate var shareUrl: String
+    fileprivate var content: [String: String]
     
     fileprivate var shareModel: [ShareModel] = []
 }
@@ -156,22 +156,24 @@ extension ShareController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! ShareCollectionCell
         guard let shareType = cell.shareType else { return }
-//        ShareTool.sharedInstance.shareWith(content: shareUrl, to: shareType)
+        ShareTool.sharedInstance.shareWith(content: content, to: shareType)
     }
 }
 
 // MARK: - Share Delegate
 extension ShareController: ShareDelegate {
     func didSucessed(shareTo platform: ShareType) {
-        
+        viewDismiss()
+        ONTipCenter.showToast("分享成功")
     }
     
     func didFailed(shareTo platform: ShareType, with error: Error?) {
-        
+        viewDismiss()
+        ONTipCenter.showToast("分享失败了，请稍候再试")
     }
     
     func didCanceled(shareTo platform: ShareType) {
-        
+        viewDismiss()
     }
 }
 

@@ -12,10 +12,32 @@ import SwiftyJSON
 
 // 用户信息类
 struct UserInfo: HandyJSON {
-    var userId = 0
+    var userId: Int?
+    var uid: String?
+    var thirdType: String?
+    var birthdayDate: Date?
     var username = ""
     var nickname = ""
     var avatar = ""
+    var conste = ""
+    var cellPhone = ""
+    var gender = 0 // 0男1女
+    var password = ""
+    var area = ""
+    var age = ""
+    
+    mutating func mapping(mapper: HelpingMapper) {
+        mapper <<<
+            self.userId <-- "ID"
+        mapper <<<
+            self.thirdType <-- "thirdtype"
+        mapper <<<
+            self.avatar <-- "head_img"
+        mapper <<<
+            self.conste <-- "xingzuo"
+        mapper <<<
+            self.cellPhone <-- "cellphone"
+    }
 }
 
 // 登录信息类
@@ -89,6 +111,33 @@ class UserManager {
     
     func updateUserAvatar(avatar: String) {
         currentUser?.userInfo?.avatar = avatar
+        
+        saveInfoToLocal()
+    }
+    
+    func updateUserSex(sex: Int) {
+        currentUser?.userInfo?.gender = sex
+        
+        saveInfoToLocal()
+    }
+    
+    func updateUserAgeAndConste(age: String, conste: String, birthdayDate: Date) {
+        currentUser?.userInfo?.age = age
+        currentUser?.userInfo?.conste = conste
+        currentUser?.userInfo?.birthdayDate = birthdayDate
+        
+        saveInfoToLocal()
+    }
+    
+    func updateUserNickname(nickname: String) {
+        currentUser?.userInfo?.nickname = nickname
+        
+        saveInfoToLocal()
+    }
+    
+    func updateUserArea(area: String) {
+        currentUser?.userInfo?.area = area
+        
         saveInfoToLocal()
     }
     
@@ -114,13 +163,6 @@ class UserManager {
         currentUser?.userInfo = userInfo
         saveInfoToLocal()
     }
-    
-    func updateUserNickname(nickname: String) {
-        currentUser?.userInfo?.nickname = nickname
-        
-        saveInfoToLocal()
-    }
-    
 
     //MARK: - 数据操作相关
     func isLogin() -> Bool {
