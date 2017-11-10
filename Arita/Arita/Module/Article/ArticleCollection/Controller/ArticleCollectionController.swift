@@ -63,8 +63,15 @@ class ArticleCollectionController: BaseController {
     }
     
     private func layoutPageViews() {
-        articleCollectionView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view)
+        if #available(iOS 11.0, *) {
+            articleCollectionView.snp.makeConstraints({ (make) in
+                make.left.right.equalTo(view)
+                make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            })
+        } else {
+            articleCollectionView.snp.makeConstraints { (make) in
+                make.edges.equalTo(view)
+            }
         }
     }
     
@@ -90,6 +97,9 @@ class ArticleCollectionController: BaseController {
     // MARK: - Event Responses
     
     // MARK: - Private Methods
+    fileprivate func pageWith() -> Float {
+        return Float((self.articleCollectionView.collectionViewLayout as! ArticleCollectionFlowLayout).itemSize.width + (self.articleCollectionView.collectionViewLayout as! ArticleCollectionFlowLayout).minimumLineSpacing)
+    }
     
     // MARK: - Controller Attributes
     fileprivate var _articleCollectionView: UICollectionView?
@@ -103,6 +113,38 @@ class ArticleCollectionController: BaseController {
     fileprivate var articleModel: [ArticleModel] = [ArticleModel.initial]
     fileprivate var totalCount = 0
     fileprivate var isFirst = true
+    fileprivate var currentPage = 0
+}
+
+extension ArticleCollectionController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        currentPage = Int(floor((Float(self.articleCollectionView.contentOffset.x) - pageWith() / 2) / pageWith())) + 1
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let targetXContentOffset = Float(targetContentOffset.pointee.x)
+        let contentWidth = Float(self.articleCollectionView.contentSize.width)
+        var newPage = Float(currentPage)
+        let pageWidth = pageWith()
+        
+        if velocity.x == 0 {
+            newPage = (floor((targetXContentOffset - pageWidth / 2) / pageWidth) + 1)
+        } else {
+            newPage = Float(velocity.x > 0 ? currentPage + 1 : currentPage - 1)
+            
+            if newPage < 0 {
+                newPage = 0
+            }
+            
+            if (newPage > ( contentWidth / pageWidth)) {
+                newPage = ceil(contentWidth / pageWidth) - 1.0
+            }
+        }
+        
+        self.currentPage = Int(newPage)
+        let point = CGPoint(x: CGFloat(newPage * pageWidth), y: targetContentOffset.pointee.y)
+        targetContentOffset.pointee = point
+    }
 }
 
 // MARK: - ONAPIManagerParamSource
@@ -110,9 +152,9 @@ extension ArticleCollectionController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
         if manager is TataBaoAPIManager {
-            return ["timestamp": timeStamp, "articlesNum": 1000]
+            return ["timestamp": 0, "articlesNum": 500]
         } else if manager is ArticleAPIManager {
-            return ["timestamp": timeStamp, "articlesNum": 1000, "channel_ID": channelID]
+            return ["timestamp": 0, "articlesNum": 500, "channel_ID": channelID]
         } else {
             return [:]
         }

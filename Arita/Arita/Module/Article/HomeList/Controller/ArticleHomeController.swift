@@ -33,7 +33,7 @@ class ArticleHomeController: BaseController {
     // MARK: - Controller Settings
     private func setNavigationBar() {
         setNaviBar(type: .custom)
-        setNavi(leftIcon: UIImage(named: Icon.topCalendar)!, leftAction: #selector(gotoCalendar), rightIcon: UIImage(named: Icon.topMine)!, rightAction: #selector(gotoMine))
+        setNavi(leftCalendar: #selector(gotoCalendar), rightIcon: UIImage(named: Icon.topMine)!, rightAction: #selector(gotoMine))
         let titleView = UIImageView(image: UIImage(named: Icon.topTitleLogo))
         setTitleView(titleView)
     }
@@ -71,7 +71,7 @@ class ArticleHomeController: BaseController {
     
     // MARK: - Event Response
     @objc private func gotoCalendar() {
-        let dailyCheckController = DailyCheckController(articleModel[0][0])
+        let dailyCheckController = DailyCheckController()
         dailyCheckController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(dailyCheckController, animated: true)
     }
@@ -84,6 +84,7 @@ class ArticleHomeController: BaseController {
     
     @objc fileprivate func gotoCategory() {
         let categoryVC = CategoryCollectionController()
+        categoryVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(categoryVC, animated: true)
     }
     
@@ -102,6 +103,18 @@ class ArticleHomeController: BaseController {
             let array = articleModel.flatMap { $0 }
             articleHomeAPIManager.currentNum = array.count
             articleHomeAPIManager.loadNextPage()
+        }
+    }
+    
+    // MARK: - Private Methods
+    fileprivate func updateNaviLeftItem(with day: String) {
+        guard self.navigationItem.leftBarButtonItems != nil && self.navigationItem.leftBarButtonItems!.count > 0 else { return }
+        for item in self.navigationItem.leftBarButtonItems! {
+            if item.customView is CalendarButton {
+                let calendarButton = item.customView as! CalendarButton
+                guard let drawDay = day.convertStringToDayString() else { return }
+                calendarButton.dayString = drawDay
+            }
         }
     }
     
@@ -137,6 +150,7 @@ extension ArticleHomeController: ONAPIManagerCallBackDelegate {
         let viewModel = ArticleHomeViewModel(data: data, with: articleModel)
         articleModel = viewModel.articles
         totalCount = viewModel.totalCount
+        updateNaviLeftItem(with: articleModel[0][0].sectionDate)
         if tableView.mj_header.isRefreshing() {
             tableView.mj_header.endRefreshing()
         }
@@ -243,6 +257,15 @@ extension ArticleHomeController: UITableViewDelegate {
                 navigationController?.pushViewController(articleListController, animated: true)
             }
         }
+    }
+}
+
+extension ArticleHomeController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let visibleIndexPaths = tableView.indexPathsForVisibleRows
+        guard visibleIndexPaths != nil && visibleIndexPaths!.count > 0 else { return }
+        let currentSection = visibleIndexPaths!.first!.section
+        updateNaviLeftItem(with: articleModel[currentSection][0].sectionDate)
     }
 }
 

@@ -43,11 +43,19 @@ class CategoryCollectionController: BaseController {
     }
     
     private func layoutPageViews() {
-        categoryCollectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(view)
-            make.left.equalTo(view).offset(15)
-            make.right.equalTo(view).offset(-15)
-            make.bottom.equalTo(view)
+        if #available(iOS 11.0, *) {
+            categoryCollectionView.snp.makeConstraints({ (make) in
+                make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+                make.left.equalTo(view).offset(15)
+                make.right.equalTo(view).offset(-15)
+            })
+        } else {
+            categoryCollectionView.snp.makeConstraints { (make) in
+                make.top.equalTo(view)
+                make.left.equalTo(view).offset(15)
+                make.right.equalTo(view).offset(-15)
+                make.bottom.equalTo(view)
+            }
         }
     }
     
@@ -131,6 +139,10 @@ extension CategoryCollectionController: UICollectionViewDelegate {
             let tataDailyController = ArticleCollectionController(with: channelModel[indexPath.row], isFromHome: false, isTata: true)
             tataDailyController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(tataDailyController, animated: true)
+        } else if channelModel[indexPath.row].channelID == 44 {
+            let dailyCheckController = DailyCheckController()
+            dailyCheckController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(dailyCheckController, animated: true)
         } else {
             let articleListController = ArticleCollectionController(with: channelModel[indexPath.row], isFromHome: false, isTata: false)
             articleListController.hidesBottomBarWhenPushed = true
