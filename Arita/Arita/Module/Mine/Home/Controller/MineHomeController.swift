@@ -52,11 +52,20 @@ class MineHomeController: BaseController {
     }
     
     private func layoutPageViews() {
-        shadowView.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalTo(view).offset(6)
-            ConstraintMaker.right.equalTo(view).offset(-6)
-            ConstraintMaker.top.equalTo(view).offset(5)
-            ConstraintMaker.bottom.equalTo(view).offset(-12)
+        if #available(iOS 11.0, *) {
+            shadowView.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.left.equalTo(view).offset(6)
+                ConstraintMaker.right.equalTo(view).offset(-6)
+                ConstraintMaker.top.equalTo(view.safeAreaLayoutGuide).offset(5)
+                ConstraintMaker.bottom.equalTo(view.safeAreaLayoutGuide).offset(-12)
+            }
+        } else {
+            shadowView.snp.makeConstraints { (ConstraintMaker) in
+                ConstraintMaker.left.equalTo(view).offset(6)
+                ConstraintMaker.right.equalTo(view).offset(-6)
+                ConstraintMaker.top.equalTo(view).offset(5)
+                ConstraintMaker.bottom.equalTo(view).offset(-12)
+            }
         }
         
         bodyView.snp.makeConstraints { (ConstraintMaker) in

@@ -30,16 +30,6 @@ class DailyCheckController: BaseController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Init Methods
-    init(_ tataInfo: ArticleHomeModel) {
-        self.todayTata = tataInfo
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Controller Settings
     private func setNavigationBar() {
         setNaviBar(type: .normal)
@@ -52,16 +42,31 @@ class DailyCheckController: BaseController {
     }
     
     private func layoutPageViews() {
-        dailyCheckCollectionView.snp.makeConstraints { (make) in
-            make.top.left.right.equalTo(view)
-            make.bottom.equalTo(shareButton.snp.top).offset(-20)
-        }
-        
-        shareButton.snp.makeConstraints { (make) in
-            make.size.equalTo(CGSize(width: 44, height: 44))
-            make.top.equalTo(dailyCheckCollectionView.snp.bottom).offset(20)
-            make.centerX.equalTo(view)
-            make.bottom.equalTo(view).offset(-20)
+        if #available(iOS 11.0, *) {
+            dailyCheckCollectionView.snp.makeConstraints { (make) in
+                make.left.right.equalTo(view)
+                make.top.equalTo(view.safeAreaLayoutGuide)
+                make.bottom.equalTo(shareButton.snp.top).offset(-20)
+            }
+            
+            shareButton.snp.makeConstraints { (make) in
+                make.size.equalTo(CGSize(width: 44, height: 44))
+                make.top.equalTo(dailyCheckCollectionView.snp.bottom).offset(20)
+                make.centerX.equalTo(view)
+                make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            }
+        } else {
+            dailyCheckCollectionView.snp.makeConstraints { (make) in
+                make.top.left.right.equalTo(view)
+                make.bottom.equalTo(shareButton.snp.top).offset(-20)
+            }
+            
+            shareButton.snp.makeConstraints { (make) in
+                make.size.equalTo(CGSize(width: 44, height: 44))
+                make.top.equalTo(dailyCheckCollectionView.snp.bottom).offset(20)
+                make.centerX.equalTo(view)
+                make.bottom.equalTo(view).offset(-20)
+            }
         }
     }
     
@@ -100,25 +105,28 @@ class DailyCheckController: BaseController {
     }
     
     // MARK: - Private Methods
+    fileprivate func pageWith() -> Float {
+        return Float((self.dailyCheckCollectionView.collectionViewLayout as! DailyCheckFlowLayout).itemSize.width + (self.dailyCheckCollectionView.collectionViewLayout as! DailyCheckFlowLayout).minimumLineSpacing)
+    }
     
     // MARK: - Controller Attributes
     fileprivate var _dailyCheckCollectionView: UICollectionView?
     fileprivate var _shareButton: UIButton?
     fileprivate var articleAPIManager = ArticleAPIManager()
-    fileprivate var todayTata: ArticleHomeModel
     fileprivate var isScrolling = false
     fileprivate var currentIndex: IndexPath? = IndexPath(item: 0, section: 0)
     fileprivate var idArray: [String] = [String]()
     fileprivate var titleArray = [String]()
     fileprivate var descriptionArray = [String]()
     fileprivate var imageUrlArray = [String]()
+    fileprivate var currentPage = 0
 }
 
 // MARK: - ONAPIManagerParamSource
 extension DailyCheckController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["timestamp": 0, "articlesNum": 1000, "channel_ID": 44]
+        return ["timestamp": 0, "articlesNum": 500, "channel_ID": 44]
     }
 }
 
@@ -182,6 +190,32 @@ extension DailyCheckController: UIScrollViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isScrolling = true
+        currentPage = Int(floor((Float(self.dailyCheckCollectionView.contentOffset.x) - pageWith() / 2) / pageWith())) + 1
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let targetXContentOffset = Float(targetContentOffset.pointee.x)
+        let contentWidth = Float(self.dailyCheckCollectionView.contentSize.width)
+        var newPage = Float(currentPage)
+        let pageWidth = pageWith()
+        
+        if velocity.x == 0 {
+            newPage = (floor((targetXContentOffset - pageWidth / 2) / pageWidth) + 1)
+        } else {
+            newPage = Float(velocity.x > 0 ? currentPage + 1 : currentPage - 1)
+            
+            if newPage < 0 {
+                newPage = 0
+            }
+            
+            if (newPage > ( contentWidth / pageWidth)) {
+                newPage = ceil(contentWidth / pageWidth) - 1.0
+            }
+        }
+        
+        self.currentPage = Int(newPage)
+        let point = CGPoint(x: CGFloat(newPage * pageWidth), y: targetContentOffset.pointee.y)
+        targetContentOffset.pointee = point
     }
 }
 

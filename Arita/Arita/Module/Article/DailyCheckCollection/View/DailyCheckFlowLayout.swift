@@ -25,6 +25,7 @@ class DailyCheckFlowLayout: UICollectionViewFlowLayout {
         return true
     }
     
+    /* 自由滑动用这个
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         var rect = CGRect.zero
         rect.origin.x = proposedContentOffset.x
@@ -42,4 +43,5 @@ class DailyCheckFlowLayout: UICollectionViewFlowLayout {
         
         return CGPoint(x: proposedContentOffset.x + CGFloat(minDelta), y: proposedContentOffset.y)
     }
+    */
 }

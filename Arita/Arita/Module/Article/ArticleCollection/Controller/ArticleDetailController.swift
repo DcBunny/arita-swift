@@ -53,8 +53,15 @@ class ArticleDetailController: BaseController {
     }
     
     private func layoutPageViews() {
-        articleDetailCollectionView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view)
+        if #available(iOS 11.0, *) {
+            articleDetailCollectionView.snp.makeConstraints({ (make) in
+                make.left.right.equalTo(view)
+                make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            })
+        } else {
+            articleDetailCollectionView.snp.makeConstraints { (make) in
+                make.edges.equalTo(view)
+            }
         }
     }
     
@@ -90,6 +97,11 @@ class ArticleDetailController: BaseController {
         }
     }
     
+    // MARK: - Private Methods
+    fileprivate func pageWith() -> Float {
+        return Float((self.articleDetailCollectionView.collectionViewLayout as! ArticleDetailFlowLayout).itemSize.width + (self.articleDetailCollectionView.collectionViewLayout as! ArticleDetailFlowLayout).minimumLineSpacing)
+    }
+    
     // MARK: - Controller Attributes
     fileprivate var _articleDetailCollectionView: UICollectionView?
     fileprivate var conTitle: String?
@@ -101,6 +113,7 @@ class ArticleDetailController: BaseController {
     fileprivate var titleArray = [String]()
     fileprivate var descriptionArray = [String]()
     fileprivate var imageUrlArray = [String]()
+    fileprivate var currentPage = 0
 }
 
 // MARK: - ONAPIManagerParamSource
@@ -167,6 +180,32 @@ extension ArticleDetailController: UIScrollViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isScrolling = true
+        currentPage = Int(floor((Float(self.articleDetailCollectionView.contentOffset.x) - pageWith() / 2) / pageWith())) + 1
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let targetXContentOffset = Float(targetContentOffset.pointee.x)
+        let contentWidth = Float(self.articleDetailCollectionView.contentSize.width)
+        var newPage = Float(currentPage)
+        let pageWidth = pageWith()
+        
+        if velocity.x == 0 {
+            newPage = (floor((targetXContentOffset - pageWidth / 2) / pageWidth) + 1)
+        } else {
+            newPage = Float(velocity.x > 0 ? currentPage + 1 : currentPage - 1)
+            
+            if newPage < 0 {
+                newPage = 0
+            }
+            
+            if (newPage > ( contentWidth / pageWidth)) {
+                newPage = ceil(contentWidth / pageWidth) - 1.0
+            }
+        }
+        
+        self.currentPage = Int(newPage)
+        let point = CGPoint(x: CGFloat(newPage * pageWidth), y: targetContentOffset.pointee.y)
+        targetContentOffset.pointee = point
     }
 }
 
