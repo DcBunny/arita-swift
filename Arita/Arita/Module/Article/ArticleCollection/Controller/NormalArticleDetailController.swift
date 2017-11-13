@@ -54,12 +54,22 @@ class NormalArticleDetailController: BaseController {
     }
     
     private func layoutPageViews() {
-        shadowView.snp.makeConstraints { (make) in
-            make.left.equalTo(view).offset(6)
-            make.right.equalTo(view).offset(-6)
-            make.top.equalTo(view).offset(5)
-            make.bottom.equalTo(view).offset(-6)
+        if #available(iOS 11.0, *) {
+            shadowView.snp.makeConstraints { (make) in
+                make.left.equalTo(view).offset(6)
+                make.right.equalTo(view).offset(-6)
+                make.top.equalTo(view.safeAreaLayoutGuide).offset(5)
+                make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-6)
+            }
+        } else {
+            shadowView.snp.makeConstraints { (make) in
+                make.left.equalTo(view).offset(6)
+                make.right.equalTo(view).offset(-6)
+                make.top.equalTo(view).offset(5)
+                make.bottom.equalTo(view).offset(-6)
+            }
         }
+        
         
         bodyView.snp.makeConstraints { (make) in
             make.edges.equalTo(shadowView)

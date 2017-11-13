@@ -231,6 +231,20 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     /**
+     设置当前 Navigation 左侧日期按钮
+     
+     - parameter action: 点击事件
+     */
+    public func setNaviCalendarIconBtn(with action: Selector) {
+        let calendarButton = CalendarButton()
+        calendarButton.addTarget(self, action: action, for: .touchUpInside)
+        let barBtnItem = UIBarButtonItem(customView: calendarButton)
+        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -10
+        navigationItem.leftBarButtonItems = [barBtnItem, negativeSpacer]
+    }
+    
+    /**
      设置当前 Navigation 左侧文字按钮
      
      - parameter text: 按钮标题
@@ -352,6 +366,18 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
      */
     public func setNavi(leftIcon: UIImage, leftAction: Selector, rightIcon: UIImage, rightAction: Selector) {
         setNaviLeftIconBtn(leftIcon, action: leftAction)
+        setNaviRightIconBtn(rightIcon, action: rightAction)
+    }
+    
+    /**
+     设置当前 Navigation 左侧日期按钮和右侧图标按钮
+     
+     - parameter leftAction: 左侧日期点击事件
+     - parameter rightIcon: 右侧图标
+     - parameter rightAction: 右侧图标点击事件
+     */
+    public func setNavi(leftCalendar leftAction: Selector, rightIcon: UIImage, rightAction: Selector) {
+        setNaviCalendarIconBtn(with: leftAction)
         setNaviRightIconBtn(rightIcon, action: rightAction)
     }
     

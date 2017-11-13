@@ -105,6 +105,17 @@ extension String {
         return dateFormatter.string(from: newDate!)
     }
     
+    /// 文章每日列表日期转换
+    public func convertStringToDayString() -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        let newDate = dateFormatter.date(from: self)
+        dateFormatter.dateFormat = "dd"
+        guard newDate != nil else { return nil }
+        return dateFormatter.string(from: newDate!)
+    }
+    
     /// 我的模块关于我们/投稿合作内容样式
     public func convertMineContentString() -> NSAttributedString? {
         let paraStyle = NSMutableParagraphStyle()

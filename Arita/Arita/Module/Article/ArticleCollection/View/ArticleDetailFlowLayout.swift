@@ -25,6 +25,7 @@ class ArticleDetailFlowLayout: UICollectionViewFlowLayout {
         return true
     }
     
+    /* 自由滑动的时候用这个
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         var rect = CGRect.zero
         rect.origin.x = proposedContentOffset.x
@@ -42,4 +43,5 @@ class ArticleDetailFlowLayout: UICollectionViewFlowLayout {
 
         return CGPoint(x: proposedContentOffset.x + CGFloat(minDelta), y: proposedContentOffset.y)
     }
+     */
 }
