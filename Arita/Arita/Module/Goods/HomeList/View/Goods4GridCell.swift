@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 protocol Goods4GridDelegate: class {
-    func goods(disSelectAt indexPath: IndexPath)
+    func goods(disSelectAt id: String)
 }
 
 class Goods4GridCell: UITableViewCell {
@@ -87,7 +87,7 @@ extension Goods4GridCell: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension Goods4GridCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.goods(disSelectAt: indexPath)
+        delegate?.goods(disSelectAt: cellData![indexPath.row]["ID"].stringValue)
     }
 }
 

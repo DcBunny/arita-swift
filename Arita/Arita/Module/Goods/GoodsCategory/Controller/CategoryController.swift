@@ -250,11 +250,16 @@ extension CategoryController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView === categoryTable {
             childId = categoryArray[indexPath.row]["ID"].intValue
+            leftLabel.text = categoryArray[indexPath.row]["child_name"].stringValue
             loadDataWithCondition(tableView)
         } else if tableView === priceTable {
             minPrice = priceCondition[indexPath.row][0]
             maxPrice = priceCondition[indexPath.row][1]
+            rightLabel.text = prices[indexPath.row]
             loadDataWithCondition(tableView)
+        } else {
+            let good = GoodsController(id: goodsArray[indexPath.row]["ID"].stringValue)
+            navigationController?.pushViewController(good, animated: true)
         }
     }
     

@@ -27,10 +27,22 @@ class LoginController: BaseController {
         // Dispose of any resources that can be recreated.
     }
     
+    init(isPopMode: Bool = false) {
+        super.init(nibName: nil, bundle: nil)
+        self.isPopMode = isPopMode
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Controller Settings
     private func setNavigationBar() {
         setNaviBar(type: .normal)
         setNaviBar(title: ("登录"), font: Font.size15)
+        if isPopMode {
+            setBackBtn(.dismiss)
+        }
     }
     
     private func addPageViews() {
@@ -162,6 +174,8 @@ class LoginController: BaseController {
     fileprivate var _logo: UIImageView?
     
     fileprivate var _loginManager: LoginAPIManager?
+    
+    fileprivate var isPopMode = false
 }
 
 // MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate

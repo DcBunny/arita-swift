@@ -198,7 +198,7 @@ extension GoodsHomeController: UITableViewDelegate {
 // MARK: - GoodsHomeHeaderDelegate
 extension GoodsHomeController: GoodsHomeHeaderDelegate {
     func category(disSelectAt indexPath: IndexPath) {
-        let category = CategoryController(with: "分类名", id: goodsCategoryArray[indexPath.row]["ID"].stringValue)
+        let category = CategoryController(with: goodsCategoryArray[indexPath.row]["channel_name"].stringValue, id: goodsCategoryArray[indexPath.row]["ID"].stringValue)
         category.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(category, animated: true)
     }
@@ -206,8 +206,8 @@ extension GoodsHomeController: GoodsHomeHeaderDelegate {
 
 // MARK: - Goods4GridDelegate
 extension GoodsHomeController: Goods4GridDelegate {
-    func goods(disSelectAt indexPath: IndexPath) {
-        let good = GoodsController(id: String(indexPath.row))
+    func goods(disSelectAt id: String) {
+        let good = GoodsController(id: id)
         good.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(good, animated: true)
     }

@@ -98,6 +98,7 @@ class GoodsController: BaseController {
     }
     
     private func setPageViews() {
+        likeButton.addTarget(self, action: #selector(like), for: .touchUpInside)
         shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
         buyButton.addTarget(self, action: #selector(buy), for: .touchUpInside)
     }
@@ -105,10 +106,30 @@ class GoodsController: BaseController {
     private func setAPIManager() {
         goodsManager.paramSource = self
         goodsManager.delegate = self
+        
+        likeManager.paramSource = self
+        likeManager.delegate = self
+        
+        unlikeManager.paramSource = self
+        unlikeManager.delegate = self
     }
     
     private func loadPageData() {
         goodsManager.loadData()
+    }
+    
+    @objc private func like() {
+        if UserManager.sharedInstance.isLogin() {
+            if isLiked {
+                unlikeManager.loadData()
+            } else {
+                likeManager.loadData()
+            }
+        } else {
+            let loginController = LoginController(isPopMode: true)
+            let loginNav = UINavigationController(rootViewController: loginController)
+            present(loginNav, animated: true, completion: nil)
+        }
     }
     
     @objc private func share() {
@@ -147,17 +168,38 @@ class GoodsController: BaseController {
     
     fileprivate var id: String?
     fileprivate var _goodsManager: GoodsManager?
+    fileprivate var _likeManager: LikeGoodsManager?
+    fileprivate var _unlikeManager: UnlikeGoodsManager?
     fileprivate var buyLink: String?
     fileprivate var goodTitle: String?
     fileprivate var goodDetail: String?
     fileprivate var goodImg: String?
+    fileprivate var isLiked: Bool = false {
+        didSet {
+            if isLiked {
+                likeButton.setBackgroundImage(UIImage(named: Icon.likeIcon)!, for: .normal)
+            } else {
+                likeButton.setBackgroundImage(UIImage(named: Icon.unlikeIcon)!, for: .normal)
+            }
+        }
+    }
 }
 
 // MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
 extension GoodsController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["goodsID": id!]
+        if manager === goodsManager {
+            if UserManager.sharedInstance.isLogin() {
+                return ["goodsID": id!, "userID": (UserManager.sharedInstance.currentUser?.authInfo?.token)!]
+            } else {
+                return ["goodsID": id!]
+            }
+        } else if manager === likeManager {
+            return ["goodsID": id!, "id": (UserManager.sharedInstance.currentUser?.authInfo?.token)!]
+        } else {
+            return ["goodsID": id!, "id": (UserManager.sharedInstance.currentUser?.authInfo?.token)!]
+        }
     }
 }
 
@@ -166,18 +208,38 @@ extension GoodsController: ONAPIManagerCallBackDelegate {
     func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
         let data = manager.fetchDataWithReformer(nil)
         let json = JSON(data: data as! Data)
-        var serverImages: [String] = []
-        for img in json["imgArr"].arrayValue {
-            serverImages.append(img.stringValue)
+        if manager === goodsManager {
+            var serverImages: [String] = []
+            if json["imgArr"].arrayValue.count != 0 {
+                for img in json["imgArr"].arrayValue {
+                    serverImages.append(img["img"].stringValue)
+                }
+            } else {
+                let thumb = json["thumb_path"].stringValue
+                serverImages.append(thumb)
+            }
+            cycleImageView.serverImgArray = serverImages
+            goodTitle = json["title"].stringValue
+            titleLabel.text = goodTitle
+            goodDetail = json["description"].stringValue
+            contentLabel.text = goodDetail
+            priceLabel.text = "¥" + json["price"].stringValue
+            buyLink = json["buy_link"].stringValue
+            goodImg = json["thumb_path"].stringValue
+            isLiked = json["userLike"].boolValue
+        } else if manager === likeManager {
+            if json["flag"].stringValue == "1" {
+                isLiked = !isLiked
+            } else {
+                ONTipCenter.showToast("收藏失败")
+            }
+        } else {
+            if json["flag"].stringValue == "1" {
+                isLiked = !isLiked
+            } else {
+                ONTipCenter.showToast("取消失败")
+            }
         }
-        cycleImageView.serverImgArray = serverImages
-        goodTitle = json["title"].stringValue
-        titleLabel.text = goodTitle
-        goodDetail = json["description"].stringValue
-        contentLabel.text = goodDetail
-        priceLabel.text = "¥" + json["price"].stringValue
-        buyLink = json["buy_link"].stringValue
-        goodImg = json["thumb_path"].stringValue
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
@@ -252,7 +314,7 @@ extension GoodsController {
     fileprivate var likeButton: UIButton {
         if _likeButton == nil {
             _likeButton = UIButton()
-            _likeButton?.setBackgroundImage(UIImage(named: Icon.likeIcon)!, for: .normal)
+            _likeButton?.setBackgroundImage(UIImage(named: Icon.unlikeIcon)!, for: .normal)
         }
         
         return _likeButton!
@@ -282,5 +344,21 @@ extension GoodsController {
         }
         
         return _goodsManager!
+    }
+    
+    fileprivate var likeManager: LikeGoodsManager {
+        if _likeManager == nil {
+            _likeManager = LikeGoodsManager()
+        }
+        
+        return _likeManager!
+    }
+    
+    fileprivate var unlikeManager: UnlikeGoodsManager {
+        if _unlikeManager == nil {
+            _unlikeManager = UnlikeGoodsManager()
+        }
+        
+        return _unlikeManager!
     }
 }

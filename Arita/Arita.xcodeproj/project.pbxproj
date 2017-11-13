@@ -177,6 +177,8 @@
 		FD74AF731F9884FA00938B06 /* WRCycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF701F9884F000938B06 /* WRCycleCell.swift */; };
 		FD74AF741F9884FD00938B06 /* WRCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF711F9884F000938B06 /* WRCycleScrollView.swift */; };
 		FD74AF751F9884FF00938B06 /* WRProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF721F9884F000938B06 /* WRProxy.swift */; };
+		FD75EDA91FB98A1200381A0E /* LikeGoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD75EDA81FB98A1200381A0E /* LikeGoodsManager.swift */; };
+		FD75EDAB1FB98A5700381A0E /* UnlikeGoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD75EDAA1FB98A5700381A0E /* UnlikeGoodsManager.swift */; };
 		FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */; };
 		FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941041F96FA5900F8ED10 /* GoodsCell.swift */; };
 		FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */; };
@@ -362,6 +364,8 @@
 		FD74AF701F9884F000938B06 /* WRCycleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRCycleCell.swift; sourceTree = "<group>"; };
 		FD74AF711F9884F000938B06 /* WRCycleScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRCycleScrollView.swift; sourceTree = "<group>"; };
 		FD74AF721F9884F000938B06 /* WRProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRProxy.swift; sourceTree = "<group>"; };
+		FD75EDA81FB98A1200381A0E /* LikeGoodsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeGoodsManager.swift; sourceTree = "<group>"; };
+		FD75EDAA1FB98A5700381A0E /* UnlikeGoodsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlikeGoodsManager.swift; sourceTree = "<group>"; };
 		FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		FDC941041F96FA5900F8ED10 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSearchController.swift; sourceTree = "<group>"; };
@@ -1302,6 +1306,8 @@
 				FD0E21A91FA0708500C51C81 /* GoodsChildListManager.swift */,
 				FD40C68C1F9E1D0900863BD6 /* GoodsManager.swift */,
 				FD6DF4621FB072C9007F5F93 /* SearchManager.swift */,
+				FD75EDA81FB98A1200381A0E /* LikeGoodsManager.swift */,
+				FD75EDAA1FB98A5700381A0E /* UnlikeGoodsManager.swift */,
 			);
 			path = Goods;
 			sourceTree = "<group>";
@@ -1512,6 +1518,8 @@
 				C1BCD4FB1F8CA20F0022C4F7 /* ArticleModel.swift in Sources */,
 				C12509911F69079E006ED55E /* String+ONNetworkingMethods.swift in Sources */,
 				C12509951F69079E006ED55E /* ONManagerProtocol.swift in Sources */,
+				FD75EDAB1FB98A5700381A0E /* UnlikeGoodsManager.swift in Sources */,
+				FD75EDA91FB98A1200381A0E /* LikeGoodsManager.swift in Sources */,
 				C18B4F331F6A6F98001E2E56 /* ArticleHomeTextCell.swift in Sources */,
 				C14468C21FA31229001E3283 /* AreaPickerView.swift in Sources */,
 				FD0E21A61F9F199700C51C81 /* GoodsAlbumManager.swift in Sources */,
@@ -1731,8 +1739,8 @@
 			baseConfigurationReference = E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
@@ -1740,8 +1748,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a6fcd55a-6df4-4318-9374-aca505c341a0";
-				PROVISIONING_PROFILE_SPECIFIER = "arita-current-adhoc";
+				PROVISIONING_PROFILE = "c6da3bc2-d402-47cf-8e48-a791bc39294d";
+				PROVISIONING_PROFILE_SPECIFIER = "arita-current-develop";
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1752,8 +1760,8 @@
 			baseConfigurationReference = AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
@@ -1761,8 +1769,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a6fcd55a-6df4-4318-9374-aca505c341a0";
-				PROVISIONING_PROFILE_SPECIFIER = "arita-current-adhoc";
+				PROVISIONING_PROFILE = "c6da3bc2-d402-47cf-8e48-a791bc39294d";
+				PROVISIONING_PROFILE_SPECIFIER = "arita-current-develop";
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
