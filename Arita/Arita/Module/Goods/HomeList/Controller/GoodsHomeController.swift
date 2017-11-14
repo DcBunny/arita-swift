@@ -108,7 +108,15 @@ class GoodsHomeController: BaseController
     }
     
     @objc fileprivate func gotoLike() {
-        
+        if UserManager.sharedInstance.isLogin() {
+            let myGoodsController = MyGoodsController()
+            myGoodsController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(myGoodsController, animated: true)
+        } else {
+            let loginController = LoginController(isPopMode: true)
+            let loginNav = UINavigationController(rootViewController: loginController)
+            present(loginNav, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Controller Attributes
