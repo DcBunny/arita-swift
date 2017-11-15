@@ -181,6 +181,7 @@
 		FD74AF751F9884FF00938B06 /* WRProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74AF721F9884F000938B06 /* WRProxy.swift */; };
 		FD75EDA91FB98A1200381A0E /* LikeGoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD75EDA81FB98A1200381A0E /* LikeGoodsManager.swift */; };
 		FD75EDAB1FB98A5700381A0E /* UnlikeGoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD75EDAA1FB98A5700381A0E /* UnlikeGoodsManager.swift */; };
+		FD93F87D1FBC10E4007335B9 /* SearchHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD93F87C1FBC10E4007335B9 /* SearchHistoryCell.swift */; };
 		FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */; };
 		FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941041F96FA5900F8ED10 /* GoodsCell.swift */; };
 		FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */; };
@@ -370,6 +371,7 @@
 		FD74AF721F9884F000938B06 /* WRProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRProxy.swift; sourceTree = "<group>"; };
 		FD75EDA81FB98A1200381A0E /* LikeGoodsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeGoodsManager.swift; sourceTree = "<group>"; };
 		FD75EDAA1FB98A5700381A0E /* UnlikeGoodsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlikeGoodsManager.swift; sourceTree = "<group>"; };
+		FD93F87C1FBC10E4007335B9 /* SearchHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryCell.swift; sourceTree = "<group>"; };
 		FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		FDC941041F96FA5900F8ED10 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSearchController.swift; sourceTree = "<group>"; };
@@ -1295,6 +1297,7 @@
 		FDC941081F97255500F8ED10 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FD93F87C1FBC10E4007335B9 /* SearchHistoryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1513,6 +1516,7 @@
 				FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */,
 				C195BE5B1FA023E200E9B9C9 /* TataBaoAPIManager.swift in Sources */,
 				C14468C61FA31311001E3283 /* MineAddressController.swift in Sources */,
+				FD93F87D1FBC10E4007335B9 /* SearchHistoryCell.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
 				C1C8DB711F7B9F980016A0A2 /* ArticleSectionHeaderView.swift in Sources */,
 				C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */,

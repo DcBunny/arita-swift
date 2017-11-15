@@ -48,6 +48,7 @@ class GoodsSearchController: BaseController {
     private func addPageViews() {
         view.addSubview(tableView)
         view.addSubview(noResultView)
+        view.addSubview(historyTableView)
         noResultView.addSubview(noResultIcon)
         noResultView.addSubview(noResultLabel)
     }
@@ -71,6 +72,10 @@ class GoodsSearchController: BaseController {
             make.centerX.equalTo(noResultIcon)
             make.top.equalTo(noResultIcon.snp.bottom).offset(25)
         }
+        
+        historyTableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
     }
     
     private func setPageViews() {
@@ -79,6 +84,9 @@ class GoodsSearchController: BaseController {
         
         searchManager.paramSource = self
         searchManager.delegate = self
+        
+        historyTableView.dataSource = self
+        historyTableView.delegate = self
     }
     
     // MARK: - Event Response
@@ -96,19 +104,44 @@ class GoodsSearchController: BaseController {
     
     fileprivate var searchArray: [JSON] = []
     fileprivate var _searchManager: SearchManager?
+    
+    fileprivate var _historyTableView: UITableView?
+    fileprivate var historyKeyWord: String? = nil
+    
+    fileprivate var testData = ["板鞋", "abc", "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", "手工品", "absdfj"]
 }
 
 extension GoodsSearchController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchArray.count
+        if tableView === self.tableView {
+            return searchArray.count
+        } else {
+            if testData.count % 2 == 0 {
+                return testData.count / 2
+            } else {
+                return testData.count / 2 + 1
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GoodsCell.self), for: indexPath) as! GoodsCell
-        cell.goodData = searchArray[indexPath.row]
-        
-        return cell
+        if tableView === self.tableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GoodsCell.self), for: indexPath) as! GoodsCell
+            cell.goodData = searchArray[indexPath.row]
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SearchHistoryCell.self), for: indexPath) as! SearchHistoryCell
+            var cellData = [testData[indexPath.row * 2]]
+            if indexPath.row * 2 + 1 < testData.count {
+                cellData.append(testData[indexPath.row * 2 + 1])
+            }
+            cell.cellData = cellData
+            cell.delegate = self
+            
+            return cell
+        }
     }
 }
 
@@ -119,14 +152,28 @@ extension GoodsSearchController: UITableViewDelegate {
     }
 }
 
+extension GoodsSearchController: HistoryKeyWordDelegate {
+    func historyKeyWord(with keyWord: String) {
+        historyKeyWord = keyWord
+        searchManager.loadData()
+    }
+}
+
 // MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
 extension GoodsSearchController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
         searchTerms?.resignFirstResponder()
-        let keyWord = searchTerms!.text!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        var keyWord = ""
+        if historyKeyWord == nil {
+            keyWord = searchTerms!.text!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            
+        } else {
+            keyWord = (historyKeyWord?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+        }
+        
         return [
-            "search_word": keyWord!
+            "search_word": keyWord
         ]
     }
 }
@@ -140,10 +187,12 @@ extension GoodsSearchController: ONAPIManagerCallBackDelegate {
         searchArray = json.arrayValue
         if searchArray.count == 0 {
             tableView.isHidden = true
+            historyTableView.isHidden = true
             noResultView.isHidden = false
         } else {
             tableView.isHidden = false
             noResultView.isHidden = true
+            historyTableView.isHidden = true
             tableView.reloadData()
         }
     }
@@ -210,5 +259,21 @@ extension GoodsSearchController {
         }
         
         return _searchManager!
+    }
+    
+    fileprivate var historyTableView: UITableView {
+        if _historyTableView == nil {
+            _historyTableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
+            _historyTableView?.backgroundColor = UIColor.white
+            _historyTableView?.showsVerticalScrollIndicator = false
+            _historyTableView?.register(SearchHistoryCell.self, forCellReuseIdentifier: String(describing: SearchHistoryCell.self))
+            _historyTableView?.estimatedRowHeight = 43
+            _historyTableView?.rowHeight = UITableViewAutomaticDimension
+            _historyTableView?.separatorStyle = .none
+            _historyTableView?.backgroundColor = UIColor.clear
+            _historyTableView?.allowsSelection = false
+        }
+        
+        return _historyTableView!
     }
 }

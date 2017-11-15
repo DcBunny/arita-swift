@@ -8,6 +8,7 @@
 
 import UIKit
 import MJRefresh
+import ONPlaceholder
 import SwiftyJSON
 
 fileprivate let kAlbumImage = "AlbumImage"
@@ -301,6 +302,7 @@ extension GoodsHomeController {
             _tableView?.estimatedRowHeight = Size.screenWidth + 156
             _tableView?.rowHeight = UITableViewAutomaticDimension
             _tableView?.separatorStyle = .none
+            _tableView?.isShowPlaceholder = false
             _tableView?.mj_header = MJRefreshNormalHeader()
             _tableView?.mj_footer = MJRefreshAutoNormalFooter()
             
