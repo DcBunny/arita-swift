@@ -227,11 +227,6 @@ MIT
 MIT
 
 
-## ONPlaceholder
-
-MIT
-
-
 ## ObjcExceptionBridging
 
 The MIT License (MIT)

@@ -15,7 +15,6 @@ PODS:
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - ONCountDownButton (0.2.0)
   - ONFoundation (0.2.1)
-  - ONPlaceholder (0.9.5)
   - ShareSDK3 (4.0.2):
     - MOBFoundation
     - ShareSDK3/ShareSDK (= 4.0.2)
@@ -52,7 +51,6 @@ DEPENDENCIES:
   - MOBFoundation
   - ONCountDownButton (= 0.2.0)
   - ONFoundation (= 0.2.1)
-  - ONPlaceholder (= 0.9.5)
   - ShareSDK3
   - ShareSDK3/ShareSDKPlatforms/Copy
   - ShareSDK3/ShareSDKPlatforms/QQ
@@ -79,7 +77,6 @@ SPEC CHECKSUMS:
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   ONCountDownButton: f21e0502407afb5c04f857e5a9b9e660f4df433f
   ONFoundation: e61b30c43e66f8081c5c9c9ca18b17606208ff29
-  ONPlaceholder: 1e4475b6cdb8548db55f33e8ab3a164dbeb9288f
   ShareSDK3: a01a35da3cd8f4d10d7f4394c7c42f8113392182
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
@@ -87,6 +84,6 @@ SPEC CHECKSUMS:
   WebViewJavascriptBridge: 791ee0e26d1bf15efe5fb7fb9666a71a19b89d77
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: 05fc073791853a1dee2bde7923854b8f0f1a0fd8
+PODFILE CHECKSUM: dd5f58e7708beef28af6af405f656d34f50ddb2a
 
 COCOAPODS: 1.2.1

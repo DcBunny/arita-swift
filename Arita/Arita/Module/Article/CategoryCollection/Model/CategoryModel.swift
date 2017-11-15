@@ -27,7 +27,6 @@ struct CategoryModel {
         self.channelID = channelInfo["ID"].intValue
     }
     
-    //TODO: - 后期删除
     public static func initial() -> [CategoryModel] {
         return [CategoryModel(data: [
                     "thumb_path": Icon.defaultCategory,

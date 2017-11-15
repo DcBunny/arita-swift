@@ -246,6 +246,7 @@ extension ArticleHomeController: UITableViewDataSource {
 // MARK: - TableView Delegate
 extension ArticleHomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard articleModel.count > 0 else { return }
         if indexPath.section == 0 {
             let tataDailyController = ArticleCollectionController(with: articleModel[indexPath.section][indexPath.row], isFromHome: true, isTata: true)
             tataDailyController.hidesBottomBarWhenPushed = true

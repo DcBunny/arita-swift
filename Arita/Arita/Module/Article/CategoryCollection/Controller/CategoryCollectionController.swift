@@ -135,6 +135,7 @@ extension CategoryCollectionController: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension CategoryCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard channelModel.count > 0 else { return }
         if channelModel[indexPath.row].channelName == "塔塔报" {
             let tataDailyController = ArticleCollectionController(with: channelModel[indexPath.row], isFromHome: false, isTata: true)
             tataDailyController.hidesBottomBarWhenPushed = true

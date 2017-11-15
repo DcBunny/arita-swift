@@ -153,9 +153,7 @@ extension MineHomeController: ONAPIManagerCallBackDelegate {
     func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
         let data = manager.fetchDataWithReformer(nil)
         let jsonString = JSON(data).rawString()
-        var userInfo = UserInfo.deserialize(from: jsonString)
-        //TODO: 这里需要处理下结构体里的各个属性的赋值问题
-        userInfo!.birthdayDate = UserManager.sharedInstance.getUserInfo()?.birthdayDate
+        let userInfo = UserInfo.deserialize(from: jsonString)
         UserManager.sharedInstance.updateUserInfo(userInfo: userInfo!)
         prepareData()
         mineTableView.reloadData()
