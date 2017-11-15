@@ -55,8 +55,7 @@ class ArticleDetailController: BaseController {
     private func layoutPageViews() {
         if #available(iOS 11.0, *) {
             articleDetailCollectionView.snp.makeConstraints({ (make) in
-                make.left.right.equalTo(view)
-                make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+                make.edges.equalTo(view.safeAreaInsets)
             })
         } else {
             articleDetailCollectionView.snp.makeConstraints { (make) in

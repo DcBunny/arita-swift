@@ -43,7 +43,7 @@ class MineHomeHeaderView: UITableViewHeaderFooterView {
             make.centerX.equalTo(userAvatarButton)
             make.top.equalTo(userAvatarButton.snp.bottom).offset(20)
             make.left.right.equalTo(contentView)
-            make.bottom.equalTo(contentView).offset(-35)
+//            make.bottom.equalTo(contentView).offset(-35)
         }
     }
     
@@ -59,8 +59,9 @@ class MineHomeHeaderView: UITableViewHeaderFooterView {
     /// 用户昵称
     public var userName = "请登录" {
         didSet {
-                userButton.setTitle(userName, for: .normal)
-                userButton.setTitle(userName, for: .highlighted)
+            if userName == "" { userName = "阿里塔" }
+            userButton.setTitle(userName, for: .normal)
+            userButton.setTitle(userName, for: .highlighted)
         }
     }
     

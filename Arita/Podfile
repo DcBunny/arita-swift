@@ -3,7 +3,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 #私有仓库地址
 source ‘http://code.iotplat.net/privatepods/oncountdownbutton.git’
-source ‘http://code.iotplat.net/privatepods/onplaceholder.git’
 source ‘http://code.iotplat.net/privatepods/onfoundation.git’
 
 platform :ios, '8.0'
@@ -35,7 +34,6 @@ target 'Arita' do
     pod 'ShareSDK3/ShareSDKPlatforms/Copy'
     
     # 私有库
-    pod 'ONPlaceholder', '0.9.5'
     pod 'ONCountDownButton', '0.2.0'
     pod 'ONFoundation', '0.2.1'
 end

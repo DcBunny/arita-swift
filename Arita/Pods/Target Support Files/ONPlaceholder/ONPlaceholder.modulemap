@@ -1,6 +1,0 @@
-framework module ONPlaceholder {
-  umbrella header "ONPlaceholder-umbrella.h"
-
-  export *
-  module * { export * }
-}

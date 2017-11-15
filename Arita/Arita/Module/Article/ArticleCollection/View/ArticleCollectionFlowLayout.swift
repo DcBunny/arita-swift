@@ -15,7 +15,11 @@ class ArticleCollectionFlowLayout: UICollectionViewFlowLayout {
     //MARK: - Override Method
     override func prepare() {
         super.prepare()
-        self.itemSize = CGSize(width: Size.screenWidth - 60, height: Size.screenHeight - Size.naviBarSize!.height - 45)
+        if UIDevice.current.isIphoneX() {
+            self.itemSize = CGSize(width: Size.screenWidth - 60, height: Size.screenHeight - Size.naviBarSize!.height - UIApplication.shared.statusBarFrame.height - 45)
+        } else {
+            self.itemSize = CGSize(width: Size.screenWidth - 60, height: Size.screenHeight - Size.naviBarSize!.height - 45)
+        }
         self.scrollDirection = .horizontal
         self.minimumLineSpacing = 15
         self.sectionInset = UIEdgeInsets(top: 5, left: 30, bottom: 40, right: 30)

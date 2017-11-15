@@ -14,6 +14,8 @@
 		C11B6EC71F7CEFDE00EAAEB0 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B6EC61F7CEFDE00EAAEB0 /* ShareButton.swift */; };
 		C11B6EC91F7D1C5E00EAAEB0 /* ShareCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B6EC81F7D1C5E00EAAEB0 /* ShareCollectionCell.swift */; };
 		C11B6ECC1F7D1DDA00EAAEB0 /* ShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11B6ECB1F7D1DDA00EAAEB0 /* ShareModel.swift */; };
+		C11CCE931FBC56F70053162A /* FakeSetUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11CCE921FBC56F70053162A /* FakeSetUpController.swift */; };
+		C11CCE961FBC5A010053162A /* SetUpDayCheckAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11CCE951FBC5A010053162A /* SetUpDayCheckAPIManager.swift */; };
 		C11E20B81F7E21DB001F7234 /* ShareTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E20B71F7E21DB001F7234 /* ShareTool.swift */; };
 		C125098F1F69079E006ED55E /* Array+ONNetworkingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125096E1F69079E006ED55E /* Array+ONNetworkingMethods.swift */; };
 		C12509901F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125096F1F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift */; };
@@ -199,6 +201,8 @@
 		C11B6EC61F7CEFDE00EAAEB0 /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
 		C11B6EC81F7D1C5E00EAAEB0 /* ShareCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCollectionCell.swift; sourceTree = "<group>"; };
 		C11B6ECB1F7D1DDA00EAAEB0 /* ShareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareModel.swift; sourceTree = "<group>"; };
+		C11CCE921FBC56F70053162A /* FakeSetUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSetUpController.swift; sourceTree = "<group>"; };
+		C11CCE951FBC5A010053162A /* SetUpDayCheckAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpDayCheckAPIManager.swift; sourceTree = "<group>"; };
 		C11E20B71F7E21DB001F7234 /* ShareTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTool.swift; sourceTree = "<group>"; };
 		C125096E1F69079E006ED55E /* Array+ONNetworkingMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+ONNetworkingMethods.swift"; sourceTree = "<group>"; };
 		C125096F1F69079E006ED55E /* ONParamData+ONNetworkingMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ONParamData+ONNetworkingMethods.swift"; sourceTree = "<group>"; };
@@ -461,6 +465,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C11CCE941FBC59E00053162A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C11CCE951FBC5A010053162A /* SetUpDayCheckAPIManager.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		C12509631F6905F9006ED55E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,6 +567,7 @@
 		C125096B1F690720006ED55E /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				C11CCE941FBC59E00053162A /* Base */,
 				C1B79EAE1FA97225000E0FE6 /* Mine */,
 				C1602DC01F9DF9CB00EA1945 /* Article */,
 				FDCF46BA1F9DC41600F3A894 /* Goods */,
@@ -720,6 +733,7 @@
 			children = (
 				C12509B21F69097C006ED55E /* BaseController.swift */,
 				C1F17BB71F6934D0001153BA /* RootController.swift */,
+				C11CCE921FBC56F70053162A /* FakeSetUpController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1539,6 +1553,8 @@
 				C1DCB7A61FB5988D00106960 /* CalendarButton.swift in Sources */,
 				C1B1CE741FA2D5F20071C559 /* MineSexChooseController.swift in Sources */,
 				C12509941F69079E006ED55E /* ONAPIBaseManager.swift in Sources */,
+				C11CCE961FBC5A010053162A /* SetUpDayCheckAPIManager.swift in Sources */,
+				C11CCE931FBC56F70053162A /* FakeSetUpController.swift in Sources */,
 				C1B79EB01FA97252000E0FE6 /* UserInfoAPIManager.swift in Sources */,
 				C13E1F3C1FA6C400008B21A8 /* Constellation.swift in Sources */,
 				C12509F61F691F78006ED55E /* Cache.swift in Sources */,
@@ -1751,8 +1767,8 @@
 			baseConfigurationReference = E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
@@ -1760,8 +1776,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a6fcd55a-6df4-4318-9374-aca505c341a0";
-				PROVISIONING_PROFILE_SPECIFIER = "arita-current-adhoc";
+				PROVISIONING_PROFILE = "c6da3bc2-d402-47cf-8e48-a791bc39294d";
+				PROVISIONING_PROFILE_SPECIFIER = "arita-current-develop";
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1781,8 +1797,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a6fcd55a-6df4-4318-9374-aca505c341a0";
-				PROVISIONING_PROFILE_SPECIFIER = "arita-current-adhoc";
+				PROVISIONING_PROFILE = "c6da3bc2-d402-47cf-8e48-a791bc39294d";
+				PROVISIONING_PROFILE_SPECIFIER = "arita-current-develop";
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

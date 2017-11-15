@@ -65,8 +65,7 @@ class ArticleCollectionController: BaseController {
     private func layoutPageViews() {
         if #available(iOS 11.0, *) {
             articleCollectionView.snp.makeConstraints({ (make) in
-                make.left.right.equalTo(view)
-                make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+                make.edges.equalTo(view.safeAreaInsets)
             })
         } else {
             articleCollectionView.snp.makeConstraints { (make) in
@@ -218,6 +217,7 @@ extension ArticleCollectionController: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension ArticleCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard articleModel.count > 0 else { return }
         if isTata {
             let articleDetailController = ArticleDetailController(with: conTitle, and: articleModel[indexPath.row].articleDate)
             navigationController?.pushViewController(articleDetailController, animated: true)

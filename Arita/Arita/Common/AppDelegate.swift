@@ -9,6 +9,7 @@
 import UIKit
 import XCGLogger
 import Bugly
+import SwiftyJSON
 import IQKeyboardManagerSwift
 import GDPerformanceView_Swift
 
@@ -29,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // SetUp RootController
         ONServiceFactory.sharedInstance.dataSource = self
-        chooseRootVC()
-        beginMonitorPerformance()
+        loadSetUpDayCheckImg()
         adaptationIOS11()
         initialShareSDK()
         
@@ -69,10 +69,21 @@ extension AppDelegate: ONServiceFactoryDataSource {
 
 // MARK: - 启动页
 extension AppDelegate {
-    fileprivate func chooseRootVC() {
+    fileprivate func loadSetUpDayCheckImg() {
+        let setUpDayCheckAPIManager = SetUpDayCheckAPIManager()
+        setUpDayCheckAPIManager.delegate = self
+        setUpDayCheckAPIManager.paramSource = self
+        setUpDayCheckAPIManager.loadData()
+    }
+    
+    fileprivate func chooseRootVC(isShowFake: Bool,with imgUrl: String?) {
         // 显示启动页3秒
-//        Thread.sleep(forTimeInterval: 3.0)
-
+        if isShowFake {
+            let fakeSetUpVC = FakeSetUpController(with: imgUrl!)
+            self.window?.rootViewController = fakeSetUpVC
+            Thread.sleep(forTimeInterval: 3.0)
+        }
+        
         let userHasOnboarded = UserDefaults.standard.bool(forKey: kUserHasOnboard)
         
         if userHasOnboarded {
@@ -97,6 +108,30 @@ extension AppDelegate {
     @objc fileprivate func setupNormalRootViewController() {
         let rootVC = RootController()
         self.window?.rootViewController = rootVC
+    }
+}
+
+extension AppDelegate: ONAPIManagerParamSource {
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        return [:] as ONParamData
+    }
+}
+
+extension AppDelegate: ONAPIManagerCallBackDelegate {
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        let data = manager.fetchDataWithReformer(nil)
+        let json = JSON(data: data as! Data)
+        let imgUrl = json["thumb_path"].stringValue
+        if imgUrl != "" {
+            chooseRootVC(isShowFake: true, with: imgUrl)
+        } else {
+            chooseRootVC(isShowFake: false, with: nil)
+        }
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        chooseRootVC(isShowFake: false, with: nil)
+        beginMonitorPerformance()
     }
 }
 
