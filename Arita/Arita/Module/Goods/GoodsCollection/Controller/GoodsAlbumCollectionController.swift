@@ -72,6 +72,9 @@ class GoodsAlbumCollectionController: BaseController {
     // MARK: - Event Responses
     
     // MARK: - Private Methods
+    fileprivate func pageWith() -> Float {
+        return Float((self.goodsAlbumCollectionView.collectionViewLayout as! GoodsAlbumCollectionFlowLayout).itemSize.width + (self.goodsAlbumCollectionView.collectionViewLayout as! GoodsAlbumCollectionFlowLayout).minimumLineSpacing)
+    }
     
     // MARK: - Controller Attributes
     fileprivate var _goodsAlbumCollectionView: UICollectionView?
@@ -79,6 +82,10 @@ class GoodsAlbumCollectionController: BaseController {
     
     fileprivate var _goodsAlbumListManager: GoodsAblumListManager?
     fileprivate var albumArray: [JSON] = []
+    
+    fileprivate var currentPage = 0
+    fileprivate var isScrolling = false
+    fileprivate var currentIndex: IndexPath? = IndexPath(item: 0, section: 0)
 }
 
 // MARK: - UICollecitonView Data Source
@@ -112,6 +119,46 @@ extension GoodsAlbumCollectionController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
         return ["timestamp": 0, "albumNum": 500]
+    }
+}
+
+// MARK: - UIScrollView Delegate
+extension GoodsAlbumCollectionController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pInView = self.view.convert(self.goodsAlbumCollectionView.center, to: self.goodsAlbumCollectionView)
+        let indexNow = self.goodsAlbumCollectionView.indexPathForItem(at: pInView)
+        currentIndex = indexNow
+        isScrolling = false
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isScrolling = true
+        currentPage = Int(floor((Float(self.goodsAlbumCollectionView.contentOffset.x) - pageWith() / 2) / pageWith())) + 1
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let targetXContentOffset = Float(targetContentOffset.pointee.x)
+        let contentWidth = Float(self.goodsAlbumCollectionView.contentSize.width)
+        var newPage = Float(currentPage)
+        let pageWidth = pageWith()
+        
+        if velocity.x == 0 {
+            newPage = (floor((targetXContentOffset - pageWidth / 2) / pageWidth) + 1)
+        } else {
+            newPage = Float(velocity.x > 0 ? currentPage + 1 : currentPage - 1)
+            
+            if newPage < 0 {
+                newPage = 0
+            }
+            
+            if (newPage > ( contentWidth / pageWidth)) {
+                newPage = ceil(contentWidth / pageWidth) - 1.0
+            }
+        }
+        
+        self.currentPage = Int(newPage)
+        let point = CGPoint(x: CGFloat(newPage * pageWidth), y: targetContentOffset.pointee.y)
+        targetContentOffset.pointee = point
     }
 }
 

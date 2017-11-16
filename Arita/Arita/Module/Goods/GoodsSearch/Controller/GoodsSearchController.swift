@@ -18,6 +18,16 @@ class GoodsSearchController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        setEvents()
+        loadHistoryData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        pageViewInit()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        pageViewDeinit()
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,9 +58,12 @@ class GoodsSearchController: BaseController {
     private func addPageViews() {
         view.addSubview(tableView)
         view.addSubview(noResultView)
-        view.addSubview(historyTableView)
         noResultView.addSubview(noResultIcon)
         noResultView.addSubview(noResultLabel)
+        view.addSubview(historyView)
+        historyView.addSubview(historyLabel)
+        historyView.addSubview(histroyClean)
+        historyView.addSubview(historyTableView)
     }
     
     private func layoutPageViews() {
@@ -73,14 +86,34 @@ class GoodsSearchController: BaseController {
             make.top.equalTo(noResultIcon.snp.bottom).offset(25)
         }
         
-        historyTableView.snp.makeConstraints { (make) in
+        historyView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
+        }
+        
+        historyLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(historyView).offset(35)
+            make.left.equalTo(historyView).offset(15)
+        }
+        
+        histroyClean.snp.makeConstraints { (make) in
+            make.top.bottom.equalTo(historyLabel)
+            make.right.equalTo(historyView).offset(-15)
+            make.width.equalTo(25)
+        }
+        
+        historyTableView.snp.makeConstraints { (make) in
+            make.top.equalTo(historyLabel.snp.bottom).offset(15)
+            make.left.equalTo(historyLabel)
+            make.right.equalTo(histroyClean)
+            make.bottom.equalTo(historyView)
         }
     }
     
     private func setPageViews() {
         tableView.delegate = self
         tableView.dataSource = self
+        
+        searchTerms?.delegate = self
         
         searchManager.paramSource = self
         searchManager.delegate = self
@@ -89,9 +122,43 @@ class GoodsSearchController: BaseController {
         historyTableView.delegate = self
     }
     
+    private func setEvents() {
+        histroyClean.addTarget(self, action: #selector(cleanHistory), for: .touchUpInside)
+    }
+    
+    private func loadHistoryData() {
+        historykeyWords = UserManager.sharedInstance.historyKeyword.keywords
+    }
+    
+    private func pageViewInit() {
+        searchTerms?.becomeFirstResponder()
+    }
+    
+    private func pageViewDeinit() {
+        searchTerms?.resignFirstResponder()
+    }
+    
     // MARK: - Event Response
     @objc private func searchGoods() {
+        if let keyword = searchTerms?.text {
+            if !keyword.isEmpty {
+                let index = historykeyWords.index(of: keyword)
+                if index != nil {
+                    historykeyWords.remove(at: index!)
+                }
+                historykeyWords.insert(keyword, at: 0)
+                UserManager.sharedInstance.addKeyword(keyword: keyword)
+            }
+        }
+        
+        historyKeyWord = nil
         searchManager.loadData()
+    }
+    
+    @objc private func cleanHistory() {
+        historykeyWords = []
+        UserManager.sharedInstance.cleanKeyword()
+        historyTableView.reloadData()
     }
     
     // MARK: - Controller Attributes
@@ -105,10 +172,22 @@ class GoodsSearchController: BaseController {
     fileprivate var searchArray: [JSON] = []
     fileprivate var _searchManager: SearchManager?
     
+    fileprivate var _historyView: UIView?
+    fileprivate var _historyLabel: UILabel?
+    fileprivate var _histroyClean: UIButton?
     fileprivate var _historyTableView: UITableView?
     fileprivate var historyKeyWord: String? = nil
     
-    fileprivate var testData = ["板鞋", "abc", "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈", "手工品", "absdfj"]
+    fileprivate var historykeyWords: [String] = []
+}
+
+extension GoodsSearchController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        historyView.isHidden = false
+        historyTableView.reloadData()
+        noResultView.isHidden = true
+        tableView.isHidden = true
+    }
 }
 
 extension GoodsSearchController: UITableViewDataSource {
@@ -117,10 +196,10 @@ extension GoodsSearchController: UITableViewDataSource {
         if tableView === self.tableView {
             return searchArray.count
         } else {
-            if testData.count % 2 == 0 {
-                return testData.count / 2
+            if historykeyWords.count % 2 == 0 {
+                return historykeyWords.count / 2
             } else {
-                return testData.count / 2 + 1
+                return historykeyWords.count / 2 + 1
             }
         }
     }
@@ -133,9 +212,9 @@ extension GoodsSearchController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SearchHistoryCell.self), for: indexPath) as! SearchHistoryCell
-            var cellData = [testData[indexPath.row * 2]]
-            if indexPath.row * 2 + 1 < testData.count {
-                cellData.append(testData[indexPath.row * 2 + 1])
+            var cellData = [historykeyWords[indexPath.row * 2]]
+            if historykeyWords.count > indexPath.row * 2 + 1 {
+                cellData.append(historykeyWords[indexPath.row * 2 + 1])
             }
             cell.cellData = cellData
             cell.delegate = self
@@ -187,12 +266,12 @@ extension GoodsSearchController: ONAPIManagerCallBackDelegate {
         searchArray = json.arrayValue
         if searchArray.count == 0 {
             tableView.isHidden = true
-            historyTableView.isHidden = true
+            historyView.isHidden = true
             noResultView.isHidden = false
         } else {
             tableView.isHidden = false
             noResultView.isHidden = true
-            historyTableView.isHidden = true
+            historyView.isHidden = true
             tableView.reloadData()
         }
     }
@@ -259,6 +338,37 @@ extension GoodsSearchController {
         }
         
         return _searchManager!
+    }
+    
+    fileprivate var historyView: UIView {
+        if _historyView == nil {
+            _historyView = UIView()
+            _historyView?.isHidden = true
+        }
+        
+        return _historyView!
+    }
+    
+    fileprivate var historyLabel: UILabel {
+        if _historyLabel == nil {
+            _historyLabel = UILabel()
+            _historyLabel?.text = "历史搜索"
+            _historyLabel?.font = Font.size14
+            _historyLabel?.textColor = Color.hex919191
+        }
+        
+        return _historyLabel!
+    }
+    
+    fileprivate var histroyClean: UIButton {
+        if _histroyClean == nil {
+            _histroyClean = UIButton()
+            _histroyClean?.setTitle("清除", for: .normal)
+            _histroyClean?.setTitleColor(Color.hex4a4a4a, for: .normal)
+            _histroyClean?.titleLabel?.font = Font.size12
+        }
+        
+        return _histroyClean!
     }
     
     fileprivate var historyTableView: UITableView {

@@ -85,6 +85,7 @@ class SearchHistoryCell: UITableViewCell {
             if cellData.count == 2 {
                 leftLabel.text = cellData[0]
                 rightLabel.text = cellData[1]
+                rightView.isHidden = false
             } else {
                 leftLabel.text = cellData[0]
                 rightView.isHidden = true

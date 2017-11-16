@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // SetUp RootController
         ONServiceFactory.sharedInstance.dataSource = self
-        loadSetUpDayCheckImg()
+//        loadSetUpDayCheckImg()
+        chooseRootVC(isShowFake: false, with: nil)
         adaptationIOS11()
         initialShareSDK()
         

@@ -61,9 +61,15 @@ struct UserModel: HandyJSON {
     var userInfo: UserInfo?
 }
 
+// 搜索关键字
+struct SearchHistoryKeyword {
+    var keywords: [String] = []
+}
+
 // 用户信息管理类
 class UserManager {
     private let kCurrentUserId = "kCurrentUserId"
+    private let kKeywords = "SearchKeywords"
     
     private let kUserInfo = "kUserInfo"
     
@@ -71,6 +77,7 @@ class UserManager {
     static let sharedInstance = UserManager()
     
     public var currentUser: UserModel?
+    public var historyKeyword = SearchHistoryKeyword()
 
     let loginAPIManager = LoginAPIManager()
     
@@ -80,6 +87,7 @@ class UserManager {
             let cacheManager = UserCacheManager.sharedInstance
             cacheManager.setUserName(userId as! String)
             readInfoFromLocal()
+            readKeywordsFromLocal()
         } else {
             currentUser = nil
         }
@@ -174,6 +182,22 @@ class UserManager {
         currentUser = nil
     }
     
+    func addKeyword(keyword: String) {
+        let index = historyKeyword.keywords.index(of: keyword)
+        if index != nil {
+            historyKeyword.keywords.remove(at: index!)
+        }
+        historyKeyword.keywords.insert(keyword, at: 0)
+        
+        saveKeywordsToLocal()
+    }
+    
+    func cleanKeyword() {
+        historyKeyword.keywords = []
+        deleteLocalKeywords()
+    }
+    
+    //MARK: - private method
     private func readInfoFromLocal() {
         let syncCache = UserCacheManager.sharedInstance.syncCache
         if let jsonString: String = syncCache?.object(kUserInfo) {
@@ -182,7 +206,6 @@ class UserManager {
         }
     }
     
-    //MARK: - private method
     private func saveInfoToLocal() {
         if let jsonString = currentUser?.toJSONString() {
             let aes = jsonString.aesEncrypt("passw0rd".md5String()!)?.base64EncodedString()
@@ -194,52 +217,20 @@ class UserManager {
         UserDefaults.standard.removeObject(forKey: kCurrentUserId)
         UserDefaults.standard.synchronize()
     }
+    
+    private func readKeywordsFromLocal() {
+        if let keywords = UserDefaults.standard.stringArray(forKey: kKeywords) {
+           historyKeyword.keywords = keywords
+        }
+    }
+    
+    private func saveKeywordsToLocal() {
+        UserDefaults.standard.set(historyKeyword.keywords, forKey: kKeywords)
+        UserDefaults.standard.synchronize()
+    }
+    
+    private func deleteLocalKeywords() {
+        UserDefaults.standard.removeObject(forKey: kKeywords)
+        UserDefaults.standard.synchronize()
+    }
 }
-
-// 自动登录
-//extension UserManager {
-//    func autoLogin() {
-//        guard let _ = self.currentUser?.loginInfo?.password else {
-//            return
-//        }
-//        if let lastLoginTime = self.currentUser?.loginInfo?.lastLoginTime {
-//            // 超时自动登录
-//            if Date().timeIntervalSince1970 - lastLoginTime < 23 * 60 * 60.0 {
-//                return
-//            }
-//        }
-//        loginAPIManager.paramSource = self
-//        loginAPIManager.delegate = self
-//        loginAPIManager.loadData()
-//    }
-//}
-//
-//extension UserManager: ONAPIManagerParamSource {
-//    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-//        return ["username": (self.currentUser?.loginInfo?.username)!,"password": (self.currentUser?.loginInfo?.password)!]
-//    }
-//}
-//
-//extension UserManager: ONAPIManagerCallBackDelegate {
-//    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
-//        print(manager.fetchDataWithReformer(nil))
-//        let data = manager.fetchDataWithReformer(nil)
-//        let json = JSON(data: data as! Data)
-//        if let user_info = json["payload"]["user_info"].rawString() {
-//            let userInfo = UserInfo.deserialize(from: user_info)
-//            UserManager.sharedInstance.updateUserInfo(userInfo: userInfo!)
-//        }
-//        if let payload = json["payload"].rawString() {
-//            let authInfo = AuthInfo.deserialize(from: payload)
-//            UserManager.sharedInstance.setAuthData(authInfo: authInfo!)
-//        }
-//        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: NotificationConst.loginSuccess)))
-//    }
-//
-//    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
-//        if let errorMessage = manager.errorMessage {
-//            ONTipCenter.showToast(errorMessage)
-//        }
-//    }
-//}
-
