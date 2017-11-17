@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 class LoginController: BaseController {
 
@@ -18,6 +19,7 @@ class LoginController: BaseController {
         setNavigationBar()
         addPageViews()
         layoutPageViews()
+        findSharePlatform()
         setPageViews()
         setAPIManager()
     }
@@ -61,6 +63,7 @@ class LoginController: BaseController {
         loginView.addSubview(tipsLabel)
         loginView.addSubview(tipsButton)
         loginView.addSubview(logo)
+        loginView.addSubview(loginCollection)
     }
     
     private func layoutPageViews() {
@@ -131,6 +134,13 @@ class LoginController: BaseController {
             make.top.equalTo(tipsLabel.snp.bottom).offset(30)
             make.centerX.equalTo(loginView)
         }
+        
+        loginCollection.snp.makeConstraints { (make) in
+            make.left.equalTo(loginView).offset(47.5)
+            make.right.equalTo(loginView).offset(-47.5)
+            make.top.equalTo(logo.snp.bottom).offset(20)
+            make.bottom.equalTo(loginView).offset(-20)
+        }
     }
     
     private func setPageViews() {
@@ -138,11 +148,31 @@ class LoginController: BaseController {
         
         loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
         tipsButton.addTarget(self, action: #selector(register), for: .touchUpInside)
+        
+        loginCollection.dataSource = self
+        loginCollection.delegate = self
+        if thirdArray.count == 0 {
+            loginCollection.isHidden = true
+        }
     }
     
     private func setAPIManager() {
         loginManager.paramSource = self
         loginManager.delegate = self
+    }
+    
+    private func findSharePlatform() {
+        if WXApi.isWXAppInstalled() {
+            thirdArray.append(1)
+        }
+        
+        if WeiboSDK.isWeiboAppInstalled() {
+            thirdArray.append(2)
+        }
+        
+        if QQApiInterface.isQQInstalled() {
+            thirdArray.append(3)
+        }
     }
     
     @objc private func login() {
@@ -176,6 +206,9 @@ class LoginController: BaseController {
     fileprivate var _loginManager: LoginAPIManager?
     
     fileprivate var isPopMode = false
+    
+    fileprivate var _loginCollection: UICollectionView?
+    fileprivate var thirdArray: [Int] = []
 }
 
 // MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
@@ -210,6 +243,37 @@ extension LoginController: ONAPIManagerCallBackDelegate {
         if let errorMessage = manager.errorMessage {
             ONTipCenter.showToast(errorMessage)
         }
+    }
+}
+
+// MARK: - UICollecitonView Data Source
+extension LoginController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return thirdArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ThirdLoginCell.self), for: indexPath) as! ThirdLoginCell
+        cell.loginType = thirdArray[indexPath.row]
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        //        if kind == UICollectionElementKindSectionHeader {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: ThirdLoginReusableView.self), for: indexPath) as! ThirdLoginReusableView
+        return header
+        //        }
+    }
+}
+
+// MARK: - UICollecitonView Delegate
+extension LoginController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     }
 }
 
@@ -354,5 +418,25 @@ extension LoginController {
         }
         
         return _loginManager!
+    }
+    
+    fileprivate var loginCollection: UICollectionView {
+        if _loginCollection == nil {
+            let flowLayout = UICollectionViewFlowLayout()
+            flowLayout.scrollDirection = .vertical
+            flowLayout.headerReferenceSize = CGSize(width: 225, height: 35)
+            flowLayout.minimumInteritemSpacing = 0
+            flowLayout.itemSize = CGSize(width: 75, height: 30)
+            _loginCollection = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+            _loginCollection?.register(ThirdLoginCell.self, forCellWithReuseIdentifier: String(describing: ThirdLoginCell.self))
+            _loginCollection?.showsHorizontalScrollIndicator = false
+            _loginCollection?.showsVerticalScrollIndicator = false
+            _loginCollection?.translatesAutoresizingMaskIntoConstraints = false
+            _loginCollection?.isScrollEnabled = false
+            _loginCollection?.backgroundColor = .clear
+            _loginCollection?.register(ThirdLoginReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: String(describing: ThirdLoginReusableView.self))
+        }
+        
+        return _loginCollection!
     }
 }

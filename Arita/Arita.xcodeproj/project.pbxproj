@@ -184,6 +184,8 @@
 		FD75EDA91FB98A1200381A0E /* LikeGoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD75EDA81FB98A1200381A0E /* LikeGoodsManager.swift */; };
 		FD75EDAB1FB98A5700381A0E /* UnlikeGoodsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD75EDAA1FB98A5700381A0E /* UnlikeGoodsManager.swift */; };
 		FD93F87D1FBC10E4007335B9 /* SearchHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD93F87C1FBC10E4007335B9 /* SearchHistoryCell.swift */; };
+		FD93F8801FBE8A46007335B9 /* ThirdLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD93F87F1FBE8A46007335B9 /* ThirdLoginCell.swift */; };
+		FD93F8821FBE9002007335B9 /* ThirdLoginReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD93F8811FBE9002007335B9 /* ThirdLoginReusableView.swift */; };
 		FDC941031F96F00000F8ED10 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */; };
 		FDC941051F96FA5900F8ED10 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC941041F96FA5900F8ED10 /* GoodsCell.swift */; };
 		FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */; };
@@ -376,6 +378,8 @@
 		FD75EDA81FB98A1200381A0E /* LikeGoodsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeGoodsManager.swift; sourceTree = "<group>"; };
 		FD75EDAA1FB98A5700381A0E /* UnlikeGoodsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlikeGoodsManager.swift; sourceTree = "<group>"; };
 		FD93F87C1FBC10E4007335B9 /* SearchHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryCell.swift; sourceTree = "<group>"; };
+		FD93F87F1FBE8A46007335B9 /* ThirdLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdLoginCell.swift; sourceTree = "<group>"; };
+		FD93F8811FBE9002007335B9 /* ThirdLoginReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdLoginReusableView.swift; sourceTree = "<group>"; };
 		FDC941021F96F00000F8ED10 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		FDC941041F96FA5900F8ED10 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
 		FDC9410B1F9735AC00F8ED10 /* GoodsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsSearchController.swift; sourceTree = "<group>"; };
@@ -559,6 +563,7 @@
 		C125096A1F690708006ED55E /* Login&Register */ = {
 			isa = PBXGroup;
 			children = (
+				FD93F87E1FBE8A27007335B9 /* View */,
 				813C7B571FA874B4005CCAF7 /* Controller */,
 			);
 			path = "Login&Register";
@@ -1291,6 +1296,15 @@
 			path = WRCycleScrollView;
 			sourceTree = "<group>";
 		};
+		FD93F87E1FBE8A27007335B9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FD93F87F1FBE8A46007335B9 /* ThirdLoginCell.swift */,
+				FD93F8811FBE9002007335B9 /* ThirdLoginReusableView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FDC941061F97252400F8ED10 /* GoodsSearch */ = {
 			isa = PBXGroup;
 			children = (
@@ -1529,6 +1543,7 @@
 				C13E1F3A1FA6BA1B008B21A8 /* MineAgeController.swift in Sources */,
 				FDC9410C1F9735AD00F8ED10 /* GoodsSearchController.swift in Sources */,
 				C195BE5B1FA023E200E9B9C9 /* TataBaoAPIManager.swift in Sources */,
+				FD93F8821FBE9002007335B9 /* ThirdLoginReusableView.swift in Sources */,
 				C14468C61FA31311001E3283 /* MineAddressController.swift in Sources */,
 				FD93F87D1FBC10E4007335B9 /* SearchHistoryCell.swift in Sources */,
 				C1250A041F691F78006ED55E /* DiskStorage.swift in Sources */,
@@ -1572,6 +1587,7 @@
 				FD46AAEF1F8E25B700CCB603 /* Goods4GridCell.swift in Sources */,
 				FD46AAF51F8F423B00CCB603 /* GoodsHomeHeaderView.swift in Sources */,
 				C1A1DD911F8CD3260039B873 /* DailyCheckFlowLayout.swift in Sources */,
+				FD93F8801FBE8A46007335B9 /* ThirdLoginCell.swift in Sources */,
 				FDCF46C01F9E019D00F3A894 /* GoodsListManager.swift in Sources */,
 				C1A98E211F8F8BC100E56C5A /* MineNotificationTableViewCell.swift in Sources */,
 				C12509D41F6912A8006ED55E /* UIButton+Extension.swift in Sources */,
@@ -1767,8 +1783,8 @@
 			baseConfigurationReference = E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
@@ -1776,8 +1792,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a6fcd55a-6df4-4318-9374-aca505c341a0";
-				PROVISIONING_PROFILE_SPECIFIER = "arita-current-adhoc";
+				PROVISIONING_PROFILE = "c6da3bc2-d402-47cf-8e48-a791bc39294d";
+				PROVISIONING_PROFILE_SPECIFIER = "arita-current-develop";
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1788,8 +1804,8 @@
 			baseConfigurationReference = AA502989234D7BD88161F5DB /* Pods-Arita.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chongqing Arita E-Commerce Co., Ltd. (MUGPCKW3CX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: XiaoNan Wang (3MQ3Q5LLZU)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = MUGPCKW3CX;
 				INFOPLIST_FILE = "$(SRCROOT)/Arita/Resource/Info.plist";
@@ -1797,8 +1813,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.arita.www.ds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a6fcd55a-6df4-4318-9374-aca505c341a0";
-				PROVISIONING_PROFILE_SPECIFIER = "arita-current-adhoc";
+				PROVISIONING_PROFILE = "c6da3bc2-d402-47cf-8e48-a791bc39294d";
+				PROVISIONING_PROFILE_SPECIFIER = "arita-current-develop";
 				SWIFT_OBJC_BRIDGING_HEADER = "Arita/Common/Arita-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
