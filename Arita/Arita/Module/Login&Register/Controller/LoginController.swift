@@ -274,6 +274,33 @@ extension LoginController: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension LoginController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var type: SSDKPlatformType?
+        switch thirdArray[indexPath.row] {
+        case 1:
+            type = SSDKPlatformType.typeWechat
+        case 2:
+            type = SSDKPlatformType.typeSinaWeibo
+        case 3:
+            type = SSDKPlatformType.typeQQ
+        default:
+            break
+        }
+        if let platformType = type {
+            ShareSDK.getUserInfo(platformType, onStateChanged: {
+                state, user, error in
+                if state == SSDKResponseState.success {
+                    print(user?.uid)
+                    print(user?.nickname)
+                    let loginInfo = LoginInfo(username: (user?.nickname)!, password: "")
+                    UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
+                    let authInfo = AuthInfo(token: user?.nickname)
+                    UserManager.sharedInstance.setAuthData(authInfo: authInfo)
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    print(error.debugDescription)
+                }
+            })
+        }
     }
 }
 

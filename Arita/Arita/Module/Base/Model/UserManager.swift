@@ -180,6 +180,15 @@ class UserManager {
     func quit() {
         deleteLocalInfo()
         currentUser = nil
+        if ShareSDK.hasAuthorized(.typeWechat) {
+            ShareSDK.cancelAuthorize(.typeWechat)
+        }
+        if ShareSDK.hasAuthorized(.typeQQ) {
+            ShareSDK.cancelAuthorize(.typeQQ)
+        }
+        if ShareSDK.hasAuthorized(.typeSinaWeibo) {
+            ShareSDK.cancelAuthorize(.typeSinaWeibo)
+        }
     }
     
     func addKeyword(keyword: String) {
