@@ -23,6 +23,7 @@ class ArticleHomeController: BaseController {
         layoutPageViews()
         setPageViews()
         loadData()
+        getDailyCheckImage()
     }
 
     override func didReceiveMemoryWarning() {
@@ -122,6 +123,7 @@ class ArticleHomeController: BaseController {
     fileprivate var _tableView: UITableView?
     fileprivate var _categoryButton: UIButton?
     fileprivate var articleHomeAPIManager = ArticleHomeAPIManager()
+    fileprivate var setUpDayCheckAPIManager = SetUpDayCheckAPIManager()
     fileprivate var mjHeader = MJRefreshNormalHeader()
     fileprivate var mjFooter = MJRefreshAutoNormalFooter()
     fileprivate var articleModel: [[ArticleHomeModel]] = [[ArticleHomeModel.initial], [ArticleHomeModel.initial]]
@@ -134,7 +136,11 @@ class ArticleHomeController: BaseController {
 extension ArticleHomeController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["timestamp": "0", "articlesNum": 20]
+        if manager is SetUpDayCheckAPIManager {
+            return [:] as ONParamData
+        } else {
+            return ["timestamp": "0", "articlesNum": 20]
+        }
     }
 }
 
@@ -142,36 +148,59 @@ extension ArticleHomeController: ONAPIManagerParamSource {
 extension ArticleHomeController: ONAPIManagerCallBackDelegate {
     
     func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
-        if isFirst {
-            articleModel.removeAll()
-            isFirst = false
-        } 
-        let data = manager.fetchDataWithReformer(nil)
-        let viewModel = ArticleHomeViewModel(data: data, with: articleModel)
-        articleModel = viewModel.articles
-        totalCount = viewModel.totalCount
-        updateNaviLeftItem(with: articleModel[0][0].sectionDate)
-        if tableView.mj_header.isRefreshing() {
-            tableView.mj_header.endRefreshing()
+        if manager is SetUpDayCheckAPIManager {
+            let data = manager.fetchDataWithReformer(nil)
+            let json = JSON(data: data as! Data)
+            let imgUrl = json["thumb_path"].string
+            if imgUrl != "" {
+                // 获取图片名
+                let imgStr = imgUrl!.components(separatedBy: "/")
+                let imageName = imgStr.last
+                if imageName != nil && imageName! != "" {
+                    // 拼接沙盒路径
+                    let filePath = getFilePathWithImageName(imageName: imageName!)
+                    let isExist = isFileExistWithFilePath(filePath: filePath)
+                    if !isExist { // 如果该图片不存在，则删除老图片，下载新图片
+                        downLoadImageWith(url: imgUrl!, and: imageName!)
+                    }
+                }
+            } else {
+                print("图片url为空(\" \")")
+            }
+        } else {
+            if isFirst {
+                articleModel.removeAll()
+                isFirst = false
+            }
+            let data = manager.fetchDataWithReformer(nil)
+            let viewModel = ArticleHomeViewModel(data: data, with: articleModel)
+            articleModel = viewModel.articles
+            totalCount = viewModel.totalCount
+            updateNaviLeftItem(with: articleModel[0][0].sectionDate)
+            if tableView.mj_header.isRefreshing() {
+                tableView.mj_header.endRefreshing()
+            }
+            if tableView.mj_footer.isRefreshing() {
+                tableView.mj_footer.endRefreshing()
+            }
+            tableView.reloadData()
         }
-        if tableView.mj_footer.isRefreshing() {
-            tableView.mj_footer.endRefreshing()
-        }
-        tableView.reloadData()
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
-        if tableView.mj_header.isRefreshing() {
-            tableView.mj_header.endRefreshing()
-        }
-        if tableView.mj_footer.isRefreshing() && manager.errorType == .noMoreData {
-            tableView.mj_footer.endRefreshingWithNoMoreData()
-        } else {
-            tableView.mj_footer.endRefreshing()
-        }
-        
-        if let errorMessage = manager.errorMessage {
-            ONTipCenter.showToast(errorMessage)
+        if manager is ArticleHomeAPIManager {
+            if tableView.mj_header.isRefreshing() {
+                tableView.mj_header.endRefreshing()
+            }
+            if tableView.mj_footer.isRefreshing() && manager.errorType == .noMoreData {
+                tableView.mj_footer.endRefreshingWithNoMoreData()
+            } else {
+                tableView.mj_footer.endRefreshing()
+            }
+            
+            if let errorMessage = manager.errorMessage {
+                ONTipCenter.showToast(errorMessage)
+            }
         }
     }
 }
@@ -253,9 +282,15 @@ extension ArticleHomeController: UITableViewDelegate {
             navigationController?.pushViewController(tataDailyController, animated: true)
         } else {
             if articleModel[indexPath.section][indexPath.row].categoryId >= 1 && articleModel[indexPath.section][indexPath.row].categoryId <= 6 {
-                let articleListController = ArticleCollectionController(with: articleModel[indexPath.section][indexPath.row], isFromHome: true, isTata: false)
-                articleListController.hidesBottomBarWhenPushed = true
-                navigationController?.pushViewController(articleListController, animated: true)
+//                let articleListController = ArticleCollectionController(with: articleModel[indexPath.section][indexPath.row], isFromHome: true, isTata: false)
+//                articleListController.hidesBottomBarWhenPushed = true
+//                navigationController?.pushViewController(articleListController, animated: true)
+                // 首页除了塔塔报之外全部直接进详情
+                if articleModel[indexPath.section][indexPath.row].channelName != "日签" && articleModel[indexPath.section][indexPath.row].channelName != "乐活" && articleModel[indexPath.section][indexPath.row].channelName != "漫画" {
+                    let articleDetailController = ArticleDetailController(with: articleModel[indexPath.section][indexPath.row].channelName, and: articleModel[indexPath.section][indexPath.row].timeStamp)
+                    articleDetailController.hidesBottomBarWhenPushed = true
+                    navigationController?.pushViewController(articleDetailController, animated: true)
+                }
             }
         }
     }
@@ -270,6 +305,80 @@ extension ArticleHomeController: UIScrollViewDelegate {
     }
 }
 
+//MARK: - 更新日签图片
+extension ArticleHomeController {
+    /**
+     *  初始化日签页面
+     */
+    fileprivate func getDailyCheckImage() {
+        setUpDayCheckAPIManager.delegate = self
+        setUpDayCheckAPIManager.paramSource = self
+        setUpDayCheckAPIManager.loadData()
+    }
+    /**
+     *  判断文件是否存在
+     */
+    fileprivate func isFileExistWithFilePath(filePath: String?) -> Bool {
+        let fileManager = FileManager.default
+        if filePath == nil {
+            return false
+        } else {
+            return fileManager.fileExists(atPath: filePath!)
+        }
+    }
+    /**
+     *  根据图片名拼接文件路径
+     */
+    fileprivate func getFilePathWithImageName(imageName: String?) -> String? {
+        if imageName != nil {
+            let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+            let filePath = path?.appendingFormat("/\(imageName!)")
+            return filePath
+        }
+        
+        return nil
+    }
+    
+    /**
+     *  下载新图片
+     */
+    fileprivate func downLoadImageWith(url: String, and imageName: String) {
+        DispatchQueue.global().async {
+            do {
+                let data = try Data.init(contentsOf: URL(string: url)!)
+                
+                guard let image = UIImage(data: data), let filePath = self.getFilePathWithImageName(imageName: imageName) else { return }
+                if (NSData(data: UIImagePNGRepresentation(image)!)).write(toFile: filePath, atomically: true) { // 保存成功
+                    self.deleteOldImage()
+                    kUserDefaults.set(imageName, forKey: dailyCheckImageName)
+                    kUserDefaults.synchronize()
+                    print("保存成功")
+                } else {
+                    print("保存失败")
+                }
+            } catch {
+                print("格式化图片失败(url转data失败)")
+            }
+        }
+    }
+    
+    /**
+     *  删除旧图片
+     */
+    fileprivate func deleteOldImage() {
+        let imageName = kUserDefaults.value(forKey: dailyCheckImageName) as? String
+        if imageName != nil {
+            let filePath = getFilePathWithImageName(imageName: imageName!)
+            let fileManager = FileManager.default
+            guard filePath != nil else { return }
+            do {
+                try fileManager.removeItem(atPath: filePath!)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
 // MARK: - Getters and Setters
 extension ArticleHomeController {
     fileprivate var tableView: UITableView {

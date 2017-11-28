@@ -12,6 +12,7 @@ import Bugly
 import SwiftyJSON
 import IQKeyboardManagerSwift
 import GDPerformanceView_Swift
+import Kingfisher
 
 // 全局的日志变量
 let log = XCGLogger.default
@@ -30,9 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // SetUp RootController
         ONServiceFactory.sharedInstance.dataSource = self
-        loadSetUpDayCheckImg()
         adaptationIOS11()
         initialShareSDK()
+        beginMonitorPerformance()
+        chooseRootVC()
         
         return true
     }
@@ -69,21 +71,7 @@ extension AppDelegate: ONServiceFactoryDataSource {
 
 // MARK: - 启动页
 extension AppDelegate {
-    fileprivate func loadSetUpDayCheckImg() {
-        let setUpDayCheckAPIManager = SetUpDayCheckAPIManager()
-        setUpDayCheckAPIManager.delegate = self
-        setUpDayCheckAPIManager.paramSource = self
-        setUpDayCheckAPIManager.loadData()
-    }
-    
-    fileprivate func chooseRootVC(isShowFake: Bool,with imgUrl: String?) {
-        // 显示启动页3秒
-        if isShowFake {
-            let fakeSetUpVC = FakeSetUpController(with: imgUrl!)
-            self.window?.rootViewController = fakeSetUpVC
-            Thread.sleep(forTimeInterval: 3.0)
-        }
-        
+    fileprivate func chooseRootVC() {
         let userHasOnboarded = UserDefaults.standard.bool(forKey: kUserHasOnboard)
         
         if userHasOnboarded {
@@ -91,6 +79,8 @@ extension AppDelegate {
         } else {
             self.window?.rootViewController = showGuideVC()
         }
+        
+        setUpDailyCheck()
         
         self.window?.makeKeyAndVisible()
     }
@@ -109,29 +99,52 @@ extension AppDelegate {
         let rootVC = RootController()
         self.window?.rootViewController = rootVC
     }
-}
-
-extension AppDelegate: ONAPIManagerParamSource {
-    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return [:] as ONParamData
+    
+    /**
+     *  设置启动页日签
+     */
+    fileprivate func setUpDailyCheck() {
+        // 1.判断沙盒中是否存在日签图片，如果存在，直接显示
+        let filePath = getFilePathWithImageName(imageName: kUserDefaults.value(forKey: dailyCheckImageName) as? String)
+        let isExist = isFileExistWithFilePath(filePath: filePath)
+        
+        if isExist {  // 图片存在说明filepath不为空
+            let dailyCheckView = DailyCheckSetupView(frame: self.window!.bounds)
+            dailyCheckView.filePath = filePath!
+            dailyCheckView.show()
+        } else {
+            print("启动日签图片为空")
+        }
+        
+        // 2.无论沙盒中是否存在日签图片，都需要重新调用日签接口，判断日签是否更新
+        // 将更新日签的逻辑放入ArticleHomeController
     }
 }
 
-extension AppDelegate: ONAPIManagerCallBackDelegate {
-    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
-        let data = manager.fetchDataWithReformer(nil)
-        let json = JSON(data: data as! Data)
-        let imgUrl = json["thumb_path"].stringValue
-        if imgUrl != "" {
-            chooseRootVC(isShowFake: true, with: imgUrl)
+/// 日签图片操作
+extension AppDelegate {
+    /**
+     *  判断文件是否存在
+     */
+    fileprivate func isFileExistWithFilePath(filePath: String?) -> Bool {
+        let fileManager = FileManager.default
+        if filePath == nil {
+            return false
         } else {
-            chooseRootVC(isShowFake: false, with: nil)
+            return fileManager.fileExists(atPath: filePath!)
         }
     }
-    
-    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
-        chooseRootVC(isShowFake: false, with: nil)
-        beginMonitorPerformance()
+    /**
+     *  根据图片名拼接文件路径
+     */
+    fileprivate func getFilePathWithImageName(imageName: String?) -> String? {
+        if imageName != nil {
+            let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+            let filePath = path?.appendingFormat("/\(imageName!)")
+            return filePath
+        }
+        
+        return nil
     }
 }
 

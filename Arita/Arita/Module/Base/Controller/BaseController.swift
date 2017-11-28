@@ -46,6 +46,19 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        changeNavigationBarBackgroundColor(Color.hexf5f5f5!)
+//        self.navigationController?.setNavigationBarHidden(true, animated: false)
+//        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        
+    }
+    
     // MARK: - Controller Settings
     private func setBaseConditions() {
         view.backgroundColor = Color.hexf5f5f5
@@ -56,8 +69,10 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
         
         edgesForExtendedLayout = UIRectEdge()
         
-        hideShadowImage()
-        setNaviBarBackground(color: Color.hexf5f5f5Alpha95!)
+//        hideShadowImage()
+        setBorderColor()
+        
+//        setNaviBarBackground(color: Color.hexf5f5f5Alpha95!)
         setNaviBar(type: .custom)   // 默认custom
     }
     
@@ -175,14 +190,15 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
             
         case .custom:
             
-            setBorderColor()
+//            setBorderColor()
+            break
             
         case .blank:
             
             hideShadowImage()
             
         case .none:
-            hideShadowImage()
+//            hideShadowImage()
             navigationController?.setNavigationBarHidden(true, animated: false)
             
         }
@@ -202,18 +218,16 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
         switch backType {
             
         case .pop:
-            barBtnItem = UIBarButtonItem(image: icon?.withRenderingMode(.alwaysOriginal),
+            barBtnItem = UIBarButtonItem(image: icon!.withRenderingMode(.alwaysOriginal),
                                          style: .plain, target: self, action: #selector(pop))
             
         case .dismiss:
-            barBtnItem = UIBarButtonItem(image: icon?.withRenderingMode(.alwaysOriginal),
+            barBtnItem = UIBarButtonItem(image: icon!.withRenderingMode(.alwaysOriginal),
                                          style: .plain, target: self, action: #selector(viewDismiss))
             
         }
         
-        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        negativeSpacer.width = -10
-        navigationItem.leftBarButtonItems = [barBtnItem, negativeSpacer]
+        navigationItem.leftBarButtonItem = barBtnItem
     }
     
     /**
@@ -225,9 +239,7 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
     public func setNaviLeftIconBtn(_ icon: UIImage, action: Selector) {
         let barBtnItem = UIBarButtonItem(image: icon.withRenderingMode(.alwaysOriginal),
                                          style: .plain, target: self, action: action)
-        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        negativeSpacer.width = -10
-        navigationItem.leftBarButtonItems = [barBtnItem, negativeSpacer]
+        navigationItem.leftBarButtonItem = barBtnItem
     }
     
     /**
@@ -236,7 +248,7 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
      - parameter action: 点击事件
      */
     public func setNaviCalendarIconBtn(with action: Selector) {
-        let calendarButton = CalendarButton()
+        let calendarButton = CalendarButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         calendarButton.addTarget(self, action: action, for: .touchUpInside)
         let barBtnItem = UIBarButtonItem(customView: calendarButton)
         let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
@@ -252,9 +264,7 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
      */
     public func setNaviLeftTextBtn(_ text: String, action: Selector) {
         let barBtnItem = UIBarButtonItem(title: text, style: .plain, target: self, action: action)
-        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        negativeSpacer.width = -10
-        navigationItem.leftBarButtonItems = [barBtnItem, negativeSpacer]
+        navigationItem.leftBarButtonItem = barBtnItem
     }
     
     /**
@@ -267,9 +277,7 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
         
         let barBtnItem = UIBarButtonItem(image: icon.withRenderingMode(.alwaysOriginal),
                                          style: .plain, target: self, action: action)
-        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        negativeSpacer.width = -10
-        navigationItem.rightBarButtonItems = [barBtnItem, negativeSpacer]
+        navigationItem.rightBarButtonItem = barBtnItem
     }
     
     /**
@@ -285,9 +293,9 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
         barBtnItem.setTitleTextAttributes(textAttributs, for: .normal)
         barBtnItem.setTitleTextAttributes(textAttributs, for: .highlighted)
 
-        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        negativeSpacer.width = -10
-        navigationItem.rightBarButtonItems = [barBtnItem, negativeSpacer]
+//        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+//        negativeSpacer.width = -10
+        navigationItem.rightBarButtonItem = barBtnItem
     }
     
     // MARK: - ============== For Custom And Blank ==============
@@ -426,5 +434,45 @@ class BaseController: UIViewController, UIGestureRecognizerDelegate {
     private func setBorderColor() {
         navigationController?.navigationBar.setBackgroundImage(Color.hexf5f5f5Alpha95!.imageWithColorAndSize(CGSize(width: 1 / UIScreen.main.scale, height: 1 / UIScreen.main.scale), isCircle: false), for: .default)
         navigationController?.navigationBar.shadowImage = Color.hexe4e4e4!.imageWithColorAndSize(CGSize(width: 1 / UIScreen.main.scale, height: 1 / UIScreen.main.scale), isCircle: false)
+    }
+    
+    /// 动态修改状态栏跟顶部导航栏的颜色
+    private func changeNavigationBarBackgroundColor(_ barBackgroundColor: UIColor) {
+        for viewObj in self.navigationController!.navigationBar.subviews {
+            if UIDevice.current.isIos10() || UIDevice.current.isIos11() {
+                //iOS10,改变了状态栏的类为_UIBarBackground
+                let classStr = NSString.init(utf8String: object_getClassName(viewObj))
+                guard classStr != nil else { return }
+                if classStr!.isEqual(to: "_UIBarBackground") {
+//                    let imageView = viewObj as! UIImageView
+//                    imageView.isHidden = true
+                    viewObj.isHidden = true
+                }
+            } else if UIDevice.current.isIos9() {
+                //iOS9以及iOS9之前使用的是_UINavigationBarBackground
+                let classStr = NSString.init(utf8String: object_getClassName(viewObj))
+                guard classStr != nil else { return }
+                if classStr!.isEqual(to: "_UINavigationBarBackground") {
+//                    let imageView = viewObj as! UIImageView
+//                    imageView.isHidden = true
+                    viewObj.isHidden = true
+                }
+            }
+        }
+        
+        var imageView = self.navigationController?.navigationBar.viewWithTag(111)
+        if imageView == nil {
+            imageView = UIImageView(frame: CGRect(x: 0, y: -20, width: self.view.frame.width, height: 64))
+            imageView!.tag = 111
+            imageView!.backgroundColor = barBackgroundColor
+            DispatchQueue.main.async {
+                self.navigationController?.navigationBar.insertSubview(imageView!, at: 0)
+            }
+        } else {
+            imageView!.backgroundColor = barBackgroundColor
+            DispatchQueue.main.async {
+                self.navigationController?.navigationBar.sendSubview(toBack: imageView!)
+            }
+        }
     }
 }
