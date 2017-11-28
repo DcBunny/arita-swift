@@ -192,6 +192,7 @@
 		FDCF46BC1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */; };
 		FDCF46BE1F9DE88200F3A894 /* GoodsCategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCF46BD1F9DE88200F3A894 /* GoodsCategoryManager.swift */; };
 		FDCF46C01F9E019D00F3A894 /* GoodsListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCF46BF1F9E019D00F3A894 /* GoodsListManager.swift */; };
+		FDFB918C1FCD44CB00569D46 /* CheckUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFB918B1FCD44CB00569D46 /* CheckUserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -386,6 +387,7 @@
 		FDCF46BB1F9DC44100F3A894 /* LatestGoodsAlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestGoodsAlbumManager.swift; sourceTree = "<group>"; };
 		FDCF46BD1F9DE88200F3A894 /* GoodsCategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCategoryManager.swift; sourceTree = "<group>"; };
 		FDCF46BF1F9E019D00F3A894 /* GoodsListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsListManager.swift; sourceTree = "<group>"; };
+		FDFB918B1FCD44CB00569D46 /* CheckUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -857,6 +859,7 @@
 			children = (
 				C1250A091F6920C8006ED55E /* LoginAPIManager.swift */,
 				FD6DF45E1FB04F7A007F5F93 /* RegisterAPIManager.swift */,
+				FDFB918B1FCD44CB00569D46 /* CheckUserManager.swift */,
 			);
 			path = "Login&Register";
 			sourceTree = "<group>";
@@ -1551,6 +1554,7 @@
 				C198DDE71F8F157A004BCB50 /* MineHomeHeaderView.swift in Sources */,
 				C18B4F2D1F6A314B001E2E56 /* ArticleTitleView.swift in Sources */,
 				FD0E21A41F9EDF4C00C51C81 /* GoodsAblumListManager.swift in Sources */,
+				FDFB918C1FCD44CB00569D46 /* CheckUserManager.swift in Sources */,
 				C1C690001F8B4B59008B6054 /* ArticleCollectionController.swift in Sources */,
 				C1250A051F691F78006ED55E /* MemoryStorage.swift in Sources */,
 				C14468C41FA31229001E3283 /* Location.swift in Sources */,

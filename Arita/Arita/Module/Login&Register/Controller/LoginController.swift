@@ -159,6 +159,15 @@ class LoginController: BaseController {
     private func setAPIManager() {
         loginManager.paramSource = self
         loginManager.delegate = self
+        
+        checkUserManager.paramSource = self
+        checkUserManager.delegate = self
+        
+        userInfoManager.paramSource = self
+        userInfoManager.delegate = self
+        
+        updateUserManager.paramSource = self
+        updateUserManager.delegate = self
     }
     
     private func findSharePlatform() {
@@ -209,16 +218,34 @@ class LoginController: BaseController {
     
     fileprivate var _loginCollection: UICollectionView?
     fileprivate var thirdArray: [Int] = []
+    
+    fileprivate var _checkUserManager: CheckUserManager?
+    fileprivate var uid = ""
+    fileprivate var thirdType = ""
+    
+    fileprivate var _userInfoManager: UserInfoAPIManager?
+    fileprivate var _updateUserManager: UpdateUserInfoAPIManager?
 }
 
 // MARK: - ONAPIManagerParamSource & ONAPIManagerCallBackDelegate
 extension LoginController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return [
-            "cellphone": userNameText.text!,
-            "password": pwdText.text!
-        ]
+        if manager === loginManager {
+            return [
+                "cellphone": userNameText.text!,
+                "password": pwdText.text!
+            ]
+        } else if manager === checkUserManager {
+            return [
+                "uid": self.uid,
+                "thirdType": self.thirdType
+            ]
+        } else if manager === userInfoManager {
+            return ["uid": self.uid]
+        } else {
+            return []
+        }
     }
 }
 
@@ -228,14 +255,28 @@ extension LoginController: ONAPIManagerCallBackDelegate {
         let data = manager.fetchDataWithReformer(nil)
         let json = JSON(data: data as! Data)
         
-        if json.stringValue != "-1" {
-            let loginInfo = LoginInfo(username: userNameText.text!, password: pwdText.text!)
-            UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
-            let authInfo = AuthInfo(token: json.stringValue)
-            UserManager.sharedInstance.setAuthData(authInfo: authInfo)
-            dismiss(animated: true, completion: nil)
+        if manager === loginManager {
+            if json.stringValue != "-1" {
+                let loginInfo = LoginInfo(username: userNameText.text!, password: pwdText.text!)
+                UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
+                let authInfo = AuthInfo(token: json.stringValue)
+                UserManager.sharedInstance.setAuthData(authInfo: authInfo)
+                dismiss(animated: true, completion: nil)
+            } else {
+                ONTipCenter.showToast("找不到此用户，请重新确认")
+            }
+        } else if manager === checkUserManager {
+            if json.stringValue == "1" {
+                userInfoManager.loadData()
+            } else {
+                updateUserManager.loadData()
+            }
         } else {
-            ONTipCenter.showToast("找不到此用户，请重新确认")
+            let loginInfo = LoginInfo(username: json["nickname"].stringValue, password: json["password"].stringValue)
+            UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
+            let authInfo = AuthInfo(token: json["ID"].stringValue)
+            UserManager.sharedInstance.setAuthData(authInfo: authInfo)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -278,24 +319,22 @@ extension LoginController: UICollectionViewDelegate {
         switch thirdArray[indexPath.row] {
         case 1:
             type = SSDKPlatformType.typeWechat
+            self.thirdType = "2"
         case 2:
             type = SSDKPlatformType.typeSinaWeibo
+            self.thirdType = "0"
         case 3:
             type = SSDKPlatformType.typeQQ
+            self.thirdType = "1"
         default:
             break
         }
         if let platformType = type {
-            ShareSDK.getUserInfo(platformType, onStateChanged: {
+            ShareSDK.getUserInfo(platformType, onStateChanged: { [weak self]
                 state, user, error in
                 if state == SSDKResponseState.success {
-                    print(user?.uid)
-                    print(user?.nickname)
-                    let loginInfo = LoginInfo(username: (user?.nickname)!, password: "")
-                    UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
-                    let authInfo = AuthInfo(token: user?.nickname)
-                    UserManager.sharedInstance.setAuthData(authInfo: authInfo)
-                    self.dismiss(animated: true, completion: nil)
+                    self?.uid = (user?.uid!)!
+                    self?.checkUserManager.loadData()
                 } else {
                     print(error.debugDescription)
                 }
@@ -465,5 +504,29 @@ extension LoginController {
         }
         
         return _loginCollection!
+    }
+    
+    fileprivate var checkUserManager: CheckUserManager {
+        if _checkUserManager == nil {
+            _checkUserManager = CheckUserManager()
+        }
+        
+        return _checkUserManager!
+    }
+    
+    fileprivate var userInfoManager: UserInfoAPIManager {
+        if _userInfoManager == nil {
+            _userInfoManager = UserInfoAPIManager()
+        }
+        
+        return _userInfoManager!
+    }
+    
+    fileprivate var updateUserManager: UpdateUserInfoAPIManager {
+        if _updateUserManager == nil {
+            _updateUserManager = UpdateUserInfoAPIManager()
+        }
+        
+        return _updateUserManager!
     }
 }

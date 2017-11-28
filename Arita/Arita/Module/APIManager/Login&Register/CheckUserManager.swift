@@ -1,17 +1,17 @@
 //
-//  RegisterAPIManager.swift
+//  CheckUserManager.swift
 //  Arita
 //
-//  Created by 李宏博 on 2017/11/6.
+//  Created by 李宏博 on 2017/11/28.
 //  Copyright © 2017年 arita. All rights reserved.
 //
 
 import Foundation
 
 /**
- **用户注册
+ **检查三方登录的用户是否在平台注册
  */
-class RegisterAPIManager: ONAPIBaseManager {
+class CheckUserManager: ONAPIBaseManager {
     override init() {
         super.init()
         
@@ -19,9 +19,9 @@ class RegisterAPIManager: ONAPIBaseManager {
     }
 }
 
-extension RegisterAPIManager: ONAPIManager {
+extension CheckUserManager: ONAPIManager {
     func methodName() -> String {
-        return "register"
+        return "check_user"
     }
     
     func serviceType() -> String {
@@ -29,11 +29,11 @@ extension RegisterAPIManager: ONAPIManager {
     }
     
     func requestType() -> ONAPIManagerRequestType {
-        return .post
+        return .get
     }
 }
 
-extension RegisterAPIManager: ONAPIManagerValidator {
+extension CheckUserManager: ONAPIManagerValidator {
     func manager(_ manager: ONAPIBaseManager, isCorrectWithParamsData data: ONParamData) -> Bool {
         // 这里检测接口参数是否正确，例如可以检查输入的电话号码是否是符合规范的，如果返回false，则不会进行实际的请求。
         //        if let errorMsg = ONCheckTool.checkPhoneNum(phone: data["username"] as? String) {
