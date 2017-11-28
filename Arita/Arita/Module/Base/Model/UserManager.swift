@@ -16,7 +16,6 @@ struct UserInfo: HandyJSON {
     var uid: String?
     var thirdType: String?
     var birthdayDate: Date?
-    var username = ""
     var nickname = ""
     var avatar = ""
     var conste = ""
@@ -48,16 +47,16 @@ struct LoginInfo: HandyJSON {
 }
 
 // 认证信息类
-struct AuthInfo: HandyJSON {
-    var token: String?
+//struct AuthInfo: HandyJSON {
+//    var token: String?
 //    var session: String?
 //    var secret: String?
-}
+//}
 
 // 用户信息类
 struct UserModel: HandyJSON {
     var loginInfo: LoginInfo?
-    var authInfo: AuthInfo?
+//    var authInfo: AuthInfo?
     var userInfo: UserInfo?
 }
 
@@ -70,7 +69,6 @@ struct SearchHistoryKeyword {
 class UserManager {
     private let kCurrentUserId = "kCurrentUserId"
     private let kKeywords = "SearchKeywords"
-    
     private let kUserInfo = "kUserInfo"
     
     //MARK: - life cycle
@@ -97,7 +95,7 @@ class UserManager {
     // 设置当前用户
     func setCurrentUser(loginInfo: LoginInfo) {
         currentUser = UserModel()
-        currentUser?.authInfo = AuthInfo()
+//        currentUser?.authInfo = AuthInfo()
         currentUser?.loginInfo = loginInfo
         currentUser?.userInfo = UserInfo()
         
@@ -115,6 +113,12 @@ class UserManager {
     
     func getCurrentUser() -> UserModel? {
         return currentUser
+    }
+    
+    func updateUserId(userId: Int) {
+        currentUser?.userInfo?.userId = userId
+        
+        saveInfoToLocal()
     }
     
     func updateUserAvatar(avatar: String) {
@@ -149,26 +153,27 @@ class UserManager {
         saveInfoToLocal()
     }
     
-    func setAuthData(authInfo: AuthInfo) {
+//    func setAuthData(authInfo: AuthInfo) {
 //        currentUser?.authInfo?.session = authInfo.session
-        currentUser?.authInfo?.token = authInfo.token
-        
-        saveInfoToLocal()
-    }
+//        currentUser?.authInfo?.token = authInfo.token
+//
+//        saveInfoToLocal()
+//    }
     
-    func updateAuthData(session: String, token: String, secret: String) {
+//    func updateAuthData(session: String, token: String, secret: String) {
 //        currentUser?.authInfo?.session = session
-        currentUser?.authInfo?.token = token
+//        currentUser?.authInfo?.token = token
 //        currentUser?.authInfo?.secret = secret
-        saveInfoToLocal()
-    }
+//        saveInfoToLocal()
+//    }
     
-    func getAuthData() -> AuthInfo? {
-        return currentUser?.authInfo
-    }
+//    func getAuthData() -> AuthInfo? {
+//        return currentUser?.authInfo
+//    }
     
     func updateUserInfo(userInfo: UserInfo) {
         currentUser?.userInfo = userInfo
+        
         saveInfoToLocal()
     }
 
@@ -180,6 +185,7 @@ class UserManager {
     func quit() {
         deleteLocalInfo()
         currentUser = nil
+        
         if ShareSDK.hasAuthorized(.typeWechat) {
             ShareSDK.cancelAuthorize(.typeWechat)
         }

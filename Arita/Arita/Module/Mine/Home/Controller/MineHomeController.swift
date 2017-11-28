@@ -144,7 +144,7 @@ class MineHomeController: BaseController {
 // MARK: - ONAPIManagerParamSource
 extension MineHomeController: ONAPIManagerParamSource {
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["id": UserManager.sharedInstance.getAuthData()!.token!]
+        return ["id": UserManager.sharedInstance.getUserInfo()?.userId as Any]
     }
 }
 

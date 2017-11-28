@@ -191,14 +191,14 @@ extension GoodsController: ONAPIManagerParamSource {
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
         if manager === goodsManager {
             if UserManager.sharedInstance.isLogin() {
-                return ["goodsID": id!, "userID": (UserManager.sharedInstance.currentUser?.authInfo?.token)!]
+                return ["goodsID": id!, "userID": UserManager.sharedInstance.getUserInfo()?.userId as Any]
             } else {
                 return ["goodsID": id!]
             }
         } else if manager === likeManager {
-            return ["goodsID": id!, "id": (UserManager.sharedInstance.currentUser?.authInfo?.token)!]
+            return ["goodsID": id!, "id": UserManager.sharedInstance.getUserInfo()?.userId as Any]
         } else {
-            return ["goodsID": id!, "id": (UserManager.sharedInstance.currentUser?.authInfo?.token)!]
+            return ["goodsID": id!, "id": UserManager.sharedInstance.getUserInfo()?.userId as Any]
         }
     }
 }

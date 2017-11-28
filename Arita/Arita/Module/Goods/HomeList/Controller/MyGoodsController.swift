@@ -71,7 +71,7 @@ class MyGoodsController: BaseController
 extension MyGoodsController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["id": (UserManager.sharedInstance.currentUser?.authInfo?.token)!]
+        return ["id": UserManager.sharedInstance.getUserInfo()?.userId as Any]
     }
 }
 

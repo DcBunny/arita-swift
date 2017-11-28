@@ -49,7 +49,7 @@ extension String {
         let commentAttribute = NSAttributedString(string: comment, attributes: [NSFontAttributeName: Font.size14!,
                                                                               NSForegroundColorAttributeName: Color.hex4a4a4a!])
         let mutableAttStr = NSMutableAttributedString(attributedString: authorAttribute)
-        mutableAttStr.insert(commentAttribute, at: author.characters.count)
+        mutableAttStr.insert(commentAttribute, at: author.count)
         return mutableAttStr
     }
     

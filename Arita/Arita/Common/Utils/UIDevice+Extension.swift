@@ -72,4 +72,16 @@ public extension UIDevice {
         
         return false
     }
+    
+    public func isIos10() -> Bool {
+        return (UIDevice.current.systemVersion >= "10" && UIDevice.current.systemVersion < "11") ? true : false
+    }
+    
+    public func isIos9() -> Bool {
+        return (UIDevice.current.systemVersion >= "9" && UIDevice.current.systemVersion < "10") ? true : false
+    }
+    
+    public func isIos11() -> Bool {
+        return (UIDevice.current.systemVersion >= "11") ? true : false
+    }
 }

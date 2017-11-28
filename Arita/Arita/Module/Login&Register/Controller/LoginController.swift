@@ -185,6 +185,9 @@ class LoginController: BaseController {
     }
     
     @objc private func login() {
+        userNameText.resignFirstResponder()
+        pwdText.resignFirstResponder()
+        showLoadingHUD()
         loginManager.loadData()
     }
     
@@ -219,10 +222,8 @@ class LoginController: BaseController {
     fileprivate var _loginCollection: UICollectionView?
     fileprivate var thirdArray: [Int] = []
     
+    fileprivate var userInfo = UserInfo()
     fileprivate var _checkUserManager: CheckUserManager?
-    fileprivate var uid = ""
-    fileprivate var thirdType = ""
-    
     fileprivate var _userInfoManager: UserInfoAPIManager?
     fileprivate var _updateUserManager: UpdateUserInfoAPIManager?
 }
@@ -238,13 +239,19 @@ extension LoginController: ONAPIManagerParamSource {
             ]
         } else if manager === checkUserManager {
             return [
-                "uid": self.uid,
-                "thirdType": self.thirdType
+                "uid": userInfo.uid!,
+                "thirdType": userInfo.thirdType!
             ]
         } else if manager === userInfoManager {
-            return ["uid": self.uid]
+            return ["uid": userInfo.uid!]
         } else {
-            return []
+            return [
+                "uid": userInfo.uid!,
+                "thirdType": userInfo.thirdType!,
+                "nickname": userInfo.nickname,
+                "headimgurl": userInfo.avatar,
+                "gender": userInfo.gender
+            ]
         }
     }
 }
@@ -256,11 +263,11 @@ extension LoginController: ONAPIManagerCallBackDelegate {
         let json = JSON(data: data as! Data)
         
         if manager === loginManager {
+            dismissHUD()
             if json.stringValue != "-1" {
                 let loginInfo = LoginInfo(username: userNameText.text!, password: pwdText.text!)
                 UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
-                let authInfo = AuthInfo(token: json.stringValue)
-                UserManager.sharedInstance.setAuthData(authInfo: authInfo)
+                UserManager.sharedInstance.updateUserId(userId: json.intValue)
                 dismiss(animated: true, completion: nil)
             } else {
                 ONTipCenter.showToast("找不到此用户，请重新确认")
@@ -271,17 +278,26 @@ extension LoginController: ONAPIManagerCallBackDelegate {
             } else {
                 updateUserManager.loadData()
             }
-        } else {
-            let loginInfo = LoginInfo(username: json["nickname"].stringValue, password: json["password"].stringValue)
+        } else if manager === userInfoManager {
+            let loginInfo = LoginInfo(username: json["username"].stringValue, password: json["password"].stringValue)
             UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
-            let authInfo = AuthInfo(token: json["ID"].stringValue)
-            UserManager.sharedInstance.setAuthData(authInfo: authInfo)
+            userInfo.userId = json["ID"].intValue
+            UserManager.sharedInstance.updateUserInfo(userInfo: userInfo)
+            dismissHUD()
             self.dismiss(animated: true, completion: nil)
+        } else {
+            let loginInfo = LoginInfo(username: "", password: "")
+            UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
+            userInfo.userId = json["ID"].intValue
+            UserManager.sharedInstance.updateUserInfo(userInfo: userInfo)
+            dismissHUD()
+            dismiss(animated: true, completion: nil)
         }
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
         if let errorMessage = manager.errorMessage {
+            dismissHUD()
             ONTipCenter.showToast(errorMessage)
         }
     }
@@ -315,17 +331,18 @@ extension LoginController: UICollectionViewDataSource {
 // MARK: - UICollecitonView Delegate
 extension LoginController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        showLoadingHUD()
         var type: SSDKPlatformType?
         switch thirdArray[indexPath.row] {
         case 1:
             type = SSDKPlatformType.typeWechat
-            self.thirdType = "2"
+            self.userInfo.thirdType = "2"
         case 2:
             type = SSDKPlatformType.typeSinaWeibo
-            self.thirdType = "0"
+            self.userInfo.thirdType = "0"
         case 3:
             type = SSDKPlatformType.typeQQ
-            self.thirdType = "1"
+            self.userInfo.thirdType = "1"
         default:
             break
         }
@@ -333,7 +350,19 @@ extension LoginController: UICollectionViewDelegate {
             ShareSDK.getUserInfo(platformType, onStateChanged: { [weak self]
                 state, user, error in
                 if state == SSDKResponseState.success {
-                    self?.uid = (user?.uid!)!
+                    self?.userInfo.uid = user?.uid
+                    if let nickname = user?.nickname {
+                        self?.userInfo.nickname = nickname
+                    }
+                    if let icon = user?.icon {
+                        self?.userInfo.avatar = icon
+                    }
+                    if let gender = user?.gender {
+                        self?.userInfo.gender = gender
+                    }
+                    if let birthday = user?.birthday {
+                        self?.userInfo.birthdayDate = birthday
+                    }
                     self?.checkUserManager.loadData()
                 } else {
                     print(error.debugDescription)

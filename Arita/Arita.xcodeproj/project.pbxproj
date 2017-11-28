@@ -114,6 +114,7 @@
 		C1AED6641FA082B200D4374F /* CategoryCollectionAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AED6631FA082B200D4374F /* CategoryCollectionAPIManager.swift */; };
 		C1B1CE741FA2D5F20071C559 /* MineSexChooseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B1CE731FA2D5F20071C559 /* MineSexChooseController.swift */; };
 		C1B1CE761FA2DDB10071C559 /* MineSexChooseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B1CE751FA2DDB10071C559 /* MineSexChooseTableViewCell.swift */; };
+		C1B23EE21FCD32CB00EC34BB /* DailyCheckSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B23EE11FCD32CB00EC34BB /* DailyCheckSetupView.swift */; };
 		C1B79EB01FA97252000E0FE6 /* UserInfoAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B79EAF1FA97252000E0FE6 /* UserInfoAPIManager.swift */; };
 		C1BB87641F9062A5006EA9D8 /* MineQRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB87631F9062A5006EA9D8 /* MineQRCodeController.swift */; };
 		C1BB87661F906EE9006EA9D8 /* AuthorizationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB87651F906EE9006EA9D8 /* AuthorizationTool.swift */; };
@@ -305,6 +306,7 @@
 		C1AED6631FA082B200D4374F /* CategoryCollectionAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionAPIManager.swift; sourceTree = "<group>"; };
 		C1B1CE731FA2D5F20071C559 /* MineSexChooseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSexChooseController.swift; sourceTree = "<group>"; };
 		C1B1CE751FA2DDB10071C559 /* MineSexChooseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSexChooseTableViewCell.swift; sourceTree = "<group>"; };
+		C1B23EE11FCD32CB00EC34BB /* DailyCheckSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckSetupView.swift; sourceTree = "<group>"; };
 		C1B79EAF1FA97252000E0FE6 /* UserInfoAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoAPIManager.swift; sourceTree = "<group>"; };
 		C1BB87631F9062A5006EA9D8 /* MineQRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineQRCodeController.swift; sourceTree = "<group>"; };
 		C1BB87651F906EE9006EA9D8 /* AuthorizationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationTool.swift; sourceTree = "<group>"; };
@@ -1102,6 +1104,7 @@
 			isa = PBXGroup;
 			children = (
 				C1DCB7A51FB5988D00106960 /* CalendarButton.swift */,
+				C1B23EE11FCD32CB00EC34BB /* DailyCheckSetupView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1620,6 +1623,7 @@
 				C14A61AC1F6B5FA8005A1E65 /* ArticleHomeNormalCell.swift in Sources */,
 				C125099A1F69079E006ED55E /* ONURLResponse.swift in Sources */,
 				C12509A01F69079E006ED55E /* ONService.swift in Sources */,
+				C1B23EE21FCD32CB00EC34BB /* DailyCheckSetupView.swift in Sources */,
 				FD6DF45D1FB047D0007F5F93 /* RegisterController.swift in Sources */,
 				C1A1DD931F8CD7850039B873 /* DailyCheckCell.swift in Sources */,
 				C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */,

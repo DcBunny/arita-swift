@@ -148,6 +148,9 @@ class RegisterController: BaseController {
     }
     
     @objc private func register() {
+        userNameText.resignFirstResponder()
+        pwdText.resignFirstResponder()
+        showLoadingHUD()
         registerManager.loadData()
     }
     
@@ -195,14 +198,14 @@ extension RegisterController: ONAPIManagerParamSource {
 extension RegisterController: ONAPIManagerCallBackDelegate {
     
     func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        dismissHUD()
         let data = manager.fetchDataWithReformer(nil)
         let json = JSON(data: data as! Data)
         
         if json.stringValue != "-1" {
             let loginInfo = LoginInfo(username: userNameText.text!, password: pwdText.text!)
             UserManager.sharedInstance.setCurrentUser(loginInfo: loginInfo)
-            let authInfo = AuthInfo(token: json.stringValue)
-            UserManager.sharedInstance.setAuthData(authInfo: authInfo)
+            UserManager.sharedInstance.updateUserId(userId: json.intValue)
             dismiss(animated: true, completion: nil)
         } else {
             ONTipCenter.showToast("注册失败，请重新尝试")
@@ -211,6 +214,7 @@ extension RegisterController: ONAPIManagerCallBackDelegate {
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
         if let errorMessage = manager.errorMessage {
+            dismissHUD()
             ONTipCenter.showToast(errorMessage)
         }
     }
