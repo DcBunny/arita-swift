@@ -35,6 +35,7 @@ struct ArticleHomeModel {
     var channelId: Int
     var categoryId: Int
     var channelName: String
+    var id: Int // 实际上是详情里的文章ID，需要后续做对比
     
     init(data articleInfo: JSON) {
         if articleInfo["show_jiu"] != JSON.null && articleInfo["show_jiu"] == 1 {
@@ -58,6 +59,7 @@ struct ArticleHomeModel {
         self.channelId = articleInfo["channel_ID"].intValue
         self.categoryId = articleInfo["category_ID"].intValue
         self.channelName = articleInfo["channel_name"].stringValue
+        self.id = articleInfo["ID"].intValue
     }
     
     static var initial: ArticleHomeModel {

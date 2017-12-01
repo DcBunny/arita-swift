@@ -20,7 +20,7 @@ struct ArticleModel {
     public var timeStamp: String
     public var authorName: String
     public var authorLogo: String
-    public var articleID: Int
+    public var articleID: Int   // 文章下详情页ID，用于对比
     
     init(data articleInfo: JSON) {
         self.articlePic = articleInfo["thumb_path"].stringValue

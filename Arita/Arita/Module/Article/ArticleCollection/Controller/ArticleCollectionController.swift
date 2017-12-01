@@ -38,6 +38,7 @@ class ArticleCollectionController: BaseController {
             self.conTitle = info.channelName
             self.channelID = info.channelId
             self.timeStamp = info.timeStamp
+            self.articleID = info.id // 实际上是文章的ID
             super.init(nibName: nil, bundle: nil)
         } else {
             let info = articleInfo as! CategoryModel
@@ -100,6 +101,19 @@ class ArticleCollectionController: BaseController {
         return Float((self.articleCollectionView.collectionViewLayout as! ArticleCollectionFlowLayout).itemSize.width + (self.articleCollectionView.collectionViewLayout as! ArticleCollectionFlowLayout).minimumLineSpacing)
     }
     
+    fileprivate func positionArticle() {
+        var currentIndex: Int?
+        let articleIdArray = articleModel.map { $0.articleID }
+        for (index, value) in articleIdArray.enumerated() {
+            if self.articleID! == value {
+                currentIndex = index
+            }
+        }
+        
+        guard currentIndex != nil else { return }
+        articleCollectionView.scrollToItem(at: IndexPath(row: currentIndex!, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+    }
+    
     // MARK: - Controller Attributes
     fileprivate var _articleCollectionView: UICollectionView?
     fileprivate var conTitle: String?
@@ -113,6 +127,7 @@ class ArticleCollectionController: BaseController {
     fileprivate var totalCount = 0
     fileprivate var isFirst = true
     fileprivate var currentPage = 0
+    fileprivate var articleID: Int?
 }
 
 extension ArticleCollectionController: UIScrollViewDelegate {
@@ -180,6 +195,9 @@ extension ArticleCollectionController: ONAPIManagerCallBackDelegate {
             articleModel = viewModel.articles
             totalCount = viewModel.totalCount
             articleCollectionView.reloadData()
+            if isFromHome == true && isTata == false && self.articleID != nil {  // 只有从首页列表点入，且不是塔塔报的时候才需要定位
+                positionArticle()
+            }
         }
     }
     
@@ -222,14 +240,13 @@ extension ArticleCollectionController: UICollectionViewDelegate {
             let articleDetailController = ArticleDetailController(with: conTitle, and: articleModel[indexPath.row].articleDate)
             navigationController?.pushViewController(articleDetailController, animated: true)
         } else {
-            if self.channelID == 34 { return }
             let shareUrl = API.articleDetailUrl + "\(articleModel[indexPath.row].articleID)"
             let content = [ShareKey.shareUrlKey: shareUrl,
                            ShareKey.shareTitleKey: articleModel[indexPath.row].articleTitle,
                            ShareKey.shareDescribtionKey: articleModel[indexPath.row].articleContent,
                            ShareKey.shareImageUrlKey: articleModel[indexPath.row].articlePic
             ]
-            let normalArticleDetailController = NormalArticleDetailController(conTitle: conTitle, content: content)
+            let normalArticleDetailController = NormalArticleDetailController(conTitle: conTitle, content: content, isFromHome: false)
             navigationController?.pushViewController(normalArticleDetailController, animated: true)
         }
     }

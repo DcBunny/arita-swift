@@ -141,7 +141,7 @@ extension CategoryCollectionController: UICollectionViewDelegate {
             tataDailyController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(tataDailyController, animated: true)
         } else if channelModel[indexPath.row].channelID == 44 {
-            let dailyCheckController = DailyCheckController()
+            let dailyCheckController = DailyCheckController(with: nil)
             dailyCheckController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(dailyCheckController, animated: true)
         } else {

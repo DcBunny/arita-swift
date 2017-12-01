@@ -90,7 +90,10 @@ class ShareTool {
         if url != nil {
             let data = NSData(contentsOf: url!) as Data?
             if data != nil {
-                thumbImage = UIImage(data: data!, scale: 1.0)!
+                let image = UIImage(data: data!, scale: 1.0)
+                if image != nil {
+                    thumbImage = image!
+                }
             }
         }
         let imageData = UIImagePNGRepresentation(thumbImage)

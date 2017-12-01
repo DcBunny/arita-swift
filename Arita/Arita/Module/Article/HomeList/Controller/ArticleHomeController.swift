@@ -72,7 +72,7 @@ class ArticleHomeController: BaseController {
     
     // MARK: - Event Response
     @objc private func gotoCalendar() {
-        let dailyCheckController = DailyCheckController()
+        let dailyCheckController = DailyCheckController(with: nil)
         dailyCheckController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(dailyCheckController, animated: true)
     }
@@ -281,16 +281,36 @@ extension ArticleHomeController: UITableViewDelegate {
             tataDailyController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(tataDailyController, animated: true)
         } else {
-            if articleModel[indexPath.section][indexPath.row].categoryId >= 1 && articleModel[indexPath.section][indexPath.row].categoryId <= 6 {
+//            if articleModel[indexPath.section][indexPath.row].categoryId >= 1 && articleModel[indexPath.section][indexPath.row].categoryId <= 6 {
+                // 改了逻辑
 //                let articleListController = ArticleCollectionController(with: articleModel[indexPath.section][indexPath.row], isFromHome: true, isTata: false)
 //                articleListController.hidesBottomBarWhenPushed = true
 //                navigationController?.pushViewController(articleListController, animated: true)
                 // 首页除了塔塔报之外全部直接进详情
-                if articleModel[indexPath.section][indexPath.row].channelName != "日签" && articleModel[indexPath.section][indexPath.row].channelName != "乐活" && articleModel[indexPath.section][indexPath.row].channelName != "漫画" {
-                    let articleDetailController = ArticleDetailController(with: articleModel[indexPath.section][indexPath.row].channelName, and: articleModel[indexPath.section][indexPath.row].timeStamp)
-                    articleDetailController.hidesBottomBarWhenPushed = true
-                    navigationController?.pushViewController(articleDetailController, animated: true)
-                }
+                // 又改了逻辑
+//                if articleModel[indexPath.section][indexPath.row].channelName != "日签" && articleModel[indexPath.section][indexPath.row].channelName != "乐活" && articleModel[indexPath.section][indexPath.row].channelName != "漫画" {
+//                    let articleDetailController = ArticleDetailController(with: articleModel[indexPath.section][indexPath.row].channelName, and: articleModel[indexPath.section][indexPath.row].timeStamp)
+//                    articleDetailController.hidesBottomBarWhenPushed = true
+//                    navigationController?.pushViewController(articleDetailController, animated: true)
+//                }
+//            }
+            if articleModel[indexPath.section][indexPath.row].channelId == 44 {   // 44是日签， 点进去之后是列表，不能在点了
+                let dailyCheckController = DailyCheckController(with: articleModel[indexPath.section][indexPath.row].id)
+                dailyCheckController.hidesBottomBarWhenPushed = true
+                navigationController?.pushViewController(dailyCheckController, animated: true)
+            } else if articleModel[indexPath.section][indexPath.row].channelId == 34 {  // 34是乐活(社区)，点进去之后是列表，再点进去到详情
+                let articleListController = ArticleCollectionController(with: articleModel[indexPath.section][indexPath.row], isFromHome: true, isTata: false)
+                articleListController.hidesBottomBarWhenPushed = true
+                navigationController?.pushViewController(articleListController, animated: true)
+            } else {
+                let shareUrl = API.articleDetailUrl + "\(articleModel[indexPath.section][indexPath.row].id)"
+                let content = [ShareKey.shareUrlKey: shareUrl,
+                               "channelID": articleModel[indexPath.section][indexPath.row].channelId,
+                               "articleID": articleModel[indexPath.section][indexPath.row].id
+                    ] as [String : Any]
+                let normalArticleDetailController = NormalArticleDetailController(conTitle: articleModel[indexPath.section][indexPath.row].channelName, content: content, isFromHome: true)
+                normalArticleDetailController.hidesBottomBarWhenPushed = true
+                navigationController?.pushViewController(normalArticleDetailController, animated: true)
             }
         }
     }

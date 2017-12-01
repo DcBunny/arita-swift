@@ -22,6 +22,7 @@ class NormalArticleDetailController: BaseController {
         addPageViews()
         layoutPageViews()
         setPageViews()
+        loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,9 +31,15 @@ class NormalArticleDetailController: BaseController {
     }
     
     // MARK: - Init Methods
-    init(conTitle: String?, content: [String: String]) {
+    init(conTitle: String?, content: [String: Any], isFromHome: Bool) {
         self.content =  content
         self.conTitle = conTitle
+        self.isFromHome = isFromHome
+        if !isFromHome {
+            self.shareContent = content as? [String: String]
+        } else {
+            self.shareContent = nil
+        }
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -81,23 +88,49 @@ class NormalArticleDetailController: BaseController {
     }
     
     private func setPageViews() {
-        if let url = URL(string: content[ShareKey.shareUrlKey]!) {
+        if let url = URL(string: content[ShareKey.shareUrlKey] as! String) {
             let request = URLRequest(url: url)
             detailWebView.load(request)
         }
         view.backgroundColor = Color.hexf5f5f5
     }
     
+    private func loadData() {
+        if isFromHome {    // 如果来自首页，则说明分享数据不全，需要拉接口
+            articleAPIManager.delegate = self
+            articleAPIManager.paramSource = self
+            articleAPIManager.loadData()
+        }
+    }
+    
+    fileprivate func findArticle() {
+        var currentIndex: Int?
+        let articleIdArray = articleModel.map { $0.articleID }
+        for (index, value) in articleIdArray.enumerated() {
+            if (self.content["articleID"] as! Int) == value {
+                currentIndex = index
+            }
+        }
+        if currentIndex != nil {
+            self.shareContent = [ShareKey.shareUrlKey: content[ShareKey.shareUrlKey] as! String,
+                                 ShareKey.shareTitleKey: articleModel[currentIndex!].articleTitle,
+                                 ShareKey.shareDescribtionKey: articleModel[currentIndex!].articleContent,
+                                 ShareKey.shareImageUrlKey: articleModel[currentIndex!].articlePic
+            ]
+        }
+    }
     // MARK: - Event Responses
     @objc private func gotoShare() {
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
-            let shareController = ShareController(content: strongSelf.content)
-            shareController.modalTransitionStyle = .crossDissolve
-            shareController.providesPresentationContextTransitionStyle = true
-            shareController.definesPresentationContext = true
-            shareController.modalPresentationStyle = .overFullScreen
-            strongSelf.present(shareController, animated: true, completion: nil)
+            if strongSelf.shareContent != nil {
+                let shareController = ShareController(content: strongSelf.shareContent!)
+                shareController.modalTransitionStyle = .crossDissolve
+                shareController.providesPresentationContextTransitionStyle = true
+                shareController.definesPresentationContext = true
+                shareController.modalPresentationStyle = .overFullScreen
+                strongSelf.present(shareController, animated: true, completion: nil)
+            }
         }
     }
     
@@ -105,8 +138,44 @@ class NormalArticleDetailController: BaseController {
     fileprivate var _shadowView: UIView?
     fileprivate var _bodyView: UIView?
     fileprivate var _detailWebView: WKWebView?
-    private var content: [String: String]!
+    fileprivate var content: [String: Any]!
+    fileprivate var shareContent: [String: String]?
+    fileprivate var articleAPIManager = ArticleAPIManager()
+    fileprivate var articleModel: [ArticleModel] = [ArticleModel.initial]
     private var conTitle: String?
+    private var isFromHome: Bool!
+}
+
+// MARK: - ONAPIManagerParamSource
+extension NormalArticleDetailController: ONAPIManagerParamSource {
+    
+    func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
+        if manager is ArticleAPIManager {
+            return ["timestamp": 0, "articlesNum": 500, "channel_ID": self.content["channelID"] as Any]
+        } else {
+            return [:]
+        }
+    }
+}
+
+// MARK: - ONAPIManagerCallBackDelegate
+extension NormalArticleDetailController: ONAPIManagerCallBackDelegate {
+    
+    func managerCallAPIDidSuccess(manager: ONAPIBaseManager) {
+        if manager is ArticleAPIManager {
+            let data = manager.fetchDataWithReformer(nil)
+            let viewModel = NormalArticleViewModel(data: data)
+            articleModel = viewModel.articles
+            findArticle()
+        }
+    }
+    
+    func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
+        
+        if let errorMessage = manager.errorMessage {
+            ONTipCenter.showToast(errorMessage)
+        }
+    }
 }
 
 // MARK: - Getters and Setters

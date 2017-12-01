@@ -16,7 +16,7 @@ struct CategoryModel {
     public var channelIcon: String
     public var channelName: String
     public var updateTime: String
-    public var channelID: Int
+    public var channelID: Int   
     public var publicTime: String
     
     init(data channelInfo: JSON) {
