@@ -166,9 +166,9 @@ extension ArticleCollectionController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
         if manager is TataBaoAPIManager {
-            return ["timestamp": 0, "articlesNum": 500]
+            return ["timestamp": 0, "articlesNum": 100]
         } else if manager is ArticleAPIManager {
-            return ["timestamp": 0, "articlesNum": 500, "channel_ID": channelID]
+            return ["timestamp": 0, "articlesNum": 100, "channel_ID": channelID]
         } else {
             return [:]
         }

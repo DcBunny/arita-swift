@@ -81,9 +81,8 @@ extension AppDelegate {
             self.window?.rootViewController = showGuideVC()
         }
         
-        setUpDailyCheck()
-        
         self.window?.makeKeyAndVisible()
+        setUpDailyCheck()
     }
     
     fileprivate func showGuideVC() -> GuideController {

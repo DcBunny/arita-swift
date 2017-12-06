@@ -118,7 +118,7 @@ extension GoodsAlbumCollectionController: UICollectionViewDelegate {
 extension GoodsAlbumCollectionController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["timestamp": 0, "albumNum": 500]
+        return ["timestamp": 0, "albumNum": 100]
     }
 }
 

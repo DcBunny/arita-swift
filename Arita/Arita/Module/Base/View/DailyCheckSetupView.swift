@@ -35,6 +35,7 @@ class DailyCheckSetupView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = UIColor.white
         imageView.frame = frame
         addSubview(imageView)
     }
@@ -73,7 +74,7 @@ extension DailyCheckSetupView {
     fileprivate var imageView: UIImageView {
         if _imageView == nil {
             _imageView = UIImageView()
-            _imageView?.contentMode = .scaleAspectFill
+            _imageView?.contentMode = .scaleAspectFit
             _imageView?.clipsToBounds = true
             
             return _imageView!

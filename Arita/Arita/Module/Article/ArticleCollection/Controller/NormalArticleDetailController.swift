@@ -151,7 +151,7 @@ extension NormalArticleDetailController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
         if manager is ArticleAPIManager {
-            return ["timestamp": 0, "articlesNum": 500, "channel_ID": self.content["channelID"] as Any]
+            return ["timestamp": 0, "articlesNum": 100, "channel_ID": self.content["channelID"] as Any]
         } else {
             return [:]
         }
