@@ -274,7 +274,7 @@ extension CategoryController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
         if manager === goodsChildListManager {
-            var params: [String: Any] = ["channel_ID": id!, "goodsNum": 20, "minPrice": minPrice, "maxPrice": maxPrice, "currentPage": currentPage]
+            var params: [String: Any] = ["channel_ID": id!, "goodsNum": 40, "minPrice": minPrice, "maxPrice": maxPrice, "currentPage": currentPage]
             if childId != -1 {
                 params["childID"] = childId
             }

@@ -139,7 +139,7 @@ extension ArticleHomeController: ONAPIManagerParamSource {
         if manager is SetUpDayCheckAPIManager {
             return [:] as ONParamData
         } else {
-            return ["timestamp": "0", "articlesNum": 20]
+            return ["timestamp": "0", "articlesNum": 40]
         }
     }
 }
