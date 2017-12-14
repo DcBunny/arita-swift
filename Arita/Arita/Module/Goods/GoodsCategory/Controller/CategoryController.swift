@@ -11,8 +11,8 @@ import SnapKit
 import MJRefresh
 import SwiftyJSON
 
-fileprivate let prices = ["全部", "0 - 1999", "2000 - 2999", "3000 - 5999", "6000 - 30000"]
-fileprivate let priceCondition = [[0, 30000], [0, 1999], [2000, 2999], [3000, 5999], [6000, 30000]]
+fileprivate let prices = ["全部", "0 - 99", "100 - 499", "500 - 999", "1000 - 1999", "2000 - 4999", "5000以上"]
+fileprivate let priceCondition = [[0, 10000000], [0, 99], [100, 499], [500, 999], [1000, 1999], [2000, 4999], [5000, 10000000]]
 
 class CategoryController: BaseController {
 
@@ -117,7 +117,7 @@ class CategoryController: BaseController {
             make.top.equalTo(menuView.snp.bottom)
             make.right.equalTo(view).offset(-6)
             make.left.equalTo(view.snp.centerX)
-            make.height.equalTo(200)
+            make.height.equalTo(280)
         }
     }
     
