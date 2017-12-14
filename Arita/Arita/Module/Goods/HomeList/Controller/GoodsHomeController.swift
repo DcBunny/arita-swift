@@ -231,10 +231,10 @@ extension GoodsHomeController: ONAPIManagerParamSource {
             return ["categoryID": 5]
         } else {
             if goodsNum == -1 {
-                return ["timestamp": 0, "goodsNum": 20]
+                return ["timestamp": 0, "goodsNum": 40]
             } else {
                 let timestamp = goodsArray[goodsArray.count - 1]["publish_time"].stringValue
-                return ["timestamp": timestamp, "goodsNum": 20]
+                return ["timestamp": timestamp, "goodsNum": 40]
             }
         }
     }

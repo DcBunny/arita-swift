@@ -31,10 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // SetUp RootController
         ONServiceFactory.sharedInstance.dataSource = self
-//        chooseRootVC(isShowFake: false, with: nil)
         adaptationIOS11()
         initialShareSDK()
-        beginMonitorPerformance()
+//        beginMonitorPerformance()
         chooseRootVC()
         
         return true
