@@ -91,7 +91,7 @@ extension DailyCheckCell {
     fileprivate var dailyImageView: UIImageView {
         if _dailyImageView == nil {
             _dailyImageView = UIImageView()
-            _dailyImageView?.contentMode = .scaleToFill
+            _dailyImageView?.contentMode = .scaleAspectFit
             
             return _dailyImageView!
         }
