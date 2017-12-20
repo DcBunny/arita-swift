@@ -99,9 +99,11 @@ class ArticleHomeTataCell: UITableViewCell {
         }
     }
     
-    public var color = Color.hexea9120! {
+    public var channelColor = Color.hexea9120 {
         didSet {
-            titleLabel.attributedText = titleText.withColorCircle(color: color)
+            guard channelColor != nil else { return }
+            titleLabel.textColor = channelColor!
+            titleLabel.attributedText = titleText.withColorCircle(color: channelColor!)
         }
     }
     

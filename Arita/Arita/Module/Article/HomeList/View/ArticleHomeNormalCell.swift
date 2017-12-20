@@ -93,9 +93,11 @@ class ArticleHomeNormalCell: UITableViewCell {
         }
     }
     
-    public var color = Color.hex55bde2! {
+    public var channelColor = Color.hex55bde2 {
         didSet {
-            titleLabel.attributedText = titleText.withColorCircle(color: color)
+            guard channelColor != nil else { return }
+            titleLabel.textColor = channelColor!
+            titleLabel.attributedText = titleText.withColorCircle(color: channelColor!)
         }
     }
     

@@ -32,7 +32,7 @@ extension String {
     
     /// 首页跟帖用户评论样式
     public func convertCommentString() -> NSAttributedString? {
-        let stringArr = self.characters.split(separator: "+", maxSplits: 1).map(String.init)
+        let stringArr = self.split(separator: "+", maxSplits: 1).map(String.init)
         var author = ""
         var comment = ""
         if stringArr.count == 1 {

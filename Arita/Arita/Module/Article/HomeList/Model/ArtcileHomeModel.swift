@@ -35,6 +35,7 @@ struct ArticleHomeModel {
     var channelId: Int
     var categoryId: Int
     var channelName: String
+    var channelColor: String
     var id: Int // 实际上是详情里的文章ID，需要后续做对比
     
     init(data articleInfo: JSON) {
@@ -60,6 +61,7 @@ struct ArticleHomeModel {
         self.categoryId = articleInfo["category_ID"].intValue
         self.channelName = articleInfo["channel_name"].stringValue
         self.id = articleInfo["ID"].intValue
+        self.channelColor = articleInfo["channel_color"].stringValue
     }
     
     static var initial: ArticleHomeModel {
