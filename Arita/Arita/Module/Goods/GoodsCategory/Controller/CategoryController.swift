@@ -206,8 +206,8 @@ class CategoryController: BaseController {
     fileprivate var goodsArray: [JSON] = []
     
     fileprivate var childId = -1
-    fileprivate var minPrice = 0
-    fileprivate var maxPrice = 30000
+    fileprivate var minPrice = -1
+    fileprivate var maxPrice = -1
     fileprivate var goodsNum = -1
     fileprivate var currentPage = 1
 }
@@ -274,9 +274,15 @@ extension CategoryController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
         if manager === goodsChildListManager {
-            var params: [String: Any] = ["channel_ID": id!, "goodsNum": 40, "minPrice": minPrice, "maxPrice": maxPrice, "currentPage": currentPage]
+            var params: [String: Any] = ["channel_ID": id!, "goodsNum": 40, "currentPage": currentPage]
             if childId != -1 {
                 params["childID"] = childId
+            }
+            if minPrice != -1 {
+                params["minPrice"] = minPrice
+            }
+            if maxPrice != -1 {
+                params["maxPrice"] = maxPrice
             }
             
             return params
