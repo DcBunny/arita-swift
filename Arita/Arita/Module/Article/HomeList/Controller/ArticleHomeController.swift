@@ -228,6 +228,7 @@ extension ArticleHomeController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let channelColor = UIColor(hexString: articleModel[indexPath.section][indexPath.row].channelColor)
         switch articleModel[indexPath.section][indexPath.row].cellType {
         case .tata:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ArticleHomeTataCell.self), for: indexPath) as! ArticleHomeTataCell
@@ -235,6 +236,7 @@ extension ArticleHomeController: UITableViewDataSource {
             cell.picUrl = articleModel[indexPath.section][indexPath.row].picUrl
             cell.contentText = articleModel[indexPath.section][indexPath.row].contentText
             cell.isJGG = false
+            cell.channelColor = channelColor
             return cell
             
         case .normal:
@@ -242,6 +244,7 @@ extension ArticleHomeController: UITableViewDataSource {
             cell.titleText = articleModel[indexPath.section][indexPath.row].titleText
             cell.picUrl = articleModel[indexPath.section][indexPath.row].picUrl
             cell.contentText = articleModel[indexPath.section][indexPath.row].contentText
+            cell.channelColor = channelColor
             return cell
             
         case .allText:
@@ -249,6 +252,7 @@ extension ArticleHomeController: UITableViewDataSource {
             cell.titleText = articleModel[indexPath.section][indexPath.row].titleText
             cell.username = articleModel[indexPath.section][indexPath.row].userName
             cell.usercomment = articleModel[indexPath.section][indexPath.row].contentText
+            cell.channelColor = channelColor
             return cell
             
         case .jgg:
@@ -256,6 +260,7 @@ extension ArticleHomeController: UITableViewDataSource {
             cell.titleText = articleModel[indexPath.section][indexPath.row].titleText
             cell.picUrl = articleModel[indexPath.section][indexPath.row].picUrl
             cell.contentText = articleModel[indexPath.section][indexPath.row].contentText
+            cell.channelColor = channelColor
             cell.isJGG = true
             return cell
         }
