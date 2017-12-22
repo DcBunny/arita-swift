@@ -41,7 +41,8 @@ struct ArticleHomeModel {
     init(data articleInfo: JSON) {
         if articleInfo["show_jiu"] != JSON.null && articleInfo["show_jiu"] == 1 {
             self.cellType = .jgg
-        } else if articleInfo["show_jiu"] == JSON.null {
+        } else if articleInfo["show_jiu"] == JSON.null || articleInfo["channel_ID"].intValue == 44 {
+            // channel_ID = 44 代表日签 日签和塔塔报首页用一个cell
             self.cellType = .tata
         } else if articleInfo["category_ID"].intValue == 7 {
             // categoryID = 7 代表纯文本

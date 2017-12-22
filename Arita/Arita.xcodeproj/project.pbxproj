@@ -154,6 +154,7 @@
 		C1F17BBF1F6937F3001153BA /* ArticleHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BBE1F6937F3001153BA /* ArticleHomeController.swift */; };
 		C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC01F693825001153BA /* GoodsHomeController.swift */; };
 		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
+		C1FD08501FED08360033495E /* BaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD084F1FED08350033495E /* BaseNavController.swift */; };
 		FD0E21A41F9EDF4C00C51C81 /* GoodsAblumListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */; };
 		FD0E21A61F9F199700C51C81 /* GoodsAlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A51F9F199700C51C81 /* GoodsAlbumManager.swift */; };
 		FD0E21A81F9F27E900C51C81 /* GoodsThirdCategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A71F9F27E900C51C81 /* GoodsThirdCategoryManager.swift */; };
@@ -347,6 +348,7 @@
 		C1F17BBE1F6937F3001153BA /* ArticleHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHomeController.swift; sourceTree = "<group>"; };
 		C1F17BC01F693825001153BA /* GoodsHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsHomeController.swift; sourceTree = "<group>"; };
 		C1F17BC21F69382E001153BA /* MineHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineHomeController.swift; sourceTree = "<group>"; };
+		C1FD084F1FED08350033495E /* BaseNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavController.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
 		FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAblumListManager.swift; sourceTree = "<group>"; };
 		FD0E21A51F9F199700C51C81 /* GoodsAlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumManager.swift; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 		C12509B41F6909BC006ED55E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C1FD084F1FED08350033495E /* BaseNavController.swift */,
 				C12509B21F69097C006ED55E /* BaseController.swift */,
 				C1F17BB71F6934D0001153BA /* RootController.swift */,
 				C11CCE921FBC56F70053162A /* FakeSetUpController.swift */,
@@ -1271,7 +1274,6 @@
 		FD74AF6A1F987F7000938B06 /* GoodsController */ = {
 			isa = PBXGroup;
 			children = (
-				FD74AF6C1F987FA100938B06 /* View */,
 				FD74AF6B1F987F9000938B06 /* Controller */,
 			);
 			path = GoodsController;
@@ -1283,13 +1285,6 @@
 				FD74AF6D1F987FFE00938B06 /* GoodsController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		FD74AF6C1F987FA100938B06 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		FD74AF6F1F9884F000938B06 /* WRCycleScrollView */ = {
@@ -1641,6 +1636,7 @@
 				FD74AF731F9884FA00938B06 /* WRCycleCell.swift in Sources */,
 				C1AED6611FA0703200D4374F /* ArticleCollectionViewCell.swift in Sources */,
 				C12509F81F691F78006ED55E /* Cachable.swift in Sources */,
+				C1FD08501FED08360033495E /* BaseNavController.swift in Sources */,
 				C12509FC1F691F78006ED55E /* NSData+Cache.swift in Sources */,
 				FD2748A91F959EBC0056F8C4 /* CategoryController.swift in Sources */,
 				C12509A11F69079E006ED55E /* ONServiceFactory.swift in Sources */,

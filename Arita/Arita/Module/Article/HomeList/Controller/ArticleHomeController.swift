@@ -72,7 +72,7 @@ class ArticleHomeController: BaseController {
     
     // MARK: - Event Response
     @objc private func gotoCalendar() {
-        let dailyCheckController = DailyCheckController(with: nil)
+        let dailyCheckController = DailyCheckController(with: nil, channelID: 44)
         dailyCheckController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(dailyCheckController, animated: true)
     }
@@ -299,14 +299,10 @@ extension ArticleHomeController: UITableViewDelegate {
 //                    navigationController?.pushViewController(articleDetailController, animated: true)
 //                }
 //            }
-            if articleModel[indexPath.section][indexPath.row].channelId == 44 {   // 44是日签， 点进去之后是列表，不能在点了
-                let dailyCheckController = DailyCheckController(with: articleModel[indexPath.section][indexPath.row].id)
+            if articleModel[indexPath.section][indexPath.row].channelId == 44 || articleModel[indexPath.section][indexPath.row].channelId == 34 {   // 44是日签/ 34是乐活段子， 点进去之后是列表，不能在点了
+                let dailyCheckController = DailyCheckController(with: articleModel[indexPath.section][indexPath.row].id, channelID: articleModel[indexPath.section][indexPath.row].channelId)
                 dailyCheckController.hidesBottomBarWhenPushed = true
                 navigationController?.pushViewController(dailyCheckController, animated: true)
-            } else if articleModel[indexPath.section][indexPath.row].channelId == 34 {  // 34是乐活(社区)，点进去之后是列表，再点进去到详情
-                let articleListController = ArticleCollectionController(with: articleModel[indexPath.section][indexPath.row], isFromHome: true, isTata: false)
-                articleListController.hidesBottomBarWhenPushed = true
-                navigationController?.pushViewController(articleListController, animated: true)
             } else {
                 let shareUrl = API.articleDetailUrl + "\(articleModel[indexPath.section][indexPath.row].id)"
                 let content = [ShareKey.shareUrlKey: shareUrl,

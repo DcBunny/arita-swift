@@ -32,8 +32,8 @@ class RootController: UITabBarController {
     
     // MARK: - Controller Settings
     private func setSubController() {
-        let articleNav = UINavigationController(rootViewController: ArticleHomeController())
-        let goodsNav = UINavigationController(rootViewController: GoodsHomeController())
+        let articleNav = BaseNavController(rootViewController: ArticleHomeController())
+        let goodsNav = BaseNavController(rootViewController: GoodsHomeController())
         viewControllers = [articleNav, goodsNav]
     }
     

@@ -66,6 +66,7 @@ class TataCollectionViewCell: UICollectionViewCell {
         contentLabel.snp.makeConstraints { (make) in
             make.top.equalTo(titleLabel.snp.bottom).offset(35)
             make.left.right.equalTo(titleLabel)
+            make.bottom.lessThanOrEqualTo(bodyView).offset(-10)
         }
     }
     
@@ -144,6 +145,7 @@ extension TataCollectionViewCell {
         if _titleLabel == nil {
             _titleLabel = UILabel()
             _titleLabel?.numberOfLines = 2
+            _titleLabel?.lineBreakMode = .byTruncatingTail
             
             return _titleLabel!
         }
@@ -156,6 +158,7 @@ extension TataCollectionViewCell {
             _contentLabel = UILabel()
             _contentLabel?.textAlignment = .left
             _contentLabel?.numberOfLines = 5
+            _contentLabel?.lineBreakMode = .byTruncatingTail
             
             return _contentLabel!
         }

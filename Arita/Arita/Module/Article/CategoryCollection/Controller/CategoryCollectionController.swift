@@ -140,8 +140,8 @@ extension CategoryCollectionController: UICollectionViewDelegate {
             let tataDailyController = ArticleCollectionController(with: channelModel[indexPath.row], isFromHome: false, isTata: true)
             tataDailyController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(tataDailyController, animated: true)
-        } else if channelModel[indexPath.row].channelID == 44 {
-            let dailyCheckController = DailyCheckController(with: nil)
+        } else if channelModel[indexPath.row].channelID == 44 || channelModel[indexPath.row].channelID == 34 {
+            let dailyCheckController = DailyCheckController(with: nil, channelID: channelModel[indexPath.row].channelID)
             dailyCheckController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(dailyCheckController, animated: true)
         } else {

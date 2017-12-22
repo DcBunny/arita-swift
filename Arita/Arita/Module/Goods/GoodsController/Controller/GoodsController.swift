@@ -54,7 +54,11 @@ class GoodsController: BaseController {
     
     private func layoutPageViews() {
         pageView.snp.makeConstraints { (make) in
-            make.edges.equalTo(UIEdgeInsets(top: 5, left: 6, bottom: 6, right: 6))
+            if UIDevice.current.isIphoneX() {
+                make.edges.equalTo(UIEdgeInsets(top: 5, left: 6, bottom: 25, right: 6))
+            } else {
+                make.edges.equalTo(UIEdgeInsets(top: 5, left: 6, bottom: 6, right: 6))
+            }
         }
         
         cycleImageView.snp.makeConstraints { (make) in
@@ -292,7 +296,11 @@ extension GoodsController {
             _contentLabel?.font = Font.size13
             _contentLabel?.textColor = Color.hex919191
             _contentLabel?.textAlignment = .center
-            _contentLabel?.numberOfLines = 3
+            if UIDevice.current.isIphoneX() {
+                _contentLabel?.numberOfLines = 6
+            } else {
+                _contentLabel?.numberOfLines = 3
+            }
             
             return _contentLabel!
         }

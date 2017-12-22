@@ -49,8 +49,14 @@ class GoodsAlbumCollectionController: BaseController {
     }
     
     private func layoutPageViews() {
-        goodsAlbumCollectionView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view)
+        if #available(iOS 11.0, *) {
+            goodsAlbumCollectionView.snp.makeConstraints({ (make) in
+                make.edges.equalTo(view.safeAreaInsets)
+            })
+        } else {
+            goodsAlbumCollectionView.snp.makeConstraints { (make) in
+                make.edges.equalTo(view)
+            }
         }
     }
     

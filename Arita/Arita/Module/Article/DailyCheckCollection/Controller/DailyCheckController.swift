@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 /**
- DailyCheckController **日签打卡机**页主页
+ DailyCheckController **日签打卡机/乐活段子**页主页
  */
 class DailyCheckController: BaseController {
 
@@ -31,8 +31,9 @@ class DailyCheckController: BaseController {
     }
     
     // MARK: - Init Methods
-    init(with articleID: Int?) {
+    init(with articleID: Int?, channelID: Int!) {
         self.articleID = articleID
+        self.channelID = channelID
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -43,7 +44,11 @@ class DailyCheckController: BaseController {
     // MARK: - Controller Settings
     private func setNavigationBar() {
         setNaviBar(type: .normal)
-        setNaviBar(title: "日签打卡机", font: Font.size15)
+        if channelID == 44 {
+            setNaviBar(title: "日签打卡机", font: Font.size15)
+        } else if channelID == 34 {
+            setNaviBar(title: "乐活段子", font: Font.size15)
+        }
     }
     
     private func addPageViews() {
@@ -143,13 +148,14 @@ class DailyCheckController: BaseController {
     fileprivate var imageUrlArray = [String]()
     fileprivate var currentPage = 0
     fileprivate var articleID: Int?
+    fileprivate var channelID: Int!
 }
 
 // MARK: - ONAPIManagerParamSource
 extension DailyCheckController: ONAPIManagerParamSource {
     
     func paramsForApi(manager: ONAPIBaseManager) -> ONParamData {
-        return ["timestamp": 0, "articlesNum": 100, "channel_ID": 44]
+        return ["timestamp": 0, "articlesNum": 100, "channel_ID": channelID]
     }
 }
 

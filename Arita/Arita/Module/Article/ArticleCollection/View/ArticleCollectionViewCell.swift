@@ -153,6 +153,7 @@ extension ArticleCollectionViewCell {
         if _titleLabel == nil {
             _titleLabel = UILabel()
             _titleLabel?.numberOfLines = 2
+            _titleLabel?.lineBreakMode = .byTruncatingTail
             
             return _titleLabel!
         }
@@ -164,7 +165,12 @@ extension ArticleCollectionViewCell {
         if _contentLabel == nil {
             _contentLabel = UILabel()
             _contentLabel?.textAlignment = .left
-            _contentLabel?.numberOfLines = 3
+            if UIDevice.current.isIphoneX() {
+                _contentLabel?.numberOfLines = 6
+            } else {
+                _contentLabel?.numberOfLines = 3
+            }
+            _contentLabel?.lineBreakMode = .byTruncatingTail
             
             return _contentLabel!
         }

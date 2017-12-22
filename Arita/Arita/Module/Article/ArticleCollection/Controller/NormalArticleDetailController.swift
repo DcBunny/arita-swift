@@ -77,7 +77,6 @@ class NormalArticleDetailController: BaseController {
             }
         }
         
-        
         bodyView.snp.makeConstraints { (make) in
             make.edges.equalTo(shadowView)
         }

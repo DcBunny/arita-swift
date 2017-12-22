@@ -144,6 +144,10 @@ extension String {
         }
         return ((self as NSString).boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attr, context: nil)).size
     }
+    
+    public func sizeForString(_ attribute: [String: Any], in size: CGSize) -> CGSize {
+        return ((self as NSString).boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attribute, context: nil)).size
+    }
 }
 
 /**

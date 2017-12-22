@@ -25,6 +25,12 @@ class MyGoodsController: BaseController
         initPageData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        initPageData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -37,12 +43,30 @@ class MyGoodsController: BaseController
     
     private func addPageViews() {
         view.addSubview(likeCollection)
+        view.addSubview(noResultView)
+        noResultView.addSubview(noResultIcon)
+        noResultView.addSubview(noResultLabel)
     }
     
     private func layoutPageViews() {
         likeCollection.snp.makeConstraints { (make) in
             make.top.left.equalTo(view).offset(10)
             make.bottom.right.equalTo(view).offset(-10)
+        }
+        
+        noResultView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        
+        noResultIcon.snp.makeConstraints { (make) in
+            make.centerX.equalTo(noResultView)
+            make.centerY.equalTo(noResultView).offset(-30)
+            make.size.equalTo(CGSize(width: 120, height: 120))
+        }
+        
+        noResultLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(noResultIcon)
+            make.top.equalTo(noResultIcon.snp.bottom).offset(25)
         }
     }
     
@@ -62,6 +86,9 @@ class MyGoodsController: BaseController
     
     // MARK: - Controller Attributes
     fileprivate var _likeCollection: UICollectionView?
+    fileprivate var _noResultView: UIView?
+    fileprivate var _noResultIcon: UIImageView?
+    fileprivate var _noResultLabel: UILabel?
     
     fileprivate var _goodsListManager: MyGoodsManager?
     fileprivate var goodsArray: [JSON] = []
@@ -82,7 +109,15 @@ extension MyGoodsController: ONAPIManagerCallBackDelegate {
         let json = JSON(data: data as! Data)
         goodsArray = json.arrayValue
         
-        likeCollection.reloadData()
+        if goodsArray.count == 0 {
+            likeCollection.isHidden = true
+            noResultView.isHidden = false
+        } else {
+            likeCollection.isHidden = false
+            noResultView.isHidden = true
+            likeCollection.reloadData()
+        }
+        
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
@@ -139,6 +174,36 @@ extension MyGoodsController {
         }
         
         return _likeCollection!
+    }
+    
+    fileprivate var noResultView: UIView {
+        if _noResultView == nil {
+            _noResultView = UIView()
+            _noResultView?.isHidden = true
+        }
+        
+        return _noResultView!
+    }
+    
+    fileprivate var noResultIcon: UIImageView {
+        if _noResultIcon == nil {
+            _noResultIcon = UIImageView()
+            _noResultIcon?.image = UIImage(named: Icon.noResultIcon)
+        }
+        
+        return _noResultIcon!
+    }
+    
+    fileprivate var noResultLabel: UILabel {
+        if _noResultLabel == nil {
+            _noResultLabel = UILabel()
+            _noResultLabel?.text = "暂时没有收藏"
+            _noResultLabel?.font = Font.size13
+            _noResultLabel?.textColor = Color.hex919191
+            _noResultLabel?.textAlignment = .center
+        }
+        
+        return _noResultLabel!
     }
     
     fileprivate var goodsListManager: MyGoodsManager {

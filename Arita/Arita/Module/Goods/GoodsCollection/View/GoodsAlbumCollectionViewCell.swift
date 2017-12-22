@@ -47,6 +47,7 @@ class GoodsAlbumCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(bodyView).offset(25)
             make.right.equalTo(bodyView).offset(-15)
             make.bottom.equalTo(picView.snp.top).offset(-25)
+            make.height.equalTo(calculateHeight() + 10)
         }
         
         picView.snp.makeConstraints { (make) in
@@ -71,6 +72,17 @@ class GoodsAlbumCollectionViewCell: UICollectionViewCell {
             make.right.equalTo(bodyView).offset(-15)
             make.bottom.equalTo(numLabel)
         }
+    }
+    
+    private func calculateHeight() -> CGFloat {
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineSpacing = 8
+        paraStyle.alignment = .center
+        let attribute = [NSFontAttributeName: Font.size20D!,
+                               NSForegroundColorAttributeName: Color.hexea9120!,
+                               NSParagraphStyleAttributeName: paraStyle]
+        let size = "一件牛仔裤是风景，一堆牛仔裤就是沙发啦".sizeForString(attribute, in: CGSize(width: (Size.screenWidth - 30), height: CGFloat(MAXFLOAT))).height
+        return size
     }
     
     // MARK: - Public Attributes
@@ -127,6 +139,8 @@ extension GoodsAlbumCollectionViewCell {
         if _titleLabel == nil {
             _titleLabel = UILabel()
             _titleLabel?.textAlignment = .center
+            _titleLabel?.numberOfLines = 2
+            _titleLabel?.lineBreakMode = .byTruncatingTail
         }
         
         return _titleLabel!
