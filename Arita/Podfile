@@ -22,8 +22,8 @@ target 'Arita' do
     pod 'HandyJSON', '1.6.1'
     pod 'Bugly', '2.4.8'
     pod 'IQKeyboardManagerSwift', '4.0.10'
-    pod 'GDPerformanceView-Swift', '1.2.0'
     pod 'AliyunOSSiOS', '2.6.3'
+    pod 'JPush', '3.0.7'
     
     # ShareSDK
     pod 'ShareSDK3'

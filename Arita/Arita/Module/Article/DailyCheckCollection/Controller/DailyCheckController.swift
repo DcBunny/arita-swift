@@ -25,6 +25,21 @@ class DailyCheckController: BaseController {
         loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 极光推送
+        let pushJudge = UserDefaults.standard
+        if let push = pushJudge.object(forKey: "push") as? String {
+            if push == "push" {
+                let pushJudge = UserDefaults.standard
+                pushJudge.set("", forKey: "push")
+                pushJudge.synchronize()
+                setBackBtn(.dismiss)
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

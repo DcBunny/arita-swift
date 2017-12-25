@@ -92,6 +92,13 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>jpush.cn</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 			<key>qq.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

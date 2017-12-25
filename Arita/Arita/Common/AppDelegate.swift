@@ -11,8 +11,8 @@ import XCGLogger
 import Bugly
 import SwiftyJSON
 import IQKeyboardManagerSwift
-import GDPerformanceView_Swift
 import Kingfisher
+
 
 // 全局的日志变量
 let log = XCGLogger.default
@@ -21,6 +21,7 @@ let kBuglyAppId = "900037900"
 let kUserHasOnboard = "kUserHasOnboard"
 let aLiYunKey = "LTAIUpgXwM5M1UIw"
 let aLiYunSecret = "jGVoCI1bQymrgkY4RBpVx721bmgEz6"
+let kJPushKey = ""
 var isStatusHidden = !UIDevice.current.isIphoneX()
 
 @UIApplicationMain
@@ -29,11 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // SetUp RootController
+        registerForPushNotifications(application, with: launchOptions)
         ONServiceFactory.sharedInstance.dataSource = self
+        configLog()
         adaptationIOS11()
         initialShareSDK()
-//        beginMonitorPerformance()
         chooseRootVC()
         
         return true
@@ -50,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        application.applicationIconBadgeNumber = 0
+        application.cancelAllLocalNotifications()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -66,6 +68,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: ONServiceFactoryDataSource {
     internal func servicesKindsOfServiceFactory() -> [String : String] {
         return [kArita: "Arita"]
+    }
+}
+
+// MARK: - 设置log
+extension AppDelegate {
+    fileprivate func configLog() {
+        log.setup(level: .debug, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLevel: .debug)
     }
 }
 
@@ -195,10 +204,100 @@ extension AppDelegate {
     }
 }
 
-// MARK: - 显示FPS
-extension AppDelegate {
-    fileprivate func beginMonitorPerformance() {
-        GDPerformanceMonitor.sharedInstance.startMonitoring()
+// MARK: - Push远程通知注册
+extension AppDelegate: JPUSHRegisterDelegate {
+    func registerForPushNotifications(_ application: UIApplication, with launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        // 通知注册实体类
+        let entity = JPUSHRegisterEntity()
+        entity.types = Int(JPAuthorizationOptions.alert.rawValue) |  Int(JPAuthorizationOptions.sound.rawValue) |  Int(JPAuthorizationOptions.badge.rawValue)
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
+        // 注册极光推送
+        JPUSHService.setup(withOption: launchOptions, appKey: kJPushKey, channel:"Publish channel" , apsForProduction: false)
+        
+        JPUSHService.registrationIDCompletionHandler { (resCode, registrationID) in
+            if resCode == 0{
+                log.info("registrationID获取成功：\(String(describing: registrationID))")
+            }else {
+                log.info("registrationID获取失败：\(String(describing: registrationID))")
+            }
+        }
+        
+        //TODO: 生产环境关闭
+//        JPUSHService.setLogOFF()
+        
+        // 获取推送消息
+        let remote = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? Dictionary<String,Any>
+        //
+        // 这个判断是在程序没有运行的情况下收到通知，如果remote不为空，就代表应用在未打开的时候收到了推送消息，点击通知跳转页面
+        if remote != nil {
+            // 收到推送消息实现的方法
+            self.perform(#selector(receivePush), with: remote, afterDelay: 1.0);
+        }
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        JPUSHService.registerDeviceToken(deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        log.info("did Fail To Register For Remote Notifications With Error:\(error)")
+    }
+    
+    /**
+     收到静默推送的回调
+     
+     @param application  UIApplication 实例
+     @param userInfo 推送时指定的参数
+     @param completionHandler 完成回调
+     */
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        JPUSHService.handleRemoteNotification(userInfo)
+        log.info("iOS7及以上系统，收到通知:\(userInfo)")
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    // iOS 10.x 需要
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, willPresent notification: UNNotification!, withCompletionHandler completionHandler: ((Int) -> Void)!) {
+        
+        let userInfo = notification.request.content.userInfo
+        if notification.request.trigger is UNPushNotificationTrigger {
+            log.info("iOS10 前台收到远程通知:\(userInfo)")
+            JPUSHService.handleRemoteNotification(userInfo)
+        } else {
+            log.info("iOS10 前台收到本地通知:\(userInfo)")
+        }
+        // 需要执行这个方法，选择是否提醒用户，通过alert方法提醒
+        completionHandler(Int(UNNotificationPresentationOptions.alert.rawValue))
+    }
+    
+    @available(iOS 10.0, *)
+    func jpushNotificationCenter(_ center: UNUserNotificationCenter!, didReceive response: UNNotificationResponse!, withCompletionHandler completionHandler: (() -> Void)!) {
+        
+        let userInfo = response.notification.request.content.userInfo
+        if response.notification.request.trigger is UNPushNotificationTrigger {
+            log.info("iOS10 收到远程通知:\(userInfo)")
+            JPUSHService.handleRemoteNotification(userInfo)
+        }
+        completionHandler()
+    }
+    
+    // 接收到推送实现的方法
+    func receivePush(_ userInfo : Dictionary<String,Any>) {
+        goToDailyCheckViewController()
+    }
+    
+    // 跳转至日签页面
+    func goToDailyCheckViewController() {
+        //将字段存入本地，因为要在你要跳转的页面用它来判断
+        let pushJudge = UserDefaults.standard
+        pushJudge.set("push", forKey: "push")
+        pushJudge.synchronize()
+        
+        let dailyCheckController = DailyCheckController(with: nil, channelID: 44)
+        let dailyNav = BaseNavController(rootViewController: dailyCheckController)
+        dailyNav.hidesBottomBarWhenPushed = true
+        self.window?.rootViewController?.present(dailyNav, animated: true, completion: nil)
     }
 }
 

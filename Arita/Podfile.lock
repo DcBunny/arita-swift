@@ -3,9 +3,11 @@ PODS:
   - ALCameraViewController (2.0.3)
   - AliyunOSSiOS (2.6.3)
   - Bugly (2.4.8)
-  - GDPerformanceView-Swift (1.2.0)
   - HandyJSON (1.6.1)
   - IQKeyboardManagerSwift (4.0.10)
+  - JCore (1.1.6)
+  - JPush (3.0.7):
+    - JCore (~> 1.1.6)
   - Kingfisher (3.7.2)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.12)
@@ -42,9 +44,9 @@ DEPENDENCIES:
   - ALCameraViewController (= 2.0.3)
   - AliyunOSSiOS (= 2.6.3)
   - Bugly (= 2.4.8)
-  - GDPerformanceView-Swift (= 1.2.0)
   - HandyJSON (= 1.6.1)
   - IQKeyboardManagerSwift (= 4.0.10)
+  - JPush (= 3.0.7)
   - Kingfisher (= 3.7.2)
   - MBProgressHUD (= 1.0.0)
   - MJRefresh (= 3.1.12)
@@ -67,9 +69,10 @@ SPEC CHECKSUMS:
   ALCameraViewController: 7b86c2888df0e63f53a801e9d96fe194f51157ec
   AliyunOSSiOS: 98d79abaceed7485ec0e28dd09c5464acf4a67a0
   Bugly: da3c02408c14838d498429320545a8e439392978
-  GDPerformanceView-Swift: 5f12f13dcdca4cb87f91ef91ba6b50981421c57f
   HandyJSON: dcc98115467462a4749db81bc8a9052607600bdf
   IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
+  JCore: 18fc8725124f26e55625eaf224659b3a999dcf63
+  JPush: 111b79b8a0169ab8fd4c486dac3ed166ed69293e
   Kingfisher: 5ddc4ac715615cc200de9fdc54ab1511061ea650
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
@@ -84,6 +87,6 @@ SPEC CHECKSUMS:
   WebViewJavascriptBridge: 791ee0e26d1bf15efe5fb7fb9666a71a19b89d77
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: dd5f58e7708beef28af6af405f656d34f50ddb2a
+PODFILE CHECKSUM: c71fd1ceefb4bbea1b4ed09850d7aba7062ad4b6
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
