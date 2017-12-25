@@ -37,7 +37,6 @@ class GoodsController: BaseController {
     
     // MARK: - Controller Settings
     private func setNavigationBar() {
-        setNaviBar(title: "良品类", font: Font.size15)
         setNaviBar(type: .normal)
     }
     
@@ -223,6 +222,10 @@ extension GoodsController: ONAPIManagerCallBackDelegate {
                 serverImages.append(thumb)
             }
             cycleImageView.serverImgArray = serverImages
+            if serverImages.count == 1 {
+                cycleImageView.isAutoScroll = false
+                cycleImageView.isEndlessScroll = false
+            }
             goodTitle = json["title"].stringValue
             titleLabel.text = goodTitle
             goodDetail = json["description"].stringValue
@@ -231,6 +234,7 @@ extension GoodsController: ONAPIManagerCallBackDelegate {
             buyLink = json["buy_link"].stringValue
             goodImg = json["thumb_path"].stringValue
             isLiked = json["userLike"].boolValue
+            setNaviBar(title: json["channel_name"].string, font: Font.size15)
         } else if manager === likeManager {
             if json["flag"].stringValue == "1" {
                 isLiked = !isLiked
