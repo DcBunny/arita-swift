@@ -92,7 +92,6 @@ extension MineNotificationTableViewCell {
         if _switchButton == nil {
             _switchButton = UISwitch()
             _switchButton?.isOn = false
-//            _switchButton?.onTintColor = Color.hexea9120
             
             return _switchButton!
         }

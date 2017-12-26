@@ -54,13 +54,26 @@ class MineSettingController: BaseController {
     }
     
     // MARK: - Event Responses
-    @objc fileprivate func switchAction(sender: UISwitch) {
-        if sender.isOn {
-            
-        } else {
-            print("关闭了")
-        }
-    }
+    // 暂时不要了
+//    @objc fileprivate func switchAction(sender: UISwitch) {
+//        if sender.isOn {
+//            let type = UIApplication.shared.currentUserNotificationSettings?.types
+//            if type?.rawValue == 0 {
+//                // 设置未打开
+//                let alert = UIAlertController(title: "iOS系统设置[通知]中阿里塔项未打开,无法收到推送，请先去设置。", message: nil, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "设置", style: .default, handler: { _ in
+//                    UIApplication.shared.openURL(NSURL(string: UIApplicationOpenSettingsURLString)! as URL)
+//                    sender.isOn = false
+//                }))
+//                alert.addAction(UIAlertAction(title: "暂时不要", style: .destructive, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }
+//
+//
+//        } else {
+//            print("关闭了")
+//        }
+//    }
     
     // MARK: - Private Methods
     /// 当前缓存总大小
@@ -134,8 +147,10 @@ class MineSettingController: BaseController {
     // MARK: - Controller Attributes
     fileprivate var _userInfoTableView: UITableView?
     
-    fileprivate var itemArray = ["清空缓存", "开启推送"]
-    fileprivate var infoArray = ["", "35"]
+//    fileprivate var itemArray = ["清空缓存", "开启推送"]
+    fileprivate var itemArray = ["清空缓存"]
+    fileprivate var infoArray = [""]
+//    fileprivate var infoArray = ["", "35"]
 }
 
 // MARK: - TableView Data Source
@@ -153,17 +168,17 @@ extension MineSettingController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MineUserInfoNormalTableViewCell.self), for: indexPath) as! MineUserInfoNormalTableViewCell
-            cell.itemName = itemArray[0]
-            cell.infoName = infoArray[0]
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MineNotificationTableViewCell.self), for: indexPath) as! MineNotificationTableViewCell
-            cell.itemName = itemArray[1]
-            cell.switchButton.addTarget(self, action: #selector(switchAction(sender:)), for: .valueChanged)
-            return cell
-        }
+//        if indexPath.row == 0 {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MineUserInfoNormalTableViewCell.self), for: indexPath) as! MineUserInfoNormalTableViewCell
+        cell.itemName = itemArray[0]
+        cell.infoName = infoArray[0]
+        return cell
+//        } else {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: MineNotificationTableViewCell.self), for: indexPath) as! MineNotificationTableViewCell
+//            cell.itemName = itemArray[1]
+//            cell.switchButton.addTarget(self, action: #selector(switchAction(sender:)), for: .valueChanged)
+//            return cell
+//        }
     }
 }
 
@@ -180,11 +195,11 @@ extension MineSettingController: UITableViewDelegate {
 extension MineSettingController {
     fileprivate var userInfoTableView: UITableView {
         if _userInfoTableView == nil {
-            _userInfoTableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
+            _userInfoTableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
             _userInfoTableView?.backgroundColor = Color.hexffffff!
             _userInfoTableView?.showsVerticalScrollIndicator = false
             _userInfoTableView?.separatorStyle = .none
-            _userInfoTableView?.register(MineNotificationTableViewCell.self, forCellReuseIdentifier: String(describing: MineNotificationTableViewCell.self))
+//            _userInfoTableView?.register(MineNotificationTableViewCell.self, forCellReuseIdentifier: String(describing: MineNotificationTableViewCell.self))
             _userInfoTableView?.register(MineUserInfoNormalTableViewCell.self, forCellReuseIdentifier: String(describing: MineUserInfoNormalTableViewCell.self))
             
             return _userInfoTableView!

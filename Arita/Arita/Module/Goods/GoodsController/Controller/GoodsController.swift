@@ -223,7 +223,6 @@ extension GoodsController: ONAPIManagerCallBackDelegate {
             }
             cycleImageView.serverImgArray = serverImages
             if serverImages.count == 1 {
-                cycleImageView.isAutoScroll = false
                 cycleImageView.isEndlessScroll = false
             }
             goodTitle = json["title"].stringValue
@@ -278,6 +277,7 @@ extension GoodsController {
             _cycleImageView?.autoScrollInterval = 2
             _cycleImageView?.currentDotColor = Color.hexea9120!
             _cycleImageView?.otherDotColor = Color.hexd3d3d3!
+            _cycleImageView?.isAutoScroll = false
         }
         
         return _cycleImageView!

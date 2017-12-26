@@ -21,7 +21,7 @@ let kBuglyAppId = "900037900"
 let kUserHasOnboard = "kUserHasOnboard"
 let aLiYunKey = "LTAIUpgXwM5M1UIw"
 let aLiYunSecret = "jGVoCI1bQymrgkY4RBpVx721bmgEz6"
-let kJPushKey = ""
+let kJPushKey = "7a79bfe4442c4a56b924cf2e"
 var isStatusHidden = !UIDevice.current.isIphoneX()
 
 @UIApplicationMain
@@ -280,6 +280,7 @@ extension AppDelegate: JPUSHRegisterDelegate {
             JPUSHService.handleRemoteNotification(userInfo)
         }
         completionHandler()
+        goToDailyCheckViewController()
     }
     
     // 接收到推送实现的方法
