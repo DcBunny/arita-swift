@@ -12,7 +12,7 @@ import Bugly
 import SwiftyJSON
 import IQKeyboardManagerSwift
 import Kingfisher
-
+//import Ful
 
 // 全局的日志变量
 let log = XCGLogger.default

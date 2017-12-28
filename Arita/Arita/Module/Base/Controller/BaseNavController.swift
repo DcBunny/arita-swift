@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 /// 导航控制器基控制器
 class BaseNavController: UINavigationController, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
 

@@ -299,7 +299,7 @@ extension ArticleHomeController: UITableViewDelegate {
 //                    navigationController?.pushViewController(articleDetailController, animated: true)
 //                }
 //            }
-            if articleModel[indexPath.section][indexPath.row].channelId == 44 || articleModel[indexPath.section][indexPath.row].channelId == 34 {   // 44是日签/ 34是乐活段子， 点进去之后是列表，不能在点了
+            if articleModel[indexPath.section][indexPath.row].channelId == 44 || articleModel[indexPath.section][indexPath.row].channelId == 34 || articleModel[indexPath.section][indexPath.row].channelId == 35 || articleModel[indexPath.section][indexPath.row].channelId == 36 {   // 44是日签/ 34是乐活段子，35是百味人生，36是无主情话 点进去之后是列表，不能在点了
                 let dailyCheckController = DailyCheckController(with: articleModel[indexPath.section][indexPath.row].id, channelID: articleModel[indexPath.section][indexPath.row].channelId)
                 dailyCheckController.hidesBottomBarWhenPushed = true
                 navigationController?.pushViewController(dailyCheckController, animated: true)

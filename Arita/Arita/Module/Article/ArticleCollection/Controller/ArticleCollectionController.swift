@@ -115,7 +115,7 @@ class ArticleCollectionController: BaseController {
     }
     
     // MARK: - Controller Attributes
-    fileprivate var _articleCollectionView: UICollectionView?
+    fileprivate var _articleCollectionView: BaseCollectionView?
     fileprivate var conTitle: String?
     fileprivate var isTata: Bool
     fileprivate var isFromHome: Bool
@@ -254,10 +254,10 @@ extension ArticleCollectionController: UICollectionViewDelegate {
 
 // MARK: - Getters and Setters
 extension ArticleCollectionController {
-    fileprivate var articleCollectionView: UICollectionView {
+    fileprivate var articleCollectionView: BaseCollectionView {
         if _articleCollectionView == nil {
             let articleCollectionFlowLayout = ArticleCollectionFlowLayout()
-            _articleCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: articleCollectionFlowLayout)
+            _articleCollectionView = BaseCollectionView(frame: CGRect.zero, collectionViewLayout: articleCollectionFlowLayout)
             _articleCollectionView?.register(TataCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: TataCollectionViewCell.self))
             _articleCollectionView?.register(ArticleCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: ArticleCollectionViewCell.self))
             _articleCollectionView?.showsVerticalScrollIndicator = false

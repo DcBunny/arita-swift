@@ -155,6 +155,7 @@
 		C1F17BC11F693825001153BA /* GoodsHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC01F693825001153BA /* GoodsHomeController.swift */; };
 		C1F17BC31F69382E001153BA /* MineHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F17BC21F69382E001153BA /* MineHomeController.swift */; };
 		C1FD08501FED08360033495E /* BaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD084F1FED08350033495E /* BaseNavController.swift */; };
+		C1FE795E1FF490E4005818F5 /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FE795D1FF490E4005818F5 /* BaseCollectionView.swift */; };
 		FD0E21A41F9EDF4C00C51C81 /* GoodsAblumListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */; };
 		FD0E21A61F9F199700C51C81 /* GoodsAlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A51F9F199700C51C81 /* GoodsAlbumManager.swift */; };
 		FD0E21A81F9F27E900C51C81 /* GoodsThirdCategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0E21A71F9F27E900C51C81 /* GoodsThirdCategoryManager.swift */; };
@@ -350,6 +351,7 @@
 		C1F17BC21F69382E001153BA /* MineHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineHomeController.swift; sourceTree = "<group>"; };
 		C1F2F0A31FF0E44E00F6AF4B /* Arita.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Arita.entitlements; sourceTree = "<group>"; };
 		C1FD084F1FED08350033495E /* BaseNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavController.swift; sourceTree = "<group>"; };
+		C1FE795D1FF490E4005818F5 /* BaseCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
 		E53DE4927067868586D95729 /* Pods-Arita.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arita.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arita/Pods-Arita.debug.xcconfig"; sourceTree = "<group>"; };
 		FD0E21A31F9EDF4C00C51C81 /* GoodsAblumListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAblumListManager.swift; sourceTree = "<group>"; };
 		FD0E21A51F9F199700C51C81 /* GoodsAlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsAlbumManager.swift; sourceTree = "<group>"; };
@@ -1109,6 +1111,7 @@
 			children = (
 				C1DCB7A51FB5988D00106960 /* CalendarButton.swift */,
 				C1B23EE11FCD32CB00EC34BB /* DailyCheckSetupView.swift */,
+				C1FE795D1FF490E4005818F5 /* BaseCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1465,6 +1468,7 @@
 				"${BUILT_PRODUCTS_DIR}/ALCameraViewController/ALCameraViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AliyunOSSiOS/AliyunOSSiOS.framework",
+				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -1484,6 +1488,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ALCameraViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AliyunOSSiOS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDFullscreenPopGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -1671,6 +1676,7 @@
 				C12509A01F69079E006ED55E /* ONService.swift in Sources */,
 				C1B23EE21FCD32CB00EC34BB /* DailyCheckSetupView.swift in Sources */,
 				FD6DF45D1FB047D0007F5F93 /* RegisterController.swift in Sources */,
+				C1FE795E1FF490E4005818F5 /* BaseCollectionView.swift in Sources */,
 				C1A1DD931F8CD7850039B873 /* DailyCheckCell.swift in Sources */,
 				C12509D61F6912A8006ED55E /* UIImage+Extension.swift in Sources */,
 				C11B6ECC1F7D1DDA00EAAEB0 /* ShareModel.swift in Sources */,

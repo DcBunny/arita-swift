@@ -152,7 +152,7 @@ class DailyCheckController: BaseController {
     }
     
     // MARK: - Controller Attributes
-    fileprivate var _dailyCheckCollectionView: UICollectionView?
+    fileprivate var _dailyCheckCollectionView: BaseCollectionView?
     fileprivate var _shareButton: UIButton?
     fileprivate var articleAPIManager = ArticleAPIManager()
     fileprivate var isScrolling = false
@@ -268,10 +268,10 @@ extension DailyCheckController: UIScrollViewDelegate {
 
 // MARK: - Getters and Setters
 extension DailyCheckController {
-    fileprivate var dailyCheckCollectionView: UICollectionView {
+    fileprivate var dailyCheckCollectionView: BaseCollectionView {
         if _dailyCheckCollectionView == nil {
             let dailyCheckFlowLayout = DailyCheckFlowLayout()
-            _dailyCheckCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: dailyCheckFlowLayout)
+            _dailyCheckCollectionView = BaseCollectionView(frame: CGRect.zero, collectionViewLayout: dailyCheckFlowLayout)
             _dailyCheckCollectionView?.register(DailyCheckCell.self, forCellWithReuseIdentifier: String(describing: DailyCheckCell.self))
             _dailyCheckCollectionView?.showsVerticalScrollIndicator = false
             _dailyCheckCollectionView?.showsHorizontalScrollIndicator = false

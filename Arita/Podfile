@@ -24,10 +24,11 @@ target 'Arita' do
     pod 'IQKeyboardManagerSwift', '4.0.10'
     pod 'AliyunOSSiOS', '2.6.3'
     pod 'JPush', '3.0.7'
+    pod 'FDFullscreenPopGesture', '1.1'
     
     # ShareSDK
-    pod 'ShareSDK3'
-    pod 'MOBFoundation'
+    pod 'ShareSDK3', '4.0.2'
+    pod 'MOBFoundation' , '3.0.4'
     pod 'ShareSDK3/ShareSDKPlatforms/QQ'
     pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
     pod 'ShareSDK3/ShareSDKPlatforms/WeChat'

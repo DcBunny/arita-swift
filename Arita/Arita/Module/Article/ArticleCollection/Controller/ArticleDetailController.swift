@@ -102,7 +102,7 @@ class ArticleDetailController: BaseController {
     }
     
     // MARK: - Controller Attributes
-    fileprivate var _articleDetailCollectionView: UICollectionView?
+    fileprivate var _articleDetailCollectionView: BaseCollectionView?
     fileprivate var conTitle: String?
     fileprivate var time: String
     fileprivate var isScrolling = false
@@ -210,10 +210,10 @@ extension ArticleDetailController: UIScrollViewDelegate {
 
 // MARK: - Getters and Setters
 extension ArticleDetailController {
-    fileprivate var articleDetailCollectionView: UICollectionView {
+    fileprivate var articleDetailCollectionView: BaseCollectionView {
         if _articleDetailCollectionView == nil {
             let articleDetailFlowLayout = ArticleDetailFlowLayout()
-            _articleDetailCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: articleDetailFlowLayout)
+            _articleDetailCollectionView = BaseCollectionView(frame: CGRect.zero, collectionViewLayout: articleDetailFlowLayout)
             _articleDetailCollectionView?.register(ArticleDetailCell.self, forCellWithReuseIdentifier: String(describing: ArticleDetailCell.self))
             _articleDetailCollectionView?.showsVerticalScrollIndicator = false
             _articleDetailCollectionView?.showsHorizontalScrollIndicator = false

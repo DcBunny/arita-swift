@@ -83,7 +83,7 @@ class GoodsAlbumCollectionController: BaseController {
     }
     
     // MARK: - Controller Attributes
-    fileprivate var _goodsAlbumCollectionView: UICollectionView?
+    fileprivate var _goodsAlbumCollectionView: BaseCollectionView?
     fileprivate var conTitle: String?
     
     fileprivate var _goodsAlbumListManager: GoodsAblumListManager?
@@ -186,10 +186,10 @@ extension GoodsAlbumCollectionController: ONAPIManagerCallBackDelegate {
 
 // MARK: - Getters and Setters
 extension GoodsAlbumCollectionController {
-    fileprivate var goodsAlbumCollectionView: UICollectionView {
+    fileprivate var goodsAlbumCollectionView: BaseCollectionView {
         if _goodsAlbumCollectionView == nil {
             let goodsAlbumCollectionFlowLayout = GoodsAlbumCollectionFlowLayout()
-            _goodsAlbumCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: goodsAlbumCollectionFlowLayout)
+            _goodsAlbumCollectionView = BaseCollectionView(frame: CGRect.zero, collectionViewLayout: goodsAlbumCollectionFlowLayout)
             _goodsAlbumCollectionView?.register(GoodsAlbumCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: GoodsAlbumCollectionViewCell.self))
             _goodsAlbumCollectionView?.showsVerticalScrollIndicator = false
             _goodsAlbumCollectionView?.showsHorizontalScrollIndicator = false

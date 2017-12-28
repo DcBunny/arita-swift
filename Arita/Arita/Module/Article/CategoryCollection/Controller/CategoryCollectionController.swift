@@ -105,6 +105,7 @@ extension CategoryCollectionController: ONAPIManagerCallBackDelegate {
             channelModel.append(CategoryModel(data: data))
         }
         categoryCollectionView.reloadData()
+        categoryCollectionView.collectionViewLayout.invalidateLayout()
     }
     
     func managerCallAPIDidFailed(manager: ONAPIBaseManager) {
@@ -140,7 +141,7 @@ extension CategoryCollectionController: UICollectionViewDelegate {
             let tataDailyController = ArticleCollectionController(with: channelModel[indexPath.row], isFromHome: false, isTata: true)
             tataDailyController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(tataDailyController, animated: true)
-        } else if channelModel[indexPath.row].channelID == 44 || channelModel[indexPath.row].channelID == 34 {
+        } else if channelModel[indexPath.row].channelID == 44 || channelModel[indexPath.row].channelID == 34 || channelModel[indexPath.row].channelID == 35 || channelModel[indexPath.row].channelID == 36 {
             let dailyCheckController = DailyCheckController(with: nil, channelID: channelModel[indexPath.row].channelID)
             dailyCheckController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(dailyCheckController, animated: true)

@@ -69,7 +69,7 @@ class GoodsAlbumController: BaseController {
     }
     
     // MARK: - Controller Attributes
-    fileprivate var _collectionView: UICollectionView?
+    fileprivate var _collectionView: BaseCollectionView?
     
     fileprivate var id: String?
     fileprivate var _goodsAlbumManager: GoodsAlbumManager?
@@ -159,14 +159,14 @@ extension GoodsAlbumController: ONAPIManagerCallBackDelegate {
 // MARK: - Getters and Setters
 extension GoodsAlbumController {
     
-    fileprivate var collectionView: UICollectionView {
+    fileprivate var collectionView: BaseCollectionView {
         if _collectionView == nil {
             let flowLayout = UICollectionViewFlowLayout()
             flowLayout.scrollDirection = .vertical
             flowLayout.minimumLineSpacing = 5
             flowLayout.minimumInteritemSpacing = 5
             flowLayout.itemSize = CGSize(width: ((Size.screenWidth - 25) / 2), height: 275)
-            _collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+            _collectionView = BaseCollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
             _collectionView?.register(GoodsGridCell.self, forCellWithReuseIdentifier: String(describing: GoodsGridCell.self))
             _collectionView?.showsVerticalScrollIndicator = false
             _collectionView?.translatesAutoresizingMaskIntoConstraints = false
