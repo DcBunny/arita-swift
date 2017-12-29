@@ -272,8 +272,7 @@ extension GoodsController {
     
     fileprivate var cycleImageView: WRCycleScrollView {
         if _cycleImageView == nil {
-            _cycleImageView = WRCycleScrollView(frame: CGRect(x: 0, y: 0, width: Size.screenWidth - 12, height: Size.screenWidth - 12))
-            _cycleImageView?.imgsType = .SERVER
+            _cycleImageView = WRCycleScrollView(frame: CGRect(x: 0, y: 0, width: Size.screenWidth - 12, height: Size.screenWidth - 12), type: .SERVER, imgs: ["http:zhanwei.com/img"], descs: nil)
             _cycleImageView?.autoScrollInterval = 2
             _cycleImageView?.currentDotColor = Color.hexea9120!
             _cycleImageView?.otherDotColor = Color.hexd3d3d3!

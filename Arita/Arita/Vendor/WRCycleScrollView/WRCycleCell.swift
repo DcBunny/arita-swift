@@ -15,11 +15,11 @@ class WRCycleCell: UICollectionViewCell
 //=======================================================
 // MARK: 对外提供的属性
 //=======================================================
-    var imgSource:ImgSource = ImgSource.LOCAL(name: "placeholder")  {
+    var imgSource:ImgSource = ImgSource.LOCAL(name: "pic_placeholderLiangpin1x1")  {
         didSet {
             switch imgSource {
             case let .SERVER(url):
-                imgView.kf.setImage(with: url)
+                imgView.kf.setImage(with: url, placeholder: UIImage(named: "pic_placeholderLiangpin1x1"), options: [.transition(.fade(1))], progressBlock: nil, completionHandler: nil)
             case let .LOCAL(name):
                 imgView.image = UIImage(named: name)
             }

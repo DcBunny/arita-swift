@@ -89,7 +89,7 @@ class ArticleHomeTataCell: UITableViewCell {
     
     public var picUrl = "" {
         didSet {
-            picView.kf.setImage(with: URL(string: picUrl), placeholder: UIImage(named: Icon.placeHolderArticle11), options: nil, progressBlock: nil, completionHandler: nil)
+            picView.kf.setImage(with: URL(string: picUrl), placeholder: UIImage(named: Icon.placeHolderArticle11), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
         }
     }
     

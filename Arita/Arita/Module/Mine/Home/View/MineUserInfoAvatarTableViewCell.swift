@@ -72,7 +72,7 @@ class MineUserInfoAvatarTableViewCell: UITableViewCell {
     // MARK: - Public Attributes
     public var userAvatar = "" {
         didSet {
-            avatarImageView.kf.setImage(with: URL(string: userAvatar), placeholder: UIImage(named: Icon.userAvatar), options: nil, progressBlock: nil, completionHandler: nil)
+            avatarImageView.kf.setImage(with: URL(string: userAvatar), placeholder: UIImage(named: Icon.userAvatar), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
         }
     }
     

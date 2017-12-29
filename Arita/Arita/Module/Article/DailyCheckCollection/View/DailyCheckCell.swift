@@ -48,7 +48,7 @@ class DailyCheckCell: UICollectionViewCell {
     // MARK: - Public Attributes
     public var dailyImage = " " {
         didSet {
-            dailyImageView.kf.setImage(with: URL(string: dailyImage), placeholder: UIImage(named: Icon.placeHolderArticle32), options: nil, progressBlock: nil, completionHandler: nil)
+            dailyImageView.kf.setImage(with: URL(string: dailyImage), placeholder: UIImage(named: Icon.placeHolderArticle32), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
         }
     }
     

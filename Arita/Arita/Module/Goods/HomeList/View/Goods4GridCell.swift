@@ -76,7 +76,7 @@ extension Goods4GridCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GoodsGridCell.self), for: indexPath) as! GoodsGridCell
-        cell.goodImage.kf.setImage(with: URL(string: cellData![indexPath.row]["thumb_path"].stringValue))
+        cell.goodImage.kf.setImage(with: URL(string: cellData![indexPath.row]["thumb_path"].stringValue), placeholder: UIImage(named: "pic_placeholderLiangpin1x1"), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
         cell.goodLabel.text = cellData![indexPath.row]["title"].stringValue
         cell.goodPriceLabel.text = "¥" + cellData![indexPath.row]["price"].stringValue
         

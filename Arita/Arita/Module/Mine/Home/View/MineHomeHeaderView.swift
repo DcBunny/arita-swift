@@ -51,8 +51,8 @@ class MineHomeHeaderView: UITableViewHeaderFooterView {
     /// 用户头像
     public var userAvatar = "" {
         didSet {
-            userAvatarButton.kf.setImage(with: URL(string: userAvatar), for: .normal, placeholder: UIImage(named: Icon.userAvatar), options: nil, progressBlock: nil, completionHandler: nil)
-            userAvatarButton.kf.setImage(with: URL(string: userAvatar), for: .highlighted, placeholder: UIImage(named: Icon.userAvatar), options: nil, progressBlock: nil, completionHandler: nil)
+            userAvatarButton.kf.setImage(with: URL(string: userAvatar), for: .normal, placeholder: UIImage(named: Icon.userAvatar), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
+            userAvatarButton.kf.setImage(with: URL(string: userAvatar), for: .highlighted, placeholder: UIImage(named: Icon.userAvatar), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
         }
     }
     

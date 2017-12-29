@@ -26,7 +26,7 @@ class GoodsHomeController: BaseController
         layoutPageViews()
         setPageViews()
         setAPIManager()
-        initPageData()
+        loadPageData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,10 +73,6 @@ class GoodsHomeController: BaseController
         
         goodsListManager.paramSource = self
         goodsListManager.delegate = self
-    }
-    
-    private func initPageData() {
-        tableView.mj_header.beginRefreshing()
     }
     
     @objc private func loadPageData() {

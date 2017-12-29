@@ -88,10 +88,10 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     // MARK: - Public Attributes
     public var articleModel: ArticleModel = ArticleModel.initial {
         didSet {
-            picView.kf.setImage(with: URL(string: articleModel.articlePic), placeholder: UIImage(named: Icon.placeHolderArticle11), options: nil, progressBlock: nil, completionHandler: nil)
+            picView.kf.setImage(with: URL(string: articleModel.articlePic), placeholder: UIImage(named: Icon.placeHolderArticle11), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
             titleLabel.attributedText = articleModel.articleTitle.convertArticleTitleString()
             contentLabel.attributedText = articleModel.articleContent.convertArticleContentString()
-            authorLogoView.kf.setImage(with: URL(string: articleModel.authorLogo), placeholder: UIImage(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            authorLogoView.kf.setImage(with: URL(string: articleModel.authorLogo), placeholder: UIImage(named: ""), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
             authorNameLabel.text = articleModel.authorName
             timeLabel.text = articleModel.articleDate
         }

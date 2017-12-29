@@ -35,16 +35,6 @@ extension LatestGoodsAlbumManager: ONAPIManager {
 
 extension LatestGoodsAlbumManager: ONAPIManagerValidator {
     func manager(_ manager: ONAPIBaseManager, isCorrectWithParamsData data: ONParamData) -> Bool {
-        // 这里检测接口参数是否正确，例如可以检查输入的电话号码是否是符合规范的，如果返回false，则不会进行实际的请求。
-        //        if let errorMsg = ONCheckTool.checkPhoneNum(phone: data["username"] as? String) {
-        //            self.errorMessage = errorMsg
-        //            return false
-        //        }
-        
-        //        if let errorMsg = ONCheckTool.checkPassword(password: data["password"] as? String) {
-        //            self.errorMessage = errorMsg
-        //            return false
-        //        }
         return true
     }
     

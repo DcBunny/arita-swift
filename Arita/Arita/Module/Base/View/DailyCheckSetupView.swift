@@ -36,7 +36,7 @@ class DailyCheckSetupView: UIView {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.white
-        imageView.frame = frame
+        imageView.frame = CGRect(x: 5, y: 0, width: frame.size.width - 10, height: frame.size.height)
         addSubview(imageView)
     }
     

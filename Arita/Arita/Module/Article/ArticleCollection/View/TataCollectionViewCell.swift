@@ -74,7 +74,7 @@ class TataCollectionViewCell: UICollectionViewCell {
     public var tataArticleModel: ArticleModel = ArticleModel.initial {
         didSet {
             dateLabel.attributedText = tataArticleModel.articleDate.convertStringToDateString()?.convertDateString()
-            picView.kf.setImage(with: URL(string: tataArticleModel.articlePic), placeholder: UIImage(named: Icon.placeHolderArticle32), options: nil, progressBlock: nil, completionHandler: nil)
+            picView.kf.setImage(with: URL(string: tataArticleModel.articlePic), placeholder: UIImage(named: Icon.placeHolderArticle32), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
             titleLabel.attributedText = tataArticleModel.articleTitle.convertArticleTitleString()
             contentLabel.attributedText = tataArticleModel.articleContent.convertArticleContentString()
         }

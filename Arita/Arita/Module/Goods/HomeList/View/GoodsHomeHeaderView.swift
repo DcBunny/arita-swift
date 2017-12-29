@@ -85,7 +85,7 @@ class GoodsHomeHeaderView: UITableViewHeaderFooterView {
     // MARK: - Public Attributes
     public var imageUrl: String? = "" {
         didSet {
-            albumImage.kf.setImage(with: URL(string: imageUrl!))
+            albumImage.kf.setImage(with: URL(string: imageUrl!), placeholder: UIImage(named: "pic_placeholderLiangpin3x2"), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
         }
     }
     

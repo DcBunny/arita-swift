@@ -67,7 +67,7 @@ class GoodsNormalCell: UITableViewCell {
     // MARK: - Public Attributes
     public var cellData: JSON? = nil {
         didSet {
-            goodImage.kf.setImage(with: URL(string: cellData!["thumb_path"].stringValue))
+            goodImage.kf.setImage(with: URL(string: cellData!["thumb_path"].stringValue), placeholder: UIImage(named: "pic_placeholderLiangpin1x1"), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
             goodLabel.text = cellData!["title"].stringValue
             goodPriceLabel.text = "¥" + cellData!["price"].stringValue
         }

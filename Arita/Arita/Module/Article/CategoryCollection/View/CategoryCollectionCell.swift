@@ -54,7 +54,7 @@ class CategoryCollectionCell: UICollectionViewCell {
     // MARK: - Public Attributes
     public var categoryModel: CategoryModel = CategoryModel.initial()[0] {
         didSet {
-            categoryIcon.kf.setImage(with: URL(string: categoryModel.channelIcon), placeholder: UIImage(named: Icon.defaultCategory), options: nil, progressBlock: nil, completionHandler: nil)
+            categoryIcon.kf.setImage(with: URL(string: categoryModel.channelIcon), placeholder: UIImage(named: Icon.defaultCategory), options: [.transition(.fade(1.5))], progressBlock: nil, completionHandler: nil)
             categoryName.text = categoryModel.channelName
             updateTime.text = categoryModel.updateTime
         }
