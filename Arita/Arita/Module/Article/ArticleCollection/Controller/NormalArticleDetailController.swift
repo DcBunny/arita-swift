@@ -8,6 +8,8 @@
 
 import UIKit
 import WebKit
+import WebViewJavascriptBridge
+import SwiftyJSON
 
 /**
  NormalArticleDetailController **一般分类文章详情列表**页主页
@@ -23,6 +25,7 @@ class NormalArticleDetailController: BaseController {
         layoutPageViews()
         setPageViews()
         loadData()
+        setJSBridge()
     }
     
     override func didReceiveMemoryWarning() {
@@ -102,6 +105,27 @@ class NormalArticleDetailController: BaseController {
         }
     }
     
+    private func setJSBridge() {
+        jsBridge = WKWebViewJavascriptBridge(for: detailWebView)
+        jsBridge.setWebViewDelegate(self)
+        jsBridge.registerHandler("AppNativeHandler") { (data, responseCallback) in
+            let json = JSON(data as Any)
+            let action = json["action"].stringValue
+            let data = json["data"]
+            if action == "loadPage" {
+                if let url = data["url"].string, let channelName = data["channel_name"].string, let title = data["title"].string, let description = data["description"].string, let pic = data["thumb_path"].string  {
+                    let content = [ShareKey.shareUrlKey: url,
+                                   ShareKey.shareTitleKey: title,
+                                   ShareKey.shareDescribtionKey: description,
+                                   ShareKey.shareImageUrlKey: pic
+                    ]
+                    let nextPageController = NormalArticleDetailController(conTitle: channelName, content: content, isFromHome: false)
+                    self.navigationController?.pushViewController(nextPageController, animated: true)
+                }
+            }
+        }
+    }
+    
     fileprivate func findArticle() {
         var currentIndex: Int?
         let articleIdArray = articleModel.map { $0.articleID }
@@ -143,6 +167,7 @@ class NormalArticleDetailController: BaseController {
     fileprivate var articleModel: [ArticleModel] = [ArticleModel.initial]
     private var conTitle: String?
     private var isFromHome: Bool!
+    private var jsBridge: WKWebViewJavascriptBridge!
 }
 
 // MARK: - ONAPIManagerParamSource

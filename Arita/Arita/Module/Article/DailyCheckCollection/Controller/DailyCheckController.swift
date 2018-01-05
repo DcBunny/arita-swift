@@ -63,6 +63,10 @@ class DailyCheckController: BaseController {
             setNaviBar(title: "日签打卡机", font: Font.size15)
         } else if channelID == 34 {
             setNaviBar(title: "乐活段子", font: Font.size15)
+        } else if channelID == 35 {
+            setNaviBar(title: "百味人生", font: Font.size15)
+        } else if channelID == 36 {
+            setNaviBar(title: "无主情话", font: Font.size15)
         }
     }
     
