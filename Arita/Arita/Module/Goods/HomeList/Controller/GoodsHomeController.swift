@@ -159,7 +159,7 @@ extension GoodsHomeController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GoodsNormalCell.self), for: indexPath) as! GoodsNormalCell
-            cell.cellData = goodsArray[indexPath.row/2 + 4]
+            cell.cellData = goodsArray[indexPath.row/2 * 5 + 4]
             
             return cell
         }
@@ -192,7 +192,7 @@ extension GoodsHomeController: UITableViewDataSource {
 extension GoodsHomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row % 2 != 0 {
-            let good = GoodsController(id: goodsArray[indexPath.row/2 + 4]["ID"].stringValue)
+            let good = GoodsController(id: goodsArray[indexPath.row/2 * 5 + 4]["ID"].stringValue)
             good.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(good, animated: true)
         }
