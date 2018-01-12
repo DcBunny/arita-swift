@@ -87,7 +87,7 @@ class ArticleDetailController: BaseController {
         ]
         guard !isScrolling else { return }
         DispatchQueue.main.async {
-            let shareController = ShareController(content: content)
+            let shareController = ShareController(content: content, isImage: false)
             shareController.modalTransitionStyle = .crossDissolve
             shareController.providesPresentationContextTransitionStyle = true
             shareController.definesPresentationContext = true

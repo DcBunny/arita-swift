@@ -143,7 +143,7 @@ class GoodsController: BaseController {
                        ShareKey.shareImageUrlKey: goodImg!
         ]
         DispatchQueue.main.async {
-            let shareController = ShareController(content: content)
+            let shareController = ShareController(content: content, isImage: false)
             shareController.modalTransitionStyle = .crossDissolve
             shareController.providesPresentationContextTransitionStyle = true
             shareController.definesPresentationContext = true

@@ -118,7 +118,7 @@ class MineShareController: BaseController {
                        ShareKey.shareDescribtionKey: "阿里塔 · 不止有趣\n每天精彩尽在塔塔报",
                        ShareKey.shareImageUrlKey: ""
         ]
-        ShareTool.sharedInstance.shareWith(content: content, to: shareType)
+        ShareTool.sharedInstance.shareWith(content: content, to: shareType, isImage: false)
     }
     
     // MARK: - Controller Attributes

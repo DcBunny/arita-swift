@@ -147,7 +147,7 @@ class NormalArticleDetailController: BaseController {
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
             if strongSelf.shareContent != nil {
-                let shareController = ShareController(content: strongSelf.shareContent!)
+                let shareController = ShareController(content: strongSelf.shareContent!, isImage: false)
                 shareController.modalTransitionStyle = .crossDissolve
                 shareController.providesPresentationContextTransitionStyle = true
                 shareController.definesPresentationContext = true

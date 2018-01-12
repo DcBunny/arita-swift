@@ -30,8 +30,9 @@ class ShareController: BaseController {
     }
     
     // MARK: - Init Methods
-    init(content: [String: String]) {
+    init(content: [String: String], isImage: Bool) {
         self.content = content
+        self.isImage = isImage
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -124,7 +125,7 @@ class ShareController: BaseController {
     private var bottomHeight = CGFloat(Size.screenHeight / 2 - 200)
     
     fileprivate var content: [String: String]
-    
+    fileprivate var isImage: Bool
     fileprivate var shareModel: [ShareModel] = []
 }
 
@@ -156,7 +157,7 @@ extension ShareController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! ShareCollectionCell
         guard let shareType = cell.shareType else { return }
-        ShareTool.sharedInstance.shareWith(content: content, to: shareType)
+        ShareTool.sharedInstance.shareWith(content: content, to: shareType, isImage: isImage)
     }
 }
 
