@@ -76,7 +76,7 @@ class ShareTool {
     
     public var delegate: ShareDelegate?
     
-    public func shareWith(content: Dictionary<String, String>, to shareType: ShareType) {
+    public func shareWith(content: Dictionary<String, String>, to shareType: ShareType, isImage: Bool) {
         let shareParames = NSMutableDictionary()
         shareParames.ssdkEnableUseClientShare()
         var platformType: SSDKPlatformType!
@@ -84,6 +84,9 @@ class ShareTool {
         let shareTitle = content[ShareKey.shareTitleKey] ?? "分享标题"
         let shareUrl = NSURL(string: content[ShareKey.shareUrlKey]!) as URL!
         var shareContentType = SSDKContentType.webPage
+        if isImage {
+            shareContentType = SSDKContentType.image
+        }
         
         let url = URL(string: content[ShareKey.shareImageUrlKey]!)
         var thumbImage = UIImage(named: Icon.shareIcon)!
@@ -97,7 +100,7 @@ class ShareTool {
             }
         }
         let imageData = UIImagePNGRepresentation(thumbImage)
-        if (imageData?.count)! > 1024 * 32 {
+        if !isImage && (imageData?.count)! > 1024 * 32 {
             let scaleRactor = sqrt(CGFloat((imageData!.count) / (1024 * 32) + 1))
             thumbImage = thumbImage.scaledToMaxSize(size: CGSize(width: thumbImage.size.width / scaleRactor, height: thumbImage.size.height / scaleRactor))
         }

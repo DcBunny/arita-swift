@@ -129,7 +129,7 @@ class DailyCheckController: BaseController {
         ]
         guard !isScrolling else { return }
         DispatchQueue.main.async {
-            let shareController = ShareController(content: content)
+            let shareController = ShareController(content: content, isImage: true)
             shareController.modalTransitionStyle = .crossDissolve
             shareController.providesPresentationContextTransitionStyle = true
             shareController.definesPresentationContext = true
